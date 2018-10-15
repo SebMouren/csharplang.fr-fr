@@ -1,0 +1,6 @@
+<a name="the-following-notice-governs-the-c-spec"></a><span data-ttu-id="151a9-101">LA MENTION SUIVANTE RÉGIT LA SPÉCIFICATION C#</span><span class="sxs-lookup"><span data-stu-id="151a9-101">THE FOLLOWING NOTICE GOVERNS THE C# SPEC</span></span>
+=====
+
+<span data-ttu-id="151a9-102">Copyright (c) 1999-2017 Microsoft Corporation.</span><span class="sxs-lookup"><span data-stu-id="151a9-102">(c) Copyright 1999-2017 Microsoft Corporation.</span></span> <span data-ttu-id="151a9-103">Tous droits réservés.</span><span class="sxs-lookup"><span data-stu-id="151a9-103">All rights reserved.</span></span>
+<span data-ttu-id="151a9-104">Microsoft, Windows, Visual Basic, Visual c# et Visual C++ sont soit des marques déposées de Microsoft Corporation aux États-Unis d’Amérique et/ou dans d’autres pays/régions.</span><span class="sxs-lookup"><span data-stu-id="151a9-104">Microsoft, Windows, Visual Basic, Visual C#, and Visual C++ are either registered trademarks or trademarks of Microsoft Corporation in the U.S.A. and/or other countries/regions.</span></span>
+<span data-ttu-id="151a9-105">Autres noms de produits et de sociétés mentionnés ici peuvent être des marques de leurs propriétaires respectifs.</span><span class="sxs-lookup"><span data-stu-id="151a9-105">Other product and company names mentioned herein may be the trademarks of their respective owners.</span></span>
