@@ -125,12 +125,12 @@ Le tableau suivant récapitule tous les opérateurs dans l’ordre de priorité,
 | [Opérateurs relationnels et de test de type](expressions.md#relational-and-type-testing-operators) | Égalité                    | `==`  `!=`    | 
 | [Opérateurs logiques](expressions.md#logical-operators)                                         | AND logique                 | `&`           | 
 | [Opérateurs logiques](expressions.md#logical-operators)                                         | XOR logique                 | `^`           | 
-| [Opérateurs logiques](expressions.md#logical-operators)                                         | OR logique                  | `|`           |
+| [Opérateurs logiques](expressions.md#logical-operators)                                         | OR logique                  | <code>&#124;</code>           |
 | [Opérateurs logiques conditionnels](expressions.md#conditional-logical-operators)                 | AND conditionnel             | `&&`          | 
-| [Opérateurs logiques conditionnels](expressions.md#conditional-logical-operators)                 | OR conditionnel              | `||`          | 
+| [Opérateurs logiques conditionnels](expressions.md#conditional-logical-operators)                 | OR conditionnel              | <code>&#124;&#124;</code>          | 
 | [Opérateur de fusion de Null](expressions.md#the-null-coalescing-operator)                   | Fusion de Null             | `??`          | 
 | [Opérateur conditionnel](expressions.md#conditional-operator)                                   | Conditionnel                 | `?:`          | 
-| [Opérateurs d’assignation](expressions.md#assignment-operators), [des expressions de fonction anonyme](expressions.md#anonymous-function-expressions)  | Assignation et expression lambda | `=`  `*=`  `/=`  `%=`  `+=`  `-=`  `<<=`  `>>=`  `&=`  `^=`  `|=`  `=>` | 
+| [Opérateurs d’assignation](expressions.md#assignment-operators), [des expressions de fonction anonyme](expressions.md#anonymous-function-expressions)  | Assignation et expression lambda | `=`  `*=`  `/=`  `%=`  `+=`  `-=`  `<<=`  `>>=`  `&=`  `^=`  <code>&#124;=</code>  `=>` | 
 
 Lorsqu’un opérande se produit entre deux opérateurs de même priorité, l’associativité des opérateurs détermine l’ordre dans lequel les opérations sont effectuées :
 
@@ -3503,7 +3503,7 @@ bool? operator |(bool? x, bool? y);
 
 Le tableau suivant répertorie les résultats générés par ces opérateurs pour toutes les combinaisons des valeurs `true`, `false`, et `null`.
 
-| `x`     | `y`     | `x & y` | ' x | y' |
+| `x`     | `y`     | `x & y` | <code>x &#124; y</code> |
 |:-------:|:-------:|:-------:|:-------:|
 | `true`  | `true`  | `true`  | `true`  | 
 | `true`  | `false` | `false` | `true`  | 

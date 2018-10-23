@@ -277,13 +277,13 @@ Le tableau suivant récapitule les opérateurs de #, répertoriant les catégori
 |                                  | `x != y`          | Différence |
 | AND logique                      | `x & y`           | Entier au niveau du bit AND, boolean logique AND |
 | XOR logique                      | `x ^ y`           | Opération de bits entière XOR, Boolean logique XOR |
-| OR logique                       | ' x | y'           | Opération de bits entière OR, Boolean logique OR |
+| OR logique                       | <code>x &#124; y</code> | Opération de bits entière OR, Boolean logique OR |
 | AND conditionnel                  | `x && y`          | Prend la valeur `y` uniquement si `x` est `true` |
-| OR conditionnel                   | ' x || y'          | Prend la valeur `y` uniquement si `x` est `false` |
+| OR conditionnel                   | <code>x &#124;&#124; y</code> | Prend la valeur `y` uniquement si `x` est `false` |
 | Fusion de Null                  | `X ?? y`          | Prend la valeur `y` si `x` est `null`à `x` sinon |
 | Conditionnel                      | `x ? y : z`       | Prend la valeur `y` si `x` est `true`, `z` si `x` est `false` |
 | Attribution ou fonction anonyme | `x = y`           | Attribution |
-|                                  | `x op= y`         | Assignation composée ; opérateurs pris en charge sont `*=` `/=` `%=` `+=` `-=` `<<=` `>>=` `&=` `^=` `|=` |
+|                                  | `x op= y`         | Assignation composée ; opérateurs pris en charge sont `*=` `/=` `%=` `+=` `-=` `<<=` `>>=` `&=` `^=` <code>&#124;=</code> |
 |                                  | `(T x) => y`      | Fonction anonyme (expression lambda) |
 
 ## <a name="statements"></a>Instructions
