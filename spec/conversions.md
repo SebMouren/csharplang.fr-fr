@@ -366,7 +366,7 @@ class X<T>
 }
 ```
 
-Si la conversion explicite directe de `t` à `int` étaient autorisées, on peut facilement s’attendre à qui `X<int>.F(7)` retournerait `7L`. Toutefois, il le ferait pas, car les conversions numériques standard sont considérées comme uniquement lorsque les types sont connus comme étant numériques au moment de la liaison. Afin de rendre la sémantique clair, l’exemple ci-dessus doit plutôt être écrit :
+Si la conversion explicite directe de `t` à `int` étaient autorisées, on peut facilement s’attendre à qui `X<int>.F(7)` retournerait `7L`. Toutefois, il le ferait pas, car les conversions numériques standard sont considérées comme uniquement lorsque les types sont connus comme étant numériques au moment de la liaison. Afin de rendre la sémantique clair, l’exemple ci-dessus doit plutôt être écrit :
 ```csharp
 class X<T>
 {
@@ -738,7 +738,7 @@ L’application de la compilation d’une conversion à partir d’un groupe de 
 *  La méthode sélectionnée `M` doivent être compatibles ([compatibilité des délégués](delegates.md#delegate-compatibility)) avec le type de délégué `D`, ou dans le cas contraire, une erreur de compilation se produit.
 *  Si la méthode sélectionnée `M` est une méthode d’instance, l’expression d’instance associée `E` détermine l’objet cible du délégué.
 *  Si la méthode sélectionnée M est une méthode d’extension qui est indiquée au moyen d’un accès aux membres sur une expression d’instance, cette expression d’instance détermine l’objet cible du délégué.
-*  Le résultat de la conversion est une valeur de type `D`, à savoir un délégué nouvellement créé qui fait référence à l’objet de méthode et la cible sélectionnée.
+*  Le résultat de la conversion est une valeur de type `D`, à savoir un délégué nouvellement créé qui fait référence à l’objet de méthode et la cible sélectionnée.
 *  Notez que ce processus peut entraîner la création d’un délégué à une méthode d’extension, si l’algorithme de [appels de méthode](expressions.md#method-invocations) ne parvient pas à trouver une méthode d’instance mais réussit lors du traitement de l’appel de `E(A)` en tant qu’extension appel de méthode ([appels de méthode d’Extension](expressions.md#extension-method-invocations)). Un délégué créé par conséquent capture la méthode d’extension, ainsi que son premier argument.
 
 L’exemple suivant montre les conversions de groupes de méthode :
@@ -770,7 +770,7 @@ class Test
 
 L’assignation à `d1` convertit implicitement le groupe de méthodes `F` à une valeur de type `D1`.
 
-L’assignation à `d2` montre comment il est possible de créer un délégué à une méthode qui a moins dérivés des types de paramètres de (contra-variants) et une plus dérivés (covariant) type de retour.
+L’assignation à `d2` montre comment il est possible de créer un délégué à une méthode qui a des types de paramètre moins dérivé (contravariant) et une plus dérivés (covariant) type de retour.
 
 L’assignation à `d3` montre comment n’existe aucune conversion si la méthode n’est pas applicable.
 
