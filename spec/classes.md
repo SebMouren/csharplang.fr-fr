@@ -601,7 +601,7 @@ Méthodes partielles peuvent être définies dans une partie d’une déclaratio
 
 Les méthodes partielles ne peuvent pas définir de modificateurs d’accès, mais sont implicitement `private`. Leur type de retour doit être `void`, et leurs paramètres ne peut pas avoir le `out` modificateur. L’identificateur `partial` est reconnu comme un mot clé spécial dans une déclaration de méthode uniquement s’il apparaît juste avant le `void` type ; sinon il peut être utilisé comme un identificateur normal. Une méthode partielle ne peut pas implémenter explicitement les méthodes d’interface.
 
-Il existe deux types de déclarations de méthode partielles : si le corps de la déclaration de méthode est un point-virgule, la déclaration est dite un ***déclaration de méthode partielle de définition***. Si le corps est indiqué comme un *bloc*, la déclaration est dite un ***mise en œuvre de la déclaration de méthode partielle***. Entre les parties d’une déclaration de type il peut y avoir qu’une déclaration de méthode partielle avec une signature donnée de définition et il peut y avoir qu’une seule déclaration de méthode partielle avec une signature donnée d’implémentation. Si une déclaration de méthode partielle implémentation est donnée, une déclaration de méthode partielle de définition correspondant doit exister, et les déclarations doivent correspondre comme spécifié dans le code suivant :
+Il existe deux types de déclarations de méthode partielles : Si le corps de la déclaration de méthode est un point-virgule, la déclaration est dite un ***déclaration de méthode partielle de définition***. Si le corps est indiqué comme un *bloc*, la déclaration est dite un ***mise en œuvre de la déclaration de méthode partielle***. Entre les parties d’une déclaration de type il peut y avoir qu’une déclaration de méthode partielle avec une signature donnée de définition et il peut y avoir qu’une seule déclaration de méthode partielle avec une signature donnée d’implémentation. Si une déclaration de méthode partielle implémentation est donnée, une déclaration de méthode partielle de définition correspondant doit exister, et les déclarations doivent correspondre comme spécifié dans le code suivant :
 
 * Les déclarations doivent avoir les mêmes modificateurs (bien que pas nécessairement dans le même ordre), nom de la méthode, le nombre de paramètres de type et nombre de paramètres.
 * Paramètres correspondants dans les déclarations doivent avoir les mêmes modificateurs (bien que pas nécessairement dans le même ordre) et les mêmes types (modulo différences dans les noms de paramètre de type).
@@ -2114,7 +2114,7 @@ Les différences entre statiques et membres d’instance sont décrits plus en d
 
 Lorsqu’une déclaration de méthode d’instance inclut un `virtual` modificateur, que la méthode est appelée pour une méthode virtuelle. En cas de non `virtual` modificateur est présent, la méthode est appelée pour une méthode non virtuelle.
 
-L’implémentation d’une méthode non virtuelle est invariable : l’implémentation est la même que la méthode est appelée sur une instance de la classe dans laquelle elle est déclarée ou une instance d’une classe dérivée. En revanche, l’implémentation d’une méthode virtuelle peut être remplacée par des classes dérivées. Le processus de l’implémentation d’une méthode virtuelle héritée est appelé ***substitution*** cette méthode ([substituer les méthodes](classes.md#override-methods)).
+L’implémentation d’une méthode non virtuelle est invariable : L’implémentation est la même que la méthode est appelée sur une instance de la classe dans laquelle elle est déclarée ou une instance d’une classe dérivée. En revanche, l’implémentation d’une méthode virtuelle peut être remplacée par des classes dérivées. Le processus de l’implémentation d’une méthode virtuelle héritée est appelé ***substitution*** cette méthode ([substituer les méthodes](classes.md#override-methods)).
 
 Dans un appel de méthode virtuelle, le ***type au moment de l’exécution*** de l’instance pour laquelle cet appel prend place détermine l’implémentation de méthode à appeler. Dans un appel de méthode non virtuelle, le ***type au moment de la compilation*** de l’instance est le facteur déterminant. Plus précisément, lorsqu’une méthode nommée `N` est appelé avec une liste d’arguments `A` sur une instance avec un type de compilation `C` et un type au moment de l’exécution `R` (où `R` est soit `C` ou une classe dérivée à partir de `C`), l’appel est traité comme suit :
 
@@ -2207,7 +2207,7 @@ class Test
     }
 }
 ```
-le `C` et `D` classes contiennent deux méthodes virtuelles avec la même signature : celle introduite par `A` et l’autre par `C`. La méthode introduite par `C` masque la méthode héritée `A`. Par conséquent, la déclaration de remplacement dans `D` substitue la méthode introduite par `C`, et il n’est pas possible pour `D` pour substituer la méthode introduite par `A`. L’exemple génère la sortie :
+le `C` et `D` classes contiennent deux méthodes virtuelles avec la même signature : Celle introduite par `A` et l’autre par `C`. La méthode introduite par `C` masque la méthode héritée `A`. Par conséquent, la déclaration de remplacement dans `D` substitue la méthode introduite par `C`, et il n’est pas possible pour `D` pour substituer la méthode introduite par `A`. L’exemple génère la sortie :
 ```
 B.F
 B.F
@@ -2694,7 +2694,7 @@ public class Button: Control
     }
 }
 ```
-le `Button` contrôle déclare un public `Caption` propriété. Le `get` l’accesseur de la `Caption` propriété retourne la chaîne stockée dans le privé `caption` champ. Le `set` accesseur vérifie si la nouvelle valeur est différente de la valeur actuelle et, dans ce cas, il stocke la nouvelle valeur et redessine le contrôle. Propriétés suivent souvent le modèle ci-dessus : le `get` accesseur retourne simplement une valeur stockée dans un champ privé et le `set` accesseur modifie ce champ privé, puis effectue les actions supplémentaires requises pour mettre entièrement à jour l’état de l’objet.
+le `Button` contrôle déclare un public `Caption` propriété. Le `get` l’accesseur de la `Caption` propriété retourne la chaîne stockée dans le privé `caption` champ. Le `set` accesseur vérifie si la nouvelle valeur est différente de la valeur actuelle et, dans ce cas, il stocke la nouvelle valeur et redessine le contrôle. Propriétés suivent souvent le modèle ci-dessus : Le `get` accesseur retourne simplement une valeur stockée dans un champ privé et le `set` accesseur modifie ce champ privé, puis effectue les actions supplémentaires requises pour mettre entièrement à jour l’état de l’objet.
 
 Étant donné la `Button` classe ci-dessus, Voici un exemple d’utilisation de la `Caption` propriété :
 ```csharp
@@ -3532,7 +3532,7 @@ binary_operator_declarator
 
 overloadable_binary_operator
     : '+'   | '-'   | '*'   | '/'   | '%'   | '&'   | '|'   | '^'   | '<<'
-    | 'right_shift' | '=='  | '!='  | '>'   | '<'   | '>='  | '<='
+    | right_shift | '=='  | '!='  | '>'   | '<'   | '>='  | '<='
     ;
 
 conversion_operator_declarator
@@ -3547,7 +3547,7 @@ operator_body
     ;
 ```
 
-Il existe trois catégories d’opérateurs surchargeables : les opérateurs unaires ([opérateurs unaires](classes.md#unary-operators)), opérateurs binaires ([opérateurs binaires](classes.md#binary-operators)) et les opérateurs de conversion ([les opérateurs de Conversion ](classes.md#conversion-operators)).
+Il existe trois catégories d’opérateurs surchargeables : Opérateurs unaires ([opérateurs unaires](classes.md#unary-operators)), opérateurs binaires ([opérateurs binaires](classes.md#binary-operators)) et les opérateurs de conversion ([les opérateurs de Conversion](classes.md#conversion-operators)).
 
 Le *operator_body* est soit un point-virgule, un ***corps d’instruction*** ou un ***corps d’expression***. Un corps d’instruction se compose d’un *bloc*, qui spécifie les instructions à exécuter lorsque l’opérateur est appelé. Le *bloc* doit être conforme aux règles de retourner de valeur méthodes décrites dans [corps de la méthode](classes.md#method-body). Un corps d’expression se compose de `=>` suivie d’une expression et un point-virgule et désigne une seule expression à exécuter lorsque l’opérateur est appelé.
 
@@ -4115,7 +4115,7 @@ génère la sortie
 X = 1, Y = 2
 ```
 
-Pour exécuter le `Main` (méthode), le système de la première exécution de l’initialiseur pour `B.Y`, avant de la classe `B`du constructeur statique. `Y`d’initialiseur `A`du constructeur statique à exécuter, car la valeur de `A.X` est référencé. Le constructeur statique de `A` à son tour se poursuit pour calculer la valeur de `X`et cela extractions c’est le cas la valeur par défaut `Y`, qui est égal à zéro. `A.X` est donc initialisé à 1. Le processus en cours d’exécution `A`du constructeur statique et les initialiseurs de champ statique, puis se termine et renvoie le calcul de la valeur initiale de `Y`, dont le résultat devient 2.
+Pour exécuter le `Main` (méthode), le système de la première exécution de l’initialiseur pour `B.Y`, avant de la classe `B`du constructeur statique. `Y`d’initialiseur `A`du constructeur statique à exécuter, car la valeur de `A.X` est référencé. Le constructeur statique de `A` à son tour se poursuit pour calculer la valeur de `X`et cela extractions c’est le cas la valeur par défaut `Y`, qui est égal à zéro. `A.X` est donc initialisé à 1. Le processus en cours d’exécution `A`du constructeur statique et les initialiseurs de champ statique, puis se termine et renvoie le calcul de la valeur initiale de `Y`, dont le résultat devient 2.
 
 Étant donné que le constructeur statique est exécuté une seule fois pour chaque type de classe construite de fermé, il est commode pour appliquer des contrôles d’exécution sur le paramètre de type ne peut pas être vérifiées au moment de la compilation par le biais de contraintes ([paramètre de Type contraintes](classes.md#type-parameter-constraints)). Par exemple, le type suivant utilise un constructeur statique pour assurer que l’argument de type est un enum :
 ```csharp
@@ -4272,7 +4272,7 @@ Le `MoveNext` méthode d’un objet énumérateur encapsule le code d’un bloc 
 *  Si l’état de l’objet énumérateur est ***après***, l’appel `MoveNext` retourne `false`.
 
 
-Lorsque `MoveNext` exécute le bloc itérateur, l’exécution peut être interrompue de quatre manières : par un `yield return` instruction, par un `yield break` instruction, en utilisant la fin du bloc itérateur et par une exception est levée et propagée à partir de la bloc itérateur.
+Lorsque `MoveNext` exécute le bloc itérateur, l’exécution peut être interrompue de quatre manières : Par un `yield return` instruction, par un `yield break` instruction, en utilisant la fin du bloc itérateur et par une exception est levée et propagée hors du bloc itérateur.
 
 *  Quand un `yield return` est rencontrée ([l’instruction yield](statements.md#the-yield-statement)) :
    * L’expression donnée dans l’instruction est évaluée, implicitement convertie vers le type yield et assignée à la `Current` propriété de l’objet énumérateur.
@@ -4734,6 +4734,6 @@ Quand le corps de la fonction asynchrone se termine, la tâche retournée est d�
 
 ### <a name="evaluation-of-a-void-returning-async-function"></a>Évaluation d’une fonction async qui retournent void
 
-Si le type de retour de la fonction async est `void`, évaluation diffère de la méthode ci-dessus de la façon suivante :, car aucune tâche n’est retournée, la fonction communique à la place la saisie semi-automatique et des exceptions pour le thread actuel ***synchronisation contexte***. La définition exacte de contexte de synchronisation dépend de l’implémentation, mais est une représentation sous forme de « where » le thread actuel est en cours d’exécution. Le contexte de synchronisation est averti lors de l’évaluation d’une fonction async qui retournent void commence, se termine correctement ou provoque la levée d’une exception non interceptée.
+Si le type de retour de la fonction async est `void`, évaluation diffère de la méthode ci-dessus de la façon suivante : Parce qu’aucune tâche n’est renvoyée, la fonction communique au lieu de cela la saisie semi-automatique et des exceptions pour le thread actuel ***contexte de synchronisation***. La définition exacte de contexte de synchronisation dépend de l’implémentation, mais est une représentation sous forme de « where » le thread actuel est en cours d’exécution. Le contexte de synchronisation est averti lors de l’évaluation d’une fonction async qui retournent void commence, se termine correctement ou provoque la levée d’une exception non interceptée.
 
 Ainsi, le contexte de savoir combien les fonctions asynchrones qui retournent void sont en cours d’exécution dans cette section et décider comment propager les exceptions provenant de leur.

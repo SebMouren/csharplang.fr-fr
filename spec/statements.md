@@ -202,7 +202,7 @@ est valide et utilise le nom `x` comme paramètre et une étiquette.
 
 L’exécution d’une instruction étiquetée correspond exactement à l’exécution de l’instruction qui suit l’étiquette.
 
-En plus de l’accessibilité fournie par le flux de contrôle normal, une instruction étiquetée est accessible si l’étiquette est référencée par un accessible `goto` instruction. (Exception : si un `goto` instruction se trouve dans un `try` qui inclut un `finally` bloc et l’instruction étiquetée est en dehors de la `try`et le point de terminaison de la `finally` bloc n’est pas accessible, puis l’instruction étiquetée n’est pas accessible à partir de qui `goto` instruction.)
+En plus de l’accessibilité fournie par le flux de contrôle normal, une instruction étiquetée est accessible si l’étiquette est référencée par un accessible `goto` instruction. (Exception : Si un `goto` instruction se trouve dans un `try` qui inclut un `finally` bloc et l’instruction étiquetée est en dehors de la `try`et le point de terminaison de la `finally` bloc n’est pas accessible, puis l’instruction étiquetée n’est pas accessible à partir de qui `goto` instruction.)
 
 ## <a name="declaration-statements"></a>Instructions de déclaration
 
@@ -801,7 +801,7 @@ Le corps de l’enfin le bloc est construit en respectant les étapes suivantes�
 
    La variable locale `d` n’est pas visible à ou accessibles à n’importe quel code utilisateur. En particulier, il ne sont pas en conflit avec toute autre variable dont l’étendue inclut le bloc finally.
 
-L’ordre dans lequel `foreach` parcourt les éléments d’un tableau, se présente comme suit : pour les éléments de tableaux unidimensionnels sont parcourus dans l’ordre d’index croissant, en commençant par index `0` et se terminant par index `Length - 1`. Pour les tableaux multidimensionnels, les éléments sont parcourus telles que les index de la dimension la plus à droite sont accrues en premier, puis la dimension immédiatement à gauche, et ainsi de suite vers la gauche.
+L’ordre dans lequel `foreach` parcourt les éléments d’un tableau, se présente comme suit : Pour les éléments de tableaux unidimensionnels sont parcourus dans l’ordre d’index croissant, en commençant par index `0` et se terminant par index `Length - 1`. Pour les tableaux multidimensionnels, les éléments sont parcourus telles que les index de la dimension la plus à droite sont accrues en premier, puis la dimension immédiatement à gauche, et ainsi de suite vers la gauche.
 
 L’exemple suivant imprime chaque valeur dans un tableau à deux dimensions, dans l’ordre des éléments :
 ```csharp

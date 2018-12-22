@@ -146,7 +146,7 @@ string s = i.ToString();        // System.Int32.ToString() instance method
 string t = 123.ToString();      // System.Int32.ToString() instance method
 ```
 
-Les types simples diffèrent des autres types struct en ce qu’ils autorisent certaines opérations supplémentaires :
+Les types simples diffèrent des autres types struct en ce qu’ils autorisent des opérations supplémentaires :
 
 *  La plupart des types simples permettent de valeurs doit être créé en écrivant *littéraux* ([littéraux](lexical-structure.md#literals)). Par exemple, `123` est un littéral de type `int` et `'a'` est un littéral de type `char`. C# ne prévoit pas pour les littéraux de types struct en général, et non par défaut des valeurs d’autres types struct sont finalement toujours créées par le biais des constructeurs d’instances de ces types struct.
 *  Lorsque les opérandes d’une expression sont toutes les constantes de type simple, il est possible pour le compilateur évaluer l’expression au moment de la compilation. Une telle expression est appelée un *constant_expression* ([expressions constantes](expressions.md#constant-expressions)). Expressions impliquant des opérateurs définis par d’autres types struct ne sont pas considérés comme des expressions constantes.
@@ -188,11 +188,11 @@ C# prend en charge deux types à virgule flottante : `float` et `double`. Le `f
 *  Positif zéro et zéro négatif. Dans la plupart des cas, un zéro positif et négatif zéro se comportent de façon identique que la simple valeur zéro, mais certaines opérations de faire la distinction entre les deux ([opérateur de Division](expressions.md#division-operator)).
 *  L’infini positif et infini négatif. Infinis sont produites par des opérations telles que la division par zéro d’un nombre différent de zéro. Par exemple, `1.0 / 0.0` génère l’infini positif, et `-1.0 / 0.0` l’infini négatif.
 *  Le ***Not-a-Number*** valeur, souvent abrégé NaN. Valeurs NaN sont produites par des opérations à virgule flottante non valides, telles que la division de zéro par zéro.
-*  L’ensemble fini de valeurs non nulles de l’écran `s * m * 2^e`, où `s` est 1 ou -1, et `m` et `e` sont déterminés par le type à virgule flottante particulier : pour `float`, `0 < m < 2^24` et `-149 <= e <= 104`et pour `double`, `0 < m < 2^53` et `1075 <= e <= 970`. Les nombres à virgule flottante dénormalisés sont considérés comme des valeurs non nulles valides.
+*  L’ensemble fini de valeurs non nulles de l’écran `s * m * 2^e`, où `s` est 1 ou -1, et `m` et `e` sont déterminés par le type à virgule flottante particulier : Pour `float`, `0 < m < 2^24` et `-149 <= e <= 104`et pour `double`, `0 < m < 2^53` et `1075 <= e <= 970`. Les nombres à virgule flottante dénormalisés sont considérés comme des valeurs non nulles valides.
 
-Le `float` type peut représenter des valeurs comprises entre environ `1.5 * 10^-45` à `3.4 * 10^38` avec une précision de 7 chiffres.
+Le `float` type peut représenter des valeurs comprises entre environ `1.5 * 10^-45` à `3.4 * 10^38` avec une précision de 7 chiffres.
 
-Le `double` type peut représenter des valeurs comprises entre environ `5.0 * 10^-324` à `1.7 × 10^308` avec une précision de 15-16 chiffres.
+Le `double` type peut représenter des valeurs comprises entre environ `5.0 * 10^-324` à `1.7 × 10^308` avec une précision de 15-16 chiffres.
 
 Si l’un des opérandes d’un opérateur binaire est d’un type à virgule flottante, puis l’autre opérande doit être d’un type intégral ou d’un type à virgule flottante, et l’opération est évaluée comme suit :
 
@@ -211,15 +211,15 @@ Les opérations à virgule flottante peuvent être exécutées avec une précisi
 
 ### <a name="the-decimal-type"></a>Le type decimal
 
-Le type `decimal` est un type de données 128 bits adapté aux calculs financiers et monétaires. Le `decimal` type peut représenter des valeurs comprises entre `1.0 * 10^-28` à environ `7.9 * 10^28` avec 28-29 chiffres significatifs.
+Le type `decimal` est un type de données 128 bits adapté aux calculs financiers et monétaires. Le `decimal` type peut représenter des valeurs comprises entre `1.0 * 10^-28` à environ `7.9 * 10^28` avec 28-29 chiffres significatifs.
 
-L’ensemble fini de valeurs de type `decimal` présentent sous la forme `(-1)^s * c * 10^-e`, où le signe `s` est 0 ou 1, le coefficient `c` est donnée par `0 <= *c* < 2^96`et l’échelle `e` est telle que `0 <= e <= 28`. Le `decimal` type ne prend pas en charge les zéros signés, infinis ou NaN. Un `decimal` est représentée comme un entier 96 bits mis à l’échelle par une puissance de dix. Pour `decimal`s avec une valeur absolue inférieure à `1.0m`, la valeur est exacte jusqu'à la 28ème décimale, mais pas plus loin. Pour `decimal`s avec une valeur absolue supérieure ou égale à `1.0m`, la valeur est exacte à 28 ou 29 chiffres. Contraire au `float` et `double` des types de données, des nombres fractionnaires décimaux, comme 0,1 peuvent être représentées exactement dans le `decimal` représentation. Dans le `float` et `double` représentations, ces nombres sont souvent des fractions infinies, rendre ces représentations plus propices à arrondi erreurs.
+L’ensemble fini de valeurs de type `decimal` présentent sous la forme `(-1)^s * c * 10^-e`, où le signe `s` est 0 ou 1, le coefficient `c` est donnée par `0 <= *c* < 2^96`et l’échelle `e` est telle que `0 <= e <= 28`. Le `decimal` type ne prend pas en charge les zéros signés, infinis ou NaN. Un `decimal` est représentée comme un entier 96 bits mis à l’échelle par une puissance de dix. Pour `decimal`s avec une valeur absolue inférieure à `1.0m`, la valeur est exacte jusqu'à la 28ème décimale, mais pas plus loin. Pour `decimal`s avec une valeur absolue supérieure ou égale à `1.0m`, la valeur est exacte à 28 ou 29 chiffres. Contraire au `float` et `double` des types de données, des nombres fractionnaires décimaux, comme 0,1 peuvent être représentées exactement dans le `decimal` représentation. Dans le `float` et `double` représentations, ces nombres sont souvent des fractions infinies, rendre ces représentations plus propices à arrondi erreurs.
 
 Si l’un des opérandes d’un opérateur binaire est de type `decimal`, puis l’autre opérande doit être de type intégral ou de type `decimal`. Si un opérande de type intégral est présent, il est converti en `decimal` avant l’opération est effectuée.
 
 Le résultat d’une opération sur les valeurs de type `decimal` est que qui résulterait de calcul d’un résultat exact (préservation mise à l’échelle, comme défini pour chaque opérateur) et ensuite arrondi pour s’ajuster à la représentation. Les résultats sont arrondis à la plus proche de la valeur représentable, et que, lorsqu’un résultat est proche de deux valeurs représentables, à la valeur qui a un nombre pair à la position de chiffre moins significatif (cela est appelé « l’arrondi bancaire »). Un zéro résultat a toujours un signe de 0 et une échelle de 0.
 
-Si une opération arithmétique décimale produit une valeur inférieure ou égale à `5 * 10^-29` en valeur absolue, le résultat de l’opération devient égal à zéro. Si un `decimal` opération arithmétique produit un résultat qui est trop grand pour le `decimal` format, un `System.OverflowException` est levée.
+Si une opération arithmétique décimale produit une valeur inférieure ou égale à `5 * 10^-29` en valeur absolue, le résultat de l’opération devient égal à zéro. Si un `decimal` opération arithmétique produit un résultat qui est trop grand pour le `decimal` format, un `System.OverflowException` est levée.
 
 Le `decimal` type a une précision supérieure, mais de plus petite plage que les types à virgule flottante. Par conséquent, les conversions de types à virgule flottante `decimal` peut générer des exceptions de dépassement de capacité et les conversions de `decimal` pour les types à virgule flottante peut entraîner une perte de précision. Pour ces raisons, n’existe aucune conversion implicite entre les types à virgule flottante et `decimal`, et sans cast explicite, il n’est pas possible de combiner à virgule flottante et `decimal` opérandes dans la même expression.
 

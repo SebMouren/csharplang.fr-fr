@@ -512,7 +512,7 @@ Un *anonymous_method_expression* ou *lambda_expression* est classé comme une fo
 
 Une expression lambda `F` est compatible avec un type d’arborescence expression `Expression<D>` si `F` est compatible avec le type de délégué `D`. Notez que cela ne s’applique pas aux méthodes anonymes, seules les expressions lambda.
 
-Certaines expressions lambda ne peut pas être convertis en types d’arborescence d’expression : même si la conversion *existe*, elle échoue au moment de la compilation. Cela est le cas si l’expression lambda :
+Certaines expressions lambda ne peut pas être converties en types arborescence d’expression : Même si la conversion *existe*, elle échoue au moment de la compilation. Cela est le cas si l’expression lambda :
 
 *  A un *bloc* corps
 *  Contient les opérateurs d’assignation simple ou composite
@@ -723,7 +723,7 @@ class Test
 }
 ```
 
-La même technique appliquée ici pour capturer les variables locales permettre également servir lors de la conversion des fonctions anonymes arborescences d’expression : références aux objets générés par le compilateur peuvent être stockés dans l’arborescence d’expression, et l’accès aux variables locales peut être représentée comme champ accède à ces objets. L’avantage de cette approche est qu’elle autorise les variables locales « levés » être partagés entre les délégués et les arborescences d’expression.
+La même technique appliquée ici pour capturer les variables locales permettre également servir lors de la conversion des fonctions anonymes arborescences d’expression : Références à des objets générés par le compilateur peuvent être stockés dans l’arborescence d’expression, et accès aux variables locales peuvent être représentés comme champ accède à ces objets. L’avantage de cette approche est qu’elle autorise les variables locales « levés » être partagés entre les délégués et les arborescences d’expression.
 
 ## <a name="method-group-conversions"></a>Conversions de groupe (méthode)
 

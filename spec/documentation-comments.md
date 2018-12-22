@@ -597,13 +597,13 @@ Le Générateur de documentation respecte les règles suivantes lorsqu’il gén
 *  La deuxième partie de la chaîne est le nom qualifié complet de l’élément, en commençant à la racine de l’espace de noms. Le nom de l’élément, son type (s) d’englobante et un espace de noms sont séparés par des points. Si le nom de l’élément lui-même comporte des points, ils sont remplacés par `#(U+0023)` caractères. (Il est supposé qu’aucun élément n’a ce caractère dans son nom.)
 *  Pour les méthodes et propriétés avec des arguments, l’argument liste suit, placés entre parenthèses. Pour ceux sans arguments, les parenthèses sont omises. Les arguments sont séparés par des virgules. L’encodage de chaque argument est identique à une signature CLI, comme suit :
    *  Arguments sont représentés par leur nom de la documentation, qui est basé sur leur nom qualifié complet, modifié comme suit :
-      * Les arguments qui représentent des types génériques ont ajoutée « ' » suivi par le nombre de paramètres de type
+      * Les arguments qui représentent des types génériques ont ajoutée `` ` `` (accent grave) suivi par le nombre de paramètres de type
       * Arguments ayant la `out` ou `ref` modificateur ont un `@` suivant leur nom de type. Arguments passés par valeur ou par le biais de `params` n’ont aucun notation spéciale.
-      * Les arguments qui sont des tableaux sont représentés en tant que `[lowerbound:size, ... , lowerbound:size]` où le nombre de virgules correspond au rang moins un, et les limites inférieure et la taille de chaque dimension, s’il est connu, sont représentées sous forme décimale. Si une limite inférieure ou une taille n’est pas spécifié, il est omis. Si la limite inférieure et la taille d’une dimension particulière sont omises, le «`:`» est également omis. Tableaux en escalier sont représentés par une «`[]`» par niveau.
+      * Les arguments qui sont des tableaux sont représentés en tant que `[lowerbound:size, ... , lowerbound:size]` où le nombre de virgules correspond au rang moins un, et les limites inférieure et la taille de chaque dimension, s’il est connu, sont représentées sous forme décimale. Si une limite inférieure ou une taille n’est pas spécifié, il est omis. Si la limite inférieure et la taille d’une dimension particulière sont omises, le `:` est également omis. Tableaux en escalier sont représentés par une `[]` par niveau.
       * Les arguments qui ont des types de pointeur autre que void sont représentés en utilisant un `*` après le nom de type. Un pointeur void est représenté à l’aide d’un nom de type de `System.Void`.
-      * Les arguments qui font référence aux paramètres de type générique définies sur les types sont encodés à l’aide de la « ' » suivi par l’index de base zéro du paramètre de type.
-      * Les arguments qui utilisent des paramètres de type générique définies dans les méthodes utilisent un double-accent grave »\`\`» au lieu de la «\`» utilisé pour les types.
-      * Arguments qui font référence aux types génériques construits sont encodés à l’aide de type générique, suivi par « { », suivi d’une liste séparée par des virgules d’arguments de type, suivi par «} ».
+      * Les arguments qui font référence aux paramètres de type générique définies sur les types sont encodés à l’aide de la `` ` `` (accent grave) suivi par l’index de base zéro du paramètre de type.
+      * Les arguments qui utilisent des paramètres de type générique définies dans les méthodes utilisent un double-backtick ``` `` ``` au lieu du `` ` `` utilisés pour les types.
+      * Les arguments qui font référence aux types génériques construits sont encodés à l’aide de type générique, suivi par `{`, suivi d’une liste séparée par des virgules d’arguments de type, suivi par `}`.
 
 ### <a name="id-string-examples"></a>Exemples de chaînes d’ID
 
@@ -850,7 +850,7 @@ Les exemples suivants montrent chacun un fragment de code c#, ainsi que la chaî
    "M:Acme.Widget.op_Implicit(Acme.Widget)~System.Int64"
    ```
 
-## <a name="an-example"></a>Un exemple
+## <a name="an-example"></a>Exemple
 
 ### <a name="c-source-code"></a>Code source c#
 

@@ -496,7 +496,7 @@ le *using_static_directive* importe la méthode d’extension `M` contenue dans 
 
 Un *using_static_directive* importe uniquement les membres et types déclarés directement dans le type donné, pas les types et les membres déclarés dans les classes de base.
 
-TODO : exemple
+TODO: Exemple
 
 Ambiguïtés entre plusieurs *using_namespace_directives* et *using_static_directives* sont abordées dans [à l’aide de directives d’espace de noms](namespaces.md#using-namespace-directives).
 
@@ -561,22 +561,22 @@ Un *qualified_alias_member* a une des deux formes :
 À l’aide de cette notation, la signification d’un *qualified_alias_member* est déterminée comme suit :
 
 *  Si `N` est l’identificateur `global`, puis est recherchée dans l’espace de noms global `I`:
-   * Si l’espace de noms global contient un espace de noms nommé `I` et `K` est égal à zéro, puis le *qualified_alias_member* fait référence à cet espace de noms.
-   * Sinon, si l’espace de noms global contient un type non générique nommé `I` et `K` est égal à zéro, puis le *qualified_alias_member* fait référence à ce type.
-   * Sinon, si l’espace de noms global contient un type nommé `I` qui a `K` paramètres de type, puis le *qualified_alias_member* fait référence à ce type construit avec les arguments de type donné.
+   * Si l’espace de noms global contient un espace de noms nommé `I` et `K` est égal à zéro, puis le *qualified_alias_member* fait référence à cet espace de noms.
+   * Sinon, si l’espace de noms global contient un type non générique nommé `I` et `K` est égal à zéro, puis le *qualified_alias_member* fait référence à ce type.
+   * Sinon, si l’espace de noms global contient un type nommé `I` qui a `K`  paramètres de type, puis le *qualified_alias_member* fait référence à ce type construit avec les arguments de type donné.
    * Sinon, le *qualified_alias_member* est non défini et une erreur de compilation se produit.
 
 *  Sinon, en commençant par la déclaration d’espace de noms ([Namespace déclarations](namespaces.md#namespace-declarations)) immédiatement contenant le *qualified_alias_member* (le cas échéant), poursuite de l’opération avec chaque déclaration d’espace de noms englobant (le cas échéant) et se terminant par l’unité de compilation contenant le *qualified_alias_member*, les étapes suivantes sont évaluées jusqu'à ce qu’une entité se trouve :
 
    * Si l’unité de compilation ou de la déclaration d’espace de noms contient un *using_alias_directive* qui associe `N` avec un type, puis le *qualified_alias_member* n’est pas défini et le moment de la compilation erreur se produit.
    * Sinon, si l’unité de compilation ou de la déclaration d’espace de noms contient un *extern_alias_directive* ou *using_alias_directive* qui associe `N` avec un espace de noms, puis :
-     * Si l’espace de noms associé à `N` contient un espace de noms nommé `I` et `K` est égal à zéro, puis le *qualified_alias_member* fait référence à cet espace de noms.
-     * Sinon, si l’espace de noms associé à `N` contient un type non générique nommé `I` et `K` est égal à zéro, puis le *qualified_alias_member* fait référence à ce type.
-     * Sinon, si l’espace de noms associé à `N` contient un type nommé `I` qui a `K` paramètres de type, puis le *qualified_alias_member* fait référence à ce type construit avec le type donné arguments.
+     * Si l’espace de noms associé à `N` contient un espace de noms nommé `I` et `K` est égal à zéro, puis le *qualified_alias_member* fait référence à cet espace de noms.
+     * Sinon, si l’espace de noms associé à `N` contient un type non générique nommé `I` et `K` est égal à zéro, puis le *qualified_alias_member* fait référence à ce type.
+     * Sinon, si l’espace de noms associé à `N` contient un type nommé `I` qui a `K`  paramètres de type, puis le *qualified_alias_member* fait référence à que type construit avec les arguments de type donné.
      * Sinon, le *qualified_alias_member* est non défini et une erreur de compilation se produit.
 *  Sinon, le *qualified_alias_member* est non défini et une erreur de compilation se produit.
 
-Notez que l’utilisation du qualificateur d’alias d’espace de noms avec un alias qui référence un type entraîne une erreur de compilation. Notez que si l’identificateur `N` est `global`, puis recherche est effectuée dans l’espace de noms global, même s’il existe une association d’alias en utilisant `global` avec un type ou d’un espace de noms.
+Notez que l’utilisation du qualificateur d’alias d’espace de noms avec un alias qui référence un type entraîne une erreur de compilation. Notez que si l’identificateur `N` est `global`, puis recherche est effectuée dans l’espace de noms global, même s’il existe une association d’alias en utilisant `global` avec un type ou d’un espace de noms.
 
 ### <a name="uniqueness-of-aliases"></a>Unicité d’alias
 

@@ -4,7 +4,7 @@ Un tableau est une structure de données qui contient un nombre de variables qui
 
 Un tableau a un rang qui détermine le nombre d’indices associés à chaque élément du tableau. Le rang d’un tableau est également appelé les dimensions du tableau. Un tableau avec un classement d’un est appelé un ***tableau unidimensionnel***. Un tableau de rang supérieur à un est appelé un ***tableau multidimensionnel***. Tableaux multidimensionnels de taille spécifiques sont souvent appelées tableaux à deux dimensions, tableaux à trois dimensions et ainsi de suite.
 
-Chaque dimension d’un tableau a une longueur, qui est un nombre entier supérieur ou égal à zéro. Les longueurs de dimensions ne font pas partie du type du tableau, mais elles sont établies lorsqu’une instance du type tableau est créée au moment de l’exécution. La longueur d’une dimension détermine la plage valide d’indices de cette dimension : pour une dimension de longueur `N`, index peuvent être comprise entre `0` à `N - 1` inclus. Le nombre total d’éléments dans un tableau est le produit des longueurs de chaque dimension du tableau. Si un ou plusieurs des dimensions du tableau ont une longueur de zéro, le tableau est dit être vide.
+Chaque dimension d’un tableau a une longueur, qui est un nombre entier supérieur ou égal à zéro. Les longueurs de dimensions ne font pas partie du type du tableau, mais elles sont établies lorsqu’une instance du type tableau est créée au moment de l’exécution. La longueur d’une dimension détermine la plage valide d’indices de cette dimension : Pour une dimension de longueur `N`, index peuvent être comprise entre `0` à `N - 1` inclus. Le nombre total d’éléments dans un tableau est le produit des longueurs de chaque dimension du tableau. Si un ou plusieurs des dimensions du tableau ont une longueur de zéro, le tableau est dit être vide.
 
 Le type d’élément d’un tableau peut être de n’importe quel type, y compris un type tableau.
 
@@ -32,7 +32,7 @@ dim_separator
 
 Un *non_array_type* est any *type* qui est pas elle-même une *array_type*.
 
-Le rang d’un type tableau est fourni par le plus à gauche *rank_specifier* dans le *array_type*: un *rank_specifier* indique que le tableau est un tableau de rang un plus le nombre de «`,`» des jetons dans le *rank_specifier*.
+Le rang d’un type tableau est fourni par le plus à gauche *rank_specifier* dans le *array_type*: Un *rank_specifier* indique que le tableau est un tableau de rang un plus le nombre de «`,`» des jetons dans le *rank_specifier*.
 
 Le type d’élément d’un type tableau est le type qui résulte de la suppression le plus à gauche *rank_specifier*:
 

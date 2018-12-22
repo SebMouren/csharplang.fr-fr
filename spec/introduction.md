@@ -4,7 +4,7 @@ C# (prononcé « C Sharp ») est un langage de programmation simple, moderne, 
 
 C# est un langage orienté objet, mais C# inclut de plus la prise en charge de la programmation ***orientée composant***. La conception logicielle moderne s’appuie de plus en plus sur les composants logiciels sous la forme de packages de fonctionnalités autonomes et autodescriptifs. Point important, ces composants présentent un modèle de programmation avec propriétés, méthodes et événements ; ils ont des attributs qui fournissent des informations déclaratives sur le composant ; et ils intègrent leur propre documentation. C# fournit des constructions de langage qui prennent directement en charge ces concepts, rendre c# un langage très naturel permettant de créer et utiliser des composants logiciels.
 
-Plusieurs fonctionnalités c# faciliter la construction d’applications robustes et fiables : ***Garbage collection*** récupère automatiquement la mémoire occupée par les objets inutilisés ; ***gestion des exceptions*** offre une approche structurée et extensible pour la détection d’erreur et de récupération ; et le ***type-safe*** conception du langage ne permet pas de lire à partir de non initialisé variables, aux tableaux d’index au-delà de leurs limites, ou pour effectuer des casts de type non contrôlé.
+Plusieurs C# fonctionnalités d’aide dans la construction d’applications robustes et fiables : ***Le garbage collection*** récupère automatiquement la mémoire occupée par les objets inutilisés ; ***gestion des exceptions*** offre une approche structurée et extensible pour la détection d’erreur et de récupération ; et le ***type-safe*** conception du langage ne permet pas de lire à partir de variables non initialisées, pour indexer des tableaux au-delà de leurs limites, ou réaliser unchecked casts de type.
 
 C# a un ***système de type unifié***. Tous les types C#, y compris les types primitifs tels que `int` et `double`, héritent d’un seul type `object` racine. Par conséquent, tous les types partagent un ensemble d’opérations communes, et des valeurs de tous types peuvent être stockées, transmises et exploitées de manière cohérente. En outre, C# prend en charge les types référence et les types valeur définis par l’utilisateur, ce qui permet l’allocation dynamique d’objets, ainsi que le stockage en ligne de structures légères.
 
@@ -184,7 +184,7 @@ Un type struct est similaire à un type de classe, car il représente une struct
 
 Un type d’interface définit un contrat comme un jeu nommé de membres de la fonction publique. Une classe ou un struct qui implémente une interface doit fournir des implémentations de fonctions membres de l’interface. Une interface peut hériter de plusieurs interfaces de base, et une classe ou un struct peut implémenter plusieurs interfaces.
 
-Un type délégué représente des références aux méthodes avec une liste de paramètres particulier et le type de retour. Les délégués permettent de traiter les méthodes en tant qu’entités qui peuvent être affectées à des variables et passées comme paramètres. Les délégués sont similaires au concept de pointeurs de fonction dans d’autres langages, mais, contrairement aux pointeurs de fonction, les délégués sont orientés objet et de type sécurisé.
+Un type délégué représente des références aux méthodes avec une liste de paramètres particulier et le type de retour. Les délégués permettent de traiter les méthodes en tant qu’entités qui peuvent être affectées à des variables et passées comme paramètres. Les délégués sont similaires au concept de pointeurs de fonction dans d’autres langages, mais contrairement aux pointeurs de fonction, les délégués sont orientés objet et de type sécurisé.
 
 Classe, struct, interface et délégué types tous en charge les génériques, ce qui leur peuvent être paramétrés avec d’autres types.
 
@@ -599,7 +599,7 @@ Le tableau suivant fournit une vue d’ensemble des types de membres de qu'une c
 | Constantes    | Valeurs constantes associées à la classe |
 | Champs       | Variables de la classe |
 | Méthodes      | Calculs et les actions qui peuvent être effectués par la classe |
-| Properties   | Actions associées à la lecture et l’écriture des propriétés nommées de la classe |
+| Propriétés   | Actions associées à la lecture et l’écriture des propriétés nommées de la classe |
 | Indexeurs     | Actions liées à l’indexation des instances de la classe comme un tableau |
 | Événements       | Les notifications qui peuvent être générées par la classe |
 | Opérateurs    | Les opérateurs de conversion et d’expression pris en charge par la classe |
@@ -1133,7 +1133,7 @@ List<string> list2 = new List<string>(10);
 ```
 Contrairement aux autres membres, les constructeurs d’instance ne sont pas hérités, et une classe n’a aucun constructeur d’instance autre que ceux réellement déclarés dans la classe. Si aucun constructeur d’instance n’est fourni pour une classe, un constructeur vide sans paramètre est fourni automatiquement.
 
-#### <a name="properties"></a>Properties
+#### <a name="properties"></a>Propriétés
 
 Les ***propriétés*** sont une extension naturelle des champs. Les deux sont des membres nommés avec des types associés, et la syntaxe pour accéder aux champs et propriétés est la même. Toutefois, contrairement aux champs, les propriétés ne désignent pas des emplacements de stockage. Au lieu de cela, les propriétés ont des ***accesseurs*** qui spécifient les instructions à exécuter lorsque les valeurs sont lues ou écrites.
 

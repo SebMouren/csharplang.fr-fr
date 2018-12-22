@@ -189,7 +189,7 @@ public interface IStringList
     string this[int index] { get; set; }
 }
 ```
-déclare une interface qui contient l’un des types de membres possibles : une méthode, une propriété, un événement et un indexeur.
+déclare une interface qui contient l’un des types possibles de membres : Une méthode, une propriété, un événement et un indexeur.
 
 Un *interface_declaration* crée un nouvel espace de déclaration ([déclarations](basic-concepts.md#declarations)) et le *interface_member_declaration*s immédiatement contenus par le *interface_declaration* introduire de nouveaux membres dans cet espace de déclaration. Les règles suivantes s’appliquent aux *interface_member_declaration*%s :
 
@@ -295,7 +295,7 @@ Le type d’un indexeur d’interface doit être sécurisé de sortie s’il exi
 
 Membres d’interface sont accessibles via l’accès au membre ([l’accès au membre](expressions.md#member-access)) et accès d’indexeur ([accès indexeur](expressions.md#indexer-access)) expressions de la forme `I.M` et `I[A]`, où `I` est un type interface, `M` est une méthode, une propriété ou un événement de ce type d’interface, et `A` est une liste d’arguments indexeur.
 
-Pour les interfaces qui sont strictement à héritage unique (chaque interface dans la chaîne d’héritage possède exactement zéro ou une interface de base directe), les effets de la recherche de membres ([recherche de membres](expressions.md#member-lookup)), appel de méthode ([ Appels de méthode](expressions.md#method-invocations)) et accès d’indexeur ([accès indexeur](expressions.md#indexer-access)) règles sont exactement les mêmes que pour les classes et structs : masquage de membres plus dérivé moins dérivées membres avec le même nom ou la même signature. Toutefois, pour les interfaces de l’héritage multiple, ambiguïtés peuvent se produire lorsque deux ou plus des interfaces de base non liées déclarent des membres avec le même nom ou la même signature. Cette section montre plusieurs exemples de telles situations. Dans tous les cas, des casts explicites peuvent être utilisés pour résoudre les ambiguïtés.
+Pour les interfaces qui sont strictement à héritage unique (chaque interface dans la chaîne d’héritage possède exactement zéro ou une interface de base directe), les effets de la recherche de membres ([recherche de membres](expressions.md#member-lookup)), appel de méthode ([ Appels de méthode](expressions.md#method-invocations)) et accès d’indexeur ([accès indexeur](expressions.md#indexer-access)) règles sont exactement les mêmes que pour les classes et structs : Plus dérivés masquer des membres moins dérivée de membres avec le même nom ou la signature. Toutefois, pour les interfaces de l’héritage multiple, ambiguïtés peuvent se produire lorsque deux ou plus des interfaces de base non liées déclarent des membres avec le même nom ou la même signature. Cette section montre plusieurs exemples de telles situations. Dans tous les cas, des casts explicites peuvent être utilisés pour résoudre les ambiguïtés.
 
 Dans l’exemple
 ```csharp
@@ -380,7 +380,7 @@ class A
 ```
 le `IBase.F` membre est masqué par le `ILeft.F` membre. L’appel `d.F(1)` sélectionne le `ILeft.F`, même si `IBase.F` semble ne pas être masqué dans le chemin d’accès qui mène à `IRight`.
 
-La règle intuitive de masquage des interfaces à héritage multiple est simple : si un membre est masqué dans n’importe quel chemin d’accès, il est masqué dans tous les chemins d’accès. Étant donné que le chemin d’accès à partir de `IDerived` à `ILeft` à `IBase` masque `IBase.F`, le membre est également masqué dans le chemin d’accès à partir de `IDerived` à `IRight` à `IBase`.
+La règle intuitive de masquage des interfaces à héritage multiple est simple : Si un membre est masqué dans n’importe quel chemin d’accès, il est masqué dans tous les chemins d’accès. Étant donné que le chemin d’accès à partir de `IDerived` à `ILeft` à `IBase` masque `IBase.F`, le membre est également masqué dans le chemin d’accès à partir de `IDerived` à `IRight` à `IBase`.
 
 ## <a name="fully-qualified-interface-member-names"></a>Noms de membre d’interface qualifié complet
 

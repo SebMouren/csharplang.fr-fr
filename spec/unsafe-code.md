@@ -276,7 +276,7 @@ Dans un contexte unsafe, plusieurs constructions sont disponibles pour l’explo
 
 ## <a name="fixed-and-moveable-variables"></a>Variables fixes et déplaçables
 
-L’opérateur address-of ([l’opérateur address-of](unsafe-code.md#the-address-of-operator)) et le `fixed` instruction ([l’instruction fixed](unsafe-code.md#the-fixed-statement)) diviser les variables en deux catégories : ***fixe variables***et ***variables déplaçables***.
+L’opérateur address-of ([l’opérateur address-of](unsafe-code.md#the-address-of-operator)) et le `fixed` instruction ([l’instruction fixed](unsafe-code.md#the-fixed-statement)) diviser les variables en deux catégories : ***Correction des variables*** et ***variables déplaçables***.
 
 Variables fixes résident dans des emplacements de stockage qui ne sont pas affectés par l’opération du garbage collector. (Exemples de variables fixes incluent les variables locales, les paramètres de valeur et les variables créées par déréférencer les pointeurs.) En revanche, variables déplaçables résident dans des emplacements de stockage qui sont susceptibles d’être déplacée ou supprimée par le garbage collector. (Les exemples de variables déplaçables les champs dans des objets et des éléments de tableaux.)
 

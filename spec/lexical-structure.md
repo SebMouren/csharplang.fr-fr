@@ -28,7 +28,7 @@ Chaque fichier source dans un programme c# doit être conforme à la *d’entré
 
 La grammaire syntaxique de c# est présentée dans les chapitres et les annexes qui suivent ce chapitre. Les symboles terminaux de la grammaire syntaxique sont les jetons définis par la grammaire lexicale et la grammaire syntaxique spécifie la façon dont les jetons sont combinées pour former des programmes c#.
 
-Chaque fichier source dans un programme c# doit être conforme à la *compilation_unit* production de la grammaire syntaxique ([unités de Compilation](namespaces.md#compilation-units)).
+Chaque fichier source dans un C# programme doit être conforme à la *compilation_unit* production de la grammaire syntaxique ([unités de Compilation](namespaces.md#compilation-units)).
 
 ## <a name="lexical-analysis"></a>Analyse lexicale
 
@@ -55,7 +55,7 @@ input_element
     ;
 ```
 
-Cinq éléments de base constituent la structure lexicale d’un fichier source c# : terminateurs de ligne ([terminateurs de ligne](lexical-structure.md#line-terminators)), un espace blanc ([espace blanc](lexical-structure.md#white-space)), commentaires ([commentaires](lexical-structure.md#comments)), jetons ([jetons](lexical-structure.md#tokens)) et les directives de prétraitement ([directives de prétraitement](lexical-structure.md#pre-processing-directives)). Ces éléments de base, seuls les jetons sont importants dans la grammaire syntaxique d’un programme c# ([grammaire syntaxique](lexical-structure.md#syntactic-grammar)).
+Cinq éléments de base constituent la structure lexicale d’un C# fichier source : Terminateurs de ligne ([terminateurs de ligne](lexical-structure.md#line-terminators)), un espace blanc ([espace blanc](lexical-structure.md#white-space)), commentaires ([commentaires](lexical-structure.md#comments)), jetons ([jetons](lexical-structure.md#tokens)), et directives de prétraitement ([directives de prétraitement](lexical-structure.md#pre-processing-directives)). Ces éléments de base, seuls les jetons sont importants dans la grammaire syntaxique d’un programme c# ([grammaire syntaxique](lexical-structure.md#syntactic-grammar)).
 
 Le traitement lexical d’un fichier source c# consiste à réduire le fichier en une séquence de jetons qui devient l’entrée de l’analyse syntaxique. Terminateurs de ligne, les espaces blancs et les commentaires peuvent servir à séparer les jetons et les directives de prétraitement peuvent provoquer des sections du fichier source doit être ignorée, mais sinon ces éléments lexicaux n’ont aucun impact sur la structure syntaxique d’un programme c#.
 

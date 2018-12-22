@@ -821,7 +821,7 @@ Pour les appels qui se produisent dans les déclarations de constructeurs d’in
 
 ## <a name="attributes-for-interoperation"></a>Attributs d’interopérabilité
 
-Remarque : Cette section s’applique uniquement à l’implémentation de Microsoft .NET de c#.
+Remarque : Cette section s’applique uniquement à l’implémentation de Microsoft .NET de C#.
 
 ### <a name="interoperation-with-com-and-win32-components"></a>Interopérabilité avec les composants COM et Win32
 
