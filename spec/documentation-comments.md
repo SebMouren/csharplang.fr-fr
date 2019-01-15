@@ -37,12 +37,12 @@ public class Point
 }
 ```
 
-Le texte dans les commentaires de documentation doit être correctement formé conformément aux règles de XML (http://www.w3.org/TR/REC-xml). Si le code XML est incorrect, un avertissement est généré et le fichier de documentation contiendra un commentaire indiquant qu’une erreur s’est produite.
+Le texte dans les commentaires de documentation doit être correctement formé conformément aux règles de XML (https://www.w3.org/TR/REC-xml). Si le code XML est incorrect, un avertissement est généré et le fichier de documentation contiendra un commentaire indiquant qu’une erreur s’est produite.
 
 Bien que les développeurs sont libres de créer leur propre jeu de balises, un jeu recommandé est défini dans [balises recommandées](documentation-comments.md#recommended-tags). Certaines des balises recommandées ont des significations spéciales :
 
 *  Le `<param>` balise est utilisée pour décrire les paramètres. Si une telle balise est utilisée, le Générateur de documentation doit vérifier que le paramètre spécifié existe et que tous les paramètres sont décrits dans les commentaires de documentation. Si cette vérification échoue, le Générateur de documentation émet un avertissement.
-*  L’attribut `cref` peut être joint à n’importe quelle balise pour fournir une référence à un élément de code. Le Générateur de documentation doit vérifier l’existence de cet élément de code. Si la vérification échoue, le Générateur de documentation émet un avertissement. Lors de la recherche pour un nom décrit dans un `cref` attribut, le Générateur de documentation doit respecter la visibilité de l’espace de noms en fonction de `using` les instructions situées dans le code source. Pour les éléments de code qui sont génériques, la syntaxe générique normale (c'est-à-dire «`List<T>`») ne peut pas être utilisé car il génère le code XML non valide. Accolades peuvent être utilisées au lieu de crochets (ie «`List{T}`»), ou la syntaxe d’échappement XML peut être utilisée (ie «`List&lt;T&gt;`»).
+*  L’attribut `cref` peut être joint à n’importe quelle balise pour fournir une référence à un élément de code. Le Générateur de documentation doit vérifier l’existence de cet élément de code. Si la vérification échoue, le Générateur de documentation émet un avertissement. Lors de la recherche pour un nom décrit dans un `cref` attribut, le Générateur de documentation doit respecter la visibilité de l’espace de noms en fonction de `using` les instructions situées dans le code source. Pour les éléments de code qui sont génériques, la syntaxe générique normale (autrement dit, «`List<T>`») ne peut pas être utilisé car il génère le code XML non valide. Accolades peuvent être utilisées au lieu de crochets (autrement dit, «`List{T}`»), ou la syntaxe d’échappement XML peut être utilisée (autrement dit, «`List&lt;T&gt;`»).
 *  Le `<summary>` balise est destinée à être utilisée par une visionneuse de documentation pour afficher des informations supplémentaires sur un type ou membre.
 *  Le `<include>` balise inclut des informations à partir d’un fichier XML externe.
 
@@ -53,7 +53,7 @@ Notez bien que le fichier de documentation ne fournit pas d’informations compl
 Le Générateur de documentation doit accepter et traiter n’importe quelle balise est valide selon les règles de XML. Les balises suivantes fournissent des fonctionnalités couramment utilisées dans la documentation utilisateur. (Bien entendu, autres balises sont possibles.)
 
 
-| __Balise__          | __Section__                                            | __Fonction__                                            |
+| __Tag__          | __Section__                                            | __Fonction__                                            |
 |------------------|--------------------------------------------------------|--------------------------------------------------------|
 | `<c>`            | [`<c>`](documentation-comments.md#c)                   | Définir le texte dans une police de type code                           | 
 | `<code>`         | [`<code>`](documentation-comments.md#code)             | Définir une ou plusieurs lignes de sortie de code ou de programme source |
