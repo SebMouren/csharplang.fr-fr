@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 61eeae6173eaa19f9cf6d6e985f3dc107d4c3ac9
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "50245524"
+---
 # <a name="conversions"></a>Conversions
 
 Un ***conversion*** permet à une expression à être traitée comme étant d’un type particulier. Une conversion peut provoquer une expression d’un type donné pour être considérée comme ayant un type différent, ou elle peut provoquer une expression sans un type pour lequel obtenir un type. Les conversions peuvent être ***implicite*** ou ***explicite***, ce qui détermine si un cast explicite est requis. Par exemple, la conversion de type `int` à taper `long` est implicite, c’est le cas expressions de type `int` peuvent être traitées en tant que type `long`. La conversion opposée, à partir du type `long` à taper `int`, est explicite et un cast explicite est donc requis.

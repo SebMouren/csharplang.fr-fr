@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: af7af574814dc04ee3ece0396b7ae5f86b3ec8eb
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229645"
+---
 # <a name="classes"></a>Classes
 
 Une classe est une structure de données qui peut contenir des données membres (constantes et champs), des fonctions membres (méthodes, propriétés, événements, indexeurs, opérateurs, constructeurs d’instance, destructeurs et constructeurs statiques) et les types imbriqués. Types de classes prend en charge l’héritage, un mécanisme par lequel une classe dérivée peut étendre et spécialiser une classe de base.
@@ -1827,7 +1835,7 @@ A *fixed_parameter* avec un *default_argument* est appelé un ***paramètre facu
 
 Un `ref` ou `out` paramètre ne peut pas avoir un *default_argument*. Le *expression* dans un *default_argument* doit être une des opérations suivantes :
 
-*  un *constant_expression*
+*  a *constant_expression*
 *  une expression sous la forme `new S()` où `S` est un type valeur
 *  une expression sous la forme `default(S)` où `S` est un type valeur
 
@@ -3569,7 +3577,7 @@ Vous trouverez plus d’informations sur les opérateurs unaires et binaires dan
 
 Vous trouverez plus d’informations sur les opérateurs de conversion dans [conversions définies par l’utilisateur](conversions.md#user-defined-conversions).
 
-### <a name="unary-operators"></a>Opérateurs unaires
+### <a name="unary-operators"></a>Les opérateurs unaires.
 
 Les règles suivantes s’appliquent aux déclarations d’opérateur unaire, où `T` indique le type de l’instance de la classe ou structure qui contient la déclaration d’opérateur :
 

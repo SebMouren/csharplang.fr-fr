@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 0a09585f4f885647230354c66a2449abb7ef1f44
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229615"
+---
 # <a name="interfaces"></a>Interfaces
 
 Une interface définit un contrat. Une classe ou un struct qui implémente une interface doit adhérer à ce contrat. Une interface peut hériter de plusieurs interfaces de base, et une classe ou un struct peut implémenter plusieurs interfaces.

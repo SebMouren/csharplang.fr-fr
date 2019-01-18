@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 08c14d9ef2afe30580f456995066c141653ede92
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229651"
+---
 # <a name="delegates"></a>Délégués
 
 Les délégués activent des scénarios que d’autres langages, tels que C++, Pascal et Modula--ont abordés avec des pointeurs de fonction. Toutefois, contrairement aux pointeurs de fonction C++, les délégués sont entièrement orienté objet et contrairement aux pointeurs C++ vers des fonctions membres, les délégués encapsuler une instance d’objet et une méthode.

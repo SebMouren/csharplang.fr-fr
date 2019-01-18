@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 155c1beecddfdfcce2e7948bcb8d6b80428fbd7a
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229646"
+---
 # <a name="arrays"></a>Tableaux
 
 Un tableau est une structure de données qui contient un nombre de variables qui sont accessibles par le biais des indices calculés. Les variables contenues dans un tableau, également appelé éléments du tableau, sont tous du même type, et ce type est appelé le type d’élément du tableau.

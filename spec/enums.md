@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: c3b716e6eb331be2ee33fffeb42c1e2406cd3a5c
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229669"
+---
 # <a name="enums"></a>Enums
 
 Un ***type enum*** est un type valeur distinct ([types valeur](types.md#value-types)) qui déclare un ensemble de constantes nommées.

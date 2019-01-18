@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 90001cf3d48f216787fc65e59166ec57c5d0ca34
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229621"
+---
 # <a name="unsafe-code"></a>Code unsafe
 
 Le cœur du langage c#, tel que défini dans les chapitres précédents, diffère sensiblement de C et C++ dans son omission des pointeurs comme un type de données. Au lieu de cela, c# fournit des références et la possibilité de créer des objets qui sont gérés par un garbage collector. Cette conception, couplée avec d’autres fonctionnalités, fait de c# un langage beaucoup plus sécurisé que C ou C++. Dans le langage principal C# il est tout simplement pas possible d’avoir une variable non initialisée, un pointeur « non résolue » ou une expression qui indexe un tableau au-delà de ses limites. Ensemble des catégories de bogues mortels autrement régulièrement C et les programmes C++ sont donc éliminés.

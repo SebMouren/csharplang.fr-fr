@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 75454072a5137b3044f78bb896317fd88a29e336
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "49640910"
+---
 # <a name="expressions"></a>Expressions
 
 Une expression est une séquence d’opérateurs et d’opérandes. Ce chapitre définit la syntaxe, l’ordre d’évaluation des opérandes et opérateurs et la signification des expressions.
@@ -1611,7 +1619,7 @@ L’exécution du traitement d’un *object_creation_expression* du formulaire `
     * Une instance du type `T` est créée en allouant une variable locale temporaire. Depuis un constructeur d’instance d’un *struct_type* est nécessaire à affecter définitivement une valeur pour chaque champ de l’instance en cours de création, aucune initialisation de la variable temporaire est nécessaire.
     * Le constructeur d’instance est appelé conformément aux règles d’appel de fonction membre ([la vérification de la résolution de surcharge dynamique lors de la compilation](expressions.md#compile-time-checking-of-dynamic-overload-resolution)). Une référence à l’instance nouvellement allouée est automatiquement passée au constructeur d’instance et l’instance est accessible à partir de ce constructeur en tant que `this`.
 
-#### <a name="object-initializers"></a>Initialiseurs d’objets
+#### <a name="object-initializers"></a>Initialiseurs d’objet
 
 Un ***initialiseur d’objet*** spécifie les valeurs de zéro ou plusieurs champs, des propriétés ou des éléments indexés d’un objet.
 
@@ -2318,7 +2326,7 @@ TODO : exemples
 
 Un *anonymous_method_expression* est une des deux façons de définir une fonction anonyme. Celles-ci sont décrites en détail dans [expressions de fonction anonyme](expressions.md#anonymous-function-expressions).
 
-## <a name="unary-operators"></a>Opérateurs unaires
+## <a name="unary-operators"></a>Les opérateurs unaires.
 
 Le `?`, `+`, `-`, `!`, `~`, `++`, `--`, effectuez un cast, et `await` sont appelés les opérateurs unaires.
 
@@ -2700,9 +2708,9 @@ Les opérateurs de multiplication prédéfinis sont répertoriés ci-dessous. To
 
    |      |      |      |     |     |      |      |     |
    |:----:|-----:|:----:|:---:|:---:|:----:|:----:|:----|
-   |      | + y   | -y   | +0  | -0  | +inf | -inf | NaN | 
-   | + x   | + z   | -z   | +0  | -0  | +inf | -inf | NaN | 
-   | -x   | -z   | + z   | -0  | +0  | -inf | +inf | NaN | 
+   |      | +y   | -y   | +0  | -0  | +inf | -inf | NaN | 
+   | +x   | +z   | -z   | +0  | -0  | +inf | -inf | NaN | 
+   | -x   | -z   | +z   | -0  | +0  | -inf | +inf | NaN | 
    | +0   | +0   | -0   | +0  | -0  | NaN  | NaN  | NaN | 
    | -0   | -0   | +0   | -0  | +0  | NaN  | NaN  | NaN | 
    | +inf | +inf | -inf | NaN | NaN | +inf | -inf | NaN | 
@@ -2752,9 +2760,9 @@ Les opérateurs de division prédéfinis sont répertoriés ci-dessous. Tous les
 
    |      |      |      |      |      |      |      |      |
    |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-   |      | + y   | -y   | +0   | -0   | +inf | -inf | NaN  | 
-   | + x   | + z   | -z   | +inf | -inf | +0   | -0   | NaN  | 
-   | -x   | -z   | + z   | -inf | +inf | -0   | +0   | NaN  | 
+   |      | +y   | -y   | +0   | -0   | +inf | -inf | NaN  | 
+   | +x   | +z   | -z   | +inf | -inf | +0   | -0   | NaN  | 
+   | -x   | -z   | +z   | -inf | +inf | -0   | +0   | NaN  | 
    | +0   | +0   | -0   | NaN  | NaN  | +0   | -0   | NaN  | 
    | -0   | -0   | +0   | NaN  | NaN  | -0   | +0   | NaN  | 
    | +inf | +inf | -inf | +inf | -inf | NaN  | NaN  | NaN  | 
@@ -2802,8 +2810,8 @@ Les opérateurs de reste prédéfinis sont répertoriés ci-dessous. Tous les op
 
    |      |      |      |      |      |      |      |      |
    |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-   |      | + y   | -y   | +0   | -0   | +inf | -inf | NaN  | 
-   | + x   | + z   | + z   | NaN  | NaN  | x    | x    | NaN  | 
+   |      | +y   | -y   | +0   | -0   | +inf | -inf | NaN  | 
+   | +x   | +z   | +z   | NaN  | NaN  | x    | x    | NaN  | 
    | -x   | -z   | -z   | NaN  | NaN  | -x   | -x   | NaN  | 
    | +0   | +0   | +0   | NaN  | NaN  | +0   | +0   | NaN  | 
    | -0   | -0   | -0   | NaN  | NaN  | -0   | -0   | NaN  | 

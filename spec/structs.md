@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 72d17175dfb8ef284dce6cf7e5837420fa06f16a
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229609"
+---
 # <a name="structs"></a>Structs
 
 Les structs sont semblables aux classes car elles représentent des structures de données qui peuvent contenir des membres de données et des fonctions membres. Toutefois, contrairement aux classes, structs sont des types valeur et ne nécessitent pas d’allocation de tas. Une variable d’un type struct contient directement les données de la structure, alors qu’une variable d’un type de classe contient une référence aux données, la dernière valeur connue en tant qu’objet.
