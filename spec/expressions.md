@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 75454072a5137b3044f78bb896317fd88a29e336
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: MT
-ms.contentlocale: fr-FR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "49640910"
----
 # <a name="expressions"></a>Expressions
 
 Une expression est une séquence d’opérateurs et d’opérandes. Ce chapitre définit la syntaxe, l’ordre d’évaluation des opérandes et opérateurs et la signification des expressions.
@@ -92,7 +84,7 @@ Les sections suivantes décrivent chaque construction dans le langage for exacte
 
 ### <a name="types-of-constituent-expressions"></a>Types d’expressions qui le composent
 
-Lorsqu’une opération est liée statiquement, le type d’une expression qui le composent (par exemple, un récepteur et argument, un index ou un opérande) est toujours considéré comme le type de compilation de cette expression.
+Lorsqu’une opération est liée statiquement, le type d’une expression qui le composent (par exemple, un récepteur, un argument, un index ou un opérande) est toujours considéré comme le type de compilation de cette expression.
 
 Lorsqu’une opération est dynamiquement liée, le type d’une expression qui le composent est déterminé de différentes manières selon le type de compilation de l’expression qui le composent :
 
@@ -388,7 +380,7 @@ Le tableau suivant récapitule le traitement qui a lieu dans les constructions q
 |                   | `T.E -= value` | Le `remove` accesseur de l’événement `E` dans la classe ou structure `T` est appelé. Une erreur au moment de la liaison se produit si `E` n’est pas statique. | 
 |                   | `e.E += value` | Le `add` accesseur de l’événement `E` dans la classe, un struct ou une interface donnée par le type de `e` est appelé avec l’expression d’instance `e`. Une erreur au moment de la liaison se produit si `E` est statique. | 
 |                   | `e.E -= value` | Le `remove` accesseur de l’événement `E` dans la classe, un struct ou une interface donnée par le type de `e` est appelé avec l’expression d’instance `e`. Une erreur au moment de la liaison se produit si `E` est statique. | 
-| Accès à l’indexeur    | `e[x,y]`       | Résolution de surcharge est appliquée pour sélectionner le meilleur indexeur dans la classe, un struct ou une interface donné par le type de e. Le `get` accesseur de l’indexeur est appelé avec l’expression d’instance `e` et la liste d’arguments `(x,y)`. Une erreur au moment de la liaison se produit si l’indexeur est en écriture seule. | 
+| Accès aux indexeurs    | `e[x,y]`       | Résolution de surcharge est appliquée pour sélectionner le meilleur indexeur dans la classe, un struct ou une interface donné par le type de e. Le `get` accesseur de l’indexeur est appelé avec l’expression d’instance `e` et la liste d’arguments `(x,y)`. Une erreur au moment de la liaison se produit si l’indexeur est en écriture seule. | 
 |                   | `e[x,y] = value` | Résolution de surcharge est appliquée pour sélectionner le meilleur indexeur dans la classe, un struct ou une interface donnée par le type de `e`. Le `set` accesseur de l’indexeur est appelé avec l’expression d’instance `e` et la liste d’arguments `(x,y,value)`. Une erreur au moment de la liaison se produit si l’indexeur est en lecture seule. | 
 | Appel d’opérateur | `-x`         | Résolution de surcharge est appliquée pour sélectionner le meilleur opérateur unaire dans la classe ou le struct donné par le type de `x`. L’opérateur sélectionné est appelé avec la liste d’arguments `(x)`. | 
 |                     | `x + y`      | Résolution de surcharge est appliquée pour sélectionner le meilleur opérateur binaire dans les classes ou les structs donnés par les types de `x` et `y`. L’opérateur sélectionné est appelé avec la liste d’arguments `(x,y)`. | 
@@ -1448,7 +1440,7 @@ Dans ce cas le compilateur classifie les *element_access* en tant que valeur de 
 
 Si le *primary_no_array_creation_expression* d’un *element_access* est une valeur d’un *array_type*, le *element_access* est un tableau d’accès ([tableau accès](expressions.md#array-access)). Sinon, le *primary_no_array_creation_expression* doit être une variable ou une valeur d’une classe, un struct ou un type d’interface qui a un ou plusieurs membres d’indexeur, auquel cas la *element_access* est un accès à l’indexeur ([accès indexeur](expressions.md#indexer-access)).
 
-#### <a name="array-access"></a>Accès à un tableau
+#### <a name="array-access"></a>Accès aux tableaux
 
 Pour l’accès au tableau, le *primary_no_array_creation_expression* de la *element_access* doit être une valeur d’un *array_type*. En outre, le *argument_list* d’un tableau accès n’est pas autorisé à contenir des arguments nommés. Le nombre d’expressions dans le *argument_list* doit être le même que le rang de la *array_type*, et chaque expression doit être de type `int`, `uint`, `long`, `ulong`, ou doit être implicitement convertible en un ou plusieurs de ces types.
 
@@ -1462,7 +1454,7 @@ Le traitement de l’exécution de l’accès à un tableau sous la forme `P[A]`
 *  La valeur de chaque expression contenue dans le *argument_list* est comparée aux limites réelles de chaque dimension de l’instance de tableau référencé par `P`. Si une ou plusieurs valeurs sont hors limites, un `System.IndexOutOfRangeException` est levée et aucune autre étape n’est exécutée.
 *  L’emplacement de l’élément de tableau donné par les expressions d’index est calculé et cet emplacement devient le résultat de l’accès.
 
-#### <a name="indexer-access"></a>Accès à l’indexeur
+#### <a name="indexer-access"></a>Accès aux indexeurs
 
 Pour l’accès à un indexeur, le *primary_no_array_creation_expression* de la *element_access* doit être une variable ou une valeur d’une classe, un struct ou un type d’interface, et ce type doit implémenter un ou plusieurs indexeurs qui sont appliquent au niveau du *argument_list* de la *element_access*.
 

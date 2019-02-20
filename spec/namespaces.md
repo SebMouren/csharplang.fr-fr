@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 9c3863c9a139f5b8309fca6e0c099d0fae7677c3
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: MT
-ms.contentlocale: fr-FR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229718"
----
 # <a name="namespaces"></a>Espaces de noms
 
 Les programmes c# sont organisés à l’aide d’espaces de noms. Espaces de noms sont utilisés comme un système d’organisation « interne » pour un programme et comme un système d’organisation « external » : une façon de présenter des éléments de programme qui sont exposés à d’autres programmes.
@@ -434,7 +426,7 @@ namespace N2
     }
 }
 ```
-`N1` contient un membre de type `A`, et `C` contient une méthode statique `A`et parce que `N2` importe les deux, faisant référence à `A` comme un *simple_name* est ambigu et un moment de la compilation erreur. 
+`N1` contient un membre de type `A`, et `C` contient un champ statique `A`et parce que `N2` importe les deux, faisant référence à `A` comme un *simple_name* est ambigu et un moment de la compilation erreur. 
 
 Comme un *using_alias_directive*, un *using_namespace_directive* ne contribue pas tous les nouveaux membres à l’espace de déclaration sous-jacent de l’unité de compilation ou d’un espace de noms, mais affecte uniquement le compilation unité corps ou d’espace de noms dans lequel elle apparaît.
 
