@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 67019511d49a786a5d6edf6fea442f745fc40f3f
+ms.sourcegitcommit: 0a80f26b8e455c4f09843a10e11e29c24d2d922e
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57347272"
+---
 # <a name="expressions"></a>Expressions
 
 Une expression est une séquence d’opérateurs et d’opérandes. Ce chapitre définit la syntaxe, l’ordre d’évaluation des opérandes et opérateurs et la signification des expressions.
@@ -2943,7 +2951,7 @@ Les opérateurs de soustraction prédéfinis sont répertoriés ci-dessous. Les 
 
    |      |      |      |      |      |      |     |
    |:----:|:----:|:----:|:----:|:----:|:----:|:---:|
-   | NaN  | o    | +0   | -0   | +inf | -inf | NaN | 
+   |      | o    | +0   | -0   | +inf | -inf | NaN | 
    | x    | e    | x    | x    | -inf | +inf | NaN | 
    | +0   | -y   | +0   | +0   | -inf | +inf | NaN | 
    | -0   | -y   | -0   | +0   | -inf | +inf | NaN | 
