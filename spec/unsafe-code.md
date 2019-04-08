@@ -8,17 +8,17 @@ ms.locfileid: "47229621"
 ---
 # <a name="unsafe-code"></a>Code unsafe
 
-Le cœur du langage c#, tel que défini dans les chapitres précédents, diffère sensiblement de C et C++ dans son omission des pointeurs comme un type de données. Au lieu de cela, c# fournit des références et la possibilité de créer des objets qui sont gérés par un garbage collector. Cette conception, couplée avec d’autres fonctionnalités, fait de c# un langage beaucoup plus sécurisé que C ou C++. Dans le langage principal C# il est tout simplement pas possible d’avoir une variable non initialisée, un pointeur « non résolue » ou une expression qui indexe un tableau au-delà de ses limites. Ensemble des catégories de bogues mortels autrement régulièrement C et les programmes C++ sont donc éliminés.
+Le cœur du langage C#, tel que défini dans les chapitres précédents, diffère sensiblement de C et C++ dans son omission des pointeurs comme un type de données. Au lieu de cela, C# fournit des références et la possibilité de créer des objets qui sont gérés par un garbage collector. Cette conception, couplée avec d’autres fonctionnalités, fait de C# un langage beaucoup plus sécurisé que C ou C++. Dans le langage principal C# il est tout simplement pas possible d’avoir une variable non initialisée, un pointeur « non résolue » ou une expression qui indexe un tableau au-delà de ses limites. Ensemble des catégories de bogues mortels autrement régulièrement C et les programmes C++ sont donc éliminés.
 
-Alors que fait chaque construction de type pointeur en C ou C++ a un équivalent de type référence en c#, néanmoins, il existe des situations où accès aux types pointeur l'devient une nécessité. Par exemple, interagissant avec le système d’exploitation sous-jacent, l’accès à un périphérique mappé en mémoire ou implémentation d’un algorithme de durée critique peut-être pas possible ou pratique sans accès aux pointeurs. Pour répondre à ce besoin, c# offre la possibilité d’écrire ***code unsafe***.
+Alors que fait chaque construction de type pointeur en C ou C++ a un équivalent de type référence en C#, néanmoins, il existe des situations où accès aux types pointeur l'devient une nécessité. Par exemple, interagissant avec le système d’exploitation sous-jacent, l’accès à un périphérique mappé en mémoire ou implémentation d’un algorithme de durée critique peut-être pas possible ou pratique sans accès aux pointeurs. Pour répondre à ce besoin, C# offre la possibilité d’écrire ***code unsafe***.
 
-Dans du code unsafe, il est possible de déclarer et fonctionner sur des pointeurs, pour effectuer des conversions entre les pointeurs et les types intégraux, de prendre l’adresse des variables et ainsi de suite. Dans un sens, écrire du code unsafe est similaire à écrire du code C au sein d’un programme c#.
+Dans du code unsafe, il est possible de déclarer et fonctionner sur des pointeurs, pour effectuer des conversions entre les pointeurs et les types intégraux, de prendre l’adresse des variables et ainsi de suite. Dans un sens, écrire du code unsafe est similaire à écrire du code C au sein d’un programme C#.
 
 Le code unsafe est en fait une fonctionnalité « sécurisée » du point de vue des développeurs et des utilisateurs. Le code unsafe doit être clairement marqué avec le modificateur `unsafe`, de sorte que les développeurs ne puissent pas utiliser des fonctionnalités non sécurisées par inadvertance, et le moteur d’exécution fonctionne pour vous assurer que le code unsafe ne peut pas être exécuté dans un environnement non fiable.
 
 ## <a name="unsafe-contexts"></a>Contextes non sécurisés
 
-Les fonctionnalités non sécurisées de c# sont disponibles uniquement dans des contextes unsafe. Un contexte unsafe est introduit en incluant un `unsafe` modificateur dans la déclaration d’un type ou un membre, ou en utilisant un *unsafe_statement*:
+Les fonctionnalités non sécurisées de C# sont disponibles uniquement dans des contextes unsafe. Un contexte unsafe est introduit en incluant un `unsafe` modificateur dans la déclaration d’un type ou un membre, ou en utilisant un *unsafe_statement*:
 
 *  Une déclaration d’une classe, un struct, une interface ou un délégué peut comprendre un `unsafe` modificateur, auquel cas toute l’étendue de texte de cette déclaration de type (y compris le corps de la classe, un struct ou une interface) est considérée comme un contexte unsafe.
 *  Une déclaration d’un champ, méthode, propriété, événement, l’indexeur, opérateur, constructeur d’instance, destructeur ou constructeur statique peut comprendre un `unsafe` modificateur, auquel cas toute l’étendue de texte de cette déclaration de membre est considérée comme un unsafe contexte.
@@ -205,7 +205,7 @@ Certains des exemples de types pointeur sont donnés dans le tableau ci-dessous�
 
 Pour une implémentation donnée, tous les types de pointeur doivent avoir la même taille et la représentation.
 
-Contrairement à C et C++, lorsque plusieurs pointeurs sont déclarés dans la même déclaration, en c# le `*` est écrit, ainsi que le type sous-jacent uniquement, pas comme une indirection sur chaque nom de pointeur. Exemple :
+Contrairement à C et C++, lorsque plusieurs pointeurs sont déclarés dans la même déclaration, en C# le `*` est écrit, ainsi que le type sous-jacent uniquement, pas comme une indirection sur chaque nom de pointeur. Exemple :
 
 ```csharp
 int* pi, pj;    // NOT as int *pi, *pj;
@@ -1042,7 +1042,7 @@ un `stackalloc` initialiseur est utilisé dans le `IntToString` méthode allouer
 
 ## <a name="dynamic-memory-allocation"></a>Allocation de mémoire dynamique
 
-À l’exception de la `stackalloc` opérateur, c# ne fournit aucuns constructions prédéfinies pour la gestion de la mémoire collectée non garbage. Ces services sont généralement fournis en prenant en charge des bibliothèques de classes ou importés directement depuis le système d’exploitation sous-jacent. Par exemple, le `Memory` classe ci-dessous illustre comment les fonctions du tas du système d’exploitation sous-jacent peuvent être accessible à partir de c# :
+À l’exception de la `stackalloc` opérateur, C# ne fournit aucuns constructions prédéfinies pour la gestion de la mémoire collectée non garbage. Ces services sont généralement fournis en prenant en charge des bibliothèques de classes ou importés directement depuis le système d’exploitation sous-jacent. Par exemple, le `Memory` classe ci-dessous illustre comment les fonctions du tas du système d’exploitation sous-jacent peuvent être accessible à partir de C# :
 
 ```csharp
 using System;
