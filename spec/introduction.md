@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: ab41a3c99f79c4cc70f7d4720f7e53b91a410859
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.openlocfilehash: db10046af5d635b430951679a448e23680b18b87
+ms.sourcegitcommit: a19fac74c01a6c3da67d38b2f79527145d4edcbc
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "49640897"
+ms.lasthandoff: 04/09/2019
+ms.locfileid: "59426810"
 ---
 # <a name="introduction"></a>Introduction
 
@@ -12,11 +12,11 @@ C# (prononcé « C Sharp ») est un langage de programmation simple, moderne, 
 
 C# est un langage orienté objet, mais C# inclut de plus la prise en charge de la programmation ***orientée composant***. La conception logicielle moderne s’appuie de plus en plus sur les composants logiciels sous la forme de packages de fonctionnalités autonomes et autodescriptifs. Point important, ces composants présentent un modèle de programmation avec propriétés, méthodes et événements ; ils ont des attributs qui fournissent des informations déclaratives sur le composant ; et ils intègrent leur propre documentation. C# fournit des constructions de langage qui prennent directement en charge ces concepts, rendre c# un langage très naturel permettant de créer et utiliser des composants logiciels.
 
-Plusieurs C# fonctionnalités d’aide dans la construction d’applications robustes et fiables : ***Le garbage collection*** récupère automatiquement la mémoire occupée par les objets inutilisés ; ***gestion des exceptions*** offre une approche structurée et extensible pour la détection d’erreur et de récupération ; et le ***type-safe*** conception du langage ne permet pas de lire à partir de variables non initialisées, pour indexer des tableaux au-delà de leurs limites, ou réaliser unchecked casts de type.
+Plusieurs fonctionnalités de C# participent à la construction d’applications robustes et fiables : ***Le garbage collection*** récupère automatiquement la mémoire occupée par les objets inutilisés ; ***gestion des exceptions*** offre une approche structurée et extensible pour la détection d’erreur et de récupération ; et le ***type-safe*** conception du langage ne permet pas de lire à partir de variables non initialisées, pour indexer des tableaux au-delà de leurs limites, ou réaliser unchecked casts de type.
 
 C# a un ***système de type unifié***. Tous les types C#, y compris les types primitifs tels que `int` et `double`, héritent d’un seul type `object` racine. Par conséquent, tous les types partagent un ensemble d’opérations communes, et des valeurs de tous types peuvent être stockées, transmises et exploitées de manière cohérente. En outre, C# prend en charge les types référence et les types valeur définis par l’utilisateur, ce qui permet l’allocation dynamique d’objets, ainsi que le stockage en ligne de structures légères.
 
-Pour vous assurer que les bibliothèques et les programmes c# peuvent évoluer au fil du temps de manière compatible, l’accent a été placé sur ***versioning*** dans la conception de #. De nombreux langages de programmation n’accordent que peu d’attention à ce problème ; par conséquent, les programmes écrits dans ces langages s’arrêtent plus souvent que nécessaire lors de l’introduction de versions plus récentes des bibliothèques dépendantes. Aspects de conception de # qui ont été directement influencés par les considérations relatives à la gestion des versions incluent le distinct `virtual` et `override` modificateurs, les règles de résolution de surcharge de méthode et la prise en charge pour les déclarations de membre d’interface explicite.
+Pour vous assurer que les bibliothèques et les programmes c# peuvent évoluer au fil du temps de manière compatible, l’accent a été placé sur ***versioning*** dans la conception de #. De nombreux langages de programmation n’accordent que peu d’attention à ce problème ; par conséquent, les programmes écrits dans ces langages s’arrêtent plus souvent que nécessaire lors de l’introduction de versions plus récentes des bibliothèques dépendantes. Aspects de C#include de conception qui ont été directement influencés par les considérations relatives à la gestion des versions de la distinct `virtual` et `override` modificateurs, les règles de résolution de surcharge de méthode et la prise en charge pour les déclarations de membre d’interface explicite.
 
 Le reste de ce chapitre décrit les principales fonctionnalités du langage c#. Bien que les chapitres suivants décrivent les règles et les exceptions de manière très détaillée et parfois mathématique, ce chapitre s’efforce de clarté et la concision au détriment d’exhaustivité. L’objectif est de fournir au lecteur une introduction au langage qui facilite l’écriture de programmes précoce et la lecture des chapitres.
 
@@ -135,26 +135,26 @@ C# permet le stockage du texte source d’un programme dans plusieurs fichiers s
 
 Il existe deux genres de types en C# : les ***types référence*** et les ***types valeur***. Les variables des types valeur contiennent directement leurs données alors que les variables des types référence contiennent des références à leurs données, connues sous le nom d’objets. Avec les types référence, deux variables peuvent faire référence au même objet et, par conséquent, les opérations sur une variable peuvent affecter le même objet référencé par l'autre variable. Avec les types valeur, les variables possèdent leur propre copie de données, et les opérations sur une variable ne peuvent absolument pas affecter l'autre (sauf pour les variables de paramètre `ref` et `out`).
 
-Les types de valeur de # sont divisés en ***types simples***, ***types enum***, ***types struct***, et ***types nullable***et la référence de # les types sont divisés en ***types de classes***, ***types d’interfaces***, ***types tableau***, et ***types délégués***.
+C#de types valeur sont divisés en ***types simples***, ***types enum***, ***types struct***, et ***types nullable***, et C#de types référence sont divisés en ***types de classes***, ***types d’interfaces***, ***types tableau***, et ***types délégués***.
 
-Le tableau suivant fournit une vue d’ensemble du système de type de #.
+Le tableau suivant fournit une vue d’ensemble de C#du système de type.
 
-| __Catégorie__    |                 | __Description__ |
+| __Category__    |                 | __Description__ |
 |-----------------|-----------------|-----------------|
-| Types de valeur     | Types simples    | Entier signé : `sbyte`, `short`, `int`, `long` |
+| Types de valeur     | Types simples    | Entier signé : `sbyte`, `short`, `int`, `long` |
 |                 |                 | Entier non signé : `byte`, `ushort`, `uint`, `ulong` |
-|                 |                 | Caractères Unicode : `char` |
-|                 |                 | Virgule flottante IEEE : `float`, `double` |
-|                 |                 | Décimale haute précision :`decimal` |
-|                 |                 | Booléen : `bool` |
-|                 | Types d'enum      | Types définis par l'utilisateur de la forme `enum E {...}` |
-|                 | Types struct    | Types définis par l'utilisateur de la forme `struct S {...}` |
+|                 |                 | Caractères Unicode : `char` |
+|                 |                 | Virgule flottante IEEE : `float`, `double` |
+|                 |                 | Décimale haute précision : `decimal` |
+|                 |                 | Valeur booléenne : `bool` |
+|                 | Types d'enum      | Types définis par l’utilisateur du formulaire `enum E {...}` |
+|                 | Types struct    | Types définis par l’utilisateur du formulaire `struct S {...}` |
 |                 | Types Nullable  | Extensions de tous les autres types de valeurs avec une valeur `null` |
 | Types référence | Types de classes     | Classe de base fondamentale de tous les autres types : `object` |
-|                 |                 | Chaînes Unicode : `string` |
-|                 |                 | Types définis par l'utilisateur de la forme `class C {...}` |
-|                 | Types interface | Types définis par l'utilisateur de la forme `interface I {...}` |
-|                 | Types de tableaux     | Uni et multidimensionnels, par exemple `int[]` et `int[,]` |
+|                 |                 | Chaînes Unicode : `string` |
+|                 |                 | Types définis par l’utilisateur du formulaire `class C {...}` |
+|                 | Types interface | Types définis par l’utilisateur du formulaire `interface I {...}` |
+|                 | Types de tableaux     | Unidimensionnels et multidimensionnels, par exemple, `int[]` et `int[,]` |
 |                 | Types délégués  | Les types définis par l’utilisateur du formulaire, par exemple `delegate int  D(...)` |
 
 Les types intégraux huit prennent en charge les valeurs 8 bits, 16 bits, 32 bits et 64 bits sous forme signée ou non signée.
@@ -167,10 +167,10 @@ C# `bool` type est utilisé pour représenter des valeurs booléennes, qui peuve
 
 Le traitement des caractères et chaînes dans le langage C# utilise l’encodage Unicode. Le type `char` représente une unité de code UTF-16, et le type `string` représente une séquence d’unités de code UTF-16.
 
-Le tableau suivant récapitule les types numériques de #.
+Le tableau suivant récapitule C#de types numériques.
 
 
-| __Catégorie__      | __Bits__ | __Type__  | __Plage/précision__ |
+| __Category__      | __Bits__ | __Type__  | __Plage/précision__ |
 |-------------------|----------|-----------|---------------------|
 | Type intégral signé   | 8        | `sbyte`   | -128...127 |
 |                   | 16       | `short`   | -32,768...32,767 |
@@ -184,7 +184,7 @@ Le tableau suivant récapitule les types numériques de #.
 |                   | 64       | `double`  | 5,0 × 10 ^ −324 à 1,7 × 10 ^ 308, précision de 15 chiffres |
 | Decimal           | 128      | `decimal` | 1.0 × 10 ^ −28 à 7,9 × 10 ^ 28, 28 chiffres |
 
-Les programmes C# utilisent les ***déclarations de type*** pour créer de nouveaux types. Une déclaration de type spécifie le nom et les membres du nouveau type. Cinq des catégories de # de types sont définis par l’utilisateur : classe de types, les types struct, les types d’interface, les types enum et les types délégués.
+Les programmes C# utilisent les ***déclarations de type*** pour créer de nouveaux types. Une déclaration de type spécifie le nom et les membres du nouveau type. Cinq de C#de catégories de types sont définis par l’utilisateur : classe de types, les types struct, les types d’interface, les types enum et les types délégués.
 
 Un type de classe définit une structure de données qui contient les données membres (champs) et des fonctions membres (méthodes, propriétés, etc.). Les types de classes prennent en charge l’héritage unique et le polymorphisme, des mécanismes par lesquels les classes dérivées peuvent étendre et spécialiser les classes de base.
 
@@ -202,7 +202,7 @@ C# prend en charge les tableaux uni et multidimensionnels de tout type. Contrair
 
 Également, les types nullables n’ont pas à être déclarés avant de pouvoir être utilisés. Pour chaque type de valeur non nullable `T` est un type nullable correspondant `T?`, qui peut contenir une valeur supplémentaire `null`. Par exemple, `int?` est un type qui peut contenir n’importe quel entier 32 bits ou la valeur `null`.
 
-Système de type de # est unifié afin qu’une valeur de n’importe quel type peut être traitée en tant qu’objet. Chaque type dans C# dérive directement ou indirectement du type `object`, et `object` est la classe de base fondamentale de tous les types. Les valeurs des types référence sont considérées comme des objets simplement en affichant les valeurs en tant que type `object`. Valeurs des types valeur sont traitées en tant qu’objets en effectuant ***boxing*** et ***unboxing*** operations. Dans l’exemple suivant, une valeur `int` est convertie en `object` et à nouveau en `int`.
+C#du système de type est unifié afin qu’une valeur de n’importe quel type peut être traitée en tant qu’objet. Chaque type dans C# dérive directement ou indirectement du type `object`, et `object` est la classe de base fondamentale de tous les types. Les valeurs des types référence sont considérées comme des objets simplement en affichant les valeurs en tant que type `object`. Valeurs des types valeur sont traitées en tant qu’objets en effectuant ***boxing*** et ***unboxing*** operations. Dans l’exemple suivant, une valeur `int` est convertie en `object` et à nouveau en `int`.
 
 ```csharp
 using System;
@@ -218,12 +218,12 @@ class Test
 ```
 Quand une valeur d’un type valeur est convertie en type `object`, une instance d’objet, également appelée « boîte », est allouée pour contenir la valeur et la valeur est copiée dans cette zone. À l’inverse, lorsque un `object` référence est castée en un type valeur, une vérification est effectuée que l’objet référencé est une boîte du bon type valeur, et, si la vérification réussit, la valeur dans la zone est copiée.
 
-Système de type unifié de # signifie que les types valeur peuvent devenir des objets « à la demande ». En raison de l’unification, les bibliothèques à usage général qui utilisent le type `object` peuvent être utilisées avec les types référence et les types valeur.
+C#unifié de type de système signifie que les types valeur peuvent devenir des objets « à la demande ». En raison de l’unification, les bibliothèques à usage général qui utilisent le type `object` peuvent être utilisées avec les types référence et les types valeur.
 
 Il existe plusieurs types de ***variables*** en C#, y compris les champs, les éléments de tableau, les variables locales et les paramètres. Les variables représentent des emplacements de stockage, et chaque variable possède un type qui détermine les valeurs pouvant être stockées dans la variable, comme indiqué dans le tableau suivant.
 
 
-| __Type de Variable__    | __Contenu possible__ |
+| __Type de variable__    | __Contenu possible__ |
 |-------------------------|-----------------------|
 | Type de valeur n’acceptant pas Null | Une valeur de ce type exact |
 | Types valeur Nullable     | Une valeur null ou une valeur de ce type exact |
@@ -241,10 +241,10 @@ Quand une expression contient plusieurs opérateurs, la ***priorité*** des opé
 
 La plupart des opérateurs peuvent être ***surchargés***. La surcharge d’opérateur autorise la spécification d’implémentations d’opérateurs définies par l’utilisateur pour les opérations où l’un des deux opérandes ou les deux sont d’un type classe ou struct défini par l’utilisateur.
 
-Le tableau suivant récapitule les opérateurs de #, répertoriant les catégories d’opérateurs dans l’ordre de priorité, du plus élevé au plus bas. Les opérateurs de la même catégorie ont la même priorité.
+Le tableau suivant récapitule C#d’opérateurs répertoriant les catégories d’opérateurs dans l’ordre de priorité, du plus élevé au plus bas. Les opérateurs de la même catégorie ont la même priorité.
 
 
-| __Catégorie__                     | __Expression__    | __Description__ |
+| __Category__                     | __Expression__    | __Description__ |
 |----------------------------------|-------------------|-----------------|
 | Principale                          | `x.m`             | Accès au membre |
 |                                  | `x(...)`          | Méthode et appel de délégué |
@@ -252,9 +252,9 @@ Le tableau suivant récapitule les opérateurs de #, répertoriant les catégori
 |                                  | `x++`             | Post-incrémentation |
 |                                  | `x--`             | Post-décrémentation |
 |                                  | `new T(...)`      | Création d'objet et de délégué |
-|                                  | `new T(...){...}` | Création d’objet avec l’initialiseur |
+|                                  | `new T(...){...}` | Création d’objet avec initialiseur |
 |                                  | `new {...}`       | Initialiseur d’objet anonyme |
-|                                  | `new T[...]`      | Création d’un tableau |
+|                                  | `new T[...]`      | Création de tableau |
 |                                  | `typeof(T)`       | Obtenir `System.Type` pour l’objet `T` |
 |                                  | `checked(x)`      | Évaluer l'expression dans le contexte vérifié (checked) |
 |                                  | `unchecked(x)`    | Évaluer l'expression dans le contexte non vérifié (unchecked) |
@@ -267,7 +267,7 @@ Le tableau suivant récapitule les opérateurs de #, répertoriant les catégori
 |                                  | `++x`             | Pré-incrémentation |
 |                                  | `--x`             | Pré-décrémentation |
 |                                  | `(T)x`            | Convertir explicitement `x` au type `T` |
-|                                  | `await x`         | Attendre de façon asynchrone `x` pour terminer |
+|                                  | `await x`         | Attendre de façon asynchrone la fin de `x` |
 | Multiplication                   | `x * y`           | Multiplication |
 |                                  | `x / y`           | Division |
 |                                  | `x % y`           | Reste |
@@ -279,19 +279,19 @@ Le tableau suivant récapitule les opérateurs de #, répertoriant les catégori
 |                                  | `x > y`           | Supérieur à |
 |                                  | `x <= y`          | Inférieur ou égal à |
 |                                  | `x >= y`          | Supérieur ou égal à |
-|                                  | `x is T`          | Retourner `true` si `x` est un `T`, `false` sinon |
+|                                  | `x is T`          | Retourne `true` si `x` est un `T`, `false` sinon |
 |                                  | `x as T`          | Retourner `x` typé en tant que `T`, ou `null` si `x` n’est pas un `T` |
 | Égalité                         | `x == y`          | Égal      |
 |                                  | `x != y`          | Différence |
-| AND logique                      | `x & y`           | Entier au niveau du bit AND, boolean logique AND |
+| AND logique                      | `x & y`           | AND d’entiers au niveau du bit, AND logique booléen |
 | XOR logique                      | `x ^ y`           | Opération de bits entière XOR, Boolean logique XOR |
 | OR logique                       | <code>x &#124; y</code> | Opération de bits entière OR, Boolean logique OR |
 | AND conditionnel                  | `x && y`          | Prend la valeur `y` uniquement si `x` est `true` |
 | OR conditionnel                   | <code>x &#124;&#124; y</code> | Prend la valeur `y` uniquement si `x` est `false` |
-| Fusion de Null                  | `X ?? y`          | Prend la valeur `y` si `x` est `null`à `x` sinon |
+| Fusion de Null                  | `x ?? y`          | Prend la valeur `y` si `x` est `null`à `x` sinon |
 | Conditionnel                      | `x ? y : z`       | Prend la valeur `y` si `x` est `true`, `z` si `x` est `false` |
 | Attribution ou fonction anonyme | `x = y`           | Attribution |
-|                                  | `x op= y`         | Assignation composée ; opérateurs pris en charge sont `*=` `/=` `%=` `+=` `-=` `<<=` `>>=` `&=` `^=` <code>&#124;=</code> |
+|                                  | `x op= y`         | Assignation composée ; opérateurs pris en charge : `*=` `/=` `%=` `+=` `-=` `<<=` `>>=` `&=` `^=` <code>&#124;=</code> |
 |                                  | `(T x) => y`      | Fonction anonyme (expression lambda) |
 
 ## <a name="statements"></a>Instructions
@@ -355,7 +355,7 @@ static void Main() {
 }
 ```
 
-__`if` Instruction__
+__`if` instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -369,7 +369,7 @@ static void Main(string[] args) {
 ```
 
 
-__`switch` Instruction__
+__`switch` instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -388,7 +388,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`while` Instruction__
+__`while` instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -401,7 +401,7 @@ static void Main(string[] args) {
 ```
 
 
-__`do` Instruction__
+__`do` instruction__
 
 ```csharp
 static void Main() {
@@ -413,7 +413,7 @@ static void Main() {
 }
 ```
 
-__`for` Instruction__
+__`for` instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -423,7 +423,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`foreach` Instruction__
+__`foreach` instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -433,7 +433,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`break` Instruction__
+__`break` instruction__
 
 ```csharp
 static void Main() {
@@ -445,7 +445,7 @@ static void Main() {
 }
 ```
 
-__`continue` Instruction__
+__`continue` instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -456,7 +456,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`goto` Instruction__
+__`goto` instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -469,7 +469,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`return` Instruction__
+__`return` instruction__
 
 ```csharp
 static int Add(int a, int b) {
@@ -482,7 +482,7 @@ static void Main() {
 }
 ```
 
-__`yield` Instruction__
+__`yield` instruction__
 
 ```csharp
 static IEnumerable<int> Range(int from, int to) {
@@ -539,7 +539,7 @@ static void Main() {
 }
 ```
 
-__`lock` Instruction__
+__`lock` instruction__
 
 ```csharp
 class Account
@@ -556,7 +556,7 @@ class Account
 }
 ```
 
-__`using` Instruction__
+__`using` instruction__
 
 ```csharp
 static void Main() {
@@ -1151,8 +1151,8 @@ Un `get` accesseur correspond à une méthode sans paramètre avec une valeur de
 
 Un `set` accesseur correspond à une méthode avec un paramètre unique nommé `value` et aucun type de retour. Lorsqu’une propriété est référencée en tant que la cible d’une assignation ou l’opérande de `++` ou `--`, le `set` accesseur est appelé avec un argument qui fournit la nouvelle valeur.
 
-Le `List<T>
-` classe déclare deux propriétés, `Count` et `Capacity`, qui sont en lecture seule et en lecture-écriture, respectivement. Voici un exemple d’utilisation de ces propriétés.
+La classe `List<T>
+` déclare deux propriétés, `Count` et `Capacity`, qui sont respectivement en lecture seule et en lecture-écriture. Voici un exemple d’utilisation de ces propriétés.
 
 ```csharp
 List<string> names = new List<string>();
