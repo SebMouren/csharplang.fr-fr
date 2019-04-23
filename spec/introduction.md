@@ -1,9 +1,9 @@
 ---
 ms.openlocfilehash: db10046af5d635b430951679a448e23680b18b87
-ms.sourcegitcommit: a19fac74c01a6c3da67d38b2f79527145d4edcbc
+ms.sourcegitcommit: 4cc6d73a765ac9827ab00c48ad9f09204baf888f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/09/2019
+ms.lasthandoff: 04/18/2019
 ms.locfileid: "59426810"
 ---
 # <a name="introduction"></a>Introduction
@@ -139,22 +139,22 @@ C#de types valeur sont divisés en ***types simples***, ***types enum***, ***typ
 
 Le tableau suivant fournit une vue d’ensemble de C#du système de type.
 
-| __Category__    |                 | __Description__ |
+| __Catégorie__    |                 | __Description__ |
 |-----------------|-----------------|-----------------|
-| Types de valeur     | Types simples    | Entier signé : `sbyte`, `short`, `int`, `long` |
+| Types de valeur     | Types simples    | Entier signé : `sbyte`, `short`, `int`, `long` |
 |                 |                 | Entier non signé : `byte`, `ushort`, `uint`, `ulong` |
-|                 |                 | Caractères Unicode : `char` |
-|                 |                 | Virgule flottante IEEE : `float`, `double` |
-|                 |                 | Décimale haute précision : `decimal` |
-|                 |                 | Valeur booléenne : `bool` |
-|                 | Types d'enum      | Types définis par l’utilisateur du formulaire `enum E {...}` |
-|                 | Types struct    | Types définis par l’utilisateur du formulaire `struct S {...}` |
+|                 |                 | Caractères Unicode : `char` |
+|                 |                 | Virgule flottante IEEE : `float`, `double` |
+|                 |                 | Décimale haute précision :`decimal` |
+|                 |                 | Booléen : `bool` |
+|                 | Types d'enum      | Types définis par l'utilisateur de la forme `enum E {...}` |
+|                 | Types struct    | Types définis par l'utilisateur de la forme `struct S {...}` |
 |                 | Types Nullable  | Extensions de tous les autres types de valeurs avec une valeur `null` |
 | Types référence | Types de classes     | Classe de base fondamentale de tous les autres types : `object` |
-|                 |                 | Chaînes Unicode : `string` |
-|                 |                 | Types définis par l’utilisateur du formulaire `class C {...}` |
-|                 | Types interface | Types définis par l’utilisateur du formulaire `interface I {...}` |
-|                 | Types de tableaux     | Unidimensionnels et multidimensionnels, par exemple, `int[]` et `int[,]` |
+|                 |                 | Chaînes Unicode : `string` |
+|                 |                 | Types définis par l'utilisateur de la forme `class C {...}` |
+|                 | Types interface | Types définis par l'utilisateur de la forme `interface I {...}` |
+|                 | Types de tableaux     | Uni et multidimensionnels, par exemple `int[]` et `int[,]` |
 |                 | Types délégués  | Les types définis par l’utilisateur du formulaire, par exemple `delegate int  D(...)` |
 
 Les types intégraux huit prennent en charge les valeurs 8 bits, 16 bits, 32 bits et 64 bits sous forme signée ou non signée.
@@ -170,7 +170,7 @@ Le traitement des caractères et chaînes dans le langage C# utilise l’encodag
 Le tableau suivant récapitule C#de types numériques.
 
 
-| __Category__      | __Bits__ | __Type__  | __Plage/précision__ |
+| __Catégorie__      | __Bits__ | __Type__  | __Plage/précision__ |
 |-------------------|----------|-----------|---------------------|
 | Type intégral signé   | 8        | `sbyte`   | -128...127 |
 |                   | 16       | `short`   | -32,768...32,767 |
@@ -223,7 +223,7 @@ C#unifié de type de système signifie que les types valeur peuvent devenir des 
 Il existe plusieurs types de ***variables*** en C#, y compris les champs, les éléments de tableau, les variables locales et les paramètres. Les variables représentent des emplacements de stockage, et chaque variable possède un type qui détermine les valeurs pouvant être stockées dans la variable, comme indiqué dans le tableau suivant.
 
 
-| __Type de variable__    | __Contenu possible__ |
+| __Type de Variable__    | __Contenu possible__ |
 |-------------------------|-----------------------|
 | Type de valeur n’acceptant pas Null | Une valeur de ce type exact |
 | Types valeur Nullable     | Une valeur null ou une valeur de ce type exact |
@@ -244,7 +244,7 @@ La plupart des opérateurs peuvent être ***surchargés***. La surcharge d’op�
 Le tableau suivant récapitule C#d’opérateurs répertoriant les catégories d’opérateurs dans l’ordre de priorité, du plus élevé au plus bas. Les opérateurs de la même catégorie ont la même priorité.
 
 
-| __Category__                     | __Expression__    | __Description__ |
+| __Catégorie__                     | __Expression__    | __Description__ |
 |----------------------------------|-------------------|-----------------|
 | Principale                          | `x.m`             | Accès au membre |
 |                                  | `x(...)`          | Méthode et appel de délégué |
@@ -255,10 +255,10 @@ Le tableau suivant récapitule C#d’opérateurs répertoriant les catégories d
 |                                  | `new T(...){...}` | Création d’objet avec initialiseur |
 |                                  | `new {...}`       | Initialiseur d’objet anonyme |
 |                                  | `new T[...]`      | Création de tableau |
-|                                  | `typeof(T)`       | Obtenir `System.Type` pour l’objet `T` |
+|                                  | `typeof(T)`       | Obtenir l’objet `System.Type` de `T` |
 |                                  | `checked(x)`      | Évaluer l'expression dans le contexte vérifié (checked) |
 |                                  | `unchecked(x)`    | Évaluer l'expression dans le contexte non vérifié (unchecked) |
-|                                  | `default(T)`      | Obtenir la valeur par défaut de type `T` |
+|                                  | `default(T)`      | Obtenir la valeur par défaut du type `T` |
 |                                  | `delegate {...}`  | Fonction anonyme (méthode anonyme) |
 | Unaire                            | `+x`              | Identité |
 |                                  | `-x`              | Négation |
@@ -266,7 +266,7 @@ Le tableau suivant récapitule C#d’opérateurs répertoriant les catégories d
 |                                  | `~x`              | Négation d'opération de bits |
 |                                  | `++x`             | Pré-incrémentation |
 |                                  | `--x`             | Pré-décrémentation |
-|                                  | `(T)x`            | Convertir explicitement `x` au type `T` |
+|                                  | `(T)x`            | Convertir explicitement `x` en type `T` |
 |                                  | `await x`         | Attendre de façon asynchrone la fin de `x` |
 | Multiplication                   | `x * y`           | Multiplication |
 |                                  | `x / y`           | Division |
@@ -280,7 +280,7 @@ Le tableau suivant récapitule C#d’opérateurs répertoriant les catégories d
 |                                  | `x <= y`          | Inférieur ou égal à |
 |                                  | `x >= y`          | Supérieur ou égal à |
 |                                  | `x is T`          | Retourne `true` si `x` est un `T`, `false` sinon |
-|                                  | `x as T`          | Retourner `x` typé en tant que `T`, ou `null` si `x` n’est pas un `T` |
+|                                  | `x as T`          | Retourne `x` de type `T`, ou `null` si `x` n’est pas un `T` |
 | Égalité                         | `x == y`          | Égal      |
 |                                  | `x != y`          | Différence |
 | AND logique                      | `x & y`           | AND d’entiers au niveau du bit, AND logique booléen |
@@ -291,7 +291,7 @@ Le tableau suivant récapitule C#d’opérateurs répertoriant les catégories d
 | Fusion de Null                  | `x ?? y`          | Prend la valeur `y` si `x` est `null`à `x` sinon |
 | Conditionnel                      | `x ? y : z`       | Prend la valeur `y` si `x` est `true`, `z` si `x` est `false` |
 | Attribution ou fonction anonyme | `x = y`           | Attribution |
-|                                  | `x op= y`         | Assignation composée ; opérateurs pris en charge : `*=` `/=` `%=` `+=` `-=` `<<=` `>>=` `&=` `^=` <code>&#124;=</code> |
+|                                  | `x op= y`         | Assignation composée ; opérateurs pris en charge sont `*=` `/=` `%=` `+=` `-=` `<<=` `>>=` `&=` `^=` <code>&#124;=</code> |
 |                                  | `(T x) => y`      | Fonction anonyme (expression lambda) |
 
 ## <a name="statements"></a>Instructions
@@ -355,7 +355,7 @@ static void Main() {
 }
 ```
 
-__`if` instruction__
+__`if` Instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -369,7 +369,7 @@ static void Main(string[] args) {
 ```
 
 
-__`switch` instruction__
+__`switch` Instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -388,7 +388,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`while` instruction__
+__`while` Instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -401,7 +401,7 @@ static void Main(string[] args) {
 ```
 
 
-__`do` instruction__
+__`do` Instruction__
 
 ```csharp
 static void Main() {
@@ -413,7 +413,7 @@ static void Main() {
 }
 ```
 
-__`for` instruction__
+__`for` Instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -423,7 +423,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`foreach` instruction__
+__`foreach` Instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -433,7 +433,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`break` instruction__
+__`break` Instruction__
 
 ```csharp
 static void Main() {
@@ -445,7 +445,7 @@ static void Main() {
 }
 ```
 
-__`continue` instruction__
+__`continue` Instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -456,7 +456,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`goto` instruction__
+__`goto` Instruction__
 
 ```csharp
 static void Main(string[] args) {
@@ -469,7 +469,7 @@ static void Main(string[] args) {
 }
 ```
 
-__`return` instruction__
+__`return` Instruction__
 
 ```csharp
 static int Add(int a, int b) {
@@ -482,7 +482,7 @@ static void Main() {
 }
 ```
 
-__`yield` instruction__
+__`yield` Instruction__
 
 ```csharp
 static IEnumerable<int> Range(int from, int to) {
@@ -539,7 +539,7 @@ static void Main() {
 }
 ```
 
-__`lock` instruction__
+__`lock` Instruction__
 
 ```csharp
 class Account
@@ -556,7 +556,7 @@ class Account
 }
 ```
 
-__`using` instruction__
+__`using` Instruction__
 
 ```csharp
 static void Main() {
