@@ -1,7 +1,7 @@
 ---
 ms.openlocfilehash: 72d17175dfb8ef284dce6cf7e5837420fa06f16a
 ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 01/18/2019
 ms.locfileid: "47229609"
@@ -12,7 +12,7 @@ Les structs sont semblables aux classes car elles représentent des structures d
 
 Les structures sont particulièrement utiles pour les petites structures de données qui ont une sémantique par rapport à leurs valeurs. Les nombres complexes, les points dans un système de coordonnées ou les paires clé-valeur dans un dictionnaire sont de bons exemples de structures. Clé à ces structures de données est qu’ils ont peu de données membres, qu’ils ne nécessitent pas d’utiliser l’héritage ni l’identité référentielle, et qu’ils peuvent être facilement implémentés à l’aide de la sémantique de valeur où assignation copie la valeur au lieu de la référence.
 
-Comme décrit dans [types simples](types.md#simple-types), les types simples fournis par c#, tels que `int`, `double`, et `bool`, sont en fait tous les types struct. Comme ces types prédéfinis sont des structures, il est également possible d’utiliser les structures et la surcharge d’opérateur pour implémenter de nouveaux types « primitifs » dans le langage c#. Deux exemples de ces types sont fournis à la fin de ce chapitre ([exemples de Struct](structs.md#struct-examples)).
+Comme décrit dans [types simples](types.md#simple-types), les types simples fournis par C#, tels que `int`, `double`, et `bool`, sont en fait tous les types struct. Comme ces types prédéfinis sont des structures, il est également possible d’utiliser les structures et la surcharge d’opérateur pour implémenter de nouveaux types « primitifs » dans le langage C#. Deux exemples de ces types sont fournis à la fin de ce chapitre ([exemples de Struct](structs.md#struct-examples)).
 
 ## <a name="struct-declarations"></a>Déclarations de struct
 

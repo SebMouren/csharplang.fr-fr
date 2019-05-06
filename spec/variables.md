@@ -1,14 +1,14 @@
 ---
 ms.openlocfilehash: b7bb7dd575d9e2e6d5dd85bdd3e535411e29fcf4
 ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 01/18/2019
 ms.locfileid: "47229616"
 ---
 # <a name="variables"></a>Variables
 
-Les variables représentent des emplacements de stockage. Chaque variable possède un type qui détermine les valeurs pouvant être stockées dans la variable. C# est un langage de type sécurisé et le compilateur c# garantit que les valeurs stockées dans des variables sont toujours du type approprié. La valeur d’une variable peut être modifiée par assignation ou par le biais de la `++` et `--` opérateurs.
+Les variables représentent des emplacements de stockage. Chaque variable possède un type qui détermine les valeurs pouvant être stockées dans la variable. C# est un langage de type sécurisé et le compilateur C# garantit que les valeurs stockées dans des variables sont toujours du type approprié. La valeur d’une variable peut être modifiée par assignation ou par le biais de la `++` et `--` opérateurs.
 
 Une variable doit être ***définitivement assignée*** ([assignation définie](variables.md#definite-assignment)) avant de pouvoir obtenir sa valeur.
 

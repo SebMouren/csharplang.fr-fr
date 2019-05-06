@@ -1,25 +1,25 @@
 ---
 ms.openlocfilehash: 75fcd5b00ea5cac218a9f7809c53b179df97825c
 ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 01/18/2019
 ms.locfileid: "47229657"
 ---
 # <a name="exceptions"></a>Exceptions
 
-Les exceptions en c# fournissent une manière structurée, uniforme et de type sécurisé de niveau système et niveau de l’application de gestion des conditions d’erreur. Le mécanisme d’exception en c# est très similaire à celui de C++, avec quelques différences importantes :
+Les exceptions en C# fournissent une manière structurée, uniforme et de type sécurisé de niveau système et niveau de l’application de gestion des conditions d’erreur. Le mécanisme d’exception en C# est très similaire à celui de C++, avec quelques différences importantes :
 
-*  En c#, toutes les exceptions doivent être représentées par une instance d’un type de classe dérivé `System.Exception`. En C++, n’importe quelle valeur de n’importe quel type peut être utilisé pour représenter une exception.
-*  En c#, un bloc finally ([l’instruction try](statements.md#the-try-statement)) peut être utilisé pour écrire du code d’arrêt qui s’exécute dans une exécution normale et des conditions exceptionnelles. Ce code est difficile d’écrire en C++ sans duplication de code.
-*  En c#, les exceptions au niveau du système telles que le dépassement de capacité, division par zéro et null déréférence ont bien définis des classes d’exception et à concorde avec les conditions d’erreur au niveau de l’application.
+*  En C#, toutes les exceptions doivent être représentées par une instance d’un type de classe dérivé `System.Exception`. En C++, n’importe quelle valeur de n’importe quel type peut être utilisé pour représenter une exception.
+*  En C#, un bloc finally ([l’instruction try](statements.md#the-try-statement)) peut être utilisé pour écrire du code d’arrêt qui s’exécute dans une exécution normale et des conditions exceptionnelles. Ce code est difficile d’écrire en C++ sans duplication de code.
+*  En C#, les exceptions au niveau du système telles que le dépassement de capacité, division par zéro et null déréférence ont bien définis des classes d’exception et à concorde avec les conditions d’erreur au niveau de l’application.
 
 ## <a name="causes-of-exceptions"></a>Causes des exceptions
 
 Exception peut être levée de deux manières différentes.
 
 *  Un `throw` instruction ([l’instruction throw](statements.md#the-throw-statement)) lève une exception immédiatement et sans condition. Contrôle n’atteint jamais l’instruction qui suit immédiatement la `throw`.
-*  Certaines des conditions exceptionnelles qui surviennent pendant le traitement d’instructions c# et expression provoquent une exception dans certaines circonstances, lorsque l’opération ne peut pas être terminée normalement. Par exemple, une opération de division entier ([opérateur de Division](expressions.md#division-operator)) lève une `System.DivideByZeroException` si le dénominateur est égal à zéro. Consultez [Classes d’exceptions courantes](exceptions.md#common-exception-classes) pour obtenir la liste des différentes exceptions qui peuvent se produire de cette façon.
+*  Certaines des conditions exceptionnelles qui surviennent pendant le traitement d’instructions C# et expression provoquent une exception dans certaines circonstances, lorsque l’opération ne peut pas être terminée normalement. Par exemple, une opération de division entier ([opérateur de Division](expressions.md#division-operator)) lève une `System.DivideByZeroException` si le dénominateur est égal à zéro. Consultez [Classes d’exceptions courantes](exceptions.md#common-exception-classes) pour obtenir la liste des différentes exceptions qui peuvent se produire de cette façon.
 
 ## <a name="the-systemexception-class"></a>La classe System.Exception
 
@@ -47,7 +47,7 @@ Les exceptions qui se produisent pendant l’exécution du destructeur méritent
 
 ## <a name="common-exception-classes"></a>Classes d’exceptions courantes
 
-Les exceptions suivantes sont levées par certaines opérations c#.
+Les exceptions suivantes sont levées par certaines opérations C#.
 
 |                                      |                |
 |--------------------------------------|----------------|

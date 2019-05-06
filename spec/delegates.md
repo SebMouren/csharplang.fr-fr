@@ -1,7 +1,7 @@
 ---
 ms.openlocfilehash: 08c14d9ef2afe30580f456995066c141653ede92
 ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 01/18/2019
 ms.locfileid: "47229651"
@@ -51,7 +51,7 @@ Le type de retour d’un type délégué doit être `void`, ou de sortie-safe ([
 
 Tous les types de paramètres formels d’un type délégué doivent être entrée-safe. En outre, les `out` ou `ref` types de paramètres doivent également être compatibles avec la sortie. Notez que même `out` paramètres sont requis pour être sécurisé à l’entrée, en raison d’une limitation de la plateforme sous-jacente de l’exécution.
 
-Les types délégués en c# sont nom équivalent, pas structurellement équivalents. Plus précisément, deux types délégués différents qui ont le même paramètre répertorie et retourner le type sont considérés comme des types délégués différents. Toutefois, les instances de deux types délégué distincts mais structurellement équivalents peuvent considérés comme égaux ([déléguer des opérateurs d’égalité](expressions.md#delegate-equality-operators)).
+Les types délégués en C# sont nom équivalent, pas structurellement équivalents. Plus précisément, deux types délégués différents qui ont le même paramètre répertorie et retourner le type sont considérés comme des types délégués différents. Toutefois, les instances de deux types délégué distincts mais structurellement équivalents peuvent considérés comme égaux ([déléguer des opérateurs d’égalité](expressions.md#delegate-equality-operators)).
 
 Exemple :
 

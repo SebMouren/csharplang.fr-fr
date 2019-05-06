@@ -1,18 +1,18 @@
 ---
 ms.openlocfilehash: a8ad8a8b3eda1d00fa745bd92e4371eacc36b79f
 ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 01/18/2019
 ms.locfileid: "47229610"
 ---
 # <a name="attributes"></a>Attributs
 
-Une grande partie du langage c# permet au programmeur de spécifier des informations déclaratives sur les entités définies dans le programme. Par exemple, l’accessibilité d’une méthode dans une classe est spécifiée en la décorant avec le *method_modifier*s `public`, `protected`, `internal`, et `private`.
+Une grande partie du langage C# permet au programmeur de spécifier des informations déclaratives sur les entités définies dans le programme. Par exemple, l’accessibilité d’une méthode dans une classe est spécifiée en la décorant avec le *method_modifier*s `public`, `protected`, `internal`, et `private`.
 
 C# permet aux programmeurs d’inventer de nouveaux types d’informations déclaratives, appelé ***attributs***. Les programmeurs peuvent ensuite attacher des attributs à plusieurs entités de programme et récupérer des informations d’attribut dans un environnement d’exécution. Par exemple, une infrastructure peut définir un `HelpAttribute` attribut qui peut être placé sur des éléments de programme (par exemple, les classes et méthodes) pour fournir un mappage entre ces éléments vers leur documentation.
 
-Les attributs sont définis via la déclaration de classes d’attributs ([classes d’attributs](attributes.md#attribute-classes)), qui peuvent avoir des paramètres positionnels et nommés ([paramètres nommés et positionnels](attributes.md#positional-and-named-parameters)). Les attributs sont associés aux entités d’un programme c# à l’aide des spécifications d’attribut ([spécification des attributs](attributes.md#attribute-specification)) et peuvent être récupérés au moment de l’exécution sous la forme d’instances d’attribut ([des instances d’attribut](attributes.md#attribute-instances)).
+Les attributs sont définis via la déclaration de classes d’attributs ([classes d’attributs](attributes.md#attribute-classes)), qui peuvent avoir des paramètres positionnels et nommés ([paramètres nommés et positionnels](attributes.md#positional-and-named-parameters)). Les attributs sont associés aux entités d’un programme C# à l’aide des spécifications d’attribut ([spécification des attributs](attributes.md#attribute-specification)) et peuvent être récupérés au moment de l’exécution sous la forme d’instances d’attribut ([des instances d’attribut](attributes.md#attribute-instances)).
 
 ## <a name="attribute-classes"></a>Classes d’attributs
 
@@ -833,7 +833,7 @@ Remarque : Cette section s’applique uniquement à l’implémentation de Micr
 
 ### <a name="interoperation-with-com-and-win32-components"></a>Interopérabilité avec les composants COM et Win32
 
-La durée d’exécution .NET fournit un grand nombre d’attributs qui permettent aux programmes c# interagir avec les composants écrits à l’aide de COM et les DLL Win32. Par exemple, le `DllImport` attribut peut être utilisé sur un `static extern` méthode pour indiquer que l’implémentation de la méthode doit être trouvé dans une DLL Win32. Ces attributs sont trouvent dans le `System.Runtime.InteropServices` espace de noms et une documentation détaillée pour ces attributs se trouve dans la documentation du runtime .NET.
+La durée d’exécution .NET fournit un grand nombre d’attributs qui permettent aux programmes C# interagir avec les composants écrits à l’aide de COM et les DLL Win32. Par exemple, le `DllImport` attribut peut être utilisé sur un `static extern` méthode pour indiquer que l’implémentation de la méthode doit être trouvé dans une DLL Win32. Ces attributs sont trouvent dans le `System.Runtime.InteropServices` espace de noms et une documentation détaillée pour ces attributs se trouve dans la documentation du runtime .NET.
 
 ### <a name="interoperation-with-other-net-languages"></a>Interopérabilité avec d’autres langages .NET
 

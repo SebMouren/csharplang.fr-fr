@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 7f7abb120d0b3a6abf12beb9daa0d79a975ccce2
+ms.sourcegitcommit: 4e3f2e4ea5a50b186b08d1e93d3ffcdb3754596e
+ms.translationtype: HT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 02/19/2019
+ms.locfileid: "56411310"
+---
 # <a name="lexical-structure"></a>Structure lexicale
 
 ## <a name="programs"></a>Programs
@@ -12,7 +20,7 @@ Point de vue conceptuel, un programme est compilé à l’aide de trois étapes�
 
 ## <a name="grammars"></a>Grammaires
 
-Cette spécification présente la syntaxe de programmation c# à l’aide de deux grammaires. Le ***grammaire lexicale*** ([grammaire lexicale](lexical-structure.md#lexical-grammar)) définit comment les caractères Unicode sont combinés pour les terminateurs de ligne de formulaire, les espaces blancs, les commentaires, les jetons et les directives de prétraitement. Le ***grammaire syntaxique*** ([grammaire syntaxique](lexical-structure.md#syntactic-grammar)) définit la façon dont les jetons résultant de la grammaire lexicale sont combinées pour former c# des programmes.
+Cette spécification présente la syntaxe de programmation C# à l’aide de deux grammaires. Le ***grammaire lexicale*** ([grammaire lexicale](lexical-structure.md#lexical-grammar)) définit comment les caractères Unicode sont combinés pour les terminateurs de ligne de formulaire, les espaces blancs, les commentaires, les jetons et les directives de prétraitement. Le ***grammaire syntaxique*** ([grammaire syntaxique](lexical-structure.md#syntactic-grammar)) définit la façon dont les jetons résultant de la grammaire lexicale sont combinées pour former C# des programmes.
 
 ### <a name="grammar-notation"></a>Notation de la grammaire
 
@@ -20,19 +28,19 @@ Les grammaires lexicales et syntaxiques sont présentées sous forme Backus-Naur
 
 ### <a name="lexical-grammar"></a>Grammaire lexicale
 
-La grammaire lexicale de c# est présentée dans [analyse lexicale](lexical-structure.md#lexical-analysis), [jetons](lexical-structure.md#tokens), et [directives de prétraitement](lexical-structure.md#pre-processing-directives). Les symboles terminaux de la grammaire lexicale sont les caractères du jeu de caractères Unicode et la grammaire lexicale spécifie la façon dont les caractères sont combinées aux jetons de formulaire ([jetons](lexical-structure.md#tokens)), un espace blanc ([blancs](lexical-structure.md#white-space)), commentaires ([commentaires](lexical-structure.md#comments)) et les directives de prétraitement ([directives de prétraitement](lexical-structure.md#pre-processing-directives)).
+La grammaire lexicale de C# est présentée dans [analyse lexicale](lexical-structure.md#lexical-analysis), [jetons](lexical-structure.md#tokens), et [directives de prétraitement](lexical-structure.md#pre-processing-directives). Les symboles terminaux de la grammaire lexicale sont les caractères du jeu de caractères Unicode et la grammaire lexicale spécifie la façon dont les caractères sont combinées aux jetons de formulaire ([jetons](lexical-structure.md#tokens)), un espace blanc ([blancs](lexical-structure.md#white-space)), commentaires ([commentaires](lexical-structure.md#comments)) et les directives de prétraitement ([directives de prétraitement](lexical-structure.md#pre-processing-directives)).
 
-Chaque fichier source dans un programme c# doit être conforme à la *d’entrée* production de la grammaire lexicale ([analyse lexicale](lexical-structure.md#lexical-analysis)).
+Chaque fichier source dans un programme C# doit être conforme à la *d’entrée* production de la grammaire lexicale ([analyse lexicale](lexical-structure.md#lexical-analysis)).
 
 ### <a name="syntactic-grammar"></a>Grammaire syntaxique
 
-La grammaire syntaxique de c# est présentée dans les chapitres et les annexes qui suivent ce chapitre. Les symboles terminaux de la grammaire syntaxique sont les jetons définis par la grammaire lexicale et la grammaire syntaxique spécifie la façon dont les jetons sont combinées pour former des programmes c#.
+La grammaire syntaxique de C# est présentée dans les chapitres et les annexes qui suivent ce chapitre. Les symboles terminaux de la grammaire syntaxique sont les jetons définis par la grammaire lexicale et la grammaire syntaxique spécifie la façon dont les jetons sont combinées pour former des programmes C#.
 
 Chaque fichier source dans un C# programme doit être conforme à la *compilation_unit* production de la grammaire syntaxique ([unités de Compilation](namespaces.md#compilation-units)).
 
 ## <a name="lexical-analysis"></a>Analyse lexicale
 
-Le *d’entrée* production définit la structure lexicale d’un fichier source c#. Chaque fichier source dans un programme c# doit être conforme à la production de cette grammaire lexicale.
+Le *d’entrée* production définit la structure lexicale d’un fichier source C#. Chaque fichier source dans un programme C# doit être conforme à la production de cette grammaire lexicale.
 
 ```antlr
 input
@@ -55,9 +63,9 @@ input_element
     ;
 ```
 
-Cinq éléments de base constituent la structure lexicale d’un C# fichier source : Terminateurs de ligne ([terminateurs de ligne](lexical-structure.md#line-terminators)), un espace blanc ([espace blanc](lexical-structure.md#white-space)), commentaires ([commentaires](lexical-structure.md#comments)), jetons ([jetons](lexical-structure.md#tokens)), et directives de prétraitement ([directives de prétraitement](lexical-structure.md#pre-processing-directives)). Ces éléments de base, seuls les jetons sont importants dans la grammaire syntaxique d’un programme c# ([grammaire syntaxique](lexical-structure.md#syntactic-grammar)).
+Cinq éléments de base constituent la structure lexicale d’un C# fichier source : Terminateurs de ligne ([terminateurs de ligne](lexical-structure.md#line-terminators)), un espace blanc ([espace blanc](lexical-structure.md#white-space)), commentaires ([commentaires](lexical-structure.md#comments)), jetons ([jetons](lexical-structure.md#tokens)), et directives de prétraitement ([directives de prétraitement](lexical-structure.md#pre-processing-directives)). Ces éléments de base, seuls les jetons sont importants dans la grammaire syntaxique d’un programme C# ([grammaire syntaxique](lexical-structure.md#syntactic-grammar)).
 
-Le traitement lexical d’un fichier source c# consiste à réduire le fichier en une séquence de jetons qui devient l’entrée de l’analyse syntaxique. Terminateurs de ligne, les espaces blancs et les commentaires peuvent servir à séparer les jetons et les directives de prétraitement peuvent provoquer des sections du fichier source doit être ignorée, mais sinon ces éléments lexicaux n’ont aucun impact sur la structure syntaxique d’un programme c#.
+Le traitement lexical d’un fichier source C# consiste à réduire le fichier en une séquence de jetons qui devient l’entrée de l’analyse syntaxique. Terminateurs de ligne, les espaces blancs et les commentaires peuvent servir à séparer les jetons et les directives de prétraitement peuvent provoquer des sections du fichier source doit être ignorée, mais sinon ces éléments lexicaux n’ont aucun impact sur la structure syntaxique d’un programme C#.
 
 Dans le cas des littéraux de chaîne interpolée ([interpolées littéraux de chaîne](lexical-structure.md#interpolated-string-literals)) un jeton unique est généré initialement par l’analyse lexicale, mais il est divisé en plusieurs éléments d’entrée qui sont soumis à plusieurs reprises à l’analyse lexicale jusqu'à ce que tous les littéraux de chaîne interpolée ont été résolus. Les jetons générés puis de fournir en tant qu’entrée de l’analyse syntaxique.
 
@@ -65,7 +73,7 @@ Lorsque plusieurs productions grammaire lexicale correspondent à une séquence 
 
 ### <a name="line-terminators"></a>Terminateurs de ligne
 
-Indicateurs de fin de ligne divisent les caractères d’un fichier source c# en lignes.
+Indicateurs de fin de ligne divisent les caractères d’un fichier source C# en lignes.
 
 ```antlr
 new_line
@@ -78,7 +86,7 @@ new_line
     ;
 ```
 
-Pour la compatibilité avec la source des outils d’édition qui ajoutent des marqueurs de fin de fichier de code, et pour activer une source de fichier à afficher sous forme de séquence de correctement arrêtée lignes, les transformations suivantes sont appliquées dans l’ordre, pour chaque fichier source dans un programme c# :
+Pour la compatibilité avec la source des outils d’édition qui ajoutent des marqueurs de fin de fichier de code, et pour activer une source de fichier à afficher sous forme de séquence de correctement arrêtée lignes, les transformations suivantes sont appliquées dans l’ordre, pour chaque fichier source dans un programme C# :
 
 *  Si le dernier caractère du fichier source est un caractère CTRL + Z (`U+001A`), ce caractère est supprimé.
 *  Un caractère de retour chariot (`U+000D`) est ajouté à la fin du fichier source si ce fichier source n’est pas vide et si le dernier caractère du fichier source n’est pas un retour chariot (`U+000D`), un saut de ligne (`U+000A`), un séparateur de ligne (`U+2028`), ou un séparateur de paragraphe (`U+2029`).
@@ -200,7 +208,7 @@ unicode_escape_sequence
     ;
 ```
 
-Une séquence d’échappement Unicode représente le caractère Unicode formé par le nombre hexadécimal qui suit le «`\u`« ou »`\U`» caractères. Étant donné que c# utilise un codage 16 bits des points de code Unicode en caractères et les valeurs de chaîne, un caractère Unicode dans la plage U + 10000 à U + 10FFFF n’est pas autorisé dans un littéral de caractère et est représenté à l’aide d’une paire de substitution Unicode dans un littéral de chaîne. Les caractères Unicode avec des points de code supérieurs à 0x10FFFF ne sont pas pris en charge.
+Une séquence d’échappement Unicode représente le caractère Unicode formé par le nombre hexadécimal qui suit le «`\u`« ou »`\U`» caractères. Étant donné que C# utilise un codage 16 bits des points de code Unicode en caractères et les valeurs de chaîne, un caractère Unicode dans la plage U + 10000 à U + 10FFFF n’est pas autorisé dans un littéral de caractère et est représenté à l’aide d’une paire de substitution Unicode dans un littéral de chaîne. Les caractères Unicode avec des points de code supérieurs à 0x10FFFF ne sont pas pris en charge.
 
 Plusieurs traductions ne sont pas effectuées. Par exemple, le littéral de chaîne «`\u005Cu005C`« équivaut à »`\u005C`« plutôt que »`\`». La valeur Unicode `\u005C` est le caractère «`\`».
 
@@ -818,7 +826,7 @@ La barre verticale de la *right_shift* et *right_shift_assignment* productions s
 
 ## <a name="pre-processing-directives"></a>Directives de prétraitement
 
-Les directives de prétraitement permettent d’ignorer sous certaines conditions des sections des fichiers sources, de rapport conditions d’erreur et avertissement et pour délimiter des régions distinctes du code source. Le terme « directives de prétraitement » est utilisé uniquement pour des raisons de cohérence avec les langages de programmation C et C++. En c#, il n’existe aucune étape de prétraitement distincte ; directives de prétraitement sont traitées dans le cadre de la phase d’analyse lexicale.
+Les directives de prétraitement permettent d’ignorer sous certaines conditions des sections des fichiers sources, de rapport conditions d’erreur et avertissement et pour délimiter des régions distinctes du code source. Le terme « directives de prétraitement » est utilisé uniquement pour des raisons de cohérence avec les langages de programmation C et C++. En C#, il n’existe aucune étape de prétraitement distincte ; directives de prétraitement sont traitées dans le cadre de la phase d’analyse lexicale.
 
 ```antlr
 pp_directive
@@ -844,7 +852,7 @@ Une directive de prétraitement occupe toujours une ligne distincte de code sour
 
 Une ligne source qui contient un `#define`, `#undef`, `#if`, `#elif`, `#else`, `#endif`, `#line`, ou `#endregion` directive peut se terminer par un commentaire sur une ligne. Commentaires délimités (le `/* */` style des commentaires) ne sont pas autorisées sur les lignes de code source contenant des directives de prétraitement.
 
-Directives de prétraitement ne sont pas des jetons et ne font pas partie de la grammaire syntaxique de c#. Toutefois, les directives de prétraitement peuvent être utilisées pour inclure ou exclure des séquences de jetons et pouvant ainsi affecter la signification d’un programme c#. Par exemple, lors de la compilation, le programme :
+Directives de prétraitement ne sont pas des jetons et ne font pas partie de la grammaire syntaxique de C#. Toutefois, les directives de prétraitement peuvent être utilisées pour inclure ou exclure des séquences de jetons et pouvant ainsi affecter la signification d’un programme C#. Par exemple, lors de la compilation, le programme :
 ```csharp
 #define A
 #undef B
@@ -889,7 +897,7 @@ Un symbole de compilation conditionnelle a deux états possibles : ***défini**
 
 Lorsque référencés dans une expression de pré-traitement, un symbole de compilation conditionnelle définie a la valeur booléenne `true`, et un symbole de compilation conditionnelle non défini a la valeur booléenne `false`. Il n’est pas nécessaire que les symboles de compilation conditionnelle soient explicitement déclarés avant d’être référencés dans les expressions de pré-traitement. Au lieu de cela, des symboles non déclarées sont simplement non définis et n’ont donc la valeur `false`.
 
-L’espace de noms pour les symboles de compilation conditionnelle est distinct et indépendant de tous les autres entités nommées dans un programme c#. Symboles de compilation conditionnelle peuvent uniquement être référencés dans `#define` et `#undef` directives et dans les expressions de pré-traitement.
+L’espace de noms pour les symboles de compilation conditionnelle est distinct et indépendant de tous les autres entités nommées dans un programme C#. Symboles de compilation conditionnelle peuvent uniquement être référencés dans `#define` et `#undef` directives et dans les expressions de pré-traitement.
 
 ### <a name="pre-processing-expressions"></a>Expressions de pré-traitement
 
@@ -1191,7 +1199,7 @@ correspond exactement au traitement lexical d’une directive de compilation con
 
 Directives de ligne peuvent être utilisés pour modifier les numéros de ligne et les noms de fichiers sources qui sont signalés par le compilateur de sortie tels que les erreurs et avertissements, et qui sont utilisés par les attributs des informations de l’appelant ([attributs d’informations appelant](attributes.md#caller-info-attributes)).
 
-Directives de ligne sont couramment utilisés dans les outils de métaprogrammation qui génèrent le code source c# à partir d’un autre texte d’entrée.
+Directives de ligne sont couramment utilisés dans les outils de métaprogrammation qui génèrent le code source C# à partir d’un autre texte d’entrée.
 
 ```antlr
 pp_line
@@ -1236,7 +1244,7 @@ pragma_body
     ;
 ```
 
-C# fournit `#pragma` directives pour contrôler les avertissements du compilateur. Les versions futures du langage peuvent inclure supplémentaires `#pragma` directives. Pour garantir l’interopérabilité avec d’autres compilateurs c#, le compilateur Microsoft C# n’émet pas d’erreurs de compilation pour inconnu `#pragma` directives ; de ce type ne de directives toutefois générer des avertissements.
+C# fournit `#pragma` directives pour contrôler les avertissements du compilateur. Les versions futures du langage peuvent inclure supplémentaires `#pragma` directives. Pour garantir l’interopérabilité avec d’autres compilateurs C#, le compilateur Microsoft C# n’émet pas d’erreurs de compilation pour inconnu `#pragma` directives ; de ce type ne de directives toutefois générer des avertissements.
 
 #### <a name="pragma-warning"></a>Avertissement de pragma
 
