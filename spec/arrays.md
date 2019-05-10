@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: 155c1beecddfdfcce2e7948bcb8d6b80428fbd7a
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229646"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488842"
 ---
 # <a name="arrays"></a>Tableaux
 
@@ -87,7 +87,7 @@ Chaque fois qu’il existe une conversion de référence implicite ou explicite 
 
 Lorsqu’un type tableau `S[]` implémente `IList<T>`, certains membres de l’interface implémentée peuvent lever des exceptions. Le comportement précis de l’implémentation de l’interface n’entre pas dans le cadre de cette spécification.
 
-## <a name="array-creation"></a>Création d’un tableau
+## <a name="array-creation"></a>Création de tableau
 
 Les instances de tableau sont créées par *array_creation_expression*s ([expressions de création de tableau](expressions.md#array-creation-expressions)) ou par champ ou des déclarations de variables locales qui incluent un *array_initializer*([Les initialiseurs de tableaux](arrays.md#array-initializers)).
 

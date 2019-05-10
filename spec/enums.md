@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: c3b716e6eb331be2ee33fffeb42c1e2406cd3a5c
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229669"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488759"
 ---
 # <a name="enums"></a>Enums
 

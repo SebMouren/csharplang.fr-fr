@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 67019511d49a786a5d6edf6fea442f745fc40f3f
-ms.sourcegitcommit: 0a80f26b8e455c4f09843a10e11e29c24d2d922e
-ms.translationtype: HT
+ms.openlocfilehash: 066c300d4c2baa8749e132730ecd48275e2957f7
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57347272"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64489012"
 ---
 # <a name="expressions"></a>Expressions
 
@@ -48,7 +48,7 @@ Toutefois, si une expression est une expression dynamique (par exemple, a le typ
 
 Lorsqu’une opération est liée dynamiquement, peu ou aucune vérification est effectuée par le compilateur. Au lieu de cela si la liaison de l’exécution échoue, les erreurs sont signalées en tant qu’exceptions au moment de l’exécution.
 
-Les opérations suivantes en C# sont soumises à liaison :
+Les opérations suivantes en c# sont soumises à liaison :
 
 *  Accès au membre : `e.M`
 *  Appel de méthode : `e.M(e1, ..., eN)`
@@ -60,7 +60,7 @@ Les opérations suivantes en C# sont soumises à liaison :
 *  Opérateurs d’assignation : `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `<<=`, `>>=`
 *  Conversions implicites et explicites
 
-Si aucune expression dynamique n’est impliquées, C# par défaut est une liaison statique, ce qui signifie que les types de compilation d’expressions constitutifs sont utilisés dans le processus de sélection. Toutefois, lorsque l’une des expressions qui le composent dans les opérations répertoriées ci-dessus est une expression dynamique, l’opération est liée à la place dynamiquement.
+Si aucune expression dynamique n’est impliquées, c# par défaut est une liaison statique, ce qui signifie que les types de compilation d’expressions constitutifs sont utilisés dans le processus de sélection. Toutefois, lorsque l’une des expressions qui le composent dans les opérations répertoriées ci-dessus est une expression dynamique, l’opération est liée à la place dynamiquement.
 
 ### <a name="binding-time"></a>Moment de la liaison
 
@@ -82,11 +82,11 @@ Le troisième appel est dynamiquement lié : la surcharge de `Console.WriteLine
 
 ### <a name="dynamic-binding"></a>Liaison dynamique
 
-L’objectif de la liaison dynamique consiste à autoriser des programmes C# interagir avec ***objets dynamiques***, par exemple, les objets qui ne suivent pas les règles normales de C# système de type. Objets dynamiques peuvent être des objets à partir d’autres langages de programmation avec les systèmes de types différents, ou ils peuvent être des objets qui sont par programmation le programme d’installation pour implémenter leur propre sémantique de liaison pour différentes opérations.
+L’objectif de la liaison dynamique consiste à autoriser des programmes c# interagir avec ***objets dynamiques***, par exemple, les objets qui ne suivent pas les règles normales de C# système de type. Objets dynamiques peuvent être des objets à partir d’autres langages de programmation avec les systèmes de types différents, ou ils peuvent être des objets qui sont par programmation le programme d’installation pour implémenter leur propre sémantique de liaison pour différentes opérations.
 
-Le mécanisme par lequel un objet dynamique implémente sa propre sémantique est définie par l’implémentation. Une interface donnée--à nouveau définie par l’implémentation--est implémentée par les objets dynamiques afin de signaler à la C# durée d’exécution qu’ils ont une sémantique spéciale. Par conséquent, chaque fois que les opérations sur un objet dynamique sont liées dynamiquement, leur propre sémantique de liaison, plutôt que ceux de C#, comme spécifié dans ce document, reprendre.
+Le mécanisme par lequel un objet dynamique implémente sa propre sémantique est définie par l’implémentation. Une interface donnée--à nouveau définie par l’implémentation--est implémentée par les objets dynamiques afin de signaler à la c# durée d’exécution qu’ils ont une sémantique spéciale. Par conséquent, chaque fois que les opérations sur un objet dynamique sont liées dynamiquement, leur propre sémantique de liaison, plutôt que ceux de c#, comme spécifié dans ce document, reprendre.
 
-Alors que la liaison dynamique vise à permettre l’interopérabilité avec les objets dynamiques, C# permet de liaison dynamique sur tous les objets, qu’ils soient dynamiques ou non. Cela permet une intégration plus lisse des objets dynamiques, comme les résultats des opérations sur ces derniers pas eux-mêmes peuvent être des objets dynamiques, mais sont toujours d’un type inconnu pour le programmeur au moment de la compilation. Liaison dynamique peut également aider à éliminer le code de basée sur reflection sujette aux erreurs même quand aucune objets impliqués ne sont des objets dynamiques.
+Alors que la liaison dynamique vise à permettre l’interopérabilité avec les objets dynamiques, c# permet de liaison dynamique sur tous les objets, qu’ils soient dynamiques ou non. Cela permet une intégration plus lisse des objets dynamiques, comme les résultats des opérations sur ces derniers pas eux-mêmes peuvent être des objets dynamiques, mais sont toujours d’un type inconnu pour le programmeur au moment de la compilation. Liaison dynamique peut également aider à éliminer le code de basée sur reflection sujette aux erreurs même quand aucune objets impliqués ne sont des objets dynamiques.
 
 Les sections suivantes décrivent chaque construction dans le langage for exactement lorsque liaison dynamique est appliqué, ce qui compile la vérification au moment--si toute--est appliquée, et quelles la compilation résultat et expression classification est.
 
@@ -780,7 +780,7 @@ Plus précisément, l’inférence démarre avec un *non fixed* variable de type
 
 ### <a name="overload-resolution"></a>Résolution de surcharge
 
-Résolution de surcharge est un mécanisme de liaison-heure pour sélectionner la meilleure fonction membre à appeler étant donnés une liste d’arguments et un ensemble de fonctions membres candidates. Résolution de surcharge sélectionne la fonction membre à appeler dans les différents contextes au sein de C# suivants :
+Résolution de surcharge est un mécanisme de liaison-heure pour sélectionner la meilleure fonction membre à appeler étant donnés une liste d’arguments et un ensemble de fonctions membres candidates. Résolution de surcharge sélectionne la fonction membre à appeler dans les différents contextes au sein de c# suivants :
 
 *  Appel d’une méthode nommée dans une *invocation_expression* ([appels de méthode](expressions.md#method-invocations)).
 *  Appel d’un constructeur d’instance nommé dans un *object_creation_expression* ([des expressions de la création d’objet](expressions.md#object-creation-expressions)).
@@ -1517,7 +1517,7 @@ Au moment de la liaison, *base_access* expressions de la forme `base.I` et `base
 
 Quand un *base_access* fait référence à une fonction membre virtuelle (méthode, propriété ou indexeur), la détermination de qui fonction membre à appeler au moment de l’exécution ([la vérification de la résolution de surcharge dynamique lors de la compilation ](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) est modifié. La fonction membre qui est appelée est déterminée en recherchant l’implémentation la plus dérivée ([les méthodes virtuelles](classes.md#virtual-methods)) de la fonction membre au niveau `B` (au lieu d’en ce qui concerne le type au moment de l’exécution de `this`, en tant que serait un accès de base autre). Par conséquent, au sein d’un `override` d’un `virtual` fonction membre, un *base_access* peut être utilisée pour appeler l’implémentation héritée de la fonction membre. Si la fonction membre référencé par un *base_access* est abstrait, une erreur au moment de la liaison se produit.
 
-### <a name="postfix-increment-and-decrement-operators"></a>Incrément suffixé et opérateurs de décrémentation
+### <a name="postfix-increment-and-decrement-operators"></a>Opérateurs suffixés d’incrémentation et de décrémentation
 
 ```antlr
 post_increment_expression
@@ -2159,7 +2159,7 @@ Notez que `int` et `System.Int32` sont du même type.
 
 Notez également que le résultat de `typeof(X<>)` ne dépend pas de l’argument de type, mais le résultat de `typeof(X<T>)` est.
 
-### <a name="the-checked-and-unchecked-operators"></a>Les opérateurs checked et unchecked
+### <a name="the-checked-and-unchecked-operators"></a>Opérateurs vérifiés et non vérifiés
 
 Le `checked` et `unchecked` opérateurs sont utilisés pour contrôler la ***contexte de vérification de dépassement de capacité*** pour les conversions et les opérations arithmétiques de type intégral.
 
@@ -2478,7 +2478,7 @@ decimal operator +(decimal x);
 
 Pour chacun de ces opérateurs, le résultat est simplement la valeur de l’opérande.
 
-### <a name="unary-minus-operator"></a>Opérateur moins unaire
+### <a name="unary-minus-operator"></a>Opération moins unaire
 
 Pour une opération du formulaire `-x`, la résolution de surcharge opérateur unaire ([opérateur unaire de résolution de surcharge](expressions.md#unary-operator-overload-resolution)) est appliquée pour sélectionner l’implémentation d’un opérateur spécifique. L’opérande est converti au type de paramètre de l’opérateur sélectionné et le type du résultat est le type de retour de l’opérateur. Les opérateurs de négation prédéfinis sont :
 
@@ -2541,7 +2541,7 @@ E operator ~(E x);
 
 Le résultat de l’évaluation `~x`, où `x` est une expression d’un type énumération `E` avec un type sous-jacent `U`, est exactement le même que l’évaluation `(E)(~(U)x)`, sauf que la conversion en `E` est toujours effectuée comme dans le cas une `unchecked` contexte ([les opérateurs checked et unchecked](expressions.md#the-checked-and-unchecked-operators)).
 
-### <a name="prefix-increment-and-decrement-operators"></a>Incrément préfixé et opérateurs de décrémentation
+### <a name="prefix-increment-and-decrement-operators"></a>Opérateurs préfixés d’incrémentation et de décrémentation
 
 ```antlr
 pre_increment_expression
@@ -4082,13 +4082,13 @@ Pour pouvoir utiliser ces mots comme identificateurs dans une expression de requ
 
 ### <a name="query-expression-translation"></a>Traduction des expressions de requête
 
-Le langage C# ne spécifie pas la sémantique d’exécution d’expressions de requête. Au lieu de cela, les expressions de requête sont traduites en appels de méthodes qui respectent le *modèle d’expression de requête* ([le modèle d’expression de requête](expressions.md#the-query-expression-pattern)). Plus précisément, les expressions de requête sont traduites en appels de méthodes nommées `Where`, `Select`, `SelectMany`, `Join`, `GroupJoin`, `OrderBy`, `OrderByDescending`, `ThenBy`, `ThenByDescending`, `GroupBy`, et `Cast`. Ces méthodes sont supposées comporter des signatures particuliers et les types de résultats, comme décrit dans [le modèle d’expression de requête](expressions.md#the-query-expression-pattern). Ces méthodes peuvent être des méthodes d’instance de l’objet en cours d’interrogation ou des méthodes d’extension qui sont externes à l’objet, et qu’ils implémentent l’exécution réelle de la requête.
+Le langage c# ne spécifie pas la sémantique d’exécution d’expressions de requête. Au lieu de cela, les expressions de requête sont traduites en appels de méthodes qui respectent le *modèle d’expression de requête* ([le modèle d’expression de requête](expressions.md#the-query-expression-pattern)). Plus précisément, les expressions de requête sont traduites en appels de méthodes nommées `Where`, `Select`, `SelectMany`, `Join`, `GroupJoin`, `OrderBy`, `OrderByDescending`, `ThenBy`, `ThenByDescending`, `GroupBy`, et `Cast`. Ces méthodes sont supposées comporter des signatures particuliers et les types de résultats, comme décrit dans [le modèle d’expression de requête](expressions.md#the-query-expression-pattern). Ces méthodes peuvent être des méthodes d’instance de l’objet en cours d’interrogation ou des méthodes d’extension qui sont externes à l’objet, et qu’ils implémentent l’exécution réelle de la requête.
 
-La traduction à partir d’expressions de requête aux appels de méthode est un mappage syntaxique qui se produit avant la liaison de n’importe quel type ou la résolution de surcharge a été effectuée. La traduction est garantie est syntaxiquement correct, mais il n’est pas garanti pour produire le code C# sémantiquement correct. Après la traduction d’expressions de requête, les appels de méthode qui en résulte sont traités comme des appels de méthode normal et cela peut révéler à son tour les erreurs, par exemple si les méthodes n’existent pas, si les arguments ont des types incorrects, ou si les méthodes sont génériques et inférence de type échoue.
+La traduction à partir d’expressions de requête aux appels de méthode est un mappage syntaxique qui se produit avant la liaison de n’importe quel type ou la résolution de surcharge a été effectuée. La traduction est garantie est syntaxiquement correct, mais il n’est pas garanti pour produire le code c# sémantiquement correct. Après la traduction d’expressions de requête, les appels de méthode qui en résulte sont traités comme des appels de méthode normal et cela peut révéler à son tour les erreurs, par exemple si les méthodes n’existent pas, si les arguments ont des types incorrects, ou si les méthodes sont génériques et inférence de type échoue.
 
 Une expression de requête est traitée par l’application à plusieurs reprises les traductions suivantes jusqu'à ce qu’aucune réduction supplémentaire n’est possibles. Les traductions sont répertoriées dans l’ordre d’application : chaque section part du principe que les traductions dans les sections précédentes ont été effectuées de manière exhaustive, et une fois atteint, une section ne sera pas plus tard être revisitée lors du traitement de la même expression de requête.
 
-Affectation à des variables de plage n’est pas autorisée dans les expressions de requête. Toutefois une implémentation C# est autorisée à n'appliquer pas toujours cette restriction, dans la mesure où cela est parfois pas possible avec le schéma de conversion syntaxique présenté ici.
+Affectation à des variables de plage n’est pas autorisée dans les expressions de requête. Toutefois une implémentation c# est autorisée à n'appliquer pas toujours cette restriction, dans la mesure où cela est parfois pas possible avec le schéma de conversion syntaxique présenté ici.
 
 Certaines traductions injectent des variables de portée avec des identificateurs transparents dénotés par `*`. Les propriétés spéciales d’identificateurs transparents sont abordées plus en détail dans [identificateurs Transparent](expressions.md#transparent-identifiers).
 
@@ -4480,7 +4480,7 @@ Lorsqu’une traduction de requête injecte un identificateur transparent, étap
 *  Lorsqu’un identificateur transparent se produit en tant que paramètre dans une fonction anonyme, les membres du type anonyme associé sont automatiquement dans la portée dans le corps de la fonction anonyme.
 *  Lorsqu’un membre avec un identificateur transparent est dans la portée, les membres de ce membre sont dans l’étendue ainsi.
 *  En cas d’un identificateur transparent comme un déclarateur de membre dans un initialiseur d’objet anonyme, elle introduit un membre avec un identificateur transparent.
-*  Dans les étapes de traduction décrites ci-dessus, les identificateurs transparents sont toujours introduits avec des types anonymes, avec l’intention de capturer plusieurs variables de plage en tant que membres d’un objet unique. Une implémentation du langage C# est autorisée à utiliser un autre mécanisme que les types anonymes pour regrouper plusieurs variables de plage. Les exemples de traduction suivants supposent que les types anonymes sont utilisés et affichent le degré de transparence identificateurs peuvent être traduites de suite.
+*  Dans les étapes de traduction décrites ci-dessus, les identificateurs transparents sont toujours introduits avec des types anonymes, avec l’intention de capturer plusieurs variables de plage en tant que membres d’un objet unique. Une implémentation du langage c# est autorisée à utiliser un autre mécanisme que les types anonymes pour regrouper plusieurs variables de plage. Les exemples de traduction suivants supposent que les types anonymes sont utilisés et affichent le degré de transparence identificateurs peuvent être traduites de suite.
 
 L’exemple
 ```csharp

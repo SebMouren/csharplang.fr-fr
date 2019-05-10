@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: 61eeae6173eaa19f9cf6d6e985f3dc107d4c3ac9
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: HT
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "50245524"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488958"
 ---
 # <a name="conversions"></a>Conversions
 
@@ -589,9 +589,9 @@ Conversion d’une fonction anonyme en un type d’arborescence expression gén�
 
 ### <a name="implementation-example"></a>Exemple d’implémentation
 
-Cette section décrit une implémentation possible de conversions de fonction anonyme en termes d’autres constructions C#. L’implémentation décrite ici est basée sur les mêmes principes que celui utilisés par le compilateur Microsoft C#, mais il n’est pas une implémentation autorisée, ni de la possible qu’une seule. Elle mentionne brièvement les conversions en arborescences d’expression, comme leur sémantique exacte est en dehors de l’étendue de cette spécification.
+Cette section décrit une implémentation possible de conversions de fonction anonyme en termes d’autres constructions c#. L’implémentation décrite ici est basée sur les mêmes principes que celui utilisés par le compilateur Microsoft c#, mais il n’est pas une implémentation autorisée, ni de la possible qu’une seule. Elle mentionne brièvement les conversions en arborescences d’expression, comme leur sémantique exacte est en dehors de l’étendue de cette spécification.
 
-Le reste de cette section fournit plusieurs exemples de code qui contient les fonctions anonymes présentant des caractéristiques différentes. Pour chaque exemple, une traduction correspondante au code qui utilise uniquement autres constructions C# est fournie. Dans les exemples, l’identificateur `D` est supposé par représentent le type délégué suivant :
+Le reste de cette section fournit plusieurs exemples de code qui contient les fonctions anonymes présentant des caractéristiques différentes. Pour chaque exemple, une traduction correspondante au code qui utilise uniquement autres constructions c# est fournie. Dans les exemples, l’identificateur `D` est supposé par représentent le type délégué suivant :
 ```csharp
 public delegate void D();
 ```

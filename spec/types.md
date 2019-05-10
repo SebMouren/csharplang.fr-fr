@@ -1,14 +1,14 @@
 ---
 ms.openlocfilehash: a28397b1ce97dbead6d5014e2b20e108a1018502
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: HT
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229640"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488789"
 ---
 # <a name="types"></a>Types
 
-Les types du langage C# sont divisés en deux catégories principales : ***types valeur*** et ***référencent des types***. Types valeur et types référence peuvent être ***types génériques***, qui accepte un ou plusieurs ***paramètres de type***. Paramètres de type peuvent désigner les deux types valeur et types référence.
+Les types du langage c# sont divisés en deux catégories principales : ***types valeur*** et ***référencent des types***. Types valeur et types référence peuvent être ***types génériques***, qui accepte un ou plusieurs ***paramètres de type***. Paramètres de type peuvent désigner les deux types valeur et types référence.
 
 ```antlr
 type
@@ -23,7 +23,7 @@ La dernière catégorie de types, des pointeurs, est disponible uniquement dans 
 
 Types valeur diffèrent des types référence dans la mesure où les variables des types valeur contiennent directement leurs données, tandis que le magasin de types de variables de la référence ***références*** à leurs données, ce dernier connu en tant que ***objets***. Avec les types référence, il est possible de deux variables référencent le même objet et par conséquent, les opérations sur une variable peuvent affecter l’objet référencé par l’autre variable. Avec les types valeur, les variables disposent chacune leur propre copie des données, et il n’est pas possible pour les opérations sur une d’affecter l’autre.
 
-Système de type de # est unifié afin qu’une valeur de n’importe quel type peut être traitée en tant qu’objet. Chaque type dans C# dérive directement ou indirectement du type `object`, et `object` est la classe de base fondamentale de tous les types. Les valeurs des types référence sont considérées comme des objets simplement en affichant les valeurs en tant que type `object`. Valeurs des types valeur sont traitées en tant qu’objets en effectuant les opérations de boxing et unboxing ([Boxing et unboxing](types.md#boxing-and-unboxing)).
+C#du système de type est unifié afin qu’une valeur de n’importe quel type peut être traitée en tant qu’objet. Chaque type dans C# dérive directement ou indirectement du type `object`, et `object` est la classe de base fondamentale de tous les types. Les valeurs des types référence sont considérées comme des objets simplement en affichant les valeurs en tant que type `object`. Valeurs des types valeur sont traitées en tant qu’objets en effectuant les opérations de boxing et unboxing ([Boxing et unboxing](types.md#boxing-and-unboxing)).
 
 ## <a name="value-types"></a>Types de valeur
 
@@ -215,7 +215,7 @@ Les opérateurs à virgule flottante, y compris les opérateurs d’assignation,
 *  Si une opération à virgule flottante n’est pas valide, le résultat de l’opération devient une NaN.
 *  Si un ou deux opérandes d’une opération à virgule flottante est NaN, le résultat de l’opération devient une NaN.
 
-Les opérations à virgule flottante peuvent être exécutées avec une précision plus élevée que le type de résultat de l’opération. Par exemple, certaines architectures matérielles prennent en charge un type à virgule flottante « étendu » ou « long double » avec la plage supérieure et une précision à la `double` tapez, puis appliquer implicitement toutes les opérations à virgule flottante à l’aide de ce type de précision plus élevé. Qu’au prix de performances ces architectures matérielles est possible d’effectuer des opérations à virgule flottante avec moins de précision, et plutôt que d’imposer une implémentation se dérouler au détriment des performances et précision, C# autorise un type de précision plus élevé être utilisé pour toutes les opérations à virgule flottante. Autres que des résultats plus précis, cette méthode présente rarement des effets mesurables. Toutefois, dans les expressions de la forme `x * y / z`, où la multiplication produit un résultat qui est en dehors de la `double` plage, mais la division qui suit affiche le résultat temporaire dans le `double` de plage, le fait que l’expression est évaluée dans une plage plus haute format peut provoquer un résultat fini à produire au lieu d’un nombre infini.
+Les opérations à virgule flottante peuvent être exécutées avec une précision plus élevée que le type de résultat de l’opération. Par exemple, certaines architectures matérielles prennent en charge un type à virgule flottante « étendu » ou « long double » avec la plage supérieure et une précision à la `double` tapez, puis appliquer implicitement toutes les opérations à virgule flottante à l’aide de ce type de précision plus élevé. Qu’au prix de performances ces architectures matérielles est possible d’effectuer des opérations à virgule flottante avec moins de précision, et plutôt que d’imposer une implémentation se dérouler au détriment des performances et précision, c# autorise un type de précision plus élevé être utilisé pour toutes les opérations à virgule flottante. Autres que des résultats plus précis, cette méthode présente rarement des effets mesurables. Toutefois, dans les expressions de la forme `x * y / z`, où la multiplication produit un résultat qui est en dehors de la `double` plage, mais la division qui suit affiche le résultat temporaire dans le `double` de plage, le fait que l’expression est évaluée dans une plage plus haute format peut provoquer un résultat fini à produire au lieu d’un nombre infini.
 
 ### <a name="the-decimal-type"></a>Le type decimal
 
@@ -237,7 +237,7 @@ Le `bool` type représente des quantités logiques booléennes. Les valeurs poss
 
 Il n’existe aucune conversion standard entre `bool` et d’autres types. En particulier, le `bool` type est distinct et indépendant des types intégraux et un `bool` valeur ne peut pas être utilisée à la place d’une valeur intégrale et vice versa.
 
-Dans les langages C et C++, une valeur zéro intégrale ou à virgule flottante ou un pointeur null peut être converti à la valeur booléenne `false`, et une valeur intégrale ou à virgule flottante de zéro ou un pointeur non null peut être converti en la valeur booléenne `true`. En C#, ces conversions sont accomplies en comparant explicitement une valeur intégrale ou à virgule flottante à zéro ou en comparant explicitement une référence d’objet `null`.
+Dans les langages C et C++, une valeur zéro intégrale ou à virgule flottante ou un pointeur null peut être converti à la valeur booléenne `false`, et une valeur intégrale ou à virgule flottante de zéro ou un pointeur non null peut être converti en la valeur booléenne `true`. En c#, ces conversions sont accomplies en comparant explicitement une valeur intégrale ou à virgule flottante à zéro ou en comparant explicitement une référence d’objet `null`.
 
 ### <a name="enumeration-types"></a>Types d'énumération
 
@@ -319,13 +319,13 @@ Un type de classe définit une structure de données qui contient les données m
 
 Types de classe sont décrits dans [Classes](classes.md).
 
-Certains types de classe prédéfinis ont une signification spéciale dans le langage C#, comme décrit dans le tableau ci-dessous.
+Certains types de classe prédéfinis ont une signification spéciale dans le langage c#, comme décrit dans le tableau ci-dessous.
 
 
 | __Type de classe__     | __Description__                                         |
 |--------------------|---------------------------------------------------------|
 | `System.Object`    | La classe de base fondamentale de tous les autres types. Consultez [le type d’objet](types.md#the-object-type). | 
-| `System.String`    | Le type de chaîne du langage C#. Consultez [le type de chaîne](types.md#the-string-type).         |
+| `System.String`    | Le type de chaîne du langage c#. Consultez [le type de chaîne](types.md#the-string-type).         |
 | `System.ValueType` | La classe de base de tous les types de valeur. Consultez [System.ValueType le type](types.md#the-systemvaluetype-type).          |
 | `System.Enum`      | La classe de base de tous les types enum. Consultez [Enums](enums.md).              |
 | `System.Array`     | La classe de base de tous les types tableau. Consultez [Tableaux](arrays.md).             |
@@ -334,7 +334,7 @@ Certains types de classe prédéfinis ont une signification spéciale dans le la
 
 ### <a name="the-object-type"></a>Le type d’objet
 
-Le `object` type de classe est la classe de base fondamentale de tous les autres types. Chaque type dans C# dérive directement ou indirectement le `object` type de classe.
+Le `object` type de classe est la classe de base fondamentale de tous les autres types. Chaque type dans c# dérive directement ou indirectement le `object` type de classe.
 
 Le mot clé `object` est simplement un alias de la classe prédéfinie `System.Object`.
 
@@ -387,7 +387,7 @@ Types délégués sont décrits dans [délégués](delegates.md).
 
 ## <a name="boxing-and-unboxing"></a>Boxing et unboxing
 
-Le concept de boxing et unboxing est central au système de type de #. Il fournit un pont entre *value_type*s et *reference_type*s en permettant de n’importe quelle valeur d’un *value_type* à convertir vers et à partir de type `object`. Boxing et unboxing permettent une vue unifiée du système de type dans lequel une valeur de n’importe quel type peut finalement être traitée en tant qu’objet.
+Le concept de boxing et unboxing est central à C#du système de type. Il fournit un pont entre *value_type*s et *reference_type*s en permettant de n’importe quelle valeur d’un *value_type* à convertir vers et à partir de type `object`. Boxing et unboxing permettent une vue unifiée du système de type dans lequel une valeur de n’importe quel type peut finalement être traitée en tant qu’objet.
 
 ### <a name="boxing-conversions"></a>Conversions boxing
 

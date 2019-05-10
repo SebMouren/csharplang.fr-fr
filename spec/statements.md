@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: 8f9551b9e7f70379836c23a60f0d37dc02f8e18e
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: HT
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229700"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488810"
 ---
 # <a name="statements"></a>Instructions
 
@@ -768,7 +768,7 @@ foreach (var value in values)
 
 f();
 ```
-Si `v` a été déclaré en dehors de le pendant que boucle, il est partagé entre toutes les itérations et sa valeur après le pour boucle serait la valeur finale, `13`, c'est-à-dire quel l’appel de `f` imprimerait. Au lieu de cela, étant donné que chaque itération possède sa propre variable `v`, celui capturé par `f` dans la première itération continue à contenir la valeur `7`, qui est la zone d’impression. (Remarque : les versions antérieures de C# déclaré `v` boucle de l’extérieur du while.)
+Si `v` a été déclaré en dehors de le pendant que boucle, il est partagé entre toutes les itérations et sa valeur après le pour boucle serait la valeur finale, `13`, c'est-à-dire quel l’appel de `f` imprimerait. Au lieu de cela, étant donné que chaque itération possède sa propre variable `v`, celui capturé par `f` dans la première itération continue à contenir la valeur `7`, qui est la zone d’impression. (Remarque : les versions antérieures de c# déclaré `v` boucle de l’extérieur du while.)
 
 Le corps de l’enfin le bloc est construit en respectant les étapes suivantes :
 

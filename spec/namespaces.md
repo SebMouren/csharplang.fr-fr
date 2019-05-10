@@ -1,14 +1,14 @@
 ---
-ms.openlocfilehash: 33b3044c4c0a4095f4bf49e6cf23c721f538e911
-ms.sourcegitcommit: 4e3f2e4ea5a50b186b08d1e93d3ffcdb3754596e
-ms.translationtype: HT
+ms.openlocfilehash: 3232163ed91d9d8bb6b0babf94c4282bfd60976c
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/19/2019
-ms.locfileid: "56411297"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488934"
 ---
 # <a name="namespaces"></a>Espaces de noms
 
-Les programmes C# sont organisés à l’aide d’espaces de noms. Espaces de noms sont utilisés comme un système d’organisation « interne » pour un programme et comme un système d’organisation « external » : une façon de présenter des éléments de programme qui sont exposés à d’autres programmes.
+Les programmes c# sont organisés à l’aide d’espaces de noms. Espaces de noms sont utilisés comme un système d’organisation « interne » pour un programme et comme un système d’organisation « external » : une façon de présenter des éléments de programme qui sont exposés à d’autres programmes.
 
 Directives using ([à l’aide de directives](namespaces.md#using-directives)) sont fournies pour faciliter l’utilisation des espaces de noms.
 
@@ -22,7 +22,7 @@ compilation_unit
     ;
 ```
 
-Un programme C# se compose d’une ou plusieurs unités de compilation, tous contenus dans un fichier source séparé. Lorsqu’un programme C# est compilé, toutes les unités de compilation sont traités ensemble. Par conséquent, les unités de compilation peuvent dépendre eux, éventuellement de manière circulaire.
+Un programme c# se compose d’une ou plusieurs unités de compilation, tous contenus dans un fichier source séparé. Lorsqu’un programme c# est compilé, toutes les unités de compilation sont traités ensemble. Par conséquent, les unités de compilation peuvent dépendre eux, éventuellement de manière circulaire.
 
 Le *using_directive*s d’un effet d’unité de compilation la *global_attributes* et *namespace_member_declaration*s de cette unité de compilation, mais n’ont aucun effet autres unités de compilation.
 
