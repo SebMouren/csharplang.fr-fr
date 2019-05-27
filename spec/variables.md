@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: b7bb7dd575d9e2e6d5dd85bdd3e535411e29fcf4
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: ff285fc202d14c2060c5f005c319c7886458a168
+ms.sourcegitcommit: 8152182f0a477cb3082e625b607262cc459a17f3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488863"
+ms.lasthandoff: 05/23/2019
+ms.locfileid: "66174239"
 ---
 # <a name="variables"></a>Variables
 
@@ -574,7 +574,7 @@ Pour une expression *expr* du formulaire `expr_first ?? expr_second`:
 *  L’état d’assignation définie *v* avant *expr_first* est identique à l’état d’assignation définie *v* avant *expr*.
 *  L’état d’assignation définie *v* avant *expr_second* est identique à l’état d’assignation définie *v* après *expr_first*.
 *  L’instruction d’assignation définie de *v* après *expr* est déterminé par :
-    * Si *expr_first* est une expression constante ([expressions constantes](expressions.md#constant-expressions)) avec la valeur null, alors la l’état de *v* après *expr* est le même en tant que l’état de *v* après *expr_second*.
+    * Si *expr_first* est une expression constante ([expressions constantes](expressions.md#constant-expressions)) avec la valeur null, alors que l’état de *v* après *expr* est identique à l’état de *v* après *expr_second*.
 *  Sinon, l’état de *v* après *expr* est identique à l’état d’assignation définie *v* après *expr_first*.
 
 #### <a name="-conditional-expressions"></a>? : (conditionnelles) expressions

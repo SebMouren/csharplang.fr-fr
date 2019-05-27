@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 08c14d9ef2afe30580f456995066c141653ede92
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 994b22f5375d57cfc4c7537c64345a27ddf3e416
+ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488980"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66193880"
 ---
 # <a name="delegates"></a>Délégués
 
@@ -73,7 +73,7 @@ class B
 }
 ```
 
-Les méthodes `A.M1` et `B.M1 `sont compatibles avec les deux types de délégués `D1` et `D2` , dans la mesure où ils ont le même retourner le type et liste de paramètres ; Toutefois, ces types de délégué sont deux types différents, ils sont donc pas interchangeables. Les méthodes `B.M2`, `B.M3`, et `B.M4` ne sont pas compatibles avec les types délégués `D1` et `D2`, dans la mesure où ils ont différents types de retournés ou des listes de paramètres.
+Les méthodes `A.M1` et `B.M1` sont compatibles avec les deux types de délégués `D1` et `D2` , dans la mesure où ils ont le même retourner le type et liste de paramètres ; Toutefois, ces types de délégué sont deux types différents, ils sont donc pas interchangeables. Les méthodes `B.M2`, `B.M3`, et `B.M4` ne sont pas compatibles avec les types délégués `D1` et `D2`, dans la mesure où ils ont différents types de retournés ou des listes de paramètres.
 
 Comme les autres déclarations de type générique, les arguments de type doivent être accordées à créer un type délégué construit. Les types de paramètre et le type de retour d’un type délégué construit sont créés en substituant, pour chaque paramètre de type dans la déclaration du délégué, l’argument de type correspondant du type délégué construit. Le type de retour qui en résulte et les types de paramètres sont utilisés pour déterminer quelles méthodes sont compatibles avec un type délégué construit. Exemple :
 
