@@ -1,46 +1,46 @@
 ---
-ms.openlocfilehash: e103f6629a363c6cd76607699ff74d69aa73ed57
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 5fbe0267b5b33b1a24dbdca493d118c576092573
+ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488969"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876910"
 ---
 # <a name="lexical-structure"></a>Structure lexicale
 
 ## <a name="programs"></a>Programs
 
-C# ***programme*** se compose d’une ou plusieurs ***fichiers sources***, appelées formellement ***unités de compilation*** ([unités de Compilation](namespaces.md#compilation-units)). Un fichier source est une séquence ordonnée de caractères Unicode. Fichiers sources ont généralement une correspondance avec les fichiers dans un système de fichiers, mais cette correspondance n’est pas obligatoire. Pour une portabilité maximale, il est recommandé que les fichiers dans un système de fichiers être encodés avec UTF-8 de codage.
+Un C# ***programme*** se compose d’un ou de plusieurs ***fichiers sources***, connus sous le nom d' ***unités de compilation*** ([unités de compilation](namespaces.md#compilation-units)). Un fichier source est une séquence ordonnée de caractères Unicode. Les fichiers sources ont généralement une correspondance un-à-un avec les fichiers dans un système de fichiers, mais cette correspondance n’est pas nécessaire. Pour une portabilité maximale, il est recommandé d’encoder les fichiers d’un système de fichiers avec l’encodage UTF-8.
 
-Point de vue conceptuel, un programme est compilé à l’aide de trois étapes :
+Conceptuellement, un programme est compilé à l’aide de trois étapes :
 
-1. Transformation, qui convertit un fichier à partir d’un répertoire de caractères particulier et un schéma d’encodage en une séquence de caractères Unicode.
-2. Analyse lexicale, qui convertit un flux de caractères d’entrée Unicode dans un flux de jetons.
+1. Transformation, qui convertit un fichier d’un répertoire de caractères particulier et d’un schéma d’encodage en une séquence de caractères Unicode.
+2. Analyse lexicale, qui convertit un flux de caractères d’entrée Unicode en un flux de jetons.
 3. Analyse syntaxique, qui convertit le flux de jetons en code exécutable.
 
 ## <a name="grammars"></a>Grammaires
 
-Cette spécification présente la syntaxe de programmation c# à l’aide de deux grammaires. Le ***grammaire lexicale*** ([grammaire lexicale](lexical-structure.md#lexical-grammar)) définit comment les caractères Unicode sont combinés pour les terminateurs de ligne de formulaire, les espaces blancs, les commentaires, les jetons et les directives de prétraitement. Le ***grammaire syntaxique*** ([grammaire syntaxique](lexical-structure.md#syntactic-grammar)) définit la façon dont les jetons résultant de la grammaire lexicale sont combinées pour former c# des programmes.
+Cette spécification présente la syntaxe du langage C# de programmation à l’aide de deux grammaires. La ***grammaire lexicale*** ([grammaire lexicale](lexical-structure.md#lexical-grammar)) définit la combinaison des caractères Unicode avec les indicateurs de fin de ligne, les espaces blancs, les commentaires, les jetons et les directives de pré-traitement. La ***grammaire syntaxique*** ([syntaxe syntaxique](lexical-structure.md#syntactic-grammar)) définit la façon dont les jetons résultant de la grammaire lexicale sont combinés C# pour former des programmes.
 
-### <a name="grammar-notation"></a>Notation de la grammaire
+### <a name="grammar-notation"></a>Notation grammaticale
 
-Les grammaires lexicales et syntaxiques sont présentées sous forme Backus-Naur à l’aide de la notation de l’outil de grammaire ANTLR.
+Les grammaires lexicales et syntaxiques sont présentées dans la forme Backus-Naur à l’aide de la notation de l’outil de grammaire ANTLR.
 
 ### <a name="lexical-grammar"></a>Grammaire lexicale
 
-La grammaire lexicale de c# est présentée dans [analyse lexicale](lexical-structure.md#lexical-analysis), [jetons](lexical-structure.md#tokens), et [directives de prétraitement](lexical-structure.md#pre-processing-directives). Les symboles terminaux de la grammaire lexicale sont les caractères du jeu de caractères Unicode et la grammaire lexicale spécifie la façon dont les caractères sont combinées aux jetons de formulaire ([jetons](lexical-structure.md#tokens)), un espace blanc ([blancs](lexical-structure.md#white-space)), commentaires ([commentaires](lexical-structure.md#comments)) et les directives de prétraitement ([directives de prétraitement](lexical-structure.md#pre-processing-directives)).
+La grammaire lexicale C# de est présentée dans l' [analyse lexicale](lexical-structure.md#lexical-analysis), les [jetons](lexical-structure.md#tokens)et les [directives de pré-traitement](lexical-structure.md#pre-processing-directives). Les symboles terminaux de la grammaire lexicale sont les caractères du jeu de caractères Unicode, tandis que la grammaire lexicale spécifie la manière dont les caractères sont combinés pour former des jetons ([jetons](lexical-structure.md#tokens)), un espace blanc ([espace blanc](lexical-structure.md#white-space)), des commentaires ([Commentaires](lexical-structure.md#comments)) et directives de prétraitement ([directives de pré-traitement](lexical-structure.md#pre-processing-directives)).
 
-Chaque fichier source dans un programme c# doit être conforme à la *d’entrée* production de la grammaire lexicale ([analyse lexicale](lexical-structure.md#lexical-analysis)).
+Chaque fichier source d’un C# programme doit être conforme à la production *d’entrée* de la grammaire lexicale ([analyse lexicale](lexical-structure.md#lexical-analysis)).
 
-### <a name="syntactic-grammar"></a>Grammaire syntaxique
+### <a name="syntactic-grammar"></a>Syntaxe syntaxique
 
-La grammaire syntaxique de c# est présentée dans les chapitres et les annexes qui suivent ce chapitre. Les symboles terminaux de la grammaire syntaxique sont les jetons définis par la grammaire lexicale et la grammaire syntaxique spécifie la façon dont les jetons sont combinées pour former des programmes c#.
+La grammaire syntaxique de C# est présentée dans les chapitres et les annexes qui suivent ce chapitre. Les symboles terminaux de la grammaire syntaxique sont les jetons définis par la grammaire lexicale, et la grammaire syntaxique spécifie la manière dont les jetons sont C# combinés pour former des programmes.
 
-Chaque fichier source dans un C# programme doit être conforme à la *compilation_unit* production de la grammaire syntaxique ([unités de Compilation](namespaces.md#compilation-units)).
+Chaque fichier source d’un C# programme doit se conformer à la production *compilation_unit* de la grammaire syntaxique ([unités de compilation](namespaces.md#compilation-units)).
 
 ## <a name="lexical-analysis"></a>Analyse lexicale
 
-Le *d’entrée* production définit la structure lexicale d’un fichier source c#. Chaque fichier source dans un programme c# doit être conforme à la production de cette grammaire lexicale.
+La production *d’entrée* définit la structure lexicale C# d’un fichier source. Chaque fichier source d’un C# programme doit se conformer à cette production grammaticale lexicale.
 
 ```antlr
 input
@@ -63,17 +63,17 @@ input_element
     ;
 ```
 
-Cinq éléments de base constituent la structure lexicale d’un C# fichier source : Terminateurs de ligne ([terminateurs de ligne](lexical-structure.md#line-terminators)), un espace blanc ([espace blanc](lexical-structure.md#white-space)), commentaires ([commentaires](lexical-structure.md#comments)), jetons ([jetons](lexical-structure.md#tokens)), et directives de prétraitement ([directives de prétraitement](lexical-structure.md#pre-processing-directives)). Ces éléments de base, seuls les jetons sont importants dans la grammaire syntaxique d’un programme c# ([grammaire syntaxique](lexical-structure.md#syntactic-grammar)).
+Cinq éléments de base composent la structure lexicale d’un C# fichier source : Marques de fin de ligne ([indicateurs de fin de ligne](lexical-structure.md#line-terminators)), espace blanc ([espace blanc](lexical-structure.md#white-space)), commentaires ([Commentaires](lexical-structure.md#comments)), jetons ([jetons](lexical-structure.md#tokens)) et directives de prétraitement ([directives de pré-traitement](lexical-structure.md#pre-processing-directives)). Parmi ces éléments de base, seuls les jetons sont significatifs dans la grammaire syntaxique C# d’un programme (syntaxe[syntaxique](lexical-structure.md#syntactic-grammar)).
 
-Le traitement lexical d’un fichier source c# consiste à réduire le fichier en une séquence de jetons qui devient l’entrée de l’analyse syntaxique. Terminateurs de ligne, les espaces blancs et les commentaires peuvent servir à séparer les jetons et les directives de prétraitement peuvent provoquer des sections du fichier source doit être ignorée, mais sinon ces éléments lexicaux n’ont aucun impact sur la structure syntaxique d’un programme c#.
+Le traitement lexical d’un C# fichier source consiste à réduire le fichier en une séquence de jetons qui devient l’entrée de l’analyse syntaxique. Les indicateurs de fin de ligne, les espaces blancs et les commentaires peuvent servir à séparer les jetons, et les directives de prétraitement peuvent entraîner l’omission des sections du fichier source, mais ces éléments lexicaux n’ont aucun impact sur la structure C# syntaxique d’un programme.
 
-Dans le cas des littéraux de chaîne interpolée ([interpolées littéraux de chaîne](lexical-structure.md#interpolated-string-literals)) un jeton unique est généré initialement par l’analyse lexicale, mais il est divisé en plusieurs éléments d’entrée qui sont soumis à plusieurs reprises à l’analyse lexicale jusqu'à ce que tous les littéraux de chaîne interpolée ont été résolus. Les jetons générés puis de fournir en tant qu’entrée de l’analyse syntaxique.
+Dans le cas de littéraux de chaîne interpolés ([littéraux de chaîne interpolés](lexical-structure.md#interpolated-string-literals)), un seul jeton est initialement généré par l’analyse lexicale, mais il est divisé en plusieurs éléments d’entrée qui sont soumis à l’analyse lexicale de manière répétée jusqu’à ce que toutes les interpolations les littéraux de chaîne ont été résolus. Les jetons résultants servent ensuite d’entrée à l’analyse syntaxique.
 
-Lorsque plusieurs productions grammaire lexicale correspondent à une séquence de caractères dans un fichier source, le traitement lexical forme toujours l’élément de lexicale la plus longue possible. Par exemple, la séquence de caractères `//` est traitée comme le début d’un commentaire sur une ligne, car cet élément lexical est plus long que d’un seul `/` jeton.
+Lorsque plusieurs productions grammaticales lexicales correspondent à une séquence de caractères dans un fichier source, le traitement lexical forme toujours l’élément lexical le plus long possible. Par exemple, la séquence `//` de caractères est traitée comme le début d’un commentaire sur une seule ligne, car cet élément lexical est plus long qu’un seul `/` jeton.
 
-### <a name="line-terminators"></a>Terminateurs de ligne
+### <a name="line-terminators"></a>Marques de fin de ligne
 
-Indicateurs de fin de ligne divisent les caractères d’un fichier source c# en lignes.
+Les marques de fin de ligne divisent les caractères d’un C# fichier source en lignes.
 
 ```antlr
 new_line
@@ -86,14 +86,14 @@ new_line
     ;
 ```
 
-Pour la compatibilité avec la source des outils d’édition qui ajoutent des marqueurs de fin de fichier de code, et pour activer une source de fichier à afficher sous forme de séquence de correctement arrêtée lignes, les transformations suivantes sont appliquées dans l’ordre, pour chaque fichier source dans un programme c# :
+Pour la compatibilité avec les outils d’édition de code source qui ajoutent des marqueurs de fin de fichier et pour permettre à un fichier source d’être affiché sous la forme d’une séquence de lignes correctement terminées, les transformations suivantes sont appliquées, C# dans l’ordre, à chaque fichier source d’un programme :
 
-*  Si le dernier caractère du fichier source est un caractère CTRL + Z (`U+001A`), ce caractère est supprimé.
-*  Un caractère de retour chariot (`U+000D`) est ajouté à la fin du fichier source si ce fichier source n’est pas vide et si le dernier caractère du fichier source n’est pas un retour chariot (`U+000D`), un saut de ligne (`U+000A`), un séparateur de ligne (`U+2028`), ou un séparateur de paragraphe (`U+2029`).
+*  Si le dernier caractère du fichier source est un caractère de contrôle Z (`U+001A`), ce caractère est supprimé.
+*  Un caractère de retour chariot (`U+000D`) est ajouté à la fin du fichier source si ce fichier source n’est pas vide et si le dernier caractère du fichier source n’est pas un retour chariot (`U+000D`), un saut de ligne (`U+000A`), un séparateur de ligne (`U+2028`) ou un séparateur de paragraphe (`U+2029`).
 
 ### <a name="comments"></a>Commentaires
 
-Deux formes de commentaires sont pris en charge : commentaires à ligne unique et les commentaires délimités. ***Commentaires à ligne unique*** commencer par les caractères `//` et d’étendre à la fin de la ligne source. ***Délimitée par des commentaires*** commencer par les caractères `/*` et se terminent par les caractères `*/`. Commentaires délimités peuvent s’étendre sur plusieurs lignes.
+Deux formes de commentaires sont pris en charge : commentaires sur une seule ligne et commentaires délimités. Les ***Commentaires sur une seule ligne*** commencent par `//` les caractères et s’étendent jusqu’à la fin de la ligne source. Les ***Commentaires délimités*** commencent par `/*` les caractères et se terminent par les caractères. `*/` Les commentaires délimités peuvent s’étendre sur plusieurs lignes.
 
 ```antlr
 comment
@@ -135,9 +135,9 @@ not_slash_or_asterisk
     ;
 ```
 
-Ne pas imbriquent les commentaires. Les séquences de caractères `/*` et `*/` n’ont aucune signification spéciale dans un `//` commentaire et les séquences de caractères `//` et `/*` n’ont aucune signification spéciale dans un commentaire délimité.
+Les commentaires ne sont pas imbriqués. `/*` Les séquences de caractères `*/` et n’ont aucune signification particulière `//` dans un commentaire, et les séquences `/*` `//` de caractères et n’ont aucune signification particulière dans un commentaire délimité.
 
-Commentaires ne sont pas traités dans les littéraux de caractère et de chaîne.
+Les commentaires ne sont pas traités dans des littéraux de chaîne et de caractère.
 
 L’exemple
 ```csharp
@@ -151,7 +151,7 @@ class Hello
     }
 }
 ```
-contient un commentaire délimité.
+comprend un commentaire délimité.
 
 L’exemple
 ```csharp
@@ -165,11 +165,11 @@ class Hello // any name will do for this class
     }
 }
 ```
-montre plusieurs commentaires à ligne unique.
+affiche plusieurs commentaires sur une seule ligne.
 
 ### <a name="white-space"></a>Espace blanc
 
-Espace blanc est défini comme caractère de saut de n’importe quel caractère de la classe Unicode Zs (qui inclut le caractère espace), ainsi que le caractère de tabulation horizontale, le caractère de tabulation verticale et le formulaire.
+Un espace blanc est défini comme n’importe quel caractère avec la classe Unicode Zs (qui comprend le caractère espace), ainsi que le caractère de tabulation horizontale, le caractère de tabulation verticale et le caractère de saut de forme.
 
 ```antlr
 whitespace
@@ -182,7 +182,7 @@ whitespace
 
 ## <a name="tokens"></a>jetons
 
-Il existe plusieurs types de jetons : identificateurs, les mots clés, les littéraux, les opérateurs et les signes de ponctuation. Espace blanc et les commentaires ne sont pas des jetons, car ils font Office de séparateurs de jetons.
+Il existe plusieurs genres de jetons : les identificateurs, les mots clés, les littéraux, les opérateurs et les signes de ponctuation. Les espaces blancs et les commentaires ne sont pas des jetons, bien qu’ils agissent comme séparateurs pour les jetons.
 
 ```antlr
 token
@@ -197,9 +197,9 @@ token
     ;
 ```
 
-### <a name="unicode-character-escape-sequences"></a>Séquences d’échappement de caractère Unicode
+### <a name="unicode-character-escape-sequences"></a>Séquences d’échappement de caractères Unicode
 
-Une séquence d’échappement de caractères Unicode représente un caractère Unicode. Séquences d’échappement de caractères Unicode sont traités dans les identificateurs ([identificateurs](lexical-structure.md#identifiers)), littéraux de caractère ([littéraux de caractère](lexical-structure.md#character-literals)) et les littéraux de chaîne classique ([delittérauxdechaîne](lexical-structure.md#string-literals)). Un caractère d’échappement Unicode n’est pas traitée dans tout autre emplacement (par exemple, pour former un opérateur, un signe de ponctuation ou un mot clé).
+Une séquence d’échappement de caractère Unicode représente un caractère Unicode. Les séquences d’échappement de caractères Unicode sont traitées dans les identificateurs ([identificateurs](lexical-structure.md#identifiers)), les littéraux de caractère ([littéraux de caractère](lexical-structure.md#character-literals)) et les littéraux de chaîne normaux ([littéraux de chaîne](lexical-structure.md#string-literals)). Un caractère d’échappement Unicode n’est pas traité à un autre emplacement (par exemple, pour former un opérateur, un signe de ponctuation ou un mot clé).
 
 ```antlr
 unicode_escape_sequence
@@ -208,9 +208,9 @@ unicode_escape_sequence
     ;
 ```
 
-Une séquence d’échappement Unicode représente le caractère Unicode formé par le nombre hexadécimal qui suit le «`\u`« ou »`\U`» caractères. Étant donné que c# utilise un codage 16 bits des points de code Unicode en caractères et les valeurs de chaîne, un caractère Unicode dans la plage U + 10000 à U + 10FFFF n’est pas autorisé dans un littéral de caractère et est représenté à l’aide d’une paire de substitution Unicode dans un littéral de chaîne. Les caractères Unicode avec des points de code supérieurs à 0x10FFFF ne sont pas pris en charge.
+Une séquence d’échappement Unicode représente le caractère Unicode unique formé par le nombre hexadécimal suivant les`\u`caractères « »`\U`ou « ». Étant C# donné que utilise un encodage 16 bits de points de code Unicode en caractères et des valeurs de chaîne, un caractère Unicode dans la plage comprise entre u + 10000 et u + 10FFFF n’est pas autorisé dans un littéral de caractère et est représenté à l’aide d’une paire de substitution Unicode dans un littéral de chaîne. Les caractères Unicode avec des points de code au-dessus de 0x10FFFF ne sont pas pris en charge.
 
-Plusieurs traductions ne sont pas effectuées. Par exemple, le littéral de chaîne «`\u005Cu005C`« équivaut à »`\u005C`« plutôt que »`\`». La valeur Unicode `\u005C` est le caractère «`\`».
+Plusieurs traductions ne sont pas effectuées. Par exemple, le littéral de chaîne`\u005Cu005C`« » est équivalent à`\u005C`« » plutôt qu'`\`à «». La valeur `\u005C` Unicode est le caractère «`\`».
 
 L’exemple
 ```csharp
@@ -223,7 +223,7 @@ class Class1
     }        
 }
 ```
-illustre plusieurs utilisations de `\u0066`, qui est la séquence d’échappement pour la lettre «`f`». Le programme est équivalent à
+montre plusieurs utilisations de `\u0066`, qui est la séquence d’échappement pour la lettre`f`«». Le programme est équivalent à
 ```csharp
 class Class1
 {
@@ -237,7 +237,7 @@ class Class1
 
 ### <a name="identifiers"></a>Identificateurs
 
-Les règles des identificateurs fournies dans cette section correspondent exactement à ces recommandée par le Unicode Standard à l’annexe 31, sauf qu’un trait de soulignement est autorisé comme caractère initial (tel quel traditionnel dans le langage de programmation C), sont des séquences de la séquence d’échappement Unicode autorisées dans les identificateurs et le «`@`« caractère est autorisé en tant que préfixe pour activer des mots clés pour être utilisés comme identificateurs.
+Les règles relatives aux identificateurs fournis dans cette section correspondent exactement à celles recommandées par la norme Unicode annexe 31, sauf que le trait de soulignement est autorisé comme caractère initial (comme c’est le cas dans le langage de programmation C), les séquences d’échappement Unicode sont autorisé dans les identificateurs, et le`@`caractère «» est autorisé en tant que préfixe pour permettre l’utilisation de mots clés comme identificateurs.
 
 ```antlr
 identifier
@@ -292,15 +292,15 @@ formatting_character
     ;
 ```
 
-Pour plus d’informations sur les classes de caractères Unicode mentionnées ci-dessus, consultez la norme Unicode, Version 3.0, section 4.5.
+Pour plus d’informations sur les classes de caractères Unicode mentionnées ci-dessus, consultez la norme Unicode, version 3,0, section 4,5.
 
-Exemples d’identificateurs valides »`identifier1`«, »`_identifier2`», et «`@if`».
+«`identifier1`», «`_identifier2`» Et «`@if`» sont des exemples d’identificateurs valides.
 
-Un identificateur dans un programme conforme doit être au format canonique défini par le formulaire de normalisation Unicode C, tel que défini par la norme Unicode annexe 15. Le comportement lorsqu’il rencontre un identificateur pas dans le formulaire de normalisation C est défini par l’implémentation ; Toutefois, un diagnostic n’est pas nécessaire.
+Un identificateur dans un programme conforme doit être au format canonique défini par le formulaire de normalisation Unicode C, comme défini par la norme Unicode annexe 15. Le comportement lors de la rencontre d’un identificateur qui ne figure pas dans le formulaire de normalisation C est défini par l’implémentation ; Toutefois, aucun diagnostic n’est nécessaire.
 
-Le préfixe «`@`» permet d’utiliser des mots clés comme identificateurs, ce qui est utile lors de l’interfaçage avec d’autres langages de programmation. Le caractère `@` ne faisant pas partie de l’identificateur, l’identificateur peut être constaté dans d’autres langages comme identificateur normal, sans le préfixe. Un identificateur avec un `@` préfixe est appelé un ***identificateur textuel***. Utilisation de la `@` préfixe pour les identificateurs qui ne sont pas des mots clés est autorisée, mais fortement déconseillée en tant qu’une question de style.
+Le préfixe`@`«» permet d’utiliser des mots clés en tant qu’identificateurs, ce qui est utile lors de l’interfaçage avec d’autres langages de programmation. Le caractère `@` ne faisant pas réellement partie de l’identificateur, l’identificateur peut être vu dans d’autres langages comme un identificateur normal, sans le préfixe. Un identificateur avec un `@` préfixe est appelé ***identificateur textuel***. L’utilisation du `@` préfixe pour les identificateurs qui ne sont pas des mots clés est autorisée, mais elle est fortement déconseillée comme une question de style.
 
-L’exemple :
+L’exemple suivant :
 ```csharp
 class @class
 {
@@ -319,19 +319,19 @@ class Class1
     }
 }
 ```
-définit une classe nommée «`class`« avec une méthode statique nommée »`static`« qui accepte un paramètre nommé »`bool`». Notez que dans la mesure où échappements Unicode ne sont pas autorisés dans les mots clés, le jeton «`cl\u0061ss`« est un identificateur, et est le même identificateur que »`@class`».
+définit une classe nommée «`class`» avec une méthode statique nommée «`static`» qui prend un paramètre nommé «`bool`». Notez que dans la mesure où les échappements Unicode ne sont pas autorisés dans`cl\u0061ss`les mots clés, le jeton « » est un identificateur et est le`@class`même identificateur que « ».
 
-Deux identificateurs sont considérés comme identiques s’ils sont identiques, une fois que les transformations suivantes sont appliquées, dans l’ordre :
+Deux identificateurs sont considérés comme identiques s’ils sont identiques après l’application des transformations suivantes, dans l’ordre :
 
-*  Le préfixe «`@`», le cas échéant, est supprimé.
+*  Le préfixe`@`«», s’il est utilisé, est supprimé.
 *  Chaque *unicode_escape_sequence* est transformée en son caractère Unicode correspondant.
-*  N’importe quel *formatting_character*sont supprimées.
+*  Tous les *formatting_character*sont supprimés.
 
-Les identificateurs contenant deux consécutifs les traits de soulignement (`U+005F`) sont réservés pour une utilisation par l’implémentation. Par exemple, une implémentation peut fournir des mots clés étendus qui commencent par deux traits de soulignement.
+Les identificateurs contenant deux traits de soulignement consécutifs (`U+005F`) sont réservés pour une utilisation par l’implémentation. Par exemple, une implémentation peut fournir des mots clés étendus qui commencent par deux traits de soulignement.
 
 ### <a name="keywords"></a>Mots clés
 
-Un ***mot clé*** est une séquence de caractères similaire à l’identificateur qui est réservé et ne peut pas être utilisée en tant qu’identificateur, sauf si elle est précédée du `@` caractère.
+Un ***mot clé*** est une séquence de caractères de type identificateur, qui est réservée et ne peut pas être utilisée en tant qu’identificateur, sauf s’il `@` est précédé du caractère.
 
 ```antlr
 keyword
@@ -354,11 +354,11 @@ keyword
     ;
 ```
 
-Dans certains endroits dans la grammaire, des identificateurs spécifiques ont une signification particulière, mais ne sont pas des mots clés. Ces identificateurs sont parfois appelés « mots clés contextuels ». Par exemple, dans une déclaration de propriété, le «`get`« et »`set`« identificateurs ont une signification spéciale ([accesseurs](classes.md#accessors)). Un identificateur autre que `get` ou `set` n’est jamais autorisé à ces emplacements, donc cette utilisation n’est pas en conflit avec une utilisation de ces mots comme identificateurs. Dans d’autres cas, comme avec l’identificateur «`var`» dans les déclarations de variables locales implicitement typées ([déclarations de variables locales](statements.md#local-variable-declarations)), un mot clé contextuel peut entrer en conflit avec les noms déclarés. Dans ce cas, le nom déclaré est prioritaire sur l’utilisation de l’identificateur comme un mot clé contextuel.
+À certains endroits de la grammaire, les identificateurs spécifiques ont une signification particulière, mais ne sont pas des mots clés. Ces identificateurs sont parfois appelés « Mots-clés contextuels ». Par exemple, dans une déclaration de propriété, les`get`identificateurs «`set`» et «» ont une signification spéciale ([accesseurs](classes.md#accessors)). Comme un identificateur autre que `get` ou `set` n’est jamais autorisé dans ces emplacements, cette utilisation n’est pas en conflit avec l’utilisation de ces mots comme identificateurs. Dans d’autres cas, comme avec l’identificateur «`var`» dans les déclarations de variables locales implicitement typées (déclarations de[variables locales](statements.md#local-variable-declarations)), un mot clé contextuel peut être en conflit avec des noms déclarés. Dans ce cas, le nom déclaré est prioritaire par rapport à l’utilisation de l’identificateur en tant que mot clé contextuel.
 
 ### <a name="literals"></a>Littéraux
 
-Un ***littéral*** est une représentation sous forme de code source d’une valeur.
+Un ***littéral*** est une représentation du code source d’une valeur.
 
 ```antlr
 literal
@@ -373,7 +373,7 @@ literal
 
 #### <a name="boolean-literals"></a>Littéraux booléens
 
-Il existe deux valeurs de littéral booléens : `true` et `false`.
+Il existe deux valeurs littérales booléennes `false`: `true` et.
 
 ```antlr
 boolean_literal
@@ -386,7 +386,7 @@ Le type d’un *boolean_literal* est `bool`.
 
 #### <a name="integer-literals"></a>Littéraux d'entier
 
-Les littéraux entiers sont utilisées pour écrire des valeurs de types `int`, `uint`, `long`, et `ulong`. Les littéraux entiers prendre deux formes : décimal et hexadécimal.
+Les littéraux entiers sont utilisés pour écrire des `int`valeurs `uint`de `long`types, `ulong`, et. Les littéraux entiers ont deux formes possibles : decimal et hexadécimal.
 
 ```antlr
 integer_literal
@@ -418,23 +418,23 @@ hex_digit
 
 Le type d’un littéral entier est déterminé comme suit :
 
-*  Si le littéral n’a aucun suffixe, il a le premier de ces types dans lesquels sa valeur peut être représentée : `int`, `uint`, `long`, `ulong`.
-*  Si le littéral est suivi du suffixe `U` ou `u`, il prend le premier de ces types dans lesquels sa valeur peut être représentée : `uint`, `ulong`.
-*  Si le littéral est suivi du suffixe `L` ou `l`, il prend le premier de ces types dans lesquels sa valeur peut être représentée : `long`, `ulong`.
-*  Si le littéral est suivi du suffixe `UL`, `Ul`, `uL`, `ul`, `LU`, `Lu`, `lU`, ou `lu`, il est de type `ulong`.
+*  Si le littéral n’a pas de suffixe, il a le premier de ces types dans lequel sa valeur peut `int`être `uint`représentée : `ulong`,, `long`,.
+*  Si le littéral est suivi d’un `U` suffixe par ou `u`, il a le premier de ces types dans lequel sa valeur peut `uint`être `ulong`représentée :,.
+*  Si le littéral est suivi d’un `L` suffixe par ou `l`, il a le premier de ces types dans lequel sa valeur peut `long`être `ulong`représentée :,.
+*  Si le littéral est précédé `UL`d’un suffixe, `ul` `Ul`, `LU` `uL`, `Lu`, `lU`,, `lu`ou, il est de `ulong`type.
 
-Si la valeur représentée par un littéral entier est en dehors de la plage de la `ulong` type, une erreur de compilation se produit.
+Si la valeur représentée par un littéral entier est en dehors de la plage `ulong` du type, une erreur de compilation se produit.
 
-Comme une question de style, il est conseillé qui «`L`« être utilisé au lieu de »`l`» lors de l’écriture des littéraux de type `long`, car il est facile de confondre la lettre «`l`« avec le chiffre »`1`».
+En guise de style, il est suggéré d’utiliser`L`« » à la place de`l`« » lors de l’écriture de `long`littéraux de type, car il est facile de confondre la lettre «`1``l`» avec le chiffre «».
 
-Pour autoriser la plus petite possible `int` et `long` valeurs soient écrites comme des littéraux d’entier décimal, les deux règles suivantes existent :
+Pour que les valeurs `int` et `long` les plus petites soient écrites en tant que littéraux décimaux entiers, les deux règles suivantes existent :
 
-* Quand un *decimal_integer_literal* ayant la valeur 2147483648 (2 ^ 31) et aucun *integer_type_suffix* apparaît en tant que le jeton qui suit immédiatement un jeton d’opérateur unaire ([moins unaire opérateur](expressions.md#unary-minus-operator)), le résultat est une constante de type `int` avec la valeur -2147483648 (-2 ^ 31). Dans toutes les autres situations, tel un *decimal_integer_literal* est de type `uint`.
-* Quand un *decimal_integer_literal* avec la valeur 9223372036854775808 (2 ^ 63) et aucun *integer_type_suffix* ou *integer_type_suffix* `L` ou `l` apparaît en tant que le jeton qui suit immédiatement un jeton d’opérateur unaire ([opérateur moins unaire](expressions.md#unary-minus-operator)), le résultat est une constante de type `long` avec la valeur -9223372036854775808 (-2 ^ 63). Dans toutes les autres situations, tel un *decimal_integer_literal* est de type `ulong`.
+* Lorsqu’un *decimal_integer_literal* avec la valeur 2147483648 (2 ^ 31) et qu’aucun *integer_type_suffix* n’apparaît en tant que jeton qui suit immédiatement un jeton d’opérateur moins unaire ([opérateur moins unaire](expressions.md#unary-minus-operator)), le résultat est une constante de type `int`avec la valeur-2147483648 (-2 ^ 31). Dans toutes les autres situations, une telle *decimal_integer_literal* est de `uint`type.
+* Lorsqu’un *decimal_integer_literal* avec la valeur 9223372036854775808 (2 ^ 63) et aucun *integer_type_suffix* ou *integer_type_suffix* `L` ou `l` apparaît comme jeton immédiatement après un signe moins unaire jeton d’opérateur ([opérateur moins unaire](expressions.md#unary-minus-operator)), le résultat est une constante `long` de type avec la valeur-9223372036854775808 (-2 ^ 63). Dans toutes les autres situations, une telle *decimal_integer_literal* est de `ulong`type.
 
 #### <a name="real-literals"></a>Littéraux réels
 
-Littéraux réels sont utilisées pour écrire des valeurs de types `float`, `double`, et `decimal`.
+Les littéraux réels sont utilisés pour écrire des valeurs `float`de `double`types, `decimal`et.
 
 ```antlr
 real_literal
@@ -459,23 +459,23 @@ real_type_suffix
     ;
 ```
 
-Si aucun *real_type_suffix* est spécifié, le type du littéral réel est `double`. Le cas contraire, le suffixe de type réel détermine le type du littéral réel, comme suit :
+Si aucun *real_type_suffix* n’est spécifié, le type du littéral réel est `double`. Dans le cas contraire, le suffixe de type réel détermine le type du littéral réel, comme suit :
 
-*  Un littéral réel suivi du suffixe `F` ou `f` est de type `float`. Par exemple, les littéraux `1f`, `1.5f`, `1e10f`, et `123.456F` sont tous du type `float`.
-*  Un littéral réel suivi du suffixe `D` ou `d` est de type `double`. Par exemple, les littéraux `1d`, `1.5d`, `1e10d`, et `123.456D` sont tous du type `double`.
-*  Un littéral réel suivi du suffixe `M` ou `m` est de type `decimal`. Par exemple, les littéraux `1m`, `1.5m`, `1e10m`, et `123.456M` sont tous du type `decimal`. Ce littéral est converti en un `decimal` valeur en prenant la valeur exacte et, si nécessaire, arrondi à la valeur représentable le plus proche à l’aide de l’arrondi bancaire ([type décimal](types.md#the-decimal-type)). N’importe quelle échelle apparente dans le littéral est conservée, sauf si la valeur est arrondie ou la valeur est zéro (auquel cas le signe et la mise à l’échelle seront égal à 0). Par conséquent, le littéral `2.900m` est analysé afin de former la décimale avec le signe `0`, coefficient `2900`et l’échelle `3`.
+*  Littéral réel dont le suffixe `F` est `f` ou est de `float`type. Par exemple, les littéraux `1f`, `1.5f`, `1e10f`et `123.456F` sont tous de type `float`.
+*  Littéral réel dont le suffixe `D` est `d` ou est de `double`type. Par exemple, les littéraux `1d`, `1.5d`, `1e10d`et `123.456D` sont tous de type `double`.
+*  Littéral réel dont le suffixe `M` est `m` ou est de `decimal`type. Par exemple, les littéraux `1m`, `1.5m`, `1e10m`et `123.456M` sont tous de type `decimal`. Ce littéral est converti en une `decimal` valeur en acceptant la valeur exacte et, si nécessaire, en arrondissant à la valeur représentable la plus proche à l’aide de l’arrondi de Banker ([type décimal](types.md#the-decimal-type)). Toute échelle apparente dans le littéral est conservée, sauf si la valeur est arrondie ou si la valeur est égale à zéro (dans ce dernier cas, le signe et l’échelle sont 0). Par conséquent, le `2.900m` littéral sera analysé pour former la décimale avec le `0`signe, le `2900`coefficient et `3`l’échelle.
 
 Si le littéral spécifié ne peut pas être représenté dans le type indiqué, une erreur de compilation se produit.
 
-La valeur d’un littéral de type réel `float` ou `double` est déterminé à l’aide de l’IEEE « arrondi au plus près » mode.
+La valeur d’un littéral réel de type `float` ou `double` est déterminée à l’aide du mode IEEE « arrondi au plus proche ».
 
-Notez que dans un littéral réel, des chiffres décimaux sont toujours nécessaires après la virgule décimale. Par exemple, `1.3F` est un littéral réel mais `1.F` n’est pas.
+Notez que dans un littéral réel, les chiffres décimaux sont toujours requis après la virgule décimale. Par exemple, `1.3F` est un littéral réel, `1.F` mais pas.
 
 #### <a name="character-literals"></a>Littéraux de caractère
 
-Un littéral de caractère représente un caractère unique et se compose généralement d’un caractère entre guillemets, comme dans `'a'`.
+Un littéral de caractère représente un caractère unique et se compose généralement d’un caractère entre guillemets, `'a'`comme dans.
 
-Remarque : La notation de grammaire ANTLR, les opérations suivantes à confusion ! Dans ANTLR, lorsque vous écrivez `\'` il représente un seul guillemet `'`. Et lorsque vous écrivez `\\` il représente une barre oblique inverse unique `\`. Par conséquent la première règle pour un littéral de caractère signifie qu’il commence par un guillemet, puis un caractère, puis un seul guillemet. Et les séquences d’échappement simples possibles onze sont `\'`, `\"`, `\\`, `\0`, `\a`, `\b`, `\f`, `\n`, `\r`, `\t`, `\v`.
+Remarque : La notation de la grammaire ANTLR rend ce qui est confus. Dans antlr, lorsque vous écrivez `\'` , il s’agit d’un `'`guillemet simple. Lorsque vous écrivez `\\` , il s’agit d’une barre `\`oblique inverse unique. Par conséquent, la première règle pour un littéral de caractère signifie qu’il commence par un guillemet simple, puis par un caractère, puis par un guillemet simple. Et les onze séquences d’échappement simples possibles `\'`sont `\"`, `\\`, `\0`, `\a`, `\b`, `\f`, `\n`, `\r`, `\t`, ,`\v`.
 
 ```antlr
 character_literal
@@ -501,13 +501,13 @@ hexadecimal_escape_sequence
     : '\\x' hex_digit hex_digit? hex_digit? hex_digit?;
 ```
 
-Un caractère qui suit une barre oblique inverse (`\`) dans un *caractère* doit être un des caractères suivants : `'`, `"`, `\`, `0`, `a`, `b` , `f`, `n`, `r`, `t`, `u`, `U`, `x`, `v`. Sinon, une erreur de compilation se produit.
+Un caractère qui suit une barre oblique inverse`\`() dans *un caractère* doit être l’un des caractères suivants `'`: `"`, `\`, `0`, `a`, `b`, `f` , , `n`, `r`, `t`, `u`, `U`, `x`, `v`. Sinon, une erreur de compilation se produit.
 
-Une séquence d’échappement hexadécimale représente un caractère Unicode, avec la valeur est formée par le nombre hexadécimal qui suit «`\x`».
+Une séquence d’échappement hexadécimale représente un caractère Unicode unique, avec la valeur formée par le nombre hexadécimal`\x`suivant «».
 
-Si la valeur représentée par un littéral de caractère est supérieure à `U+FFFF`, une erreur de compilation se produit.
+Si la valeur représentée par un littéral de caractère est supérieure `U+FFFF`à, une erreur de compilation se produit.
 
-Une séquence d’échappement de caractères Unicode ([séquences d’échappement de caractère Unicode](lexical-structure.md#unicode-character-escape-sequences)) dans un littéral de caractère doit être comprise entre `U+0000` à `U+FFFF`.
+Une séquence d’échappement de caractère Unicode ([séquences d’échappement de caractère Unicode](lexical-structure.md#unicode-character-escape-sequences)) dans un littéral de caractère `U+0000` doit `U+FFFF`être comprise dans la plage de.
 
 Une séquence d’échappement simple représente un encodage de caractères Unicode, comme décrit dans le tableau ci-dessous.
 
@@ -516,7 +516,7 @@ Une séquence d’échappement simple représente un encodage de caractères Uni
 |---------------------|--------------------|----------------------|
 | `\'`                | Guillemet simple       | `0x0027`             | 
 | `\"`                | Guillemet double       | `0x0022`             | 
-| `\\`                | Barre oblique inverse          | `0x005C`             | 
+| `\\`| Barre oblique inverse |`0x005C`             | 
 | `\0`                | Null               | `0x0000`             | 
 | `\a`                | Alerte              | `0x0007`             | 
 | `\b`                | Retour arrière          | `0x0008`             | 
@@ -530,11 +530,11 @@ Le type d’un *character_literal* est `char`.
 
 #### <a name="string-literals"></a>Littéraux de chaîne
 
-C# prend en charge deux formes de littéraux de chaîne : ***littéraux de chaîne classique*** et ***littéraux de chaîne textuelle***.
+C#prend en charge deux formes de littéraux de chaîne : les ***littéraux*** de chaîne normaux et les ***littéraux de chaîne Verbatim***.
 
-Un littéral de chaîne standard se compose de zéro ou plusieurs caractères placée entourés guillemets doubles, comme dans `"hello"`et peut inclure les deux séquences d’échappement simples (telles que `\t` pour le caractère de tabulation), hexadécimales et des séquences d’échappement Unicode.
+Un littéral de chaîne standard se compose de zéro, un ou plusieurs caractères placés entre guillemets doubles, comme dans `"hello"`, et peut inclure à la fois des séquences d’échappement simples (comme `\t` pour le caractère de tabulation) et des séquences d’échappement hexadécimales et Unicode.
 
-Un littéral de chaîne textuelle se compose d’un `@` caractère suivi d’un caractère de guillemet double, zéro ou plusieurs caractères et un caractère de guillemet fermant. Voici un exemple simple `@"hello"`. Dans un littéral de chaîne textuelle, les caractères entre les délimiteurs sont interprétés textuellement, la seule exception qui est un *quote_escape_sequence*. En particulier, les séquences d’échappement simples, hexadécimales et des séquences d’échappement Unicode ne sont pas traités dans les littéraux de chaîne textuelle. Un littéral de chaîne textuelle peut-être s’étendre sur plusieurs lignes.
+Un littéral de chaîne Verbatim se compose `@` d’un caractère suivi d’un guillemet double, de zéro, d’un ou de plusieurs caractères et d’un guillemet double fermant. Un exemple simple est `@"hello"`. Dans un littéral de chaîne Verbatim, les caractères entre les délimiteurs sont interprétés textuellement, la seule exception étant *quote_escape_sequence*. En particulier, les séquences d’échappement simples et les séquences d’échappement hexadécimales et Unicode ne sont pas traitées dans des littéraux de chaîne Verbatim. Un littéral de chaîne Verbatim peut s’étendre sur plusieurs lignes.
 
 ```antlr
 string_literal
@@ -575,7 +575,7 @@ quote_escape_sequence
     ;
 ```
 
-Un caractère qui suit une barre oblique inverse (`\`) dans un *regular_string_literal_character* doit être un des caractères suivants : `'`, `"`, `\`, `0`, `a` , `b`, `f`, `n`, `r`, `t`, `u`, `U`, `x`, `v`. Sinon, une erreur de compilation se produit.
+Un caractère qui suit une barre oblique inverse`\`() dans un *regular_string_literal_character* doit être l’un des caractères suivants `'`: `"`, `\`, `0`, `a`, `b` , , `f`, `n`, `r`, `t`, `u`, `U`, `x`, `v`. Sinon, une erreur de compilation se produit.
 
 L’exemple
 ```csharp
@@ -596,13 +596,13 @@ string j = @"one
 two
 three";
 ```
-présente les divers littéraux de chaîne. La dernière chaîne littérale, `j`, est un littéral de chaîne textuelle qui s’étend sur plusieurs lignes. Les caractères entre guillemets, y compris les espaces blancs tels que des caractères de nouvelle ligne, sont textuelles préservés.
+affiche divers littéraux de chaîne. Le dernier littéral de chaîne `j`,, est un littéral de chaîne Verbatim qui s’étend sur plusieurs lignes. Les caractères entre guillemets, y compris les espaces blancs tels que les caractères de nouvelle ligne, sont conservés textuellement.
 
-Dans la mesure où une séquence d’échappement hexadécimale peut avoir un nombre variable de chiffres hexadécimaux, le littéral de chaîne `"\x123"` contient un caractère unique avec une valeur hexadécimale 123. Pour créer une chaîne contenant le caractère à la valeur hexadécimale 12 suivie du caractère 3, écrire `"\x00123"` ou `"\x12" + "3"` à la place.
+Comme une séquence d’échappement hexadécimale peut avoir un nombre variable de chiffres hexadécimaux, le `"\x123"` littéral de chaîne contient un caractère unique avec la valeur hexadécimale 123. Pour créer une chaîne contenant le caractère avec la valeur hexadécimale 12 suivi du caractère 3, il est `"\x00123"` possible `"\x12" + "3"` d’écrire ou à la place.
 
 Le type d’un *string_literal* est `string`.
 
-Chaque littéral de chaîne n’entraîne pas nécessairement dans une nouvelle instance de chaîne. Lorsque deux ou plusieurs littéraux de chaîne qui sont équivalentes en fonction de l’opérateur d’égalité de chaînes ([opérateurs d’égalité de chaîne](expressions.md#string-equality-operators)) apparaissent dans le même programme, ces littéraux de chaîne font référence à la même instance de chaîne. Par exemple, la sortie produite par
+Chaque littéral de chaîne ne produit pas nécessairement une nouvelle instance de chaîne. Lorsque deux littéraux de chaîne ou plus qui sont équivalents en fonction de l’opérateur d’égalité de chaînes ([opérateurs d’égalité de chaînes](expressions.md#string-equality-operators)) apparaissent dans le même programme, ces littéraux de chaîne font référence à la même instance de chaîne. Par exemple, la sortie produite par
 ```csharp
 class Test
 {
@@ -613,15 +613,15 @@ class Test
     }
 }
 ```
-est `True` , car les deux littéraux font référence à la même instance de chaîne.
+est `True` dû au fait que les deux littéraux font référence à la même instance de chaîne.
 
-#### <a name="interpolated-string-literals"></a>Littéraux de chaîne interpolée
+#### <a name="interpolated-string-literals"></a>Littéraux de chaîne interpolés
 
-Littéraux de chaîne interpolée sont similaires aux littéraux de chaîne, mais contient des trous délimitées par `{` et `}`, dans laquelle les expressions peuvent se produire. Lors de l’exécution, les expressions sont évaluées dans le but d’avoir leurs formes textuelles substituées dans la chaîne à l’endroit où se produit le trou. La syntaxe et la sémantique d’interpolation de chaîne est décrites dans la section ([chaînes interpolées](expressions.md#interpolated-strings)).
+Les littéraux de chaîne interpolés sont similaires aux littéraux de chaîne, mais contiennent des `{` trous `}`délimités par et, où les expressions peuvent se produire. Lors de l’exécution, les expressions sont évaluées dans le but de faire en sorte que leurs formes textuelles se substituent à la chaîne à l’endroit où se trouve le trou. La syntaxe et la sémantique de l’interpolation de chaîne sont décrites dans la section ([chaînes interpolées](expressions.md#interpolated-strings)).
 
-Comme les littéraux de chaîne, les littéraux de chaîne interpolée peuvent être régulier ou textuelle. Littéraux de chaîne classique interpolées sont délimitées par `$"` et `"`, et les littéraux de chaîne textuelle interpolée par `$@"` et `"`.
+À l’instar des littéraux de chaîne, les littéraux de chaîne interpolés peuvent être normaux ou textuels. Les littéraux de chaîne réguliers interpolés sont délimités `$"` par et `"`, et les littéraux de chaîne Verbatim interpolés `"`sont délimités par `$@"` et.
 
-Comme les autres littéraux, analyse lexicale d’un littéral de chaîne interpolée entraîne initialement un jeton unique, conformément à la grammaire suivante. Toutefois, avant l’analyse syntaxique, le jeton unique d’un littéral de chaîne interpolé est divisé en plusieurs jetons pour les parties de la chaîne englobant les trous et les éléments d’entrée qui se produisent dans les trous sont analysés lexicalement à nouveau. Cela peut produire à son tour plus les littéraux de chaîne interpolée pour être traitée, mais, si lexicalement corriger, peut qu’aboutir à une séquence de jetons pour l’analyse syntaxique à traiter.
+Comme pour les autres littéraux, l’analyse lexicale d’un littéral de chaîne interpolée produit initialement un jeton unique, conformément à la grammaire ci-dessous. Toutefois, avant l’analyse syntaxique, le jeton unique d’un littéral de chaîne interpolé est divisé en plusieurs jetons pour les parties de la chaîne qui entourent les trous, et les éléments d’entrée qui se produisent dans les trous sont analysés de façon lexicale. Cela peut, à son tour, générer davantage de littéraux de chaîne interpolés à traiter, mais, s’il est correct, finit par entraîner une séquence de jetons pour l’analyse syntaxique.
 
 ```antlr
 interpolated_string_literal
@@ -780,17 +780,17 @@ single_verbatim_balanced_text_character
     ;
 ```
 
-Un *interpolated_string_literal* jeton est réinterprété comme plusieurs jetons et autres éléments d’entrée comme suit, dans l’ordre d’occurrence dans la *interpolated_string_literal*:
+Un jeton *interpolated_string_literal* est réinterprété comme plusieurs jetons et autres éléments d’entrée comme suit, dans l’ordre des occurrences dans le *interpolated_string_literal*:
 
-* Occurrences des éléments suivants sont réinterprétées en tant que jetons individuels distincts : le caractère de début `$` signe, *interpolated_regular_string_whole*, *interpolated_regular_string_start*, *interpolated_regular_string_mid*, *interpolated_regular_string_end*, *interpolated_verbatim_string_whole*,  *interpolated_verbatim_string_start*, *interpolated_verbatim_string_mid* et *interpolated_verbatim_string_end*.
-* Occurrences de *regular_balanced_text* et *verbatim_balanced_text* entre ceux-ci sont traités de nouveau en tant qu’un *input_section* ([analyse lexicale ](lexical-structure.md#lexical-analysis)) et sont réinterprétée comme la séquence résultante des éléments d’entrée. Il peut s’agir à son tour les jetons de littéral de chaîne interpolée d’être réinterprétée.
+* Les occurrences des éléments suivants sont réinterprétées comme des jetons individuels distincts : `$` le signe de début, *interpolated_regular_string_whole*, *interpolated_regular_string_start*, *interpolated_regular_string_mid*, *interpolated_regular_string_end*, *interpolated_verbatim_string_whole*, *interpolated_verbatim_string_start*, *interpolated_verbatim_string_mid* et *interpolated_verbatim_string_end*.
+* Les occurrences de *regular_balanced_text* et *verbatim_balanced_text* entre celles-ci sont retraitées comme un *input_section* ([analyse lexicale](lexical-structure.md#lexical-analysis)) et sont réinterprétées comme la séquence résultante d’éléments d’entrée. Elles peuvent à leur tour inclure des jetons de littéral de chaîne interpolés à réinterpréter.
 
-L’analyse syntaxique sera recombiner les jetons dans un *interpolated_string_expression* ([chaînes interpolées](expressions.md#interpolated-strings)).
+L’analyse syntaxique réassociera les jetons en un *interpolated_string_expression* ([chaînes interpolées](expressions.md#interpolated-strings)).
 
 Exemples TODO
 
 
-#### <a name="the-null-literal"></a>Le littéral null
+#### <a name="the-null-literal"></a>Littéral null
 
 ```antlr
 null_literal
@@ -798,11 +798,11 @@ null_literal
     ;
 ```
 
-Le *null_literal* peut être implicitement converti en un type référence ou un type nullable.
+Le *null_literal* peut être converti implicitement en un type référence ou un type Nullable.
 
 ### <a name="operators-and-punctuators"></a>Opérateurs et signes de ponctuation
 
-Il existe plusieurs types d’opérateurs et signes de ponctuation. Opérateurs sont utilisés dans les expressions pour décrire les opérations impliquant un ou plusieurs opérandes. Par exemple, l’expression `a + b` utilise le `+` opérateur pour ajouter les deux opérandes `a` et `b`. Signes de ponctuation sont pour le regroupement et la séparation.
+Il existe plusieurs types d’opérateurs et de signes de ponctuation. Les opérateurs sont utilisés dans les expressions pour décrire les opérations impliquant un ou plusieurs opérandes. Par exemple, l’expression `a + b` utilise l' `+` opérateur pour `a` ajouter les deux opérandes et `b`. Les signes de ponctuation sont destinés au regroupement et à la séparation.
 
 ```antlr
 operator_or_punctuator
@@ -822,11 +822,11 @@ right_shift_assignment
     ;
 ```
 
-La barre verticale de la *right_shift* et *right_shift_assignment* productions sont utilisées pour indiquer que, contrairement à d’autres productions dans la grammaire syntaxique, aucun caractère de n’importe quel type (pas même espace blanc) sont autorisés entre les jetons. Celles-ci est traités spécialement afin d’activer la gestion correcte de *type_parameter_list*s ([paramètres de Type](classes.md#type-parameters)).
+La barre verticale dans les productions *right_shift* et *right_shift_assignment* est utilisée pour indiquer que, contrairement aux autres productions dans la syntaxe syntaxique, aucun caractère de tout type (pas même espace blanc) n’est autorisé entre les jetons. Ces productions sont traitées de façon spéciale pour permettre la gestion correcte des *type_parameter_list*s ([paramètres de type](classes.md#type-parameters)).
 
 ## <a name="pre-processing-directives"></a>Directives de prétraitement
 
-Les directives de prétraitement permettent d’ignorer sous certaines conditions des sections des fichiers sources, de rapport conditions d’erreur et avertissement et pour délimiter des régions distinctes du code source. Le terme « directives de prétraitement » est utilisé uniquement pour des raisons de cohérence avec les langages de programmation C et C++. En c#, il n’existe aucune étape de prétraitement distincte ; directives de prétraitement sont traitées dans le cadre de la phase d’analyse lexicale.
+Les directives de prétraitement offrent la possibilité d’ignorer conditionnellement des sections de fichiers sources, de signaler des conditions d’erreur et d’avertissement, et de détourer des régions distinctes du code source. Le terme « directives de prétraitement » est utilisé uniquement à des fins de cohérence avec C++ les langages C et de programmation. Dans C#, il n’y a pas d’étape de pré-traitement distincte ; les directives de pré-traitement sont traitées dans le cadre de la phase d’analyse lexicale.
 
 ```antlr
 pp_directive
@@ -839,20 +839,20 @@ pp_directive
     ;
 ```
 
-Les directives de prétraitement suivantes sont disponibles :
+Les directives de pré-traitement suivantes sont disponibles :
 
-*  `#define` et `#undef`, qui sont utilisés pour définir et annuler la définition, respectivement, les symboles de compilation conditionnelle ([directives de déclaration](lexical-structure.md#declaration-directives)).
-*  `#if`, `#elif`, `#else`, et `#endif`, qui sont utilisées pour ignorer sous certaines conditions des sections de code source ([directives de compilation conditionnelle](lexical-structure.md#conditional-compilation-directives)).
-*  `#line`, qui est utilisé pour contrôler les numéros de ligne émis pour les erreurs et avertissements ([directives de ligne](lexical-structure.md#line-directives)).
-*  `#error` et `#warning`, qui sont utilisées pour émettre des erreurs et avertissements, respectivement ([directives Diagnostic](lexical-structure.md#diagnostic-directives)).
-*  `#region` et `#endregion`, qui sont utilisées pour marquer explicitement les sections de code source ([directives Region](lexical-structure.md#region-directives)).
-*  `#pragma`, qui sert à spécifier des informations contextuelles supplémentaires au compilateur ([directives Pragma](lexical-structure.md#pragma-directives)).
+*  `#define`et `#undef`, qui sont utilisés pour définir et annuler la définition, respectivement, des symboles de compilation conditionnelle ([directives de déclaration](lexical-structure.md#declaration-directives)).
+*  `#if`, `#elif`, `#else` et`#endif`, qui sont utilisés pour ignorer de manière conditionnelle les sections du code source ([directives de compilation conditionnelle](lexical-structure.md#conditional-compilation-directives)).
+*  `#line`, qui est utilisé pour contrôler les numéros de ligne émis pour les erreurs et les avertissements ([directives de ligne](lexical-structure.md#line-directives)).
+*  `#error`et `#warning`, qui sont utilisés pour émettre des erreurs et des avertissements, respectivement ([directives de diagnostic](lexical-structure.md#diagnostic-directives)).
+*  `#region`et `#endregion`, qui sont utilisés pour marquer explicitement les sections du code source ([directives de région](lexical-structure.md#region-directives)).
+*  `#pragma`, qui est utilisé pour spécifier des informations contextuelles facultatives pour le compilateur ([directives pragma](lexical-structure.md#pragma-directives)).
 
-Une directive de prétraitement occupe toujours une ligne distincte de code source et commence toujours par un `#` caractère et un nom de directive de prétraitement. Espace blanc peut se produire avant la `#` caractère et entre le `#` caractère et le nom de la directive.
+Une directive de prétraitement occupe toujours une ligne distincte de code source et commence toujours par un `#` caractère et un nom de directive de prétraitement. Un espace blanc peut se produire `#` avant le caractère et `#` entre le caractère et le nom de la directive.
 
-Une ligne source qui contient un `#define`, `#undef`, `#if`, `#elif`, `#else`, `#endif`, `#line`, ou `#endregion` directive peut se terminer par un commentaire sur une ligne. Commentaires délimités (le `/* */` style des commentaires) ne sont pas autorisées sur les lignes de code source contenant des directives de prétraitement.
+Une ligne source contenant une `#define`directive `#undef`, `#if` `#elif` `#else` ,,`#endif` ,`#endregion` ,, ou peut se terminer par un commentaire sur une seule ligne. `#line` Les commentaires délimités `/* */` (style de commentaires) ne sont pas autorisés sur les lignes sources contenant des directives de prétraitement.
 
-Directives de prétraitement ne sont pas des jetons et ne font pas partie de la grammaire syntaxique de c#. Toutefois, les directives de prétraitement peuvent être utilisées pour inclure ou exclure des séquences de jetons et pouvant ainsi affecter la signification d’un programme c#. Par exemple, lors de la compilation, le programme :
+Les directives de pré-traitement ne sont pas des jetons et ne font pas partie de C#la syntaxe syntaxique de. Toutefois, les directives de prétraitement peuvent être utilisées pour inclure ou exclure des séquences de jetons et peuvent, de cette façon, affecter la C# signification d’un programme. Par exemple, une fois compilé, le programme :
 ```csharp
 #define A
 #undef B
@@ -872,7 +872,7 @@ class C
 #endif
 }
 ```
-résultats dans exactement la même séquence de jetons que le programme :
+produit exactement la même séquence de jetons que le programme :
 ```csharp
 class C
 {
@@ -881,11 +881,11 @@ class C
 }
 ```
 
-Par conséquent, tandis que lexicalement, les deux programmes sont très différentes, syntaxiquement, ils sont identiques.
+Par conséquent, contrairement à l’lexicale, les deux programmes sont très différents, syntaxiquement identiques.
 
 ### <a name="conditional-compilation-symbols"></a>Symboles de compilation conditionnelle
 
-La fonctionnalité de compilation conditionnelle fournie par le `#if`, `#elif`, `#else`, et `#endif` directives est contrôlé par le biais des expressions de prétraitement ([expressions de pré-traitement](lexical-structure.md#pre-processing-expressions)) et les symboles de compilation conditionnelle.
+La fonctionnalité de compilation conditionnelle fournie par `#if`les `#elif`directives `#else`,, `#endif` et est contrôlée par le biais d’expressions de prétraitement ([expressions de pré-traitement](lexical-structure.md#pre-processing-expressions)) et conditionnelle symboles de compilation.
 
 ```antlr
 conditional_symbol
@@ -893,15 +893,15 @@ conditional_symbol
     ;
 ```
 
-Un symbole de compilation conditionnelle a deux états possibles : ***défini*** ou ***undefined***. Au début du traitement lexical d’un fichier source, un symbole de compilation conditionnelle n’est pas défini, sauf si elle a été définie explicitement par un mécanisme externe (par exemple, une option du compilateur de ligne de commande). Quand un `#define` directive est traitée, le symbole de compilation conditionnelle nommé dans cette directive devient défini dans ce fichier source. Le symbole reste défini jusqu'à un `#undef` directive pour ce même symbole est traité, ou jusqu'à la fin du fichier source. Une conséquence de cela est que `#define` et `#undef` directives dans un fichier source n’ont aucun effet sur les autres fichiers sources dans le même programme.
+Un symbole de compilation conditionnelle a deux États possibles : ***défini*** ou ***non défini***. Au début du traitement lexical d’un fichier source, un symbole de compilation conditionnelle n’est pas défini, sauf s’il a été défini explicitement par un mécanisme externe (tel qu’une option de compilateur de ligne de commande). Quand une `#define` directive est traitée, le symbole de compilation conditionnelle nommé dans cette directive devient défini dans ce fichier source. Le symbole reste défini jusqu’à `#undef` ce qu’une directive pour ce même symbole soit traitée ou jusqu’à ce que la fin du fichier source soit atteinte. L’une des conséquences est que `#define` les `#undef` directives et dans un fichier source n’ont aucun effet sur les autres fichiers sources du même programme.
 
-Lorsque référencés dans une expression de pré-traitement, un symbole de compilation conditionnelle définie a la valeur booléenne `true`, et un symbole de compilation conditionnelle non défini a la valeur booléenne `false`. Il n’est pas nécessaire que les symboles de compilation conditionnelle soient explicitement déclarés avant d’être référencés dans les expressions de pré-traitement. Au lieu de cela, des symboles non déclarées sont simplement non définis et n’ont donc la valeur `false`.
+Lorsqu’il est référencé dans une expression de pré-traitement, un symbole de compilation conditionnelle défini a `true`la valeur booléenne et un symbole de compilation conditionnelle non défini a la `false`valeur booléenne. Il n’est pas nécessaire que les symboles de compilation conditionnelle soient explicitement déclarés avant d’être référencés dans des expressions de prétraitement. Au lieu de cela, les symboles non déclarés sont simplement non définis et `false`ont donc la valeur.
 
-L’espace de noms pour les symboles de compilation conditionnelle est distinct et indépendant de tous les autres entités nommées dans un programme c#. Symboles de compilation conditionnelle peuvent uniquement être référencés dans `#define` et `#undef` directives et dans les expressions de pré-traitement.
+L’espace de noms pour les symboles de compilation conditionnelle est distinct et distinct de toutes les autres C# entités nommées dans un programme. Les symboles de compilation conditionnelle peuvent uniquement être référencés `#undef` dans `#define` les directives et et dans les expressions de prétraitement.
 
 ### <a name="pre-processing-expressions"></a>Expressions de pré-traitement
 
-Expressions de pré-traitement peuvent se produire dans `#if` et `#elif` directives. Les opérateurs `!`, `==`, `!=`, `&&` et `||` sont autorisés dans les expressions, de pré-traitement et de parenthèses peuvent être utilisées pour le regroupement.
+Les expressions de prétraitement peuvent se `#if` produire `#elif` dans les directives et. Les opérateurs `!`, `==`, `!=` et`||`sont autorisés dans les expressions de prétraitement, et les parenthèses peuvent être utilisées pour le regroupement. `&&`
 
 ```antlr
 pp_expression
@@ -937,13 +937,13 @@ pp_primary_expression
     ;
 ```
 
-Lorsque référencés dans une expression de pré-traitement, un symbole de compilation conditionnelle définie a la valeur booléenne `true`, et un symbole de compilation conditionnelle non défini a la valeur booléenne `false`.
+Lorsqu’il est référencé dans une expression de pré-traitement, un symbole de compilation conditionnelle défini a `true`la valeur booléenne et un symbole de compilation conditionnelle non défini a la `false`valeur booléenne.
 
-L’évaluation d’une expression de pré-traitement toujours génère une valeur booléenne. Les règles d’évaluation pour une expression de prétraitement sont les mêmes que celles d’une expression constante ([expressions constantes](expressions.md#constant-expressions)), sauf que les entités définies par l’utilisateur uniquement peuvent être référencées sont des symboles de compilation conditionnelle .
+L’évaluation d’une expression de prétraitement génère toujours une valeur booléenne. Les règles d’évaluation pour une expression de prétraitement sont les mêmes que celles d’une expression constante ([expressions constantes](expressions.md#constant-expressions)), sauf que les seules entités définies par l’utilisateur qui peuvent être référencées sont des symboles de compilation conditionnelle.
 
 ### <a name="declaration-directives"></a>Directives de déclaration
 
-Les directives de déclaration sont utilisés pour définir ou annuler la définition de symboles de compilation conditionnelle.
+Les directives de déclaration sont utilisées pour définir ou annuler la définition des symboles de compilation conditionnelle.
 
 ```antlr
 pp_declaration
@@ -956,11 +956,11 @@ pp_new_line
     ;
 ```
 
-Le traitement d’un `#define` directive provoque le symbole de compilation conditionnelle sont définis, en commençant par la ligne source qui suit la directive. De même, le traitement d’un `#undef` directive provoque le symbole de compilation conditionnelle devienne indéfini, en commençant par la ligne source qui suit la directive.
+Le traitement d’une `#define` directive a pour effet de définir le symbole de compilation conditionnelle donné, en commençant par la ligne source qui suit la directive. De même, le traitement d' `#undef` une directive rend le symbole de compilation conditionnelle donné non défini, en commençant par la ligne source qui suit la directive.
 
-N’importe quel `#define` et `#undef` directives dans un fichier source doivent se produire avant la première *jeton* ([jetons](lexical-structure.md#tokens)) dans le fichier source ; sinon une erreur de compilation se produit. En d’autres termes, `#define` et `#undef` directives doivent précéder les « code réel » dans le fichier source.
+Les `#define` directives `#undef` et dans un fichier source doivent se trouver avant le premier *jeton* ([jetons](lexical-structure.md#tokens)) dans le fichier source ; sinon, une erreur de compilation se produit. En termes intuitifs `#define` , `#undef` les directives et doivent précéder tout « code réel » dans le fichier source.
 
-L’exemple :
+L’exemple suivant :
 ```csharp
 #define Enterprise
 
@@ -975,9 +975,9 @@ namespace Megacorp.Data
     #endif
 }
 ```
-est valide, car le `#define` directives précèdent le premier jeton (le `namespace` mot clé) dans le fichier source.
+est valide, car `#define` les directives précèdent le premier `namespace` jeton (le mot clé) dans le fichier source.
 
-L’exemple suivant génère une erreur de compilation, car un `#define` suit le code réel :
+L’exemple suivant génère une erreur au moment de la compilation, `#define` car un code réel suit :
 ```csharp
 #define A
 namespace N
@@ -989,13 +989,13 @@ namespace N
 }
 ```
 
-Un `#define` peut définir un symbole de compilation conditionnelle est déjà défini, sans être n’importe quel intervenant `#undef` pour ce symbole. L’exemple ci-dessous définit un symbole de compilation conditionnelle `A` et définit ensuite de nouveau.
+Un `#define` peut définir un symbole de compilation conditionnelle qui est déjà défini, sans qu’il n’y `#undef` ait d’intermédiaire pour ce symbole. L’exemple ci-dessous définit un symbole `A` de compilation conditionnelle, puis le définit à nouveau.
 ```csharp
 #define A
 #define A
 ```
 
-Un `#undef` peut « annuler la définition « un symbole de compilation conditionnelle n’est pas défini. L’exemple ci-dessous définit un symbole de compilation conditionnelle `A` et puis annule la définition il à deux reprises ; bien que la seconde `#undef` n’a aucun effet, il est encore valide.
+Un `#undef` peut « annuler la définition » d’un symbole de compilation conditionnelle qui n’est pas défini. L’exemple ci-dessous définit un symbole `A` de compilation conditionnelle, puis l’annule deux fois ; `#undef` bien que le second n’ait aucun effet, il est toujours valide.
 ```csharp
 #define A
 #undef A
@@ -1004,7 +1004,7 @@ Un `#undef` peut « annuler la définition « un symbole de compilation condit
 
 ### <a name="conditional-compilation-directives"></a>Directives de compilation conditionnelle
 
-Les directives de compilation conditionnelle sont utilisés pour inclure ou exclure certaines parties d’un fichier source de manière conditionnelle.
+Les directives de compilation conditionnelle permettent d’inclure ou d’exclure de manière conditionnelle des parties d’un fichier source.
 
 ```antlr
 pp_conditional
@@ -1050,19 +1050,19 @@ not_number_sign
     ;
 ```
 
-Comme indiqué par la syntaxe, les directives de compilation conditionnelle doivent être écrite sous forme de jeux comportant, dans l’ordre, un `#if` directive, zéro ou plusieurs `#elif` directives, zéro ou un `#else` directive et un `#endif` directive. Entre les directives sont des sections conditionnelles du code source. Chaque section est contrôlée par la directive immédiatement précédente. Une section conditionnelle peut elle-même contenir des directives de compilation conditionnelle imbriquées fourni ces directives forment des jeux complets.
+Comme indiqué par la syntaxe, les directives de compilation conditionnelle doivent être écrites sous la forme de jeux composés de `#if` , dans l’ordre, d’une directive, de `#else` zéro, d’une `#endif` ou de plusieurs `#elif` directives, de zéro ou d’une directive et d’une directive. Les sections conditionnelles du code source sont placées entre les directives. Chaque section est contrôlée par la directive qui précède immédiatement. Une section conditionnelle peut elle-même contenir des directives de compilation conditionnelle imbriquées, à condition que ces directives forment des jeux complets.
 
-Un *pp_conditional* sélectionne au moins l’une de la relation contenant-contenu *conditional_section*s pour le traitement lexical normal :
+Un *pp_conditional* sélectionne au plus l’un des *conditional_section*contenus dans le traitement lexical normal :
 
-*  Le *pp_expression*s de la `#if` et `#elif` directives sont évaluées dans l’ordre jusqu'à ce qu’un produit `true`. Si une expression produit `true`, le *conditional_section* de la directive correspondante est sélectionnée.
-*  Si tous les *pp_expression*yield de s `false`et si un `#else` directive est présente, le *conditional_section* de la `#else` directive est sélectionnée.
-*  Sinon, non *conditional_section* est sélectionné.
+*  Les *pp_expression*s des directives `#if` et `#elif` sont `true`évaluées dans l’ordre jusqu’à ce que l’un d’eux produise. Si une expression génère `true`, le *conditional_section* de la directive correspondante est sélectionné.
+*  Si tous les *pp_expression*s `false`sont générés et `#else` , si une directive est présente, le `#else` *conditional_section* de la directive est sélectionné.
+*  Dans le cas contraire, aucun *conditional_section* n’est sélectionné.
 
-Le texte sélectionné *conditional_section*, le cas échéant, est traité comme un élément normal *input_section*: du code source contenu dans la section doit adhérer à la grammaire lexicale ; jetons sont générés à partir de la source code de la section ; et directives de prétraitement dans la section ont les effets prescrits.
+Le *conditional_section*sélectionné, le cas échéant, est traité comme un *input_section*normal : le code source contenu dans la section doit adhérer à la grammaire lexicale. les jetons sont générés à partir du code source dans la section. et les directives de pré-traitement dans la section ont les effets imposés.
 
-Les autres *conditional_section*s, le cas échéant, sont traités en tant que *skipped_section*s: à l’exception des directives de prétraitement, le code source dans la section ne s’appliquent pas à la lexicale grammaire ; non les jetons sont générés à partir du code source dans la section ; et directives de prétraitement dans la section doivent être lexicalement corrects mais ne sont pas traités dans le cas contraire. Au sein d’un *conditional_section* qui est en cours de traitement en tant qu’un *skipped_section*, toute imbriquée *conditional_section*s (contenues dans imbriquée `#if`... `#endif` et `#region`... `#endregion` construit) sont également traités en tant que *skipped_section*s.
+Les *conditional_section*restants, le cas échéant, sont traités comme des *skipped_section*s : à l’exception des directives de prétraitement, le code source de la section ne doit pas être conforme à la grammaire lexicale. aucun jeton n’est généré à partir du code source dans la section ; et les directives de prétraitement dans la section doivent être lexicalement correctes, mais elles ne sont pas traitées autrement. Au sein d’un *conditional_section* qui est traité en tant que *skipped_section*, tous les *conditional_section*imbriqués `#if`(contenues dans les objets imbriqués... `#endif` et`#region`... les constructions) sont également traitées en tant que skipped_section s. `#endregion`
 
-L’exemple suivant illustre la compilation conditionnelle comment imbriquer des directives :
+L’exemple suivant illustre la façon dont les directives de compilation conditionnelle peuvent imbriquer :
 ```csharp
 #define Debug       // Debugging on
 #undef Trace        // Tracing off
@@ -1081,7 +1081,7 @@ class PurchaseTransaction
 }
 ```
 
-À l’exception des directives de préprocesseur, code source ignoré n’est pas soumis à une analyse lexicale. Par exemple, ce qui suit est valide en dépit du commentaire non terminé dans le `#else` section :
+À l’exception des directives de pré-traitement, le code source ignoré n’est pas soumis à l’analyse lexicale. Par exemple, le code suivant est valide malgré le Commentaire inachevé dans la `#else` section :
 ```csharp
 #define Debug        // Debugging on
 
@@ -1097,9 +1097,9 @@ class PurchaseTransaction
 }
 ```
 
-Toutefois, notez que les directives de prétraitement sont requis pour être lexicalement correcte, même dans les sections ignorées du code source.
+Notez, toutefois, que les directives de pré-traitement doivent être correctes lexicalement, même dans les sections ignorées du code source.
 
-Directives de prétraitement ne sont pas traités lorsqu’ils apparaissent à l’intérieur d’éléments d’entrée multilignes. Par exemple, le programme :
+Les directives de pré-traitement ne sont pas traitées quand elles apparaissent dans des éléments d’entrée multiligne. Par exemple, le programme :
 ```csharp
 class Hello
 {
@@ -1114,7 +1114,7 @@ class Hello
     }
 }
 ```
-résultats dans la sortie :
+génère la sortie :
 ```
 hello,
 #if Debug
@@ -1124,7 +1124,7 @@ hello,
 #endif
 ```
 
-Dans ces cas particuliers, l’ensemble des directives de prétraitement qui est traitée peut dépendre de l’évaluation de la *pp_expression*. L’exemple :
+Dans les cas particuliers, l’ensemble de directives de prétraitement qui est traité peut dépendre de l’évaluation de *pp_expression*. L’exemple suivant :
 ```csharp
 #if X
     /*
@@ -1132,11 +1132,11 @@ Dans ces cas particuliers, l’ensemble des directives de prétraitement qui est
     /* */ class Q { }
 #endif
 ```
-produit toujours le même flux de jetons (`class` `Q` `{` `}`), quelle que soit ou non `X` est défini. Si `X` est défini, le sont les seules directives traitées `#if` et `#endif`en raison du commentaire multiligne. Si `X` est non défini, puis trois directives (`#if`, `#else`, `#endif`) font partie de l’ensemble de directive.
+produit toujours le même flux de jetons`class` ( `}` `Q` `{` ), qu’il soit défini `X` ou non. Si `X` est défini, les seules directives traitées sont `#if` et `#endif`, en raison du commentaire sur plusieurs lignes. Si `X` n’est pas défini, alors trois directives (`#if`, `#else`, `#endif`) font partie de la directive définie.
 
 ### <a name="diagnostic-directives"></a>Directives de diagnostic
 
-Les directives de diagnostics sont utilisées pour générer explicitement des messages d’erreur et avertissement qui sont signalées dans la même façon que d’autres erreurs de compilation et les avertissements.
+Les directives de diagnostic sont utilisées pour générer explicitement des messages d’erreur et d’avertissement signalés de la même façon que d’autres erreurs et avertissements au moment de la compilation.
 
 ```antlr
 pp_diagnostic
@@ -1150,7 +1150,7 @@ pp_message
     ;
 ```
 
-L’exemple :
+L’exemple suivant :
 ```csharp
 #warning Code review needed before check-in
 
@@ -1160,11 +1160,11 @@ L’exemple :
 
 class Test {...}
 ```
-toujours génère un avertissement (« révision du Code nécessaire avant l’archivage ») et génère une erreur de compilation (« une build ne peut pas être débogage et vente au détail ») si les symboles conditionnels `Debug` et `Retail` sont tous deux définis. Notez qu’un *pp_message* peuvent contenir du texte arbitraire ; plus précisément, elle pas besoin de contenir des jetons correct, comme indiqué par le guillemet simple dans le mot `can't`.
+génère toujours un avertissement (« révision du code nécessaire avant l’archivage ») et génère une erreur au moment de la compilation (« une build ne peut pas être à la fois Debug et Retail `Retail` ») si les symboles `Debug` conditionnels et sont tous deux définis. Notez qu’un *pp_message* peut contenir du texte arbitraire. plus précisément, il n’a pas besoin de contenir des jetons correctement formés, comme indiqué par le guillemet simple `can't`dans le mot.
 
 ### <a name="region-directives"></a>Directives de région
 
-Les directives de région sont utilisées pour marquer explicitement les régions du code source.
+Les directives de région sont utilisées pour marquer explicitement les zones de code source.
 
 ```antlr
 pp_region
@@ -1180,15 +1180,15 @@ pp_end_region
     ;
 ```
 
-Aucune signification sémantique n’est attachée à une région ; régions sont prévues pour une utilisation par le programmeur ou par des outils automatisés pour marquer une section de code source. Le message spécifié dans un `#region` ou `#endregion` même directive n’a aucune signification sémantique ; il sert surtout à identifier la région. Mise en correspondance `#region` et `#endregion` directives peuvent avoir différents *pp_message*s.
+Aucune signification sémantique n’est attachée à une région ; les régions sont destinées à être utilisées par le programmeur ou par des outils automatisés pour marquer une section du code source. Le message spécifié dans une `#region` directive `#endregion` ou n’a pas la même signification sémantique ; il sert simplement à identifier la région. Les directives `#endregion` et peuvent avoir différents *pp_message*s. `#region`
 
-Le traitement lexical d’une région :
+Traitement lexical d’une région :
 ```csharp
 #region
 ...
 #endregion
 ```
-correspond exactement au traitement lexical d’une directive de compilation conditionnelle du formulaire :
+correspond exactement au traitement lexical d’une directive de compilation conditionnelle au format suivant :
 ```csharp
 #if true
 ...
@@ -1197,9 +1197,9 @@ correspond exactement au traitement lexical d’une directive de compilation con
 
 ### <a name="line-directives"></a>Directives de ligne
 
-Directives de ligne peuvent être utilisés pour modifier les numéros de ligne et les noms de fichiers sources qui sont signalés par le compilateur de sortie tels que les erreurs et avertissements, et qui sont utilisés par les attributs des informations de l’appelant ([attributs d’informations appelant](attributes.md#caller-info-attributes)).
+Les directives de ligne peuvent être utilisées pour modifier les numéros de ligne et les noms de fichiers sources qui sont signalés par le compilateur dans la sortie, tels que les avertissements et les erreurs, et qui sont utilisés par les attributs d’informations de l’appelant ([attributs des informations](attributes.md#caller-info-attributes)de l’appelant).
 
-Directives de ligne sont couramment utilisés dans les outils de métaprogrammation qui génèrent le code source c# à partir d’un autre texte d’entrée.
+Les directives de ligne sont le plus souvent utilisées dans les outils de C# méta-programmation qui génèrent du code source à partir d’autres entrées de texte.
 
 ```antlr
 pp_line
@@ -1222,17 +1222,17 @@ file_name_character
     ;
 ```
 
-En cas de non `#line` directives sont présents, le compilateur signale les numéros de ligne true et noms de fichiers sources dans sa sortie. Lors du traitement d’un `#line` directive inclut un *line_indicator* qui n’est pas `default`, le compilateur traite la ligne après la directive comme ayant le numéro de ligne donné (et le nom de fichier, si spécifié).
+Quand aucune `#line` directive n’est présente, le compilateur signale les véritables numéros de ligne et les noms de fichiers sources dans sa sortie. Lors du traitement `#line` d’une directive qui comprend un *line_indicator* qui `default`n’est pas, le compilateur traite la ligne après la directive comme ayant le numéro de ligne donné (et le nom de fichier, si spécifié).
 
-Un `#line default` directive inverse l’effet de toutes les directives #line précédentes. Le compilateur signale les informations de ligne true pour les lignes suivantes, exactement comme si aucune `#line` directives avaient été traités.
+Une `#line default` directive inverse l’effet de toutes les directives de #line précédentes. Le compilateur signale des informations de ligne vraies pour les lignes suivantes, `#line` exactement comme si aucune directive n’avait été traitée.
 
-Un `#line hidden` directive n’a aucun effet sur le fichier et les numéros de ligne indiqué dans l’erreur des messages, mais affectent le débogage au niveau du code source. Lors du débogage, toutes les lignes entre un `#line hidden` directive et le `#line` directive (qui n’est pas `#line hidden`) ne possèdent aucune information de numéro de ligne. Lorsque vous parcourez le code dans le débogueur, ces lignes seront ignorées entièrement.
+Une `#line hidden` directive n’a aucun effet sur le fichier et les numéros de ligne signalés dans les messages d’erreur, mais affecte le débogage au niveau de la source. Lors du débogage, toutes les lignes entre `#line hidden` une directive et la `#line` directive suivante (qui n' `#line hidden`est pas) n’ont pas d’informations sur le numéro de ligne. Quand vous exécutez le code pas à pas dans le débogueur, ces lignes sont entièrement ignorées.
 
-Notez qu’un *file_name* diffère de littéral de chaîne standard caractères d’échappement ne sont pas traités ; le «`\`» caractère désigne simplement un caractère de barre oblique inverse ordinaire dans un *file_name*.
+Notez qu’un *nom_fichier* diffère d’un littéral de chaîne standard en ce que les caractères d’échappement ne sont pas traités ; le caractère`\`«» désigne simplement un caractère barre oblique inverse ordinaire dans un *nom_fichier*.
 
 ### <a name="pragma-directives"></a>Directives pragma
 
-Le `#pragma` directive de prétraitement est utilisée pour spécifier des informations contextuelles supplémentaires pour le compilateur. Les informations fournies dans un `#pragma` directive ne changera jamais sémantique du programme.
+La `#pragma` directive de prétraitement est utilisée pour spécifier des informations contextuelles facultatives pour le compilateur. Les informations fournies dans une `#pragma` directive ne modifient jamais la sémantique du programme.
 
 ```antlr
 pp_pragma
@@ -1244,11 +1244,11 @@ pragma_body
     ;
 ```
 
-C# fournit `#pragma` directives pour contrôler les avertissements du compilateur. Les versions futures du langage peuvent inclure supplémentaires `#pragma` directives. Pour garantir l’interopérabilité avec d’autres compilateurs c#, le compilateur Microsoft C# n’émet pas d’erreurs de compilation pour inconnu `#pragma` directives ; de ce type ne de directives toutefois générer des avertissements.
+C#fournit `#pragma` des directives pour contrôler les avertissements du compilateur. Les futures versions du langage peuvent inclure des `#pragma` directives supplémentaires. Pour garantir l’interopérabilité avec C# d’autres compilateurs, le C# compilateur Microsoft n’émet pas d’erreurs de `#pragma` compilation pour les directives inconnues ; ces directives génèrent toutefois des avertissements.
 
-#### <a name="pragma-warning"></a>Avertissement de pragma
+#### <a name="pragma-warning"></a>pragma warning
 
-Le `#pragma warning` directive est utilisée pour désactiver ou de restaurer toutes ou un ensemble particulier d’avertissement messages pendant la compilation du texte de programme ultérieures.
+La `#pragma warning` directive est utilisée pour désactiver ou restaurer tout ou un ensemble particulier de messages d’avertissement lors de la compilation du texte de programme suivant.
 
 ```antlr
 pragma_warning_body
@@ -1266,13 +1266,13 @@ warning_list
     ;
 ```
 
-Un `#pragma warning` directive qui omet la liste d’avertissements affecte tous les avertissements. Un `#pragma warning` directive l’inclut une liste d’avertissements affecte uniquement les avertissements qui sont spécifiés dans la liste.
+Une `#pragma warning` directive qui omet la liste d’avertissements affecte tous les avertissements. Une `#pragma warning` directive qui comprend une liste d’avertissements affecte uniquement les avertissements qui sont spécifiés dans la liste.
 
-Un `#pragma warning disable` directive désactive tous les ou l’ensemble donné d’avertissements.
+Une `#pragma warning disable` directive désactive tout ou l’ensemble d’avertissements donné.
 
-Un `#pragma warning restore` directive restaure tous les ou l’ensemble donné d’avertissements à l’état qui était en vigueur au début de l’unité de compilation. Notez que si un avertissement particulier a été désactivé en externe, un `#pragma warning restore` (s’il pour tous ou l’avertissement spécifique) n’est pas réactiver cet avertissement.
+Une `#pragma warning restore` directive restaure tout ou partie des avertissements donnés à l’État qui était en vigueur au début de l’unité de compilation. Notez que si un avertissement particulier a été désactivé en externe, `#pragma warning restore` a (que ce soit pour tous ou l’avertissement spécifique) ne réactivera pas cet avertissement.
 
-L’exemple suivant illustre l’utilisation de `#pragma warning` pour désactiver temporairement l’avertissement a signalé lorsque obsolète membres sont référencés, à l’aide du numéro d’avertissement du compilateur Microsoft C#.
+L’exemple suivant illustre l’utilisation `#pragma warning` de pour désactiver temporairement l’avertissement signalé lorsque des membres obsolètes sont référencés, à l’aide du numéro C# d’avertissement du compilateur Microsoft.
 ```csharp
 using System;
 

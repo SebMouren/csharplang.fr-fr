@@ -1,17 +1,17 @@
 ---
-ms.openlocfilehash: 4e1534fc5523223042df468c4443a6722910543b
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: HT
+ms.openlocfilehash: e56caa7b2fabb4b5ade242ec43f4592689e8ba3d
+ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
+ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229602"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876820"
 ---
 <a name="c-language-specification"></a>Spécification du langage C#
 ===========================
 
 __Version 6__
 
-Il s’agit d’un brouillon non officiel, publié ici par commodité. Lorsque nous envoyez une proposition de spécification C# 6.0 ECMA (qui est actuellement la finalisation du langage C# 5.0 Standard), il sera partagé ici.
+Il s’agit d’un brouillon non officiel, publié ici pour des raisons pratiques. Lorsque nous soumettons C# une proposition de spécification 6,0 à ECMA, elle sera partagée ici.
 
 <!--
 (This document is also available for download: [csharp.pdf](CSharp%20Language%20Specification.pdf?raw=true) and [csharp.docx](CSharp%20Language%20Specification.docx?raw=true))
@@ -19,7 +19,7 @@ Il s’agit d’un brouillon non officiel, publié ici par commodité. Lorsque n
 
 * [Introduction](introduction.md)
     * [Hello world](introduction.md#hello-world)
-    * [Structure de programme](introduction.md#program-structure)
+    * [Structure du programme](introduction.md#program-structure)
     * [Types et variables](introduction.md#types-and-variables)
     * [Expressions](introduction.md#expressions)
     * [Instructions](introduction.md#statements)
@@ -121,7 +121,7 @@ Il s’agit d’un brouillon non officiel, publié ici par commodité. Lorsque n
     * [Constructeurs statiques](classes.md#static-constructors)
     * [Destructeurs](classes.md#destructors)
     * [Itérateurs](classes.md#iterators)
-    * [Fonctions asynchrones](classes.md#async-functions)
+    * [Fonctions Async](classes.md#async-functions)
 * [Structs](structs.md)
     * [Déclarations de struct](structs.md#struct-declarations)
     * [Membres de struct](structs.md#struct-members)
