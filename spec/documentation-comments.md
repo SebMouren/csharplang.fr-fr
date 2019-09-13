@@ -1,22 +1,22 @@
 ---
-ms.openlocfilehash: c9f8417dc68153f02ceb72bb1d51f3615f3c4961
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: adf81842e3c763c7bbdd3f10bb884dc1207b9099
+ms.sourcegitcommit: 0489cb64b7dfb328813d757f4d447a15b85a5851
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488919"
+ms.lasthandoff: 09/11/2019
+ms.locfileid: "70912434"
 ---
 # <a name="documentation-comments"></a>Commentaires de documentation
 
-C# fournit un mécanisme pour les programmeurs de documenter leur code à l’aide d’une syntaxe de commentaire spéciale qui contient le texte XML. Dans les fichiers de code source, les commentaires d’un format particulier peuvent être utilisés pour diriger un outil pour produire du code XML à partir de ces commentaires et les éléments de code source, ils précèdent. Des commentaires à l’aide de ce type de syntaxe sont appelés ***les commentaires de documentation***. Il doivent précéder immédiatement un type défini par l’utilisateur (par exemple, une classe, un délégué ou une interface) ou un membre (par exemple, un champ, événement, propriété ou méthode). L’outil de génération XML est appelé le ***Générateur de documentation***. (Ce générateur peut être, mais ne sont pas nécessairement, le compilateur c# lui-même). La sortie produite par le Générateur de documentation est appelée le ***fichier de documentation***. Un fichier de documentation est utilisé comme entrée pour un ***visionneuse de documentation***; un outil destiné à produire une sorte de visualisation des informations de type et sa documentation associée.
+C#fournit un mécanisme permettant aux programmeurs de documenter leur code à l’aide d’une syntaxe de commentaire spéciale qui contient du texte XML. Dans les fichiers de code source, les commentaires ayant un certain format peuvent être utilisés pour indiquer à un outil de produire du code XML à partir de ces commentaires et des éléments de code source, qu’ils précèdent. Les commentaires utilisant une telle syntaxe sont appelés ***Commentaires de documentation***. Ils doivent précéder immédiatement un type défini par l’utilisateur (par exemple, une classe, un délégué ou une interface) ou un membre (par exemple, un champ, un événement, une propriété ou une méthode). L’outil de génération XML est appelé le ***Générateur de documentation***. (Ce générateur peut être, mais il n’est pas nécessaire C# , le compilateur lui-même.) La sortie produite par le générateur de documentation porte le nom de ***fichier de documentation***. Un fichier de documentation est utilisé comme entrée dans une ***visionneuse de documentation***. outil destiné à produire une sorte d’affichage visuel des informations de type et de la documentation associée.
 
-Cette spécification suggère un ensemble de balises à utiliser dans les commentaires de documentation, mais l’utilisation de ces balises n’est pas nécessaire et autres balises peuvent être utilisées si vous le souhaitez, comme la durée pendant laquelle les règles de code XML bien formé sont suivies.
+Cette spécification suggère un ensemble de balises à utiliser dans les commentaires de documentation, mais l’utilisation de ces balises n’est pas obligatoire, et d’autres balises peuvent être utilisées si vous le souhaitez, dans la mesure où les règles de XML bien formé sont suivies.
 
 ## <a name="introduction"></a>Introduction
 
-Des commentaires d’une forme spéciale peuvent être utilisés pour diriger un outil pour produire du code XML à partir de ces commentaires et les éléments de code source, ils précèdent. Ces commentaires sont des commentaires à ligne unique qui commencent par trois barres obliques (`///`), ou délimité par des commentaires qui commencent par une barre oblique et deux étoiles (`/**`). Il doivent précéder immédiatement un type défini par l’utilisateur (par exemple, une classe, un délégué ou une interface) ou un membre (par exemple, un champ, événement, propriété ou méthode) qu’elles annotent. Attribut de sections ([spécification des attributs](attributes.md#attribute-specification)) font partie des déclarations, donc les commentaires de documentation doivent précéder les attributs appliqués à un type ou membre.
+Les commentaires ayant une forme spéciale peuvent être utilisés pour indiquer à un outil de produire du code XML à partir de ces commentaires et des éléments de code source, qu’ils précèdent. Ces commentaires sont des commentaires sur une seule ligne qui commencent par trois barres`///`obliques () ou des commentaires délimités qui commencent par une barre`/**`oblique et deux étoiles (). Ils doivent précéder immédiatement un type défini par l’utilisateur (par exemple, une classe, un délégué ou une interface) ou un membre (par exemple, un champ, un événement, une propriété ou une méthode) qu’ils annotent. Les sections d’attributs ([spécification d’attribut](attributes.md#attribute-specification)) sont considérées comme faisant partie des déclarations. les commentaires de documentation doivent donc précéder les attributs appliqués à un type ou à un membre.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```antlr
 single_line_doc_comment
@@ -28,9 +28,9 @@ delimited_doc_comment
     ;
 ```
 
-Dans un *single_line_doc_comment*, s’il existe un *espace blanc* caractère qui suit le `///` caractères sur chacun de la *single_line_doc_comment*s adjacents actuel *single_line_doc_comment*, puis qui *espace blanc* caractère n’est pas inclus dans la sortie XML.
+Dans un *single_line_doc_comment*, s’il y a un *espace blanc* qui `///` suit les caractères sur chacun des *single_line_doc_comment*s adjacents au *single_line_doc_comment*actuel, alors celale caractère d’espace blanc n’est pas inclus dans la sortie XML.
 
-Dans un commentaire-doc-délimités, si le premier caractère non-espace blanc sur la deuxième ligne est un astérisque et le même modèle de caractères d’espace blanc facultatif et un astérisque est répétée au début de chaque ligne dans le commentaire-doc-délimités, puis les caractères de la série répétée ne sont pas inclus dans la sortie XML. Le modèle peut inclure des caractères d’espace blanc après, et avant le caractère astérisque.
+Dans un document de commentaire délimité, si le premier caractère autre qu’un espace blanc sur la deuxième ligne est un astérisque et le même modèle de caractères d’espace blanc facultatifs et qu’un astérisque est répété au début de chaque ligne dans le document délimité-doc-comment, les caractères du modèle répété ne sont pas inclus dans la sortie XML. Le modèle peut inclure des caractères d’espacement après, ainsi qu’avant, le caractère astérisque.
 
 __Exemple :__
 
@@ -45,48 +45,48 @@ public class Point
 }
 ```
 
-Le texte dans les commentaires de documentation doit être correctement formé conformément aux règles de XML (https://www.w3.org/TR/REC-xml). Si le code XML est incorrect, un avertissement est généré et le fichier de documentation contiendra un commentaire indiquant qu’une erreur s’est produite.
+Le texte des commentaires de documentation doit être correctement formé conformément aux règles de XML (https://www.w3.org/TR/REC-xml). Si le code XML est incorrect, un avertissement est généré et le fichier de documentation contient un commentaire indiquant qu’une erreur a été rencontrée.
 
-Bien que les développeurs sont libres de créer leur propre jeu de balises, un jeu recommandé est défini dans [balises recommandées](documentation-comments.md#recommended-tags). Certaines des balises recommandées ont des significations spéciales :
+Bien que les développeurs soient libres de créer leur propre ensemble de balises, un ensemble recommandé est défini dans les [Balises recommandées](documentation-comments.md#recommended-tags). Certaines des balises recommandées ont des significations spéciales :
 
-*  Le `<param>` balise est utilisée pour décrire les paramètres. Si une telle balise est utilisée, le Générateur de documentation doit vérifier que le paramètre spécifié existe et que tous les paramètres sont décrits dans les commentaires de documentation. Si cette vérification échoue, le Générateur de documentation émet un avertissement.
-*  L’attribut `cref` peut être joint à n’importe quelle balise pour fournir une référence à un élément de code. Le Générateur de documentation doit vérifier l’existence de cet élément de code. Si la vérification échoue, le Générateur de documentation émet un avertissement. Lors de la recherche pour un nom décrit dans un `cref` attribut, le Générateur de documentation doit respecter la visibilité de l’espace de noms en fonction de `using` les instructions situées dans le code source. Pour les éléments de code qui sont génériques, la syntaxe générique normale (autrement dit, «`List<T>`») ne peut pas être utilisé car il génère le code XML non valide. Accolades peuvent être utilisées au lieu de crochets (autrement dit, «`List{T}`»), ou la syntaxe d’échappement XML peut être utilisée (autrement dit, «`List&lt;T&gt;`»).
-*  Le `<summary>` balise est destinée à être utilisée par une visionneuse de documentation pour afficher des informations supplémentaires sur un type ou membre.
-*  Le `<include>` balise inclut des informations à partir d’un fichier XML externe.
+*  La `<param>` balise est utilisée pour décrire les paramètres. Si une telle balise est utilisée, le générateur de documentation doit vérifier que le paramètre spécifié existe et que tous les paramètres sont décrits dans commentaires de documentation. En cas d’échec de cette vérification, le générateur de documentation émet un avertissement.
+*  L’attribut `cref` peut être joint à n’importe quelle balise pour fournir une référence à un élément de code. Le générateur de documentation doit vérifier que cet élément de code existe. Si la vérification échoue, le générateur de documentation émet un avertissement. Lors de la recherche d’un nom décrit `cref` dans un attribut, le générateur de documentation doit respecter la `using` visibilité des espaces de noms en fonction des instructions figurant dans le code source. Pour les éléments de code génériques, la syntaxe générique normale (autrement dit, «`List<T>`») ne peut pas être utilisée car elle génère du code XML non valide. Les accolades peuvent être utilisées à la place des crochets (autrement`List{T}`dit, « »), ou la syntaxe d’échappement XML peut être utilisée (`List&lt;T&gt;`autrement dit, « »).
+*  La `<summary>` balise est destinée à être utilisée par une visionneuse de documentation pour afficher des informations supplémentaires sur un type ou un membre.
+*  La `<include>` balise contient des informations provenant d’un fichier XML externe.
 
-Notez bien que le fichier de documentation ne fournit pas d’informations complètes sur le type et les membres (par exemple, il ne contient aucune information de type). Pour obtenir des informations complètes sur un type ou membre, le fichier de documentation doit être utilisé conjointement avec la réflexion sur le type réel ou le membre.
+Notez soigneusement que le fichier de documentation ne fournit pas d’informations complètes sur le type et les membres (par exemple, il ne contient pas d’informations de type). Pour obtenir de telles informations sur un type ou un membre, le fichier de documentation doit être utilisé conjointement avec la réflexion sur le type ou le membre réel.
 
-## <a name="recommended-tags"></a>Balises recommandées
+## <a name="recommended-tags"></a>Étiquettes recommandées
 
-Le Générateur de documentation doit accepter et traiter n’importe quelle balise est valide selon les règles de XML. Les balises suivantes fournissent des fonctionnalités couramment utilisées dans la documentation utilisateur. (Bien entendu, autres balises sont possibles.)
+Le générateur de documentation doit accepter et traiter les balises valides conformément aux règles XML. Les balises suivantes fournissent des fonctionnalités couramment utilisées dans la documentation utilisateur. (Bien sûr, d’autres balises sont possibles.)
 
 
-| __Tag__          | __Section__                                            | __Fonction__                                            |
+| __Référence__          | __Section__                                            | __Fonction__                                            |
 |------------------|--------------------------------------------------------|--------------------------------------------------------|
-| `<c>`            | [`<c>`](documentation-comments.md#c)                   | Définir le texte dans une police de type code                           | 
-| `<code>`         | [`<code>`](documentation-comments.md#code)             | Définir une ou plusieurs lignes de sortie de code ou de programme source |
+| `<c>`            | [`<c>`](documentation-comments.md#c)                   | Définir du texte dans une police de type code                           | 
+| `<code>`         | [`<code>`](documentation-comments.md#code)             | Définir une ou plusieurs lignes de code source ou de sortie du programme |
 | `<example>`      | [`<example>`](documentation-comments.md#example)       | Indiquer un exemple                                    |
-| `<exception>`    | [`<exception>`](documentation-comments.md#exception)   | Identifie les exceptions qu'une méthode peut lever.           |
-| `<include>`      | [`<include>`](documentation-comments.md#include)       | Inclut le code XML à partir d’un fichier externe                     |
+| `<exception>`    | [`<exception>`](documentation-comments.md#exception)   | Identifie les exceptions qu’une méthode peut lever           |
+| `<include>`      | [`<include>`](documentation-comments.md#include)       | Contient du code XML à partir d’un fichier externe                     |
 | `<list>`         | [`<list>`](documentation-comments.md#list)             | Créer une liste ou une table                                 |
-| `<para>`         | [`<para>`](documentation-comments.md#para)             | Autoriser la structure à ajouter au texte                   |
+| `<para>`         | [`<para>`](documentation-comments.md#para)             | Autoriser l’ajout de la structure au texte                   |
 | `<param>`        | [`<param>`](documentation-comments.md#param)           | Décrire un paramètre pour une méthode ou un constructeur       |
-| `<paramref>`     | [`<paramref>`](documentation-comments.md#paramref)     | Déterminer si un mot est un nom de paramètre               |
-| `<permission>`   | [`<permission>`](documentation-comments.md#permission) | L’accessibilité de sécurité d’un membre de document        |
-| `<remark>`       | [`<remark>`](documentation-comments.md#remark)         | Décrire des informations supplémentaires sur un type           |
+| `<paramref>`     | [`<paramref>`](documentation-comments.md#paramref)     | Identifier qu’un mot est un nom de paramètre               |
+| `<permission>`   | [`<permission>`](documentation-comments.md#permission) | Documenter l’accessibilité de sécurité d’un membre        |
+| `<remarks>`      | [`<remarks>`](documentation-comments.md#remarks)       | Décrire des informations supplémentaires sur un type           |
 | `<returns>`      | [`<returns>`](documentation-comments.md#returns)       | Décrire la valeur de retour d’une méthode                  |
 | `<see>`          | [`<see>`](documentation-comments.md#see)               | Spécifier un lien                                         |
-| `<seealso>`      | [`<seealso>`](documentation-comments.md#seealso)       | Générer une entrée Voir aussi                              |
+| `<seealso>`      | [`<seealso>`](documentation-comments.md#seealso)       | Générer une entrée Voir également                              |
 | `<summary>`      | [`<summary>`](documentation-comments.md#summary)       | Décrire un type ou un membre d’un type                  |
 | `<value>`        | [`<value>`](documentation-comments.md#value)           | Décrire une propriété                                    |
 | `<typeparam>`    |                                                        | Décrire un paramètre de type générique                      |
-| `<typeparamref>` |                                                        | Déterminer si un mot est un nom de paramètre de type          |
+| `<typeparamref>` |                                                        | Identifier qu’un mot est un nom de paramètre de type          |
 
 ### `<c>`
 
-Cette balise fournit un mécanisme pour indiquer qu’un fragment de texte dans une description doit être défini dans une police spéciale tel que celui utilisé pour un bloc de code. Pour les lignes de code réel, utilisez `<code>` ([`<code>`](documentation-comments.md#code)).
+Cette balise fournit un mécanisme pour indiquer qu’un fragment de texte d’une description doit être défini dans une police spéciale telle que celle utilisée pour un bloc de code. Pour les lignes de code réel, `<code>` utilisez[`<code>`](documentation-comments.md#code)().
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <c>text</c>
@@ -106,9 +106,9 @@ public class Point
 
 ### `<code>`
 
-Cette balise est utilisée pour définir une ou plusieurs lignes de sortie de code ou le programme source dans une police particulière. Pour les petits extraits de code dans la narration, utilisez `<c>` ([`<c>`](documentation-comments.md#c)).
+Cette balise est utilisée pour définir une ou plusieurs lignes de code source ou de sortie de programme dans une police spéciale. Pour les petits fragments de code dans la `<c>` narration[`<c>`](documentation-comments.md#c), utilisez ().
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <code>source code or program output</code>
@@ -136,9 +136,9 @@ public void Translate(int xor, int yor) {
 
 ### `<example>`
 
-Cette balise permet l’exemple de code dans un commentaire, pour spécifier comment une méthode ou autres membres de la bibliothèque peut être utilisée. En règle générale, cela implique également l’utilisation de la balise `<code>` ([`<code>`](documentation-comments.md#code)) également.
+Cette balise permet d’obtenir un exemple de code dans un commentaire, afin de spécifier comment une méthode ou un autre membre de bibliothèque peut être utilisé. En règle générale, cela implique également l’utilisation de la `<code>` balise ([`<code>`](documentation-comments.md#code)).
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <example>description</example>
@@ -146,13 +146,13 @@ __Syntaxe :__
 
 __Exemple :__
 
-Consultez `<code>` ([`<code>`](documentation-comments.md#code)) pour obtenir un exemple.
+Pour `<code>` obtenir[`<code>`](documentation-comments.md#code)un exemple, consultez ().
 
 ### `<exception>`
 
-Cette balise permet de documenter les exceptions qu'une méthode peut lever.
+Cette balise permet de documenter les exceptions qu’une méthode peut lever.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <exception cref="member">description</exception>
@@ -160,8 +160,8 @@ __Syntaxe :__
 
 où
 
-* `member` est le nom d’un membre. Le Générateur de documentation vérifie que le membre donné existe et traduit `member` au nom d’élément canonique dans le fichier de documentation.
-* `description` est une description des circonstances dans lesquelles l’exception est levée.
+* `member`nom d’un membre. Le générateur de documentation vérifie que le membre donné existe et `member` se traduit par le nom d’élément canonique dans le fichier de documentation.
+* `description`est une description des circonstances dans lesquelles l’exception est levée.
 
 __Exemple :__
 
@@ -182,9 +182,9 @@ public class DataBaseOperations
 
 ### `<include>`
 
-Cette balise permet notamment d’informations à partir d’un document XML qui est externe au fichier de code source. Le fichier externe doit être un document XML bien formé, et une expression XPath est appliquée à ce document pour spécifier quel code XML à partir de ce document à inclure. Le `<include>` balise est ensuite remplacée par le XML à partir du document externe.
+Cette balise permet d’inclure des informations à partir d’un document XML qui est externe au fichier de code source. Le fichier externe doit être un document XML bien formé et une expression XPath est appliquée à ce document pour spécifier le code XML de ce document à inclure. La `<include>` balise est ensuite remplacée par le XML sélectionné du document externe.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```
 <include file="filename" path="xpath" />
@@ -192,19 +192,19 @@ __Syntaxe :__
 
 où
 
-* `filename` est le nom de fichier d’un fichier XML externe. Le nom de fichier est interprété relatif au fichier qui contient la balise include.
-* `xpath` est une expression XPath qui sélectionne une partie du code XML dans le fichier XML externe.
+* `filename`nom de fichier d’un fichier XML externe. Le nom du fichier est interprété par rapport au fichier contenant la balise Include.
+* `xpath`expression XPath qui sélectionne des données XML dans le fichier XML externe.
 
 __Exemple :__
 
-Si le code source contenait une déclaration telle que :
+Si le code source contenait une déclaration comme :
 
 ```csharp
 /// <include file="docs.xml" path='extradoc/class[@name="IntList"]/*' />
 public class IntList { ... }
 ```
 
-et le fichier externe « docs.xml » contenait avait le contenu suivant :
+et le fichier externe « docs. XML » a le contenu suivant :
 
 ```xml
 <?xml version="1.0"?>
@@ -222,7 +222,7 @@ et le fichier externe « docs.xml » contenait avait le contenu suivant :
 </extradoc>
 ```
 
-puis la documentation même est sortie comme si le code source contenu :
+la même documentation est ensuite générée comme si le code source contenait :
 
 ```csharp
 /// <summary>
@@ -233,11 +233,11 @@ public class IntList { ... }
 
 ### `<list>`
 
-Cette balise est utilisée pour créer une liste ou un tableau d’éléments. Il peut contenir un `<listheader>` bloc pour définir la ligne d’en-tête d’une table ou une définition de liste. (Lors de la définition d’une table, une entrée pour `term` dans l’en-tête doivent être fournies.)
+Cette balise est utilisée pour créer une liste ou une table d’éléments. Elle peut contenir un `<listheader>` bloc pour définir la ligne d’en-tête d’une table ou d’une liste de définitions. (Lors de la définition d’une table, seule `term` une entrée pour dans l’en-tête doit être fournie.)
 
-Chaque élément dans la liste est spécifié avec un `<item>` bloc. Lors de la création d’une liste de définitions, les deux `term` et `description` doit être spécifié. Toutefois, pour une table, une liste à puces ou une liste numérotée `description` besoin d’être spécifiés.
+Chaque élément de la liste est spécifié avec un `<item>` bloc. Lors de la création d’une liste `term` de `description` définitions, et doivent être spécifiés. Toutefois, pour une table, une liste à puces ou une liste numérotée `description` , seul doit être spécifié.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <list type="bullet" | "number" | "table">
@@ -259,8 +259,8 @@ __Syntaxe :__
 
 où
 
-* `term` est le terme à définir, dont la définition est dans `description`.
-* `description` est un élément dans une liste à puces ou une liste numérotée, ou la définition d’un `term`.
+* `term`terme à définir, dont la définition se trouve dans `description`.
+* `description`est un élément dans une liste à puces ou une liste numérotée, ou la `term`définition d’un.
 
 __Exemple :__
 
@@ -285,9 +285,9 @@ public class MyClass
 
 ### `<para>`
 
-Cette balise est pour une utilisation dans d’autres balises, tel que `<summary>` ([`<remark>`](documentation-comments.md#remark)) ou `<returns>` ([`<returns>`](documentation-comments.md#returns)) et autorise la structure à ajouter au texte.
+Cette balise est destinée à être utilisée dans d’autres `<summary>` balises, `<returns>` telles[`<returns>`](documentation-comments.md#returns)que ([`<remarks>`](documentation-comments.md#remarks)) ou (), et permet l’ajout de la structure au texte.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <para>content</para>
@@ -309,9 +309,9 @@ public static void Main() {
 
 ### `<param>`
 
-Cette balise est utilisée pour décrire un paramètre pour une méthode, un constructeur ou un indexeur.
+Cette balise est utilisée pour décrire un paramètre d’une méthode, d’un constructeur ou d’un indexeur.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <param name="name">description</param>
@@ -319,8 +319,8 @@ __Syntaxe :__
 
 où
 
-* `name` Est le nom du paramètre.
-* `description` est une description du paramètre.
+* `name`nom du paramètre.
+* `description`Description du paramètre.
 
 __Exemple :__
 
@@ -337,9 +337,9 @@ public void Move(int xor, int yor) {
 
 ### `<paramref>`
 
-Cette balise est utilisée pour indiquer qu’un mot est un paramètre. Le fichier de documentation peut être traité pour mettre en forme ce paramètre d’une manière distincte.
+Cette balise est utilisée pour indiquer qu’un mot est un paramètre. Le fichier de documentation peut être traité pour mettre en forme ce paramètre de manière distincte.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <paramref name="name"/>
@@ -363,9 +363,9 @@ public Point(int xor, int yor) {
 
 ### `<permission>`
 
-Cette balise permet l’accessibilité de sécurité d’un membre à documenter.
+Cette balise permet de documenter l’accessibilité de sécurité d’un membre.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <permission cref="member">description</permission>
@@ -373,8 +373,8 @@ __Syntaxe :__
 
 où
 
-* `member` est le nom d’un membre. Le Générateur de documentation vérifie que l’élément de code donné existe et traduit *membre* au nom d’élément canonique dans le fichier de documentation.
-* `description` est une description de l’accès au membre.
+* `member`nom d’un membre. Le générateur de documentation vérifie que l’élément de code donné existe et traduit le *membre* en nom d’élément canonique dans le fichier de documentation.
+* `description`Description de l’accès au membre.
 
 __Exemple :__
 
@@ -387,24 +387,24 @@ public static void Test() {
 }
 ```
 
-### `<remark>`
+### `<remarks>`
 
 Cette balise est utilisée pour spécifier des informations supplémentaires sur un type. (Utilisez `<summary>` ([`<summary>`](documentation-comments.md#summary)) pour décrire le type lui-même et les membres d’un type.)
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
-<remark>description</remark>
+<remarks>description</remarks>
 ```
 
-où `description` est le texte de la Remarque.
+où `description` est le texte de la remarque.
 
 __Exemple :__
 
 ```csharp
 /// <summary>Class <c>Point</c> models a point in a 
 /// two-dimensional plane.</summary>
-/// <remark>Uses polar coordinates</remark>
+/// <remarks>Uses polar coordinates</remarks>
 public class Point 
 {
     // ...
@@ -415,7 +415,7 @@ public class Point
 
 Cette balise est utilisée pour décrire la valeur de retour d’une méthode.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <returns>description</returns>
@@ -436,15 +436,15 @@ public override string ToString() {
 
 ### `<see>`
 
-Cette balise permet un lien à l’intérieur de texte. Utilisez `<seealso>` ([`<seealso>`](documentation-comments.md#seealso)) pour indiquer le texte qui doit apparaître dans une section Voir aussi.
+Cette balise permet de spécifier un lien dans le texte. Utilisez `<seealso>` [(`<seealso>`](documentation-comments.md#seealso)) pour indiquer le texte qui doit apparaître dans une section Voir aussi.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <see cref="member"/>
 ```
 
-où `member` est le nom d’un membre. Le Générateur de documentation vérifie que l’élément de code donné existe et qu’il modifie *membre* au nom d’élément dans le fichier de documentation générées.
+où `member` est le nom d’un membre. Le générateur de documentation vérifie que l’élément de code donné existe et change de *membre* en nom d’élément dans le fichier de documentation généré.
 
 __Exemple :__
 
@@ -469,15 +469,15 @@ public void Translate(int xor, int yor) {
 
 ### `<seealso>`
 
-Cette balise permet une entrée doit être généré pour la section Voir aussi. Utilisez `<see>` ([`<see>`](documentation-comments.md#see)) pour spécifier un lien à partir du texte.
+Cette balise permet de générer une entrée pour la section Voir aussi. Utilisez `<see>` [(`<see>`](documentation-comments.md#see)) pour spécifier un lien à partir de texte.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <seealso cref="member"/>
 ```
 
-où `member` est le nom d’un membre. Le Générateur de documentation vérifie que l’élément de code donné existe et qu’il modifie *membre* au nom d’élément dans le fichier de documentation générées.
+où `member` est le nom d’un membre. Le générateur de documentation vérifie que l’élément de code donné existe et change de *membre* en nom d’élément dans le fichier de documentation généré.
 
 __Exemple :__
 
@@ -493,9 +493,9 @@ public override bool Equals(object o) {
 
 ### `<summary>`
 
-Cette balise peut être utilisée pour décrire un type ou un membre d’un type. Utilisez `<remark>` ([`<remark>`](documentation-comments.md#remark)) pour décrire le type lui-même.
+Cette balise peut être utilisée pour décrire un type ou un membre d’un type. Utilisez `<remarks>` [(`<remarks>`](documentation-comments.md#remarks)) pour décrire le type lui-même.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <summary>description</summary>
@@ -513,15 +513,15 @@ public Point() : this(0,0) {
 
 ### `<value>`
 
-Cette balise permet à une propriété à décrire.
+Cette balise permet de décrire une propriété.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <value>property description</value>
 ```
 
-où `property description` est une description pour la propriété.
+où `property description` est une description de la propriété.
 
 __Exemple :__
 
@@ -538,13 +538,13 @@ public int X
 
 Cette balise est utilisée pour décrire un paramètre de type générique pour une classe, un struct, une interface, un délégué ou une méthode.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <typeparam name="name">description</typeparam>
 ```
 
-où `name` est le nom du paramètre de type, et `description` est sa description.
+où `name` est le nom du paramètre de type et `description` est sa description.
 
 __Exemple :__
 
@@ -558,9 +558,9 @@ public class MyList<T> {
 
 ### `<typeparamref>`
 
-Cette balise est utilisée pour indiquer qu’un mot est un paramètre de type. Le fichier de documentation peut être traité pour mettre en forme ce paramètre de type d’une manière distincte.
+Cette balise est utilisée pour indiquer qu’un mot est un paramètre de type. Le fichier de documentation peut être traité pour mettre en forme ce paramètre de type de manière distincte.
 
-__Syntaxe :__
+__Stockéesyntaxe__
 
 ```xml
 <typeparamref name="name"/>
@@ -580,44 +580,44 @@ public List<T> FetchData<T>(string query) {
 
 ## <a name="processing-the-documentation-file"></a>Traitement du fichier de documentation
 
-Le Générateur de documentation génère une chaîne d’ID pour chaque élément dans le code source qui est marqué avec un commentaire de documentation. Cette chaîne d’ID identifie de façon unique un élément source. Une visionneuse de documentation peut utiliser une chaîne d’ID pour identifier l’élément de métadonnées/réflexion correspondant auquel s’applique la documentation.
+Le générateur de documentation génère une chaîne d’ID pour chaque élément du code source qui est balisé avec un commentaire de documentation. Cette chaîne d’ID identifie de façon unique un élément source. Une visionneuse de documentation peut utiliser une chaîne d’ID pour identifier l’élément de métadonnées/réflexion correspondant auquel la documentation s’applique.
 
-Le fichier de documentation n’est pas une représentation hiérarchique du code source ; au lieu de cela, il est une liste plate avec une chaîne d’ID générée pour chaque élément.
+Le fichier de documentation n’est pas une représentation hiérarchique du code source ; au lieu de cela, il s’agit d’une liste plate avec une chaîne d’ID générée pour chaque élément.
 
 ### <a name="id-string-format"></a>Format de chaîne d’ID
 
-Le Générateur de documentation respecte les règles suivantes lorsqu’il génère les chaînes d’ID :
+Le générateur de documentation respecte les règles suivantes lorsqu’il génère les chaînes d’ID :
 
 *  La chaîne ne contient aucun espace blanc.
 
-*  La première partie de la chaîne identifie le type de membre documenté, à l’aide d’un caractère unique suivi de deux-points. Les types de membres suivants sont définis :
+*  La première partie de la chaîne identifie le type de membre documenté, par le biais d’un caractère unique suivi d’un signe deux-points. Les genres de membres suivants sont définis :
 
    | __Caractère__ | __Description__                                             |
    |---------------|-------------------------------------------------------------|
    | E             | Événement                                                       |
    | F             | Champ                                                       |
-   | M             | Méthode (y compris les constructeurs, destructeurs et opérateurs) |
+   | M             | Méthode (y compris les constructeurs, les destructeurs et les opérateurs) |
    | N             | Espace de noms                                                   |
    | P             | Propriété (y compris les indexeurs)                               |
-   | T             | Type (par exemple, la classe délégué, enum, interface et struct) |
-   | !             | Chaîne d’erreur ; le reste de la chaîne fournit des informations sur l’erreur. Par exemple, le Générateur de documentation génère des informations d’erreur pour les liens qui ne peut pas être résolus. |
+   | T             | Type (par exemple Class, Delegate, enum, interface et struct) |
+   | !             | Chaîne d’erreur ; le reste de la chaîne fournit des informations sur l’erreur. Par exemple, le générateur de documentation génère des informations d’erreur pour les liens qui ne peuvent pas être résolus. |
 
-*  La deuxième partie de la chaîne est le nom qualifié complet de l’élément, en commençant à la racine de l’espace de noms. Le nom de l’élément, son type (s) d’englobante et un espace de noms sont séparés par des points. Si le nom de l’élément lui-même comporte des points, ils sont remplacés par `#(U+0023)` caractères. (Il est supposé qu’aucun élément n’a ce caractère dans son nom.)
-*  Pour les méthodes et propriétés avec des arguments, l’argument liste suit, placés entre parenthèses. Pour ceux sans arguments, les parenthèses sont omises. Les arguments sont séparés par des virgules. L’encodage de chaque argument est identique à une signature CLI, comme suit :
-   *  Arguments sont représentés par leur nom de la documentation, qui est basé sur leur nom qualifié complet, modifié comme suit :
-      * Les arguments qui représentent des types génériques ont ajoutée `` ` `` (accent grave) suivi par le nombre de paramètres de type
-      * Arguments ayant la `out` ou `ref` modificateur ont un `@` suivant leur nom de type. Arguments passés par valeur ou par le biais de `params` n’ont aucun notation spéciale.
-      * Les arguments qui sont des tableaux sont représentés en tant que `[lowerbound:size, ... , lowerbound:size]` où le nombre de virgules correspond au rang moins un, et les limites inférieure et la taille de chaque dimension, s’il est connu, sont représentées sous forme décimale. Si une limite inférieure ou une taille n’est pas spécifié, il est omis. Si la limite inférieure et la taille d’une dimension particulière sont omises, le `:` est également omis. Tableaux en escalier sont représentés par une `[]` par niveau.
-      * Les arguments qui ont des types de pointeur autre que void sont représentés en utilisant un `*` après le nom de type. Un pointeur void est représenté à l’aide d’un nom de type de `System.Void`.
-      * Les arguments qui font référence aux paramètres de type générique définies sur les types sont encodés à l’aide de la `` ` `` (accent grave) suivi par l’index de base zéro du paramètre de type.
-      * Les arguments qui utilisent des paramètres de type générique définies dans les méthodes utilisent un double-backtick ``` `` ``` au lieu du `` ` `` utilisés pour les types.
-      * Les arguments qui font référence aux types génériques construits sont encodés à l’aide de type générique, suivi par `{`, suivi d’une liste séparée par des virgules d’arguments de type, suivi par `}`.
+*  La deuxième partie de la chaîne est le nom qualifié complet de l’élément, en commençant à la racine de l’espace de noms. Le nom de l’élément, ses types englobants et l’espace de noms sont séparés par des points. Si le nom de l’élément lui-même comporte des points, ils `#(U+0023)` sont remplacés par des caractères. (Il est supposé qu’aucun élément ne possède ce caractère dans son nom.)
+*  Pour les méthodes et les propriétés avec arguments, la liste d’arguments suit, placée entre parenthèses. Pour ceux sans arguments, les parenthèses sont omises. Les arguments sont séparés par des virgules. L’encodage de chaque argument est identique à une signature CLI, comme suit :
+   *  Les arguments sont représentés par leur nom de documentation, qui est basé sur leur nom complet, modifié comme suit :
+      * Les arguments qui représentent des types génériques ont un `` ` `` caractère ajouté (Tops) suivi du nombre de paramètres de type
+      * Les arguments ayant `out` le `ref` modificateur ou ont `@` un nom de type suivant. Les arguments passés par valeur ou `params` via n’ont pas de notation spéciale.
+      * Les arguments qui sont des tableaux sont représentés `[lowerbound:size, ... , lowerbound:size]` par le fait que le nombre de virgules est le rang moins un, et les limites inférieures et la taille de chaque dimension, si elles sont connues, sont représentées au format décimal. Si une limite inférieure ou une taille n’est pas spécifiée, elle est omise. Si la limite inférieure et la taille d’une dimension particulière sont omises, `:` le est également omis. Les tableaux en escalier sont représentés par un `[]` niveau par niveau.
+      * Les arguments qui ont des types pointeur autres que void sont représentés `*` à l’aide d’un qui suit le nom de type. Un pointeur void est représenté à l’aide d’un `System.Void`nom de type.
+      * Les arguments qui font référence aux paramètres de type générique définis sur les types sont encodés à l’aide du `` ` `` caractère (battement) suivi de l’index de base zéro du paramètre de type.
+      * Les arguments qui utilisent des paramètres de type générique définis dans les méthodes utilisent un ``` `` ``` double-cycle `` ` `` à la place du utilisé pour les types.
+      * Les arguments qui font référence aux types génériques construits sont encodés à l’aide du type `{`générique, suivi de, puis d’une liste séparée par des virgules `}`d’arguments de type, suivie de.
 
 ### <a name="id-string-examples"></a>Exemples de chaînes d’ID
 
-Les exemples suivants montrent chacun un fragment de code c#, ainsi que la chaîne d’ID produite à partir de chaque élément source capable d’avoir un commentaire de documentation :
+Les exemples suivants montrent chacun un fragment de C# code, ainsi que la chaîne d’ID produite à partir de chaque élément source, susceptible d’avoir un commentaire de documentation :
 
-*  Les types sont représentés à l’aide de leur nom qualifié complet, laquelle s’ajoutent les informations génériques :
+*  Les types sont représentés à l’aide de leur nom qualifié complet et sont complétés par des informations génériques :
 
    ```csharp
    enum Color { Red, Blue, Green }
@@ -654,7 +654,7 @@ Les exemples suivants montrent chacun un fragment de code c#, ainsi que la chaî
    "T:Acme.MyList`1.Helper`2"
    ```
 
-*  Les champs sont représentés par leur nom qualifié complet :
+*  Les champs sont représentés par leur nom complet :
 
    ```csharp
    namespace Acme
@@ -726,7 +726,7 @@ Les exemples suivants montrent chacun un fragment de code c#, ainsi que la chaî
    "M:Acme.Widget.Finalize"
    ```
 
-*  Méthodes.
+*  Leurs.
 
    ```csharp
    namespace Acme
@@ -796,7 +796,7 @@ Les exemples suivants montrent chacun un fragment de code c#, ainsi que la chaî
    "P:Acme.Widget.Item(System.String,System.Int32)"
    ```
 
-*  événements.
+*  Événements.
 
    ```csharp
    namespace Acme
@@ -824,7 +824,7 @@ Les exemples suivants montrent chacun un fragment de code c#, ainsi que la chaî
    "M:Acme.Widget.op_UnaryPlus(Acme.Widget)"
    ```
 
-   L’ensemble complet des noms de fonctions d’opérateur unaire utilisé est le suivant : `op_UnaryPlus`, `op_UnaryNegation`, `op_LogicalNot`, `op_OnesComplement`, `op_Increment`, `op_Decrement`, `op_True`, et `op_False`.
+   L’ensemble complet des noms de fonction d’opérateur unaire utilisés est `op_UnaryPlus`le `op_UnaryNegation`suivant : `op_OnesComplement`, `op_Increment`, `op_Decrement` `op_LogicalNot`, `op_True`,, `op_False`, et.
 
 *  Opérateurs binaires.
 
@@ -840,9 +840,9 @@ Les exemples suivants montrent chacun un fragment de code c#, ainsi que la chaî
    "M:Acme.Widget.op_Addition(Acme.Widget,Acme.Widget)"
    ```
 
-   L’ensemble complet des noms de fonctions d’opérateur binaire utilisé est le suivant : `op_Addition`, `op_Subtraction`, `op_Multiply`, `op_Division`, `op_Modulus`, `op_BitwiseAnd`, `op_BitwiseOr`, `op_ExclusiveOr`, `op_LeftShift`, `op_RightShift`, `op_Equality`, `op_Inequality`, `op_LessThan`, `op_LessThanOrEqual`, `op_GreaterThan`, et `op_GreaterThanOrEqual`.
+   Le jeu complet de noms de fonctions d’opérateur binaires utilisé est `op_Addition`le `op_Subtraction`suivant : `op_Division`, `op_Modulus`, `op_BitwiseAnd` `op_Multiply`,, `op_ExclusiveOr`, `op_LeftShift`, `op_RightShift` `op_BitwiseOr`,,,, `op_Equality` ,`op_Inequality`, ,,`op_LessThan`et .`op_GreaterThanOrEqual` `op_LessThanOrEqual` `op_GreaterThan`
 
-*  Opérateurs de conversion ont une fin «`~`» suivi du type de retour.
+*  Les opérateurs de conversion ont un «`~`» de fin suivi du type de retour.
 
    ```csharp
    namespace Acme
@@ -860,9 +860,9 @@ Les exemples suivants montrent chacun un fragment de code c#, ainsi que la chaî
 
 ## <a name="an-example"></a>Exemple
 
-### <a name="c-source-code"></a>Code source c#
+### <a name="c-source-code"></a>C#code source
 
-L’exemple suivant montre le code source d’un `Point` classe :
+L’exemple suivant montre le code source d’une `Point` classe :
 
 ```csharp
 namespace Graphics
@@ -1011,9 +1011,9 @@ public class Point
 }
 ```
 
-### <a name="resulting-xml"></a>Données XML résultantes
+### <a name="resulting-xml"></a>XML résultant
 
-Voici la sortie produite par un générateur de documentation donné le code source pour la classe `Point`, comme indiqué ci-dessus :
+Voici la sortie produite par un générateur de documentation en fonction du code source de la `Point`classe, comme indiqué ci-dessus :
 
 ```xml
 <?xml version="1.0"?>
