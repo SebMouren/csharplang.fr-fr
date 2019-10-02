@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 94346034a667ad4af26796c0c4bbc96d6ed79aba
-ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
+ms.openlocfilehash: 7248a91976c479dc1b6b64b799639635617a7bec
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70876834"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704044"
 ---
 # <a name="statements"></a>Instructions
 
@@ -41,7 +41,7 @@ void F(bool b) {
         int i = 44;
 }
 ```
-génère une erreur au moment de la compilation, `if` car une instruction requiert un *embedded_statement* plutôt qu’une *instruction* pour sa branche if. Si ce code est autorisé, la variable `i` est déclarée, mais elle n’a jamais été utilisée. Notez, toutefois, qu’en plaçant `i`la déclaration de dans un bloc, l’exemple est valide.
+génère une erreur au moment de la compilation, car une instruction `if` requiert un *embedded_statement* plutôt qu’une *instruction* pour sa branche if. Si ce code est autorisé, la variable `i` est déclarée, mais elle n’a jamais été utilisée. Notez, toutefois, qu’en plaçant `i`la déclaration de dans un bloc, l’exemple est valide.
 
 ## <a name="end-points-and-reachability"></a>Points de terminaison et accessibilité
 
@@ -254,9 +254,9 @@ local_variable_initializer
     ;
 ```
 
-Le *local_variable_type* d’un *local_variable_declaration* spécifie directement le type des variables introduites par la déclaration, ou indique avec `var` l’identificateur que le type doit être déduit en fonction d’une initialiseur. Le type est suivi d’une liste de *local_variable_declarator*s, chacun d’entre eux introduisant une nouvelle variable. Un *local_variable_declarator* se compose d’un *identificateur* qui nomme la variable, éventuellement suivie d’un jeton «`=`» et d’un *local_variable_initializer* qui donne la valeur initiale de la variable.
+Le *local_variable_type* d’un *local_variable_declaration* spécifie directement le type des variables introduites par la déclaration, ou indique avec l’identificateur `var` que le type doit être déduit en fonction d’un initialiseur. Le type est suivi d’une liste de *local_variable_declarator*s, chacun d’entre eux introduisant une nouvelle variable. Un *local_variable_declarator* se compose d’un *identificateur* qui nomme la variable, éventuellement suivie d’un jeton « `=` » et d’un *local_variable_initializer* qui donne la valeur initiale de la variable.
 
-Dans le contexte d’une déclaration de variable locale, l’identificateur var agit comme un mot clé contextuel ([Mots clés](lexical-structure.md#keywords)). Lorsque *local_variable_type* est spécifié comme et `var` qu’aucun type nommé `var` n’est dans la portée, la déclaration est une ***déclaration de variable locale implicitement typée***, dont le type est déduit du type de l’initialiseur associé formule. Les déclarations de variables locales implicitement typées sont soumises aux restrictions suivantes :
+Dans le contexte d’une déclaration de variable locale, l’identificateur var agit comme un mot clé contextuel ([Mots clés](lexical-structure.md#keywords)). Quand *local_variable_type* est spécifié comme `var` et qu’aucun type nommé `var` n’est dans la portée, la déclaration est une ***déclaration de variable locale implicitement typée***, dont le type est déduit du type de l’expression d’initialiseur associée. Les déclarations de variables locales implicitement typées sont soumises aux restrictions suivantes :
 
 *  Le *local_variable_declaration* ne peut pas inclure plusieurs *local_variable_declarator*s.
 *  *Local_variable_declarator* doit inclure un *local_variable_initializer*.
@@ -331,7 +331,7 @@ constant_declarator
     ;
 ```
 
-Le *type* d’un *local_constant_declaration* spécifie le type des constantes introduites par la déclaration. Le type est suivi d’une liste de *constant_declarator*s, chacun d’entre eux introduisant une nouvelle constante. Un *constant_declarator* se compose d’un *identificateur* qui nomme la constante, suivi d’un jeton`=`«», suivi d’un *constant_expression* ([expressions constantes](expressions.md#constant-expressions)) qui donne la valeur de la constante.
+Le *type* d’un *local_constant_declaration* spécifie le type des constantes introduites par la déclaration. Le type est suivi d’une liste de *constant_declarator*s, chacun d’entre eux introduisant une nouvelle constante. Un *constant_declarator* se compose d’un *identificateur* qui nomme la constante, suivi d’un jeton « `=` », suivi d’un *constant_expression* ([expressions constantes](expressions.md#constant-expressions)) qui donne la valeur de la constante.
 
 Le *type* et le *constant_expression* d’une déclaration de constante locale doivent suivre les mêmes règles que celles d’une déclaration de membre constante ([constantes](classes.md#constants)).
 
@@ -441,11 +441,11 @@ switch_label
     ;
 ```
 
-Un *switch_Statement* se compose du mot `switch`clé, suivi d’une expression entre parenthèses (appelée expression de commutateur), suivie d’un *switch_block*. *Switch_block* se compose de zéro, un ou plusieurs *switch_section*, entre accolades. Chaque *switch_section* se compose d’un ou plusieurs *switch_label*, suivis d’un *statement_list* ([listes d’instructions](statements.md#statement-lists)).
+Un *switch_Statement* se compose du mot clé `switch`, suivi d’une expression entre parenthèses (appelée expression de commutateur), suivie d’un *switch_block*. *Switch_block* se compose de zéro, un ou plusieurs *switch_section*, entre accolades. Chaque *switch_section* se compose d’un ou plusieurs *switch_label*, suivis d’un *statement_list* ([listes d’instructions](statements.md#statement-lists)).
 
 Le ***type gouvernant*** d’une `switch` instruction est établi par l’expression de switch.
 
-*  Si le type de l’expression de commutateur `sbyte`est `byte`, `short`, `ushort` `long` `ulong` `bool`,, `uint` `int`,,,, ,`char`, ou`string`  *enum_type*, ou s’il s’agit du type Nullable correspondant à l’un de ces types, il s’agit du type gouvernant `switch` de l’instruction.
+*  Si le type de l’expression de commutateur est `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `bool`, `char`, 0 ou *enum_type*, ou s’il s’agit du type Nullable correspondant à l’un de ces types , il s’agit du type gouvernant de l’instruction 2.
 *  Dans le cas contraire, une seule conversion implicite définie par l’utilisateur ([conversions définies par l’utilisateur](conversions.md#user-defined-conversions)) doit exister du type de l’expression de commutateur à l’un `sbyte`des types `short`régis possibles suivants :, `byte`,, `ushort` , `int`, `uint`, ,`long` ,`char`,ou, un type Nullable correspondant à l’un de ces types. `ulong` `string`
 *  Sinon, si aucune conversion implicite n’existe, ou s’il existe plusieurs conversions implicites, une erreur se produit au moment de la compilation.
 
@@ -634,7 +634,7 @@ do_statement
 Une `do` instruction est exécutée comme suit :
 
 *  Le contrôle est transféré à l’instruction incorporée.
-*  Quand et si le contrôle atteint le point de terminaison de l’instruction incorporée (peut- `continue` être à partir de l’exécution d’une instruction), le *Boolean_expression* ([expressions booléennes](expressions.md#boolean-expressions)) est évalué. Si l’expression booléenne génère `true`, le contrôle est transféré au début de l' `do` instruction. Sinon, le contrôle est transféré au point de terminaison de `do` l’instruction.
+*  Quand et si le contrôle atteint le point de terminaison de l’instruction incorporée (peut-être à partir de l’exécution d’une instruction `continue`), le *Boolean_expression* ([expressions booléennes](expressions.md#boolean-expressions)) est évalué. Si l’expression booléenne génère `true`, le contrôle est transféré au début de l' `do` instruction. Sinon, le contrôle est transféré au point de terminaison de `do` l’instruction.
 
 Dans l’instruction incorporée d' `do` une instruction, `break` une instruction ([instruction Break](statements.md#the-break-statement)) peut être utilisée pour transférer le contrôle au point de terminaison de `do` l’instruction (terminant ainsi l’itération de l’instruction incorporée) et un `continue` Statement ([instruction continue](statements.md#the-continue-statement)) peut être utilisé pour transférer le contrôle au point de terminaison de l’instruction incorporée.
 
@@ -682,20 +682,20 @@ Une instruction for est exécutée comme suit :
 
 *  Si un *for_initializer* est présent, les initialiseurs de variable ou les expressions d’instruction sont exécutés dans l’ordre dans lequel ils sont écrits. Cette étape n’est effectuée qu’une seule fois.
 *  Si un *for_condition* est présent, il est évalué.
-*  Si le *for_condition* n’est pas présent ou si l’évaluation génère `true`, le contrôle est transféré à l’instruction incorporée. Quand et si le contrôle atteint le point de terminaison de l’instruction incorporée (peut- `continue` être à partir de l’exécution d’une instruction), les expressions du *for_iterator*, le cas échéant, sont évaluées dans l’ordre, puis une autre itération est effectuée, en commençant par évaluation de *for_condition* dans l’étape ci-dessus.
-*  Si le *for_condition* est présent et que l’évaluation génère `false`, le contrôle est transféré au point de terminaison de `for` l’instruction.
+*  Si le *for_condition* n’est pas présent ou si l’évaluation donne `true`, le contrôle est transféré à l’instruction incorporée. Quand et si le contrôle atteint le point de terminaison de l’instruction incorporée (peut-être à partir de l’exécution d’une instruction `continue`), les expressions du *for_iterator*, le cas échéant, sont évaluées dans l’ordre, puis une autre itération est effectuée, en commençant par évaluation de *for_condition* dans l’étape ci-dessus.
+*  Si le *for_condition* est présent et que l’évaluation produit `false`, le contrôle est transféré vers le point de terminaison de l’instruction `for`.
 
-Dans l’instruction incorporée d' `for` une instruction, `break` une instruction ([instruction Break](statements.md#the-break-statement)) peut être utilisée pour transférer le contrôle au point de terminaison de `for` l’instruction (terminant ainsi l’itération de l’instruction incorporée) et un `continue` Statement ([instruction continue](statements.md#the-continue-statement)) peut être utilisé pour transférer le contrôle au point de terminaison de l’instruction incorporée (en exécutant donc le *for_iterator* et en effectuant une `for` autre itération de l’instruction, en commençant par *for_condition*).
+Dans l’instruction incorporée d’une instruction `for`, une instruction `break` ([l’instruction Break](statements.md#the-break-statement)) peut être utilisée pour transférer le contrôle au point de terminaison de l’instruction `for` (par conséquent, terminer l’itération de l’instruction incorporée) et une instruction `continue` ([ L’instruction continue](statements.md#the-continue-statement)) peut être utilisée pour transférer le contrôle au point de terminaison de l’instruction incorporée (en exécutant donc le *for_iterator* et en exécutant une autre itération de l’instruction `for`, en commençant par *for_condition*).
 
 L’instruction incorporée d' `for` une instruction est accessible si l’une des conditions suivantes est remplie :
 
-*  L' `for` instruction est accessible et aucun *for_condition* n’est présent.
-*  L' `for` instruction est accessible et un *for_condition* est présent et n’a pas la valeur `false`de constante.
+*  L’instruction `for` est accessible et aucun *for_condition* n’est présent.
+*  L’instruction `for` est accessible et un *for_condition* est présent et n’a pas la valeur constante `false`.
 
 Le point de terminaison d' `for` une instruction est accessible si au moins l’une des conditions suivantes est vraie :
 
 *  L' `for` instruction contient une `break` instruction accessible qui quitte l' `for` instruction.
-*  L' `for` instruction est accessible et un *for_condition* est présent et n’a pas la valeur `true`de constante.
+*  L’instruction `for` est accessible et un *for_condition* est présent et n’a pas la valeur constante `true`.
 
 ### <a name="the-foreach-statement"></a>Instruction foreach
 
@@ -707,14 +707,14 @@ foreach_statement
     ;
 ```
 
-Le *type* et l' *identificateur* d’une `foreach` instruction déclarent la ***variable d’itération*** de l’instruction. Si l' `var` identificateur est donné en tant que *local_variable_type*et qu’aucun type nommé `var` n’est dans la portée, la variable d’itération est dite une ***variable d’itération implicitement typée***et son type est considéré comme étant le type d’élément de l’élément `foreach` comme indiqué ci-dessous. La variable d’itération correspond à une variable locale en lecture seule avec une portée qui s’étend sur l’instruction incorporée. Pendant l’exécution d' `foreach` une instruction, la variable d’itération représente l’élément de collection pour lequel une itération est en cours d’exécution. Une erreur de compilation se produit si l’instruction incorporée tente de modifier la variable d’itération (par le `++` biais `--` de l’assignation ou des opérateurs et) ou `ref` de `out` passer la variable d’itération en tant que paramètre ou.
+Le *type* et l' *identificateur* d’une `foreach` instruction déclarent la ***variable d’itération*** de l’instruction. Si l’identificateur `var` est donné en tant que *local_variable_type*, et qu’aucun type nommé `var` n’est dans la portée, la variable d’itération est dite une ***variable d’itération implicitement typée***et son type est considéré comme le type d’élément du `foreach` comme indiqué ci-dessous. La variable d’itération correspond à une variable locale en lecture seule avec une portée qui s’étend sur l’instruction incorporée. Pendant l’exécution d' `foreach` une instruction, la variable d’itération représente l’élément de collection pour lequel une itération est en cours d’exécution. Une erreur de compilation se produit si l’instruction incorporée tente de modifier la variable d’itération (par le `++` biais `--` de l’assignation ou des opérateurs et) ou `ref` de `out` passer la variable d’itération en tant que paramètre ou.
 
 Dans ce qui suit, par souci de `IEnumerable`concision `IEnumerable<T>` , `IEnumerator<T>` `IEnumerator`, et font référence aux types correspondants dans les `System.Collections` espaces `System.Collections.Generic`de noms et.
 
 Le traitement au moment de la compilation d’une instruction foreach détermine d’abord le type de ***collection***, le type d' ***énumérateur*** et le ***type d’élément*** de l’expression. Cette détermination se déroule comme suit :
 
 *  Si le type `X` d' *expression* est un type tableau, il existe une `X` `IEnumerable` conversion de référence implicite de en interface ( `System.Array` puisque implémente cette interface). Le ***type de collection*** est `IEnumerable` l’interface, le ***type*** d’énumérateur `IEnumerator` est l’interface et le ***type d’élément*** est le type d’élément `X`du type tableau.
-*  Si le type `X` d' *expression* est `dynamic` , il y a `IEnumerable` une conversion implicite d' *expression* en interface ([conversions dynamiques implicites](conversions.md#implicit-dynamic-conversions)). Le ***type de collection*** est `IEnumerable` l’interface et le ***type*** d’énumérateur `IEnumerator` est l’interface. Si l' `var` identificateur est donné en tant que *local_variable_type* , le ***type*** d’élément `dynamic`est, sinon il `object`est.
+*  Si le type `X` d' *expression* est `dynamic` , il y a `IEnumerable` une conversion implicite d' *expression* en interface ([conversions dynamiques implicites](conversions.md#implicit-dynamic-conversions)). Le ***type de collection*** est `IEnumerable` l’interface et le ***type*** d’énumérateur `IEnumerator` est l’interface. Si l’identificateur `var` est fourni en tant que *local_variable_type* , le ***type d’élément*** est `dynamic`, sinon il est `object`.
 *  Sinon, déterminez si le `X` type a une `GetEnumerator` méthode appropriée :
    * Effectuez une recherche de membre sur `X` le type avec `GetEnumerator` l’identificateur et aucun argument de type. Si la recherche de membre ne produit pas de correspondance, si elle génère une ambiguïté ou si elle produit une correspondance qui n’est pas un groupe de méthodes, recherchez une interface énumérable comme décrit ci-dessous. Il est recommandé d’émettre un avertissement si la recherche de membres produit tout sauf un groupe de méthodes ou aucune correspondance.
    * Exécutez la résolution de surcharge à l’aide du groupe de méthodes résultant et d’une liste d’arguments vide. Si la résolution de surcharge entraîne l’absence de méthodes applicables, provoque une ambiguïté ou produit une seule meilleure méthode, mais que cette méthode est statique ou non publique, recherchez une interface énumérable comme décrit ci-dessous. Il est recommandé d’émettre un avertissement si la résolution de surcharge produit tout sauf une méthode d’instance publique non ambiguë ou aucune méthode applicable.
@@ -750,11 +750,11 @@ est ensuite développé pour :
 }
 ```
 
-La variable `e` n’est pas visible ou accessible à l’expression `x` ou à l’instruction incorporée ou à tout autre code source du programme. La variable `v` est en lecture seule dans l’instruction incorporée. S’il n’existe pas de conversion explicite ([conversions explicites](conversions.md#explicit-conversions)) de `T` (le type d’élément) en `V` (le *local_variable_type* dans l’instruction foreach), une erreur est générée et aucune autre étape n’est effectuée. Si `x` a la valeur `null`, une `System.NullReferenceException` est levée au moment de l’exécution.
+La variable `e` n’est pas visible ou accessible à l’expression `x` ou à l’instruction incorporée ou à tout autre code source du programme. La variable `v` est en lecture seule dans l’instruction incorporée. S’il n’existe pas de conversion explicite ([conversions explicites](conversions.md#explicit-conversions)) de `T` (type d’élément) en `V` (le *local_variable_type* dans l’instruction foreach), une erreur est générée et aucune autre étape n’est prise. Si `x` a la valeur `null`, une `System.NullReferenceException` est levée au moment de l’exécution.
 
 Une implémentation est autorisée à implémenter une instruction foreach donnée différemment, par exemple pour des raisons de performances, tant que le comportement est cohérent avec l’expansion ci-dessus.
 
-La position à `v` l’intérieur de la boucle while est importante pour la façon dont elle est capturée par toute fonction anonyme se produisant dans le *embedded_statement*.
+La position de `v` à l’intérieur de la boucle while est importante pour la façon dont elle est capturée par toute fonction anonyme se produisant dans le *embedded_statement*.
 
 Exemple :
 ```csharp
@@ -831,7 +831,7 @@ class Test
 }
 ```
 La sortie produite est la suivante :
-```csharp
+```console
 1.2 2.3 3.4 4.5 5.6 6.7 7.8 8.9
 ```
 
@@ -890,7 +890,7 @@ class Test
 les `finally` blocs associés à deux `try` instructions sont exécutés avant que le contrôle soit transféré à la cible de l’instruction de saut.
 
 La sortie produite est la suivante :
-```
+```console
 Before break
 Innermost finally block
 Outermost finally block
@@ -984,7 +984,7 @@ class Test
 ```
 une `goto` instruction est utilisée pour transférer le contrôle hors d’une portée imbriquée.
 
-La cible d’une `goto case` instruction est la liste d’instructions dans l’instruction immédiatement `switch` englobante ([l’instruction switch](statements.md#the-switch-statement)), qui contient `case` une étiquette avec la valeur de constante donnée. Si l' `goto case` instruction n’est pas entourée d’une `switch` instruction, si *constant_expression* n’est pas implicitement convertible ([conversions implicites](conversions.md#implicit-conversions)) en type gouvernant de l’instruction `switch` englobante la plus proche, ou si l’instruction englobante `switch` la plus proche ne `case` contient pas d’étiquette avec la valeur de constante donnée, une erreur de compilation se produit.
+La cible d’une `goto case` instruction est la liste d’instructions dans l’instruction immédiatement `switch` englobante ([l’instruction switch](statements.md#the-switch-statement)), qui contient `case` une étiquette avec la valeur de constante donnée. Si l’instruction `goto case` n’est pas entourée d’une instruction `switch`, si le *constant_expression* n’est pas implicitement convertible ([conversion implicite](conversions.md#implicit-conversions)) en type gouvernant de l’instruction `switch` englobante la plus proche, ou si le le plus proche englobant l’instruction `switch` ne contient pas d’étiquette `case` avec la valeur de constante donnée, une erreur de compilation se produit.
 
 La cible d’une `goto default` instruction est la liste d’instructions dans l’instruction immédiatement `switch` englobante ([l’instruction switch](statements.md#the-switch-statement)), qui contient `default` une étiquette. Si l' `goto default` instruction n’est pas entourée d’une `switch` instruction, ou si l’instruction `switch` englobante la plus proche `default` ne contient pas d’étiquette, une erreur de compilation se produit.
 
@@ -1092,13 +1092,13 @@ Il existe trois formes d' `try` instructions possibles :
 *  Bloc suivi d’un `finally` bloc. `try`
 *  Bloc suivi d’un ou de plusieurs `catch` blocs suivis d' `finally` un bloc. `try`
 
-Quand une `catch` clause spécifie un *exception_specifier*, le type doit `System.Exception`être, un type qui dérive `System.Exception` de ou un type de paramètre de `System.Exception` type ayant (ou une sous-classe) comme classe de base effective.
+Quand une clause `catch` spécifie un *exception_specifier*, le type doit être `System.Exception`, un type qui dérive de `System.Exception` ou un type de paramètre de type qui a `System.Exception` (ou une sous-classe de ce type) comme classe de base effective.
 
-Lorsqu’une `catch` clause spécifie à la fois un *exception_specifier* avec un *identificateur*, une ***variable d’exception*** du nom et du type donnés est déclarée. La variable d’exception correspond à une variable locale avec une étendue qui s’étend `catch` sur la clause. Pendant l’exécution du *exception_filter* et du *bloc*, la variable d’exception représente l’exception actuellement gérée. À des fins de vérification de l’attribution définie, la variable d’exception est considérée comme assignée de manière définitive dans toute son étendue.
+Quand une clause `catch` spécifie à la fois un *exception_specifier* avec un *identificateur*, une ***variable d’exception*** du nom et du type donnés est déclarée. La variable d’exception correspond à une variable locale avec une étendue qui s’étend `catch` sur la clause. Pendant l’exécution du *exception_filter* et du *bloc*, la variable d’exception représente l’exception actuellement gérée. À des fins de vérification de l’attribution définie, la variable d’exception est considérée comme assignée de manière définitive dans toute son étendue.
 
 À moins `catch` qu’une clause comprenne un nom de variable d’exception, il est impossible d’accéder à l’objet `catch` d’exception dans le filtre et le bloc.
 
-Une `catch` clause qui ne spécifie pas de *exception_specifier* est appelée une `catch` clause générale.
+Une clause `catch` qui ne spécifie pas de *exception_specifier* est appelée clause générale `catch`.
 
 Certains langages de programmation peuvent prendre en charge des exceptions qui ne peuvent pas être représentées en tant qu’objet dérivé de `System.Exception`, bien que ces exceptions ne puissent jamais être générées par C# le code. Une clause `catch` générale peut être utilisée pour intercepter ces exceptions. Par conséquent, une `catch` clause générale est sémantiquement différente d’une clause qui spécifie le type `System.Exception`, dans le cas où la première peut également intercepter des exceptions d’autres langages.
 
@@ -1138,13 +1138,13 @@ class Test
 }
 ```
 la méthode `F` intercepte une exception, écrit des informations de diagnostic dans la console, modifie la variable d’exception et lève à nouveau l’exception. L’exception qui est levée une nouvelle fois est l’exception d’origine, de sorte que la sortie produite est :
-```
+```console
 Exception in F: G
 Exception in Main: G
 ```
 
 Si le premier bloc catch avait été `e` levé au lieu de lever à nouveau l’exception actuelle, la sortie produite serait la suivante :
-```
+```console
 Exception in F: G
 Exception in Main: F
 ```
@@ -1218,13 +1218,13 @@ lock_statement
     ;
 ```
 
-L’expression d’une `lock` instruction doit indiquer une valeur d’un type connu pour être un *reference_type*. Aucune conversion boxing implicite ([conversions boxing](conversions.md#boxing-conversions)) n’est jamais effectuée pour l’expression `lock` d’une instruction. par conséquent, il s’agit d’une erreur au moment de la compilation pour que l’expression désigne une valeur d’un *Value_type*.
+L’expression d’une instruction `lock` doit désigner une valeur d’un type connu comme étant un *reference_type*. Aucune conversion boxing implicite ([conversions boxing](conversions.md#boxing-conversions)) n’est jamais effectuée pour l’expression d’une instruction `lock`. par conséquent, il s’agit d’une erreur au moment de la compilation pour que l’expression désigne une valeur d’un *Value_type*.
 
 Une `lock` déclaration de la forme
 ```csharp
 lock (x) ...
 ```
-où `x` est une expression d’un *reference_type*, équivaut précisément à
+où `x` est une expression d’un *reference_type*, est exactement équivalent à
 ```csharp
 bool __lockWasTaken = false;
 try {
@@ -1276,7 +1276,7 @@ resource_acquisition
 
 Une ***ressource*** est une classe ou un struct qui implémente `System.IDisposable`, qui comprend une méthode unique sans paramètre nommée. `Dispose` Le code qui utilise une ressource peut appeler `Dispose` pour indiquer que la ressource n’est plus nécessaire. Si `Dispose` n’est pas appelé, la suppression automatique finit par se produire à la suite de garbage collection.
 
-Si la forme de *resource_acquisition* est *local_variable_declaration* , le type de `dynamic` local_variable_declaration doit être ou un type qui peut être implicitement converti en. `System.IDisposable` Si la forme de *resource_acquisition* est *expression* , cette expression doit être implicitement convertible en `System.IDisposable`.
+Si la forme de *resource_acquisition* est *local_variable_declaration* , le type de *local_variable_declaration* doit être `dynamic` ou un type qui peut être implicitement converti en `System.IDisposable`. Si la forme de *resource_acquisition* est *expression* , cette expression doit être implicitement convertible en `System.IDisposable`.
 
 Les variables locales déclarées dans un *resource_acquisition* sont en lecture seule et doivent inclure un initialiseur. Une erreur de compilation se produit si l’instruction incorporée tente de modifier ces variables locales (par le biais `++` de `--` l’assignation ou des opérateurs et), d’en prendre l’adresse `ref` ou `out` de les passer en tant que paramètres ou.
 
@@ -1390,7 +1390,7 @@ yield_statement
 
 Il existe plusieurs restrictions sur l’emplacement `yield` où une instruction peut apparaître, comme décrit dans l’exemple suivant.
 
-*  Une erreur `yield` de compilation pour une instruction (de l’une des deux formes) s’affiche en dehors d’un *method_body*, *operator_body* ou *accessor_body*
+*  Une erreur de compilation pour une instruction `yield` (de l’une des deux formes) s’affiche en dehors d’un *method_body*, *operator_body* ou *accessor_body*
 *  Il s’agit d’une erreur de compilation pour `yield` qu’une instruction (de l’une des deux formes) apparaisse dans une fonction anonyme.
 *  Il s’agit d’une erreur de compilation pour `yield` qu’une instruction (de l’une des deux formes `finally` ) apparaisse `try` dans la clause d’une instruction.
 *  Il s’agit d’une erreur de compilation pour `yield return` qu’une instruction apparaisse n' `try` importe où dans une `catch` instruction qui contient des clauses.

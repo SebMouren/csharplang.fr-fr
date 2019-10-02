@@ -1,12 +1,12 @@
 ---
-ms.openlocfilehash: 8bc4bf6310fb8a8457beee167f18d30aaca10a8e
-ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
+ms.openlocfilehash: 300d5fc2a2fadd98472d73c122226146605b01dd
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70876899"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71703997"
 ---
-# <a name="introduction"></a>Introduction
+# <a name="introduction"></a>Présentation
 
 C# (prononcé « C Sharp ») est un langage de programmation simple, moderne, orienté objet et de type sécurisé. C#a ses racines dans la famille de langages C et sera immédiatement familière aux programmeurs C++Java, et Java. C#est standardisé par ECMA International comme norme ***ECMA-334*** et par ISO/IEC comme norme ***iso/IEC 23270*** . Le C# compilateur de Microsoft pour le .NET Framework est une implémentation conforme de ces deux normes.
 
@@ -36,11 +36,11 @@ class Hello
 ```
 
 Les fichiers sources C# ont généralement l’extension de fichier `.cs`. En supposant que le programme « Hello, World » est stocké dans `hello.cs`le fichier, le programme peut être compilé avec C# le compilateur Microsoft à l’aide de la ligne de commande.
-```
+```console
 csc hello.cs
 ```
 qui produit un assembly exécutable nommé `hello.exe`. La sortie produite par cette application lorsqu’elle est exécutée est
-```
+```console
 Hello, World
 ```
 
@@ -91,7 +91,7 @@ namespace Acme.Collections
 ```
 déclare une classe nommée `Stack` dans un espace de noms appelé. `Acme.Collections` Le nom qualifié complet de cette classe est `Acme.Collections.Stack`. La classe contient plusieurs membres : un champ nommé `top`, deux méthodes nommées `Push` et `Pop`, et une classe imbriquée nommée `Entry`. La classe `Entry` contient trois membres en plus : un champ nommé `next`, un autre nommé `data` et un constructeur. En supposant que le code source de l’exemple est stocké dans le fichier `acme.cs`, la ligne de commande
 
-```
+```console
 csc /t:library acme.cs
 ```
 compile l’exemple en tant que bibliothèque (code sans point d’entrée `Main`) et produit un assembly nommé `acme.dll`.
@@ -119,12 +119,12 @@ class Test
 ```
 Si le programme est stocké dans le `test.cs`fichier, `test.cs` lorsque est compilé, `acme.dll` l’assembly peut être référencé à l’aide `/r` de l’option du compilateur :
 
-```
+```console
 csc /r:acme.dll test.cs
 ```
 Cela permet de créer un assembly exécutable nommé `test.exe`, qui, lors de l’exécution, produit la sortie :
 
-```
+```console
 100
 10
 1
@@ -281,8 +281,8 @@ Le tableau suivant récapitule les C#opérateurs de, en répertoriant les catég
 |                                  | `x >= y`          | Supérieur ou égal à |
 |                                  | `x is T`          | Retourne `true` si `x` est un `T`, `false` sinon |
 |                                  | `x as T`          | Retourne `x` de type `T`, ou `null` si `x` n’est pas un `T` |
-| Égalité                         | `x == y`          | Égal      |
-|                                  | `x != y`          | Différence |
+| Égalité                         | `x == y`          | Égal à      |
+|                                  | `x != y`          | Non égal à |
 | AND logique                      | `x & y`           | AND d’entiers au niveau du bit, AND logique booléen |
 | XOR logique                      | `x ^ y`           | Opération de bits entière XOR, Boolean logique XOR |
 | OR logique                       | <code>x &#124; y</code> | Opération de bits entière OR, Boolean logique OR |

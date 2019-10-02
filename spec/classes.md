@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 2c87cafb8591b9dff2aa517b65af80ab263c7faa
-ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
+ms.openlocfilehash: e0def754174ab8646f9b849abe86d2c375c958b6
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70876886"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71703984"
 ---
 # <a name="classes"></a>Classes
 
@@ -21,7 +21,7 @@ class_declaration
     ;
 ```
 
-Un *class_declaration* se compose d’un ensemble facultatif d' *attributs* ([attributs](attributes.md)), suivi d’un ensemble facultatif de *class_modifier*s ([modificateurs de classe](classes.md#class-modifiers)), suivi d' `partial` un modificateur facultatif, suivi de l’option mot `class` clé et *identificateur* qui nomme la classe, suivis d’un *type_parameter_list* facultatif ([paramètres de type](classes.md#type-parameters)) suivi d’une spécification facultative *class_base* ([spécification de base de classe). ](classes.md#class-base-specification)), suivi d’un ensemble facultatif de *type_parameter_constraints_clause*s ([contraintes de paramètre de type](classes.md#type-parameter-constraints)), suivi d’un *class_body* ([corps de classe](classes.md#class-body)), éventuellement suivi d’un point-virgule.
+Un *class_declaration* se compose d’un ensemble facultatif d' *attributs* ([attributs](attributes.md)), suivi d’un ensemble facultatif de *class_modifier*s ([modificateurs de classe](classes.md#class-modifiers)), suivi d’un modificateur facultatif `partial`, suivi du mot clé. `class` et un *identificateur* qui nomme la classe, suivis d’un *type_parameter_list* facultatif ([paramètres de type](classes.md#type-parameters)), suivi d’une spécification *Class_base* facultative (spécification de[base de classe](classes.md#class-base-specification)), suivie de un ensemble facultatif de *type_parameter_constraints_clause*s ([contraintes de paramètre de type](classes.md#type-parameter-constraints)), suivi d’un *class_body* ([corps de classe](classes.md#class-body)), éventuellement suivi d’un point-virgule.
 
 Une déclaration de classe ne peut pas fournir *type_parameter_constraints_clause*, sauf si elle fournit également un *type_parameter_list*.
 
@@ -112,17 +112,17 @@ __Référencement des types de classes statiques__
 Un *namespace_or_type_name* ([espace de noms et nom de type](basic-concepts.md#namespace-and-type-names)) est autorisé à faire référence à une classe statique si
 
 *  *Namespace_or_type_name* est le `T` dans un *namespace_or_type_name* de la forme `T.I`, ou
-*  *Namespace_or_type_name* est `T` le dans un *typeof_expression* ([arguments lists](expressions.md#argument-lists)1) du formulaire. `typeof(T)`
+*  *Namespace_or_type_name* est le `T` dans un *typeof_expression* ([liste d’arguments](expressions.md#argument-lists)1) de la forme `typeof(T)`.
 
 Un *primary_expression* ([fonction members](expressions.md#function-members)) est autorisé à référencer une classe statique si
 
-*  Le *primary_expression* est le `E` dans un *member_access* ([vérification au moment de la compilation de la résolution de surcharge dynamique](expressions.md#compile-time-checking-of-dynamic-overload-resolution)) du formulaire `E.I`.
+*  Le *primary_expression* est le `E` dans un *member_access* ([vérification de la résolution de surcharge dynamique au moment](expressions.md#compile-time-checking-of-dynamic-overload-resolution)de la compilation) sous la forme `E.I`.
 
 Dans tout autre contexte, il s’agit d’une erreur de compilation pour référencer une classe statique. Par exemple, il s’agit d’une erreur pour une classe statique à utiliser comme classe de base, un type constitutif ([types imbriqués](classes.md#nested-types)) d’un membre, un argument de type générique ou une contrainte de paramètre de type. De même, une classe statique ne peut pas être utilisée dans un type de tableau, un `new` type pointeur, une expression, une `is` expression de Cast `as` , une expression `sizeof` , une expression, une expression ou une expression de valeur par défaut.
 
 ### <a name="partial-modifier"></a>Modificateur partiel
 
-Le `partial` modificateur est utilisé pour indiquer que ce *class_declaration* est une déclaration de type partiel. Plusieurs déclarations de type partiel portant le même nom dans un espace de noms englobant ou une déclaration de type sont combinées pour former une déclaration de type, suivant les règles spécifiées dans les [types partiels](classes.md#partial-types).
+Le modificateur `partial` est utilisé pour indiquer que ce *class_declaration* est une déclaration de type partielle. Plusieurs déclarations de type partiel portant le même nom dans un espace de noms englobant ou une déclaration de type sont combinées pour former une déclaration de type, suivant les règles spécifiées dans les [types partiels](classes.md#partial-types).
 
 La déclaration d’une classe distribuée sur des segments distincts de texte de programme peut être utile si ces segments sont produits ou maintenus dans des contextes différents. Par exemple, une partie d’une déclaration de classe peut être générée par l’ordinateur, tandis que l’autre est créée manuellement. La séparation du texte des deux empêche les mises à jour par l’une d’un conflit avec les mises à jour par l’autre.
 
@@ -171,7 +171,7 @@ class Extend<V>: V {}            // Error, type parameter used as base class
 
 #### <a name="base-classes"></a>Classes de base
 
-Quand un *class_type* est inclus dans le *class_base*, il spécifie la classe de base directe de la classe déclarée. Si une déclaration de classe n’a pas de *class_base*, ou si le *class_base* répertorie uniquement les types d’interface, la classe `object`de base directe est supposée être. Une classe hérite des membres de sa classe de base directe, comme décrit dans [héritage](classes.md#inheritance).
+Quand un *class_type* est inclus dans le *class_base*, il spécifie la classe de base directe de la classe déclarée. Si une déclaration de classe n’a pas de *class_base*, ou si le *class_base* répertorie uniquement les types d’interface, la classe de base directe est supposée être `object`. Une classe hérite des membres de sa classe de base directe, comme décrit dans [héritage](classes.md#inheritance).
 
 Dans l’exemple
 ```csharp
@@ -344,9 +344,9 @@ Compte tenu de cette relation, il s’agit d’une erreur de compilation pour qu
 Toutes les contraintes doivent être cohérentes entre les paramètres de type dépendant. Si le paramètre `S` de type dépend du `T` paramètre de type, alors :
 
 *  `T`ne doit pas avoir la contrainte de type valeur. Dans le `T` cas contraire, est `S` effectivement sealed, ce qui signifie qu’il `T`doit être du même type que, ce qui élimine le besoin de deux paramètres de type.
-*  Si `S` a la contrainte de type valeur `T` , ne doit pas avoir de contrainte *class_type* .
-*  Si `S` a une contrainte `A` class_type et `T` a une contrainte `B` class_type, il doit y avoir une conversion d’identité ou une conversion `A` de référence implicite de en `B`ou une conversion de référence implicite `A`de `B` en.
-*  Si `S` dépend également du paramètre `U` de type `U` et a une contrainte `A` class_type `T` et a une contrainte `B` class_type, il doit y avoir une conversion d’identité ou une conversion de référence `A` implicite de en `B` ou une conversion `B` de `A`référence implicite de en.
+*  Si `S` a la contrainte de type valeur, `T` ne doit pas avoir de contrainte *class_type* .
+*  Si `S` a une contrainte *class_type* `A` et `T` a une contrainte *class_type* `B`, il doit y avoir une conversion d’identité ou une conversion de référence implicite de `A` à `B` ou une conversion de référence implicite de `B` à `A`.
+*  Si `S` dépend également du paramètre de type `U` et `U` a une contrainte *class_type* `A` et `T` a une contrainte *class_type* `B`, il doit y avoir une conversion d’identité ou une conversion de référence implicite de `A` pour `B` ou une conversion de référence implicite de 0 à 1.
 
 La contrainte de type `S` valeur et `T` la contrainte de type référence sont valides. Cela limite `T` en fait les types `System.Object`, `System.ValueType` `System.Enum`, et n’importe quel type d’interface.
 
@@ -424,12 +424,12 @@ La ***classe de base effective*** d’un paramètre `T` de type est définie com
 
 *  Si `T` n’a pas de contraintes primaires ni de contraintes de paramètre de type, `object`sa classe de base effective est.
 *  Si `T` a la contrainte de type valeur, sa classe de base `System.ValueType`effective est.
-*  Si `T` a une contrainte class_type `C` mais aucune contrainte *type_parameter* , sa classe de base effective `C`est.
+*  Si `T` a une contrainte *class_type* `C` mais pas de contraintes *type_parameter* , sa classe de base effective est `C`.
 *  Si `T` n’a pas de contrainte *class_type* mais possède une ou plusieurs contraintes *type_parameter* , sa classe de base effective est le type le plus englobé (les[opérateurs de conversion levés](conversions.md#lifted-conversion-operators)) dans l’ensemble des classes de base effectives de son *TYPE_* contraintes de paramètres. Les règles de cohérence garantissent qu’il existe un type le plus englobé.
 *  Si `T` a à la fois une contrainte *class_type* et une ou plusieurs contraintes *type_parameter* , sa classe de base effective est le type le plus englobé (les[opérateurs de conversion levés](conversions.md#lifted-conversion-operators)) dans le jeu constitué du *class_type* contrainte de `T` et des classes de base effectives de ses contraintes *type_parameter* . Les règles de cohérence garantissent qu’il existe un type le plus englobé.
-*  Si `T` a la contrainte de type référence, mais pas de contraintes *class_type* , sa classe `object`de base effective est.
+*  Si `T` a la contrainte de type référence, mais pas de contraintes *class_type* , sa classe de base effective est `object`.
 
-Dans le cadre de ces règles, si T a une contrainte `V` qui est un *Value_type*, utilisez à la place le type de base `V` le plus spécifique de qui est un *class_type*. Cela ne peut jamais se produire dans une contrainte donnée explicitement, mais peut se produire lorsque les contraintes d’une méthode générique sont implicitement héritées par une déclaration de méthode de substitution ou une implémentation explicite d’une méthode d’interface.
+Dans le cadre de ces règles, si T a une contrainte `V` qui est un *Value_type*, utilisez à la place le type de base le plus spécifique de `V` qui est un *class_type*. Cela ne peut jamais se produire dans une contrainte donnée explicitement, mais peut se produire lorsque les contraintes d’une méthode générique sont implicitement héritées par une déclaration de méthode de substitution ou une implémentation explicite d’une méthode d’interface.
 
 Ces règles garantissent que la classe de base effective est toujours un *class_type*.
 
@@ -438,7 +438,7 @@ L' ***ensemble d’interfaces effectif*** d’un paramètre `T` de type est déf
 *  Si `T` n’a pas de *secondary_constraints*, son ensemble d’interfaces effectif est vide.
 *  Si `T` a des contraintes *INTERFACE_TYPE* mais aucune contrainte *type_parameter* , son ensemble d’interfaces effectif est son ensemble de contraintes *INTERFACE_TYPE* .
 *  Si `T` n’a pas de contraintes *INTERFACE_TYPE* mais a des contraintes *type_parameter* , son ensemble d’interfaces effectif est l’Union des ensembles d’interfaces effectifs de ses contraintes *type_parameter* .
-*  Si `T` a à la fois des contraintes *INTERFACE_TYPE* et des contraintes *type_parameter* , son ensemble d’interfaces effectif est l’Union de son ensemble de contraintes *INTERFACE_TYPE* et des ensembles d’interfaces effectifs de ses *type_parameter* contraintes.
+*  Si `T` a des contraintes *INTERFACE_TYPE* et *type_parameter* , son ensemble d’interfaces effectif est l’Union de son ensemble de contraintes *INTERFACE_TYPE* et des ensembles d’interfaces effectifs de ses *type_parameter* contraintes.
 
 Un paramètre de type est ***connu comme un type référence*** s’il a la contrainte de type référence ou sa classe de base effective `object` n' `System.ValueType`est pas ou.
 
@@ -472,7 +472,7 @@ class_body
 
 Une déclaration de type peut être fractionnée entre plusieurs ***déclarations de type partiel***. La déclaration de type est construite à partir de ses parties en suivant les règles de cette section, après quoi elle est traitée comme une déclaration unique pendant le reste du traitement au moment de la compilation et de l’exécution du programme.
 
-Un *class_declaration*, *struct_declaration* ou *interface_declaration* représente une déclaration de type partiel s’il comprend `partial` un modificateur. `partial`n’est pas un mot clé et agit uniquement comme un modificateur s’il apparaît immédiatement avant l’un des `class`mots `struct` clés `interface` , ou dans une déclaration de type, ou `void` avant le type dans une déclaration de méthode. Dans d’autres contextes, il peut être utilisé comme un identificateur normal.
+Un *class_declaration*, *struct_declaration* ou *interface_declaration* représente une déclaration de type partiel s’il comprend un modificateur `partial`. `partial`n’est pas un mot clé et agit uniquement comme un modificateur s’il apparaît immédiatement avant l’un des `class`mots `struct` clés `interface` , ou dans une déclaration de type, ou `void` avant le type dans une déclaration de méthode. Dans d’autres contextes, il peut être utilisé comme un identificateur normal.
 
 Chaque partie d’une déclaration de type partiel doit inclure `partial` un modificateur. Elle doit avoir le même nom et être déclarée dans le même espace de noms ou déclaration de type que les autres parties. Le `partial` modificateur indique que des parties supplémentaires de la déclaration de type peuvent exister ailleurs, mais que l’existence de ces parties supplémentaires n’est pas une exigence ; il est valide pour un type avec une déclaration `partial` unique pour inclure le modificateur.
 
@@ -884,7 +884,7 @@ Si un `new` modificateur est inclus dans une déclaration qui ne masque pas un m
 
 ### <a name="access-modifiers"></a>Modificateurs d’accès
 
-Un *class_member_declaration* peut avoir l’un des cinq types d’accessibilité déclarés possibles ([accessibilité déclarée](basic-concepts.md#declared-accessibility)) `public`: `protected internal`, `protected`, `internal`, ou `private`. À l’exception `protected internal` de la combinaison, il s’agit d’une erreur de compilation pour spécifier plusieurs modificateurs d’accès. Quand un *class_member_declaration* n’inclut pas de modificateur d’accès `private` , est utilisé par défaut.
+Un *class_member_declaration* peut avoir l’un des cinq types possibles d’accessibilité déclarée ([accessibilité déclarée](basic-concepts.md#declared-accessibility)) : `public`, `protected internal`, `protected`, `internal` ou `private`. À l’exception `protected internal` de la combinaison, il s’agit d’une erreur de compilation pour spécifier plusieurs modificateurs d’accès. Quand un *class_member_declaration* n’inclut pas de modificateur d’accès, `private` est utilisé.
 
 ### <a name="constituent-types"></a>Types constitutifs
 
@@ -896,13 +896,13 @@ Les membres d’une classe sont soit des ***membres statiques*** , soit des ***m
 
 Lorsqu’une déclaration de champ, de méthode, de propriété, d’événement, d’opérateur `static` ou de constructeur comprend un modificateur, elle déclare un membre statique. En outre, une déclaration de constante ou de type déclare implicitement un membre statique. Les membres statiques présentent les caractéristiques suivantes :
 
-*  Lorsqu’un `M` membre statique est référencé dans un *member_access* ([accès aux membres](expressions.md#member-access)) du formulaire `E.M`, `E` doit désigner un type contenant `M`. Il s’agit d’une erreur au moment `E` de la compilation pour qu’une instance soit dénotée.
+*  Lorsqu’un membre statique `M` est référencé dans un *member_access* ([accès aux membres](expressions.md#member-access)) de la forme `E.M`, `E` doit désigner un type contenant `M`. Il s’agit d’une erreur au moment `E` de la compilation pour qu’une instance soit dénotée.
 *  Un champ statique identifie exactement un emplacement de stockage à partager par toutes les instances d’un type de classe fermé donné. Quel que soit le nombre d’instances d’un type de classe fermé donné, il n’existe qu’une seule copie d’un champ statique.
 *  Un membre de fonction statique (méthode, propriété, événement, opérateur ou constructeur) ne fonctionne pas sur une instance spécifique, et il s’agit d’une erreur de compilation pour faire `this` référence à dans ce type de membre de fonction.
 
 Quand un champ, une méthode, une propriété, un événement, un indexeur, un constructeur ou une déclaration de `static` destructeur n’inclut pas de modificateur, il déclare un membre d’instance. (Un membre d’instance est parfois appelé membre non statique.) Les membres d’instance présentent les caractéristiques suivantes :
 
-*  Lorsqu’un membre `M` d’instance est référencé dans un *member_access* ([accès aux membres](expressions.md#member-access)) du formulaire `E.M`, `E` doit désigner une instance d’un type contenant. `M` Il s’agit d’une erreur de liaison `E` au moment de la liaison pour indiquer un type.
+*  Lorsqu’un membre d’instance `M` est référencé dans un *member_access* ([accès aux membres](expressions.md#member-access)) de la forme `E.M`, `E` doit désigner une instance d’un type contenant `M`. Il s’agit d’une erreur de liaison `E` au moment de la liaison pour indiquer un type.
 *  Chaque instance d’une classe contient un ensemble distinct de tous les champs d’instance de la classe.
 *  Un membre de fonction d’instance (méthode, propriété, indexeur, constructeur d’instance ou destructeur) opère sur une instance donnée de la classe, et cette instance est accessible en `this` tant que ([cet accès](expressions.md#this-access)).
 
@@ -933,7 +933,7 @@ class Test
 }
 ```
 
-La `F` méthode montre que dans une fonction membre d’instance, un *simple_name* ([noms simples](expressions.md#simple-names)) peut être utilisé pour accéder aux membres d’instance et aux membres statiques. La `G` méthode montre que dans une fonction membre statique, il s’agit d’une erreur de compilation pour accéder à un membre d’instance via un *simple_name*. La `Main` méthode indique que dans un *member_access* ([accès aux membres](expressions.md#member-access)), les membres d’instance doivent être accessibles via des instances et les membres statiques doivent être accessibles via des types.
+La méthode `F` montre que dans une fonction membre d’instance, un *simple_name* ([noms simples](expressions.md#simple-names)) peut être utilisé pour accéder aux membres d’instance et aux membres statiques. La méthode `G` montre que dans une fonction membre statique, il s’agit d’une erreur de compilation pour accéder à un membre d’instance via un *simple_name*. La méthode `Main` indique que dans un *member_access* ([accès aux membres](expressions.md#member-access)), les membres d’instance doivent être accessibles via des instances et les membres statiques doivent être accessibles par le biais de types.
 
 ### <a name="nested-types"></a>Types imbriqués
 
@@ -1220,7 +1220,7 @@ class Test
 }
 ```
 une classe `A` définit une propriété `P`en lecture seule, en réservant des signatures `get_P` pour `set_P` les méthodes et. Une classe `B` dérive `A` de et masque ces deux signatures réservées. L’exemple produit la sortie :
-```
+```console
 123
 123
 456
@@ -1279,11 +1279,11 @@ constant_declarator
     ;
 ```
 
-Un *constant_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)), un `new` modificateur ([le nouveau modificateur](classes.md#the-new-modifier)) et une combinaison valide des quatre modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)). Les attributs et les modificateurs s’appliquent à tous les membres déclarés par *constant_declaration*. Bien que les constantes soient considérées comme des membres statiques, un constant_declaration `static` ne requiert pas et n’autorise pas de modificateur. Il s’agit d’une erreur pour que le même modificateur apparaisse plusieurs fois dans une déclaration de constante.
+Un *constant_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)), un modificateur `new` ([le nouveau modificateur](classes.md#the-new-modifier)) et une combinaison valide des quatre modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)). Les attributs et les modificateurs s’appliquent à tous les membres déclarés par *constant_declaration*. Bien que les constantes soient considérées comme des membres statiques, un *constant_declaration* ne requiert pas et n’autorise pas un modificateur `static`. Il s’agit d’une erreur pour que le même modificateur apparaisse plusieurs fois dans une déclaration de constante.
 
-Le *type* d’un *constant_declaration* spécifie le type des membres introduits par la déclaration. Le type est suivi d’une liste de *constant_declarator*s, chacun d’entre eux introduisant un nouveau membre. Un *constant_declarator* se compose d’un *identificateur* qui nomme le membre, suivi d’un jeton`=`«», suivi d’un *constant_expression* ([expressions constantes](expressions.md#constant-expressions)) qui donne la valeur du membre.
+Le *type* d’un *constant_declaration* spécifie le type des membres introduits par la déclaration. Le type est suivi d’une liste de *constant_declarator*s, chacun d’entre eux introduisant un nouveau membre. Un *constant_declarator* se compose d’un *identificateur* qui nomme le membre, suivi d’un jeton « `=` », suivi d’un *constant_expression* ([expressions constantes](expressions.md#constant-expressions)) qui donne la valeur du membre.
 
-Le *type* spécifié dans une déclaration de constante doit `sbyte`être `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char` ,`float`,, `double`, ,`decimal`, ,`string`un enum_type ou un reference_type. `bool` Chaque *constant_expression* doit produire une valeur du type cible ou d’un type qui peut être converti vers le type cible par une conversion implicite ([conversions implicites](conversions.md#implicit-conversions)).
+Le *type* spécifié dans une déclaration de constante doit être `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, 0, 1, 2, 3, 4, *enum_type*ou *reference_ tapez*. Chaque *constant_expression* doit produire une valeur du type cible ou d’un type qui peut être converti vers le type cible par une conversion implicite ([conversions implicites](conversions.md#implicit-conversions)).
 
 Le *type* d’une constante doit être au moins aussi accessible que la constante elle-même ([contraintes d’accessibilité](basic-concepts.md#accessibility-constraints)).
 
@@ -1291,9 +1291,9 @@ La valeur d’une constante est obtenue dans une expression à l’aide d’un *
 
 Une constante peut elle-même participer à un *constant_expression*. Par conséquent, une constante peut être utilisée dans n’importe quelle construction qui requiert un *constant_expression*. Les exemples de ces constructions incluent `case` les étiquettes `goto case` , les `enum` instructions, les déclarations de membre, les attributs et d’autres déclarations de constante.
 
-Comme décrit dans [expressions constantes](expressions.md#constant-expressions), un *constant_expression* est une expression qui peut être complètement évaluée au moment de la compilation. Étant donné que la seule façon de créer une valeur non null d’un *reference_type* autre `string` que consiste à appliquer `new` l’opérateur, et puisque `new` l’opérateur n’est pas autorisé dans un *constant_expression*, la seule valeur possible pour les constantes de *reference_type*sont `null`autres `string` que.
+Comme décrit dans [expressions constantes](expressions.md#constant-expressions), un *constant_expression* est une expression qui peut être complètement évaluée au moment de la compilation. Étant donné que la seule façon de créer une valeur non null d’un *reference_type* autre que `string` consiste à appliquer l’opérateur `new`, et puisque l’opérateur `new` n’est pas autorisé dans un *constant_expression*, la seule valeur possible pour les constantes de  *les reference_types*autres que `string` sont `null`.
 
-Lorsqu’un nom symbolique pour une valeur constante est souhaité, mais lorsque le type de cette valeur n’est pas autorisé dans une déclaration de constante, ou lorsque la valeur ne peut pas être calculée au moment dela compilation par `readonly` un constant_expression, un champ ([champs ReadOnly ](classes.md#readonly-fields)) peut être utilisé à la place.
+Lorsqu’un nom symbolique pour une valeur constante est souhaité, mais lorsque le type de cette valeur n’est pas autorisé dans une déclaration de constante, ou lorsque la valeur ne peut pas être calculée au moment de la compilation par un *constant_expression*, un champ `readonly` ([champs en lecture seule](classes.md#readonly-fields)) peut à utiliser à la place.
 
 Une déclaration de constante qui déclare plusieurs constantes équivaut à plusieurs déclarations de constantes uniques avec les mêmes attributs, modificateurs et type. Exemple :
 ```csharp
@@ -1362,9 +1362,9 @@ variable_initializer
     ;
 ```
 
-Un *field_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)), un `new` modificateur ([le nouveau modificateur](classes.md#the-new-modifier)), une combinaison valide des quatre modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)) et un `static` modificateur ([champs statiques et d’instance](classes.md#static-and-instance-fields)). En outre, un *field_declaration* peut inclure un `readonly` modificateur ([champs ReadOnly](classes.md#readonly-fields)) ou un `volatile` modificateur ([champs volatiles](classes.md#volatile-fields)), mais pas les deux. Les attributs et les modificateurs s’appliquent à tous les membres déclarés par *field_declaration*. Il s’agit d’une erreur pour que le même modificateur apparaisse plusieurs fois dans une déclaration de champ.
+Un *field_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)), un modificateur `new` ([le nouveau modificateur](classes.md#the-new-modifier)), une combinaison valide des quatre modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)) et un modificateur `static` ([ Champs d’instance et statiques](classes.md#static-and-instance-fields)). En outre, un *field_declaration* peut inclure un modificateur `readonly` ([champs ReadOnly](classes.md#readonly-fields)) ou un modificateur `volatile` ([champs volatiles](classes.md#volatile-fields)), mais pas les deux. Les attributs et les modificateurs s’appliquent à tous les membres déclarés par *field_declaration*. Il s’agit d’une erreur pour que le même modificateur apparaisse plusieurs fois dans une déclaration de champ.
 
-Le *type* d’un *field_declaration* spécifie le type des membres introduits par la déclaration. Le type est suivi d’une liste de *variable_declarator*s, chacun d’entre eux introduisant un nouveau membre. Un *variable_declarator* se compose d’un *identificateur* qui nomme ce membre, éventuellement suivi d’un jeton «`=`» et d’un *variable_initializer* ([initialiseurs de variable](classes.md#variable-initializers)) qui donne la valeur initiale de ce membre.
+Le *type* d’un *field_declaration* spécifie le type des membres introduits par la déclaration. Le type est suivi d’une liste de *variable_declarator*s, chacun d’entre eux introduisant un nouveau membre. Un *variable_declarator* se compose d’un *identificateur* qui nomme ce membre, éventuellement suivi d’un jeton « `=` » et d’un *variable_initializer* ([initialiseurs de variable](classes.md#variable-initializers)) qui donne la valeur initiale de ce membre.
 
 Le *type* d’un champ doit être au moins aussi accessible que le champ lui-même ([contraintes d’accessibilité](basic-concepts.md#accessibility-constraints)).
 
@@ -1425,13 +1425,13 @@ class Application
 
 Un champ d’instance appartient à une instance. Plus précisément, chaque instance d’une classe contient un ensemble distinct de tous les champs d’instance de cette classe.
 
-Lorsqu’un champ est référencé dans un *member_access* ([accès aux membres](expressions.md#member-access)) `E.M`du formulaire, si `M` est un champ statique, `E` doit désigner un type contenant `M`, et si `M` est un champ d’instance, E doit désigne une instance d’un type contenant `M`.
+Lorsqu’un champ est référencé dans un *member_access* ([accès aux membres](expressions.md#member-access)) de la forme `E.M`, si `M` est un champ statique, `E` doit désigner un type contenant `M`, et si `M` est un champ d’instance, E doit désigner une instance d’un type contenant `M`.
 
 Les différences entre les membres statiques et les membres d’instance sont abordées plus en détail dans les [membres statiques et d’instance](classes.md#static-and-instance-members).
 
 ### <a name="readonly-fields"></a>Champs en lecture seule
 
-Quand un *field_declaration* comprend un `readonly` modificateur, les champs introduits par la déclaration sont des ***champs en lecture seule***. Les assignations directes aux champs ReadOnly ne peuvent se produire que dans le cadre de cette déclaration ou dans un constructeur d’instance ou un constructeur statique dans la même classe. (Un champ readonly peut être affecté à plusieurs fois dans ces contextes.) Plus précisément, les assignations directes à un `readonly` champ sont autorisées uniquement dans les contextes suivants :
+Lorsqu’un *field_declaration* comprend un modificateur `readonly`, les champs introduits par la déclaration sont des ***champs en lecture seule***. Les assignations directes aux champs ReadOnly ne peuvent se produire que dans le cadre de cette déclaration ou dans un constructeur d’instance ou un constructeur statique dans la même classe. (Un champ readonly peut être affecté à plusieurs fois dans ces contextes.) Plus précisément, les assignations directes à un `readonly` champ sont autorisées uniquement dans les contextes suivants :
 
 *  Dans le *variable_declarator* qui introduit le champ (en incluant un *variable_initializer* dans la déclaration).
 *  Pour un champ d’instance, dans les constructeurs d’instance de la classe qui contient la déclaration de champ ; pour un champ statique, dans le constructeur statique de la classe qui contient la déclaration de champ. Il s’agit également des seuls contextes dans lesquels il est possible de passer `readonly` un champ `out` en tant `ref` que paramètre ou.
@@ -1490,7 +1490,7 @@ Les `Program1` espaces `Program2` de noms et désignent deux programmes qui sont
 
 ### <a name="volatile-fields"></a>Champs volatiles
 
-Quand un *field_declaration* comprend un `volatile` modificateur, les champs introduits par cette déclaration sont des ***champs volatiles***.
+Quand un *field_declaration* comprend un modificateur `volatile`, les champs introduits par cette déclaration sont des ***champs volatiles***.
 
 Pour les champs non volatiles, les techniques d’optimisation qui réorganisent les instructions peuvent entraîner des résultats inattendus et imprévisibles dans les programmes multithread qui accèdent aux champs sans synchronisation, comme celui fourni par *lock_statement* ([le instruction lock](statements.md#the-lock-statement)). Ces optimisations peuvent être effectuées par le compilateur, par le système d’exécution ou par le matériel. Pour les champs volatils, ces optimisations de réorganisation sont restreintes :
 
@@ -1501,7 +1501,7 @@ Ces restrictions garantissent que tous les threads observent les écritures vola
 
 *  *Reference_type*.
 *  `byte`Type ,`char` ,,`System.UIntPtr`,,,, ,`System.IntPtr`, ou. `bool` `float` `sbyte` `short` `ushort` `int` `uint`
-*  *Enum_type* dont le type de `byte`base enum est `sbyte` `ushort` `short` `uint`,,,, ou. `int`
+*  *Enum_type* dont le type de base enum est `byte`, `sbyte`, `short`, `ushort`, `int` ou `uint`.
 
 L’exemple
 ```csharp
@@ -1536,7 +1536,7 @@ class Test
 }
 ```
 génère cette sortie :
-```
+```console
 result = 143
 ```
 
@@ -1560,7 +1560,7 @@ class Test
 }
 ```
 génère la sortie
-```
+```console
 b = False, i = 0
 ```
 étant `b` donné `i` que et sont initialisés automatiquement avec les valeurs par défaut.
@@ -1586,7 +1586,7 @@ class Test
 }
 ```
 génère la sortie
-```
+```console
 x = 1.4142135623731, i = 100, s = Hello
 ```
 parce qu’une assignation `x` à se produit lorsque des initialiseurs de champs statiques `s` exécutent des assignations à et se produisent lorsque les initialiseurs de champ d' `i` instance s’exécutent.
@@ -1608,7 +1608,7 @@ class Test
 }
 ```
 présente ce comportement. Malgré les définitions circulaires de a et b, le programme est valide. Elle génère la sortie
-```
+```console
 a = 1, b = 2
 ```
 étant donné que les `a` champs `b` statiques et sont `0` initialisés à (valeur `int`par défaut pour) avant l’exécution de leurs initialiseurs. Lorsque l’initialiseur pour `a` s’exécute, la valeur `b` de est égale à zéro `a` , et par conséquent `1`, est initialisé à. Lorsque l’initialiseur pour `b` s’exécute, la valeur `a` de est `1`déjà, et `b` par conséquent, est `2`initialisé à.
@@ -1642,13 +1642,13 @@ class B
 }
 ```
 peut produire la sortie :
-```
+```console
 Init A
 Init B
 1 1
 ```
 ou la sortie :
-```
+```console
 Init B
 Init A
 1 1
@@ -1684,7 +1684,7 @@ class B
 }
 ```
 la sortie doit être :
-```
+```console
 Init B
 Init A
 1 1
@@ -1695,7 +1695,7 @@ Init A
 
 Les initialiseurs de variable de champ d’instance d’une classe correspondent à une séquence d’assignations qui sont exécutées immédiatement après l’entrée de l’un des constructeurs d’instance ([initialiseurs de constructeur](classes.md#constructor-initializers)) de cette classe. Les initialiseurs de variable sont exécutés dans l’ordre textuel dans lequel ils apparaissent dans la déclaration de classe. Le processus de création et d’initialisation de l’instance de classe est décrit plus en détail dans les [constructeurs d’instance](classes.md#instance-constructors).
 
-Un initialiseur de variable pour un champ d’instance ne peut pas faire référence à l’instance en cours de création. Par conséquent, il s’agit d’une erreur de compilation `this` pour référencer dans un initialiseur de variable, car il s’agit d’une erreur de compilation pour qu’un initialiseur de variable référence un membre d’instance via un *simple_name*. Dans l’exemple
+Un initialiseur de variable pour un champ d’instance ne peut pas faire référence à l’instance en cours de création. Par conséquent, il s’agit d’une erreur au moment de la compilation pour référencer `this` dans un initialiseur de variable, car il s’agit d’une erreur de compilation pour qu’un initialiseur de variable référence un membre d’instance via un *simple_name*. Dans l’exemple
 ```csharp
 class A
 {
@@ -1752,7 +1752,7 @@ method_body
     ;
 ```
 
-Un *method_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)) et une combinaison valide des quatre modificateurs d’accès ([modificateurs](classes.md#access-modifiers)d' `new` accès), ([le nouveau modificateur](classes.md#the-new-modifier)), `static` ([statique et méthodes d’instance](classes.md#static-and-instance-methods)) `virtual` , ([méthodes virtuelles](classes.md#virtual-methods) `override` ), (méthodes[override](classes.md#override-methods)) `sealed` , ([méthodes sealed](classes.md#sealed-methods)), `abstract` ([méthodes abstraites](classes.md#abstract-methods)) et `extern`Modificateurs ([méthodes externes](classes.md#external-methods)).
+Un *method_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)) et une combinaison valide des quatre modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)), le `new` ([le nouveau modificateur](classes.md#the-new-modifier)), `static` ([static et instance Méthodes](classes.md#static-and-instance-methods)), `virtual` ([méthodes virtuelles](classes.md#virtual-methods)), 0 ([méthodes override](classes.md#override-methods)), 2 ([méthodes sealed](classes.md#sealed-methods)), 4 ([méthodes abstraites](classes.md#abstract-methods)) et 6 ([méthodes externes](classes.md#external-methods)).
 
 Une déclaration a une combinaison valide de modificateurs si toutes les conditions suivantes sont vraies :
 
@@ -1769,21 +1769,21 @@ Une méthode qui a le `async` modificateur est une fonction Async et suit les r�
 
 L' *type_retour* d’une déclaration de méthode spécifie le type de la valeur calculée et retournée par la méthode. *Type_retour* est `void` si la méthode ne retourne pas de valeur. Si la déclaration comprend le `partial` modificateur, le type de retour doit être `void`.
 
-*Member_Name* spécifie le nom de la méthode. À moins que la méthode ne soit une implémentation de membre d’interface explicite ([implémentations de membres d’interface explicites](interfaces.md#explicit-interface-member-implementations)), *Member_Name* est simplement un *identificateur*. Pour une implémentation de membre d’interface explicite, *Member_Name* se compose d’un *INTERFACE_TYPE* suivi d'`.`un «» et d’un *identificateur*.
+*Member_Name* spécifie le nom de la méthode. À moins que la méthode ne soit une implémentation de membre d’interface explicite ([implémentations de membres d’interface explicites](interfaces.md#explicit-interface-member-implementations)), *Member_Name* est simplement un *identificateur*. Pour une implémentation de membre d’interface explicite, *Member_Name* se compose d’un *INTERFACE_TYPE* suivi d’un « `.` » et d’un *identificateur*.
 
-Le *type_parameter_list* facultatif spécifie les paramètres de type de la méthode ([paramètres de type](classes.md#type-parameters)). Si un *type_parameter_list* est spécifié, la méthode est une ***méthode générique***. Si la méthode a un `extern` modificateur, un *type_parameter_list* ne peut pas être spécifié.
+Le *type_parameter_list* facultatif spécifie les paramètres de type de la méthode ([paramètres de type](classes.md#type-parameters)). Si un *type_parameter_list* est spécifié, la méthode est une ***méthode générique***. Si la méthode a un modificateur `extern`, un *type_parameter_list* ne peut pas être spécifié.
 
 Le *formal_parameter_list* facultatif spécifie les paramètres de la méthode ([paramètres de méthode](classes.md#method-parameters)).
 
-Les *type_parameter_constraints_clause*facultatifs spécifient des contraintes sur des paramètres de type individuels ([contraintes de paramètre de type](classes.md#type-parameter-constraints)) et peuvent être spécifiés uniquement si un *type_parameter_list* est également fourni, et si la méthode n’a pas de `override` modificateur.
+Les *type_parameter_constraints_clause*facultatifs spécifient des contraintes sur des paramètres de type individuels ([contraintes de paramètre de type](classes.md#type-parameter-constraints)) et peuvent être spécifiés uniquement si un *type_parameter_list* est également fourni, et si la méthode n’a pas de modificateur `override`.
 
 L' *type_retour* et chacun des types référencés dans le *formal_parameter_list* d’une méthode doivent être au moins aussi accessibles que la méthode elle-même ([contraintes d’accessibilité](basic-concepts.md#accessibility-constraints)).
 
 *Method_body* est un point-virgule, un ***corps d’instruction*** ou un ***corps d’expression***. Un corps d’instruction se compose d’un *bloc*, qui spécifie les instructions à exécuter lorsque la méthode est appelée. Un corps d’expression se `=>` compose de suivis d’une *expression* et d’un point-virgule, et désigne une expression unique à exécuter lorsque la méthode est appelée. 
 
-Pour `abstract` les `extern` méthodes et, le *method_body* se compose simplement d’un point-virgule. Pour `partial` les méthodes, le *method_body* peut être constitué soit d’un point-virgule, d’un corps de bloc ou d’un corps d’expression. Pour toutes les autres méthodes, *method_body* est soit un corps de bloc, soit un corps d’expression.
+Pour les méthodes `abstract` et `extern`, *method_body* se compose simplement d’un point-virgule. Pour les méthodes `partial`, *method_body* peut être constitué soit d’un point-virgule, d’un corps de bloc ou d’un corps d’expression. Pour toutes les autres méthodes, *method_body* est soit un corps de bloc, soit un corps d’expression.
 
-Si le *method_body* se compose d’un point-virgule, la déclaration peut ne `async` pas inclure le modificateur.
+Si le *method_body* se compose d’un point-virgule, la déclaration peut ne pas inclure le modificateur `async`.
 
 Le nom, la liste des paramètres de type et la liste de paramètres formels d’une méthode définissent la signature ([signatures et surcharge](basic-concepts.md#signatures-and-overloading)) de la méthode. Plus précisément, la signature d’une méthode se compose de son nom, du nombre de paramètres de type et du nombre, des modificateurs et des types de ses paramètres formels. Pour ces raisons, tout paramètre de type de la méthode qui se produit dans le type d’un paramètre formel est identifié par son nom, mais par sa position ordinale dans la liste d’arguments de type de la méthode. Le type de retour ne fait pas partie de la signature d’une méthode, ni les noms des paramètres de type ni les paramètres formels.
 
@@ -1829,11 +1829,11 @@ parameter_array
 
 La liste de paramètres formels se compose d’un ou de plusieurs paramètres séparés par des virgules dont seule la dernière peut être un *parameter_array*.
 
-Un *fixed_parameter* se compose d’un ensemble facultatif d' *attributs* ([attributs](attributes.md) `out` ), d' `ref`un facultatif `this` ou modificateur, d’un *type*, d’un *identificateur* et d’un default_ facultatif.  *argument*. Chaque *fixed_parameter* déclare un paramètre du type donné avec le nom donné. Le `this` modificateur désigne la méthode en tant que méthode d’extension et est uniquement autorisé sur le premier paramètre d’une méthode statique. Les méthodes d’extension sont décrites plus en détail dans [méthodes d’extension](classes.md#extension-methods).
+Un *fixed_parameter* se compose d’un ensemble facultatif d' *attributs* ([attributs](attributes.md)), d’un modificateur facultatif `ref`, `out` ou `this`, d’un *type*, d’un *identificateur* et d’un *default_argument*facultatif. Chaque *fixed_parameter* déclare un paramètre du type donné avec le nom donné. Le `this` modificateur désigne la méthode en tant que méthode d’extension et est uniquement autorisé sur le premier paramètre d’une méthode statique. Les méthodes d’extension sont décrites plus en détail dans [méthodes d’extension](classes.md#extension-methods).
 
 Un *fixed_parameter* avec un *default_argument* est connu sous le nom de ***paramètre facultatif***, alors qu’un *fixed_parameter* sans *default_argument* est un ***paramètre obligatoire***. Un paramètre obligatoire ne peut pas apparaître après un paramètre facultatif dans un *formal_parameter_list*.
 
-Un `ref` paramètre `out` ou ne peut pas avoir de *default_argument*. L' *expression* d’un *default_argument* doit être l’une des suivantes :
+Un paramètre `ref` ou `out` ne peut pas avoir de *default_argument*. L' *expression* d’un *default_argument* doit être l’une des suivantes :
 
 *  a *constant_expression*
 *  expression de la forme `new S()` où `S` est un type valeur
@@ -1843,7 +1843,7 @@ L' *expression* doit être implicitement convertible à l’aide d’une convers
 
 Si des paramètres facultatifs se produisent dans une déclaration de méthode partielle d’implémentation ([méthodes partielles](classes.md#partial-methods)), une implémentation de membre d’interface explicite ([implémentations de membres d’interface explicites](interfaces.md#explicit-interface-member-implementations)) ou dans une déclaration d’indexeur de paramètre unique ([ Indexeurs](classes.md#indexers)) le compilateur doit fournir un avertissement, car ces membres ne peuvent jamais être appelés d’une manière qui autorise l’omission des arguments.
 
-Un *parameter_array* se compose d’un ensemble facultatif d' *attributs* ([attributs](attributes.md)), `params` d’un modificateur, d’un *array_type*et d’un *identificateur*. Un tableau de paramètres déclare un paramètre unique du type de tableau donné avec le nom donné. Le *array_type* d’un tableau de paramètres doit être un type tableau unidimensionnel ([types tableau](arrays.md#array-types)). Dans un appel de méthode, un tableau de paramètres autorise la spécification d’un seul argument du type de tableau donné, ou elle permet de spécifier zéro ou plusieurs arguments du type d’élément de tableau. Les tableaux de paramètres sont décrits plus en détail dans les [tableaux de paramètres](classes.md#parameter-arrays).
+Un *parameter_array* se compose d’un ensemble facultatif d' *attributs* ([attributs](attributes.md)), d’un modificateur `params`, d’un *array_type*et d’un *identificateur*. Un tableau de paramètres déclare un paramètre unique du type de tableau donné avec le nom donné. Le *array_type* d’un tableau de paramètres doit être un type tableau unidimensionnel ([types tableau](arrays.md#array-types)). Dans un appel de méthode, un tableau de paramètres autorise la spécification d’un seul argument du type de tableau donné, ou elle permet de spécifier zéro ou plusieurs arguments du type d’élément de tableau. Les tableaux de paramètres sont décrits plus en détail dans les [tableaux de paramètres](classes.md#parameter-arrays).
 
 Une *parameter_array* peut se produire après un paramètre facultatif, mais elle ne peut pas avoir de valeur par défaut ; l’omission des arguments pour un *parameter_array* entraînerait la création d’un tableau vide.
 
@@ -1861,7 +1861,7 @@ public void M(
 ) { }
 ```
 
-Dans *formal_parameter_list* pour `M`, `i` est un paramètre ref obligatoire, `d` est un paramètre de valeur obligatoire, `b`, `s` `o` et `t` sont des paramètres de valeur facultatifs et `a` est un tableau de paramètres.
+Dans le *formal_parameter_list* pour `M`, `i` est un paramètre ref obligatoire, `d` est un paramètre de valeur obligatoire, `b`, `s`, `o` et `t` sont des paramètres de valeur facultatifs et `a` est un tableau de paramètres.
 
 Une déclaration de méthode crée un espace de déclaration distinct pour les paramètres, les paramètres de type et les variables locales. Les noms sont introduits dans cet espace de déclaration par la liste de paramètres de type et la liste de paramètres formels de la méthode et par les déclarations de variable locale dans le *bloc* de la méthode. Il y a une erreur pour que deux membres d’un espace de déclaration de méthode aient le même nom. L’espace de déclaration de méthode et l’espace de déclaration de variable locale d’un espace de déclaration imbriquée doivent contenir des éléments portant le même nom.
 
@@ -1888,7 +1888,7 @@ Une méthode est autorisée à assigner de nouvelles valeurs à un paramètre de
 
 Un paramètre déclaré avec un `ref` modificateur est un paramètre de référence. Contrairement à un paramètre de valeur, un paramètre de référence ne crée pas un nouvel emplacement de stockage. Au lieu de cela, un paramètre de référence représente le même emplacement de stockage que la variable donnée comme argument dans l’appel de méthode.
 
-Quand un paramètre formel est un paramètre de référence, l’argument correspondant dans un appel de méthode doit se composer du `ref` mot clé suivi d’un *variable_reference* ([règles précises pour déterminer l’assignation définie](variables.md#precise-rules-for-determining-definite-assignment)) du même type comme paramètre formel. Une variable doit être assignée définitivement pour pouvoir être passée en tant que paramètre de référence.
+Quand un paramètre formel est un paramètre de référence, l’argument correspondant dans un appel de méthode doit se composer du mot clé `ref` suivi d’un *variable_reference* ([règles précises pour déterminer l’assignation définie](variables.md#precise-rules-for-determining-definite-assignment)) du même type que paramètre formel. Une variable doit être assignée définitivement pour pouvoir être passée en tant que paramètre de référence.
 
 Dans une méthode, un paramètre de référence est toujours considéré comme étant définitivement assigné.
 
@@ -1914,7 +1914,7 @@ class Test
 }
 ```
 génère la sortie
-```
+```console
 i = 2, j = 1
 ```
 
@@ -1943,7 +1943,7 @@ l' `F` appel de `b`dans `G` `s` passe`a` une référence à pour et. Ainsi, pour
 
 Un paramètre déclaré avec un `out` modificateur est un paramètre de sortie. À l’instar d’un paramètre de référence, un paramètre de sortie ne crée pas un nouvel emplacement de stockage. Au lieu de cela, un paramètre de sortie représente le même emplacement de stockage que la variable donnée comme argument dans l’appel de la méthode.
 
-Quand un paramètre formel est un paramètre de sortie, l’argument correspondant dans un appel de méthode doit être constitué du `out` mot clé suivi d’un *variable_reference* ([règles précises pour déterminer l’assignation définie](variables.md#precise-rules-for-determining-definite-assignment)) du même type comme paramètre formel. Une variable n’a pas besoin d’être définitivement assignée avant de pouvoir être transmise en tant que paramètre de sortie, mais après un appel où une variable a été passée comme paramètre de sortie, la variable est considérée comme assignée de manière définitive.
+Quand un paramètre formel est un paramètre de sortie, l’argument correspondant dans un appel de méthode doit se composer du mot clé `out` suivi d’un *variable_reference* ([règles précises pour déterminer l’assignation définie](variables.md#precise-rules-for-determining-definite-assignment)) du même type que le paramètre formel. Une variable n’a pas besoin d’être définitivement assignée avant de pouvoir être transmise en tant que paramètre de sortie, mais après un appel où une variable a été passée comme paramètre de sortie, la variable est considérée comme assignée de manière définitive.
 
 Dans une méthode, tout comme une variable locale, un paramètre de sortie est considéré initialement comme non assigné et doit être définitivement assigné avant que sa valeur ne soit utilisée.
 
@@ -1978,7 +1978,7 @@ class Test
 ```
 
 L’exemple produit la sortie :
-```
+```console
 c:\Windows\System\
 hello.txt
 ```
@@ -2018,7 +2018,7 @@ class Test
 }
 ```
 génère la sortie
-```
+```console
 Array contains 3 elements: 1 2 3
 Array contains 4 elements: 10 20 30 40
 Array contains 0 elements:
@@ -2060,7 +2060,7 @@ class Test
 }
 ```
 génère la sortie
-```
+```console
 F();
 F(object[]);
 F(object,object);
@@ -2097,7 +2097,7 @@ class Test
 }
 ```
 génère la sortie
-```
+```console
 System.Int32 System.String System.Double
 System.Object[]
 System.Object[]
@@ -2114,7 +2114,7 @@ Une méthode statique ne fonctionne pas sur une instance spécifique, et il s’
 
 Une méthode d’instance opère sur une instance donnée d’une classe, et cette instance est accessible en `this` tant que ([cet accès](expressions.md#this-access)).
 
-Lorsqu’une méthode est référencée dans un *member_access* ([accès aux membres](expressions.md#member-access)) du formulaire `E.M`, si `M` est une méthode statique, `E` doit désigner un type contenant `M`, et si `M` est une méthode d’instance, doit désigner une instance d’un type contenant `M`. `E`
+Lorsqu’une méthode est référencée dans un *member_access* ([accès aux membres](expressions.md#member-access)) de la forme `E.M`, si `M` est une méthode statique, `E` doit désigner un type contenant `M`, et si `M` est une méthode d’instance, `E` doit désigner une instance d’un type contenant `M`.
 
 Les différences entre les membres statiques et les membres d’instance sont abordées plus en détail dans les [membres statiques et d’instance](classes.md#static-and-instance-members).
 
@@ -2168,7 +2168,7 @@ class Test
 ```
 
 Dans l’exemple, `A` introduit une méthode `F` non virtuelle et une méthode `G`virtuelle. La classe `B` introduit une nouvelle méthode `F`non virtuelle, masquant ainsi la héritée `F`et substitue également la méthode `G`héritée. L’exemple produit la sortie :
-```
+```console
 A.F
 B.F
 B.G
@@ -2216,7 +2216,7 @@ class Test
 }
 ```
 les `C` classes `D` et contiennent deux méthodes virtuelles avec la même signature : Celui introduit par `A` et celui introduit par `C`. La méthode introduite `C` par masque la méthode héritée `A`de. Ainsi, la `D` déclaration override de substitue la méthode introduite par `C`, et il n’est pas possible pour `D` de substituer la méthode introduite `A`par. L’exemple produit la sortie :
-```
+```console
 B.F
 B.F
 D.F
@@ -2522,7 +2522,7 @@ Le ***type de résultat*** d’une méthode `void` est si le type de `void`retou
 
 Quand une méthode a un `void` type de résultat et un corps de `return` bloc, les instructions ([l’instruction return](statements.md#the-return-statement)) dans le bloc ne sont pas autorisées à spécifier une expression. Si l’exécution du bloc d’une méthode void se termine normalement (autrement dit, le contrôle circule à la fin du corps de la méthode), cette méthode retourne simplement à son appelant actuel.
     
-Quand une méthode a un `void` résultat et un corps d’expression, l' `E` expression doit être un *statement_expression*et le corps est exactement équivalent à un corps de bloc de la `{ E; }`forme.
+Quand une méthode a un résultat `void` et un corps d’expression, l’expression `E` doit être un *statement_expression*et le corps est exactement équivalent à un corps de bloc de la forme `{ E; }`.
     
 Quand une méthode a un type de résultat non void et un corps de bloc, `return` chaque instruction du bloc doit spécifier une expression qui est implicitement convertible en type de résultat. Le point de terminaison d’un corps de bloc d’une méthode retournant une valeur ne doit pas être accessible. En d’autres termes, dans une méthode retournant une valeur avec un corps de bloc, le contrôle n’est pas autorisé à circuler à la fin du corps de la méthode.
     
@@ -2592,15 +2592,15 @@ property_initializer
     ;
 ```
 
-Un *property_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)) et une combinaison valide des quatre modificateurs d’accès ([modificateurs](classes.md#access-modifiers)d' `new` accès), ([le nouveau modificateur](classes.md#the-new-modifier)), `static` ([statique et méthodes d’instance](classes.md#static-and-instance-methods)) `virtual` , ([méthodes virtuelles](classes.md#virtual-methods) `override` ), (méthodes[override](classes.md#override-methods)) `sealed` , ([méthodes sealed](classes.md#sealed-methods)), `abstract` ([méthodes abstraites](classes.md#abstract-methods)) et `extern`Modificateurs ([méthodes externes](classes.md#external-methods)).
+Un *property_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)) et une combinaison valide des quatre modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)), le `new` ([le nouveau modificateur](classes.md#the-new-modifier)), `static` ([static et instance Méthodes](classes.md#static-and-instance-methods)), `virtual` ([méthodes virtuelles](classes.md#virtual-methods)), 0 ([méthodes override](classes.md#override-methods)), 2 ([méthodes sealed](classes.md#sealed-methods)), 4 ([méthodes abstraites](classes.md#abstract-methods)) et 6 ([méthodes externes](classes.md#external-methods)).
 
 Les déclarations de propriété sont soumises aux mêmes règles que les déclarations de méthode ([méthodes](classes.md#methods)) en ce qui concerne les combinaisons valides de modificateurs.
 
-Le *type* d’une déclaration de propriété spécifie le type de la propriété introduite par la déclaration, et *Member_Name* spécifie le nom de la propriété. À moins que la propriété ne soit une implémentation de membre d’interface explicite, *Member_Name* est simplement un *identificateur*. Pour une implémentation de membre d’interface explicite ([implémentations de membres d’interface explicites](interfaces.md#explicit-interface-member-implementations)), *Member_Name* se compose d’un`.` *INTERFACE_TYPE* suivi d’un «» et d’un *identificateur*.
+Le *type* d’une déclaration de propriété spécifie le type de la propriété introduite par la déclaration, et *Member_Name* spécifie le nom de la propriété. À moins que la propriété ne soit une implémentation de membre d’interface explicite, *Member_Name* est simplement un *identificateur*. Pour une implémentation de membre d’interface explicite ([implémentations de membres d’interface explicites](interfaces.md#explicit-interface-member-implementations)), *Member_Name* se compose d’un *interface_type* suivi d’un « `.` » et d’un *identificateur*.
 
 Le *type* d’une propriété doit être au moins aussi accessible que la propriété elle-même ([contraintes d’accessibilité](basic-concepts.md#accessibility-constraints)).
 
-Un *property_body* peut être constitué d’un ***corps d’accesseur*** ou d’un ***corps d’expression***. Dans un corps d’accesseur, *accessor_declarations*, qui doit être placé`{`entre des jetons`}`« » et « », déclarez les accesseurs ([accesseurs](classes.md#accessors)) de la propriété. Les accesseurs spécifient les instructions exécutables associées à la lecture et à l’écriture de la propriété.
+Un *property_body* peut être constitué d’un ***corps d’accesseur*** ou d’un ***corps d’expression***. Dans un corps d’accesseur, *accessor_declarations*, qui doit être placé entre les jetons « `{` » et « `}` », déclare les accesseurs ([accesseurs](classes.md#accessors)) de la propriété. Les accesseurs spécifient les instructions exécutables associées à la lecture et à l’écriture de la propriété.
 
 Un corps d’expression composé `=>` de suivis d’une *expression* `E` et d’un point-virgule est exactement `{ get { return E; } }`équivalent au corps de l’instruction et ne peut donc être utilisé que pour spécifier des propriétés Getter uniquement lorsque le résultat de l’accesseur Get est fourni par une expression unique.
 
@@ -2618,7 +2618,7 @@ Une propriété statique n’est pas associée à une instance spécifique, et i
 
 Une propriété d’instance est associée à une instance donnée d’une classe, et cette instance est accessible en `this` tant que ([cet accès](expressions.md#this-access)) dans les accesseurs de cette propriété.
 
-Lorsqu’une propriété est référencée dans un *member_access* ([accès aux membres](expressions.md#member-access)) du formulaire `E.M`, si `M` est une propriété statique, `E` doit désigner un type contenant `M`, et si `M` est une instance , E doit désigner une instance d’un type contenant `M`.
+Lorsqu’une propriété est référencée dans un *member_access* ([accès aux membres](expressions.md#member-access)) de la forme `E.M`, si `M` est une propriété statique, `E` doit désigner un type contenant `M`, et si `M` est une propriété d’instance, E doit désigner une instance d’un type contenant `M`.
 
 Les différences entre les membres statiques et les membres d’instance sont abordées plus en détail dans les [membres statiques et d’instance](classes.md#static-and-instance-members).
 
@@ -2654,20 +2654,20 @@ accessor_body
     ;
 ```
 
-Les déclarations d’accesseur se composent d’un *get_accessor_declaration*, d’un *set_accessor_declaration*ou des deux. Chaque déclaration d’accesseur se compose `get` du `set` jeton ou suivi d’un *accessor_modifier* facultatif et d’un *accessor_body*.
+Les déclarations d’accesseur se composent d’un *get_accessor_declaration*, d’un *set_accessor_declaration*ou des deux. Chaque déclaration d’accesseur se compose du jeton `get` ou `set` suivi d’un *accessor_modifier* facultatif et d’un *accessor_body*.
 
 L’utilisation de *accessor_modifier*s est régie par les restrictions suivantes :
 
 *  Un *accessor_modifier* ne peut pas être utilisé dans une interface ou dans une implémentation de membre d’interface explicite.
-*  Pour une propriété ou un indexeur qui n' `override` a pas de modificateur, un *accessor_modifier* est autorisé uniquement si la propriété ou l’indexeur `set` a à la fois un `get` accesseur et, puis n’est autorisé que sur l’un de ces accesseurs.
-*  Pour une propriété ou un indexeur qui comprend `override` un modificateur, un accesseur doit correspondre au *accessor_modifier*, le cas échéant, de l’accesseur en cours de substitution.
+*  Pour une propriété ou un indexeur qui n’a pas de modificateur `override`, un *accessor_modifier* est autorisé uniquement si la propriété ou l’indexeur a à la fois un accesseur `get` et `set`, et n’est autorisé que sur l’un de ces accesseurs.
+*  Pour une propriété ou un indexeur qui comprend un modificateur `override`, un accesseur doit correspondre au *accessor_modifier*, le cas échéant, de l’accesseur en cours de substitution.
 *  Le *accessor_modifier* doit déclarer une accessibilité qui est strictement plus restrictive que l’accessibilité déclarée de la propriété ou de l’indexeur lui-même. Pour être précis :
-   * Si la propriété ou l’indexeur a une `public`accessibilité déclarée de, le *accessor_modifier* peut `protected internal`être `internal`, `protected`, ou `private`.
-   * Si la propriété ou l’indexeur a une accessibilité déclarée de `protected internal`, le *accessor_modifier* peut `internal`être `protected`, ou `private`.
-   * Si la propriété ou l’indexeur a une accessibilité déclarée `protected`de `internal` ou , le accessor_modifier `private`doit être.
+   * Si la propriété ou l’indexeur a une accessibilité déclarée de `public`, *accessor_modifier* peut être `protected internal`, `internal`, `protected` ou `private`.
+   * Si la propriété ou l’indexeur a une accessibilité déclarée de `protected internal`, la valeur de *accessor_modifier* peut être `internal`, `protected` ou `private`.
+   * Si la propriété ou l’indexeur a une accessibilité déclarée de `internal` ou `protected`, *accessor_modifier* doit être `private`.
    * Si la propriété ou l’indexeur a une accessibilité déclarée de `private`, aucun *accessor_modifier* ne peut être utilisé.
 
-Pour `abstract` les `extern` propriétés et, le *accessor_body* pour chaque accesseur spécifié est simplement un point-virgule. Une propriété non abstraite et non-extern peut avoir chaque *accessor_body* un point-virgule, auquel cas il s’agit d’une ***propriété implémentée automatiquement*** ([Propriétés implémentées automatiquement](classes.md#automatically-implemented-properties)). Une propriété implémentée automatiquement doit avoir au moins un accesseur Get. Pour les accesseurs de toute autre propriété non-abstract non-extern, *accessor_body* est un *bloc* qui spécifie les instructions à exécuter lorsque l’accesseur correspondant est appelé.
+Pour les propriétés `abstract` et `extern`, *accessor_body* pour chaque accesseur spécifié est simplement un point-virgule. Une propriété non abstraite et non-extern peut avoir chaque *accessor_body* un point-virgule, auquel cas il s’agit d’une ***propriété implémentée automatiquement*** ([Propriétés implémentées automatiquement](classes.md#automatically-implemented-properties)). Une propriété implémentée automatiquement doit avoir au moins un accesseur Get. Pour les accesseurs de toute autre propriété non-abstract non-extern, *accessor_body* est un *bloc* qui spécifie les instructions à exécuter lorsque l’accesseur correspondant est appelé.
 
 Un `get` accesseur correspond à une méthode sans paramètre avec une valeur de retour du type de propriété. À l’exception de la cible d’une assignation, lorsqu’une propriété est référencée dans une expression `get` , l’accesseur de la propriété est appelé pour calculer la valeur de la propriété ([valeurs des expressions](expressions.md#values-of-expressions)). Le corps d’un `get` accesseur doit se conformer aux règles pour les méthodes retournant des valeurs décrites dans le corps de la [méthode](classes.md#method-body). En particulier, toutes `return` les instructions dans le corps d' `get` un accesseur doivent spécifier une expression qui est implicitement convertible en type de propriété. En outre, le point de `get` terminaison d’un accesseur ne doit pas être accessible.
 
@@ -2887,7 +2887,7 @@ Quand une propriété est spécifiée en tant que propriété implémentée auto
 
 Une propriété automatique peut éventuellement avoir un *property_initializer*, qui est appliqué directement au champ de stockage en tant que *variable_initializer* ([initialiseurs de variable](classes.md#variable-initializers)).
 
-L’exemple suivant permet :
+L’exemple suivant :
 ```csharp
 public class Point {
     public int X { get; set; } = 0;
@@ -2904,7 +2904,7 @@ public class Point {
 }
 ```
 
-L’exemple suivant permet :
+L’exemple suivant :
 ```csharp
 public class ReadOnlyPoint
 {
@@ -3081,7 +3081,7 @@ public class D: B
 }
 ```
 
-## <a name="events"></a>Événements
+## <a name="events"></a>Events
 
 Un ***événement*** est un membre qui permet à un objet ou à une classe de fournir des notifications. Les clients peuvent joindre du code exécutable pour les événements en fournissant des ***gestionnaires d’événements***.
 
@@ -3122,7 +3122,7 @@ remove_accessor_declaration
     ;
 ```
 
-Un *event_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)) et une combinaison valide des quatre modificateurs d’accès ([modificateurs](classes.md#access-modifiers)d' `new` accès), ([le nouveau modificateur](classes.md#the-new-modifier)), `static` ([statique et méthodes d’instance](classes.md#static-and-instance-methods)) `virtual` , ([méthodes virtuelles](classes.md#virtual-methods) `override` ), (méthodes[override](classes.md#override-methods)) `sealed` , ([méthodes sealed](classes.md#sealed-methods)), `abstract` ([méthodes abstraites](classes.md#abstract-methods)) et `extern`Modificateurs ([méthodes externes](classes.md#external-methods)).
+Un *event_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)) et une combinaison valide des quatre modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)), le `new` ([le nouveau modificateur](classes.md#the-new-modifier)), `static` ([static et instance Méthodes](classes.md#static-and-instance-methods)), `virtual` ([méthodes virtuelles](classes.md#virtual-methods)), 0 ([méthodes override](classes.md#override-methods)), 2 ([méthodes sealed](classes.md#sealed-methods)), 4 ([méthodes abstraites](classes.md#abstract-methods)) et 6 ([méthodes externes](classes.md#external-methods)).
 
 Les déclarations d’événements sont soumises aux mêmes règles que les déclarations de méthode ([méthodes](classes.md#methods)) en ce qui concerne les combinaisons valides de modificateurs.
 
@@ -3132,11 +3132,11 @@ Une déclaration d’événement peut inclure *event_accessor_declarations*. Tou
 
 Une déclaration d’événement qui omet *event_accessor_declarations* définit un ou plusieurs événements, un pour chacun des *variable_declarator*s. Les attributs et les modificateurs s’appliquent à tous les membres déclarés par un *event_declaration*.
 
-Il s’agit d’une erreur au moment de la compilation pour qu’un `abstract` event_declaration inclue à la fois le modificateur et le *event_accessor_declarations*délimité par des accolades.
+Il s’agit d’une erreur au moment de la compilation pour qu’un *event_declaration* inclue à la fois le modificateur `abstract` et les *event_accessor_declarations*délimités par des accolades.
 
-Lorsqu’une déclaration Event comprend un `extern` modificateur, l’événement est considéré comme un ***événement externe***. Étant donné qu’une déclaration d’événement externe ne fournit aucune implémentation réelle, il y a une erreur pour `extern` qu’elle inclue à la fois le modificateur et *event_accessor_declarations*.
+Lorsqu’une déclaration Event comprend un `extern` modificateur, l’événement est considéré comme un ***événement externe***. Étant donné qu’une déclaration d’événement externe ne fournit aucune implémentation réelle, il y a une erreur pour qu’elle inclue à la fois le modificateur `extern` et *event_accessor_declarations*.
 
-Il s’agit d’une erreur de compilation pour un *variable_declarator* d’une déclaration d’événement `abstract` avec `external` un modificateur ou pour inclure un *variable_initializer*.
+Il s’agit d’une erreur de compilation pour un *variable_declarator* d’une déclaration d’événement avec un modificateur `abstract` ou `external` pour inclure un *variable_initializer*.
 
 Un événement peut être utilisé comme opérande de gauche des opérateurs `+=` et `-=` (assignation d'[événement](expressions.md#event-assignment)). Ces opérateurs sont utilisés, respectivement, pour attacher des gestionnaires d’événements à ou pour supprimer des gestionnaires d’événements d’un événement, et les modificateurs d’accès de l’événement contrôlent les contextes dans lesquels ces opérations sont autorisées.
 
@@ -3179,7 +3179,7 @@ Ici, le `LoginDialog` constructeur d’instance crée `Button` deux instances et
 
 ### <a name="field-like-events"></a>Événements de type champ
 
-Dans le texte de programme de la classe ou du struct qui contient la déclaration d’un événement, certains événements peuvent être utilisés comme des champs. Pour être utilisée de cette manière, un événement ne doit pas `abstract` être `extern`ou, et ne doit pas inclure explicitement *event_accessor_declarations*. Un tel événement peut être utilisé dans n’importe quel contexte qui autorise un champ. Le champ contient un délégué ([délégués](delegates.md)) qui fait référence à la liste des gestionnaires d’événements qui ont été ajoutés à l’événement. Si aucun gestionnaire d’événements n’a été ajouté, le champ `null`contient.
+Dans le texte de programme de la classe ou du struct qui contient la déclaration d’un événement, certains événements peuvent être utilisés comme des champs. Pour être utilisée de cette manière, un événement ne doit pas être `abstract` ou `extern`, et ne doit pas inclure explicitement *event_accessor_declarations*. Un tel événement peut être utilisé dans n’importe quel contexte qui autorise un champ. Le champ contient un délégué ([délégués](delegates.md)) qui fait référence à la liste des gestionnaires d’événements qui ont été ajoutés à l’événement. Si aucun gestionnaire d’événements n’a été ajouté, le champ `null`contient.
 
 Dans l’exemple
 ```csharp
@@ -3240,13 +3240,13 @@ Dans la classe `X`, les références `Ev` à sur le côté gauche des `+=` opér
 
 ### <a name="event-accessors"></a>Accesseurs d’événement
 
-Les déclarations d’événements omettent généralement *event_accessor_declarations*, comme `Button` dans l’exemple ci-dessus. Une situation pour cela implique le cas où le coût de stockage d’un champ par événement n’est pas acceptable. Dans ce cas, une classe peut inclure des *event_accessor_declarations* et utiliser un mécanisme privé pour stocker la liste des gestionnaires d’événements.
+Les déclarations d’événements omettent généralement *event_accessor_declarations*, comme dans l’exemple `Button` ci-dessus. Une situation pour cela implique le cas où le coût de stockage d’un champ par événement n’est pas acceptable. Dans ce cas, une classe peut inclure des *event_accessor_declarations* et utiliser un mécanisme privé pour stocker la liste des gestionnaires d’événements.
 
 Le *event_accessor_declarations* d’un événement spécifie les instructions exécutables associées à l’ajout et à la suppression de gestionnaires d’événements.
 
 Les déclarations d’accesseur se composent d’un *add_accessor_declaration* et d’un *remove_accessor_declaration*. Chaque déclaration d’accesseur se compose `add` du `remove` jeton ou suivi d’un *bloc*. Le *bloc* associé à un *add_accessor_declaration* spécifie les instructions à exécuter lors de l’ajout d’un gestionnaire d’événements, et le *bloc* associé à un *remove_accessor_declaration* spécifie les instructions à exécuter. Lorsqu’un gestionnaire d’événements est supprimé.
 
-Chaque *add_accessor_declaration* et *remove_accessor_declaration* correspond à une méthode avec un paramètre de valeur unique du type d’événement et `void` un type de retour. Le paramètre implicite d’un accesseur d' `value`événement est nommé. Lorsqu’un événement est utilisé dans une assignation d’événement, l’accesseur d’événement approprié est utilisé. Plus précisément, si l’opérateur d' `+=` assignation est, l’accesseur Add est utilisé, et si l' `-=` opérateur d’assignation est, l’accesseur remove est utilisé. Dans les deux cas, l’opérande droit de l’opérateur d’assignation est utilisé comme argument de l’accesseur d’événement. Le bloc d’un *add_accessor_declaration* ou d’un *remove_accessor_declaration* doit respecter `void` les règles applicables aux méthodes décrites dans corps de la [méthode](classes.md#method-body). En particulier, `return` les instructions d’un tel bloc ne sont pas autorisées à spécifier une expression.
+Chaque *add_accessor_declaration* et *remove_accessor_declaration* correspond à une méthode avec un paramètre de valeur unique du type d’événement et un type de retour `void`. Le paramètre implicite d’un accesseur d' `value`événement est nommé. Lorsqu’un événement est utilisé dans une assignation d’événement, l’accesseur d’événement approprié est utilisé. Plus précisément, si l’opérateur d' `+=` assignation est, l’accesseur Add est utilisé, et si l' `-=` opérateur d’assignation est, l’accesseur remove est utilisé. Dans les deux cas, l’opérande droit de l’opérateur d’assignation est utilisé comme argument de l’accesseur d’événement. Le bloc d’un *add_accessor_declaration* ou d’un *remove_accessor_declaration* doit respecter les règles pour les méthodes `void` décrites dans le corps de la [méthode](classes.md#method-body). En particulier, `return` les instructions d’un tel bloc ne sont pas autorisées à spécifier une expression.
 
 Comme un accesseur d’événement a implicitement un `value`paramètre nommé, il s’agit d’une erreur de compilation pour une variable locale ou une constante déclarée dans un accesseur d’événement pour avoir ce nom.
 
@@ -3298,7 +3298,7 @@ Un événement statique n’est pas associé à une instance spécifique, et il 
 
 Un événement d’instance est associé à une instance donnée d’une classe, et cette instance est accessible en `this` tant que ([cet accès](expressions.md#this-access)) dans les accesseurs de cet événement.
 
-Lorsqu’un événement est référencé dans un *member_access* ([accès aux membres](expressions.md#member-access)) `E.M`du formulaire, si `M` est un événement statique, `E` doit désigner un type contenant `M`, et si `M` est un événement d’instance, E doit désigne une instance d’un type contenant `M`.
+Lorsqu’un événement est référencé dans un *member_access* ([accès aux membres](expressions.md#member-access)) de la forme `E.M`, si `M` est un événement statique, `E` doit désigner un type contenant `M`, et si `M` est un événement d’instance, E doit désigner une instance d’un type contenant `M`.
 
 Les différences entre les membres statiques et les membres d’instance sont abordées plus en détail dans les [membres statiques et d’instance](classes.md#static-and-instance-members).
 
@@ -3356,19 +3356,19 @@ indexer_body
     ;
 ```
 
-Un *indexer_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)) et une combinaison valide des quatre modificateurs d’accès ([modificateurs](classes.md#access-modifiers)d' `new` accès), ([le nouveau modificateur](classes.md#the-new-modifier)), `virtual` ([ Méthodes virtuelles](classes.md#virtual-methods)) `override` , (méthodes de[substitution](classes.md#override-methods)) `sealed` ,[(méthodes sealed](classes.md#sealed-methods)), `abstract` ([méthodes abstraites](classes.md#abstract-methods)) et `extern` modificateurs ([méthodes externes](classes.md#external-methods)).
+Un *indexer_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)) et une combinaison valide des quatre modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)), le `new` ([le nouveau modificateur](classes.md#the-new-modifier)), `virtual` ([méthodes virtuelles ](classes.md#virtual-methods)), `override` ([méthodes override](classes.md#override-methods)), 0 ([méthodes sealed](classes.md#sealed-methods)), 2 ([méthodes abstraites](classes.md#abstract-methods)) et les modificateurs 4 ([méthodes externes](classes.md#external-methods)).
 
 Les déclarations de l’indexeur sont soumises aux mêmes règles que les déclarations de méthode ([méthodes](classes.md#methods)) en ce qui concerne les combinaisons valides de modificateurs, à la seule exception que le modificateur static n’est pas autorisé sur une déclaration d’indexeur.
 
 Les modificateurs `virtual`, `override`et `abstract` s’excluent mutuellement, sauf dans un cas. Les `abstract` modificateurs et `override` peuvent être utilisés ensemble afin qu’un indexeur abstrait puisse remplacer un indexeur virtuel.
 
-Le *type* d’une déclaration d’indexeur spécifie le type d’élément de l’indexeur introduit par la déclaration. À moins que l’indexeur ne soit une implémentation de membre d’interface explicite, le type `this`est suivi du mot clé. Pour une implémentation de membre d’interface explicite, le *type* est suivi d’un *INTERFACE_TYPE*,`.`d’un «» et `this`du mot clé. Contrairement aux autres membres, les indexeurs n’ont pas de noms définis par l’utilisateur.
+Le *type* d’une déclaration d’indexeur spécifie le type d’élément de l’indexeur introduit par la déclaration. À moins que l’indexeur ne soit une implémentation de membre d’interface explicite, le type `this`est suivi du mot clé. Pour une implémentation de membre d’interface explicite, le *type* est suivi d’un *INTERFACE_TYPE*, d’un « `.` » et du mot clé `this`. Contrairement aux autres membres, les indexeurs n’ont pas de noms définis par l’utilisateur.
 
 *Formal_parameter_list* spécifie les paramètres de l’indexeur. La liste de paramètres formels d’un indexeur correspond à celle d’une méthode ([paramètres de méthode](classes.md#method-parameters)), à ceci près qu’au moins un paramètre doit être `ref` spécifié `out` et que les modificateurs de paramètres et ne sont pas autorisés.
 
 Le *type* d’un indexeur et chacun des types référencés dans le *formal_parameter_list* doivent être au moins aussi accessibles que l’indexeur lui-même ([contraintes d’accessibilité](basic-concepts.md#accessibility-constraints)).
 
-Un *indexer_body* peut être constitué d’un ***corps d’accesseur*** ou d’un ***corps d’expression***. Dans un corps d’accesseur, *accessor_declarations*, qui doit être placé`{`entre des jetons`}`« » et « », déclarez les accesseurs ([accesseurs](classes.md#accessors)) de la propriété. Les accesseurs spécifient les instructions exécutables associées à la lecture et à l’écriture de la propriété.
+Un *indexer_body* peut être constitué d’un ***corps d’accesseur*** ou d’un ***corps d’expression***. Dans un corps d’accesseur, *accessor_declarations*, qui doit être placé entre les jetons « `{` » et « `}` », déclare les accesseurs ([accesseurs](classes.md#accessors)) de la propriété. Les accesseurs spécifient les instructions exécutables associées à la lecture et à l’écriture de la propriété.
 
 Un corps d’expression composé de`=>`«» suivi d’une `E` expression et d’un point-virgule est exactement équivalent `{ get { return E; } }`au corps de l’instruction et ne peut donc être utilisé que pour spécifier des indexeurs Getter uniquement où le résultat de l’accesseur Get est fourni par une expression unique.
 
@@ -3559,7 +3559,7 @@ Il existe trois catégories d’opérateurs surchargeables : Opérateurs unaire
 
 *Operator_body* est un point-virgule, un ***corps d’instruction*** ou un ***corps d’expression***. Un corps d’instruction se compose d’un *bloc*, qui spécifie les instructions à exécuter lorsque l’opérateur est appelé. Le *bloc* doit se conformer aux règles pour les méthodes qui retournent des valeurs décrites dans le corps de la [méthode](classes.md#method-body). Un corps d’expression se `=>` compose de suivis d’une expression et d’un point-virgule, et désigne une expression unique à exécuter lorsque l’opérateur est appelé.
 
-Pour `extern` les opérateurs, *operator_body* se compose simplement d’un point-virgule. Pour tous les autres opérateurs, *operator_body* est soit un corps de bloc, soit un corps d’expression.
+Pour les opérateurs `extern`, *operator_body* se compose simplement d’un point-virgule. Pour tous les autres opérateurs, *operator_body* est soit un corps de bloc, soit un corps d’expression.
 
 Les règles suivantes s’appliquent à toutes les déclarations d’opérateur :
 
@@ -3650,7 +3650,7 @@ Pour un `S` type de source et un type `T`cible donnés, `T` si `S` ou sont des t
 
 *  `S0`et `T0` sont des types différents.
 *  `S0` Ou`T0` est le type de classe ou de struct dans lequel la déclaration d’opérateur a lieu.
-*  Ni `S0` ni `T0` n’est un *INTERFACE_TYPE*.
+*  Ni `S0`, ni `T0` n’est un *INTERFACE_TYPE*.
 *  En excluant les conversions définies par l’utilisateur, il n' `S` existe `T` pas de conversion `S`de vers ou de `T` à.
 
 Dans le cadre de ces règles, tous les paramètres de type `S` associés `T` à ou sont considérés comme des types uniques qui n’ont aucune relation d’héritage avec d’autres types, et toutes les contraintes sur ces paramètres de type sont ignorées.
@@ -3775,7 +3775,7 @@ constructor_body
     ;
 ```
 
-Un *constructor_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)), une combinaison valide des quatre modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)) et un `extern` modificateur ([méthodes externes](classes.md#external-methods)). Une déclaration de constructeur n’est pas autorisée à inclure le même modificateur plusieurs fois.
+Un *constructor_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)), une combinaison valide des quatre modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)) et un modificateur de `extern` ([méthodes externes](classes.md#external-methods)). Une déclaration de constructeur n’est pas autorisée à inclure le même modificateur plusieurs fois.
 
 L' *identificateur* d’un *constructor_declarator* doit nommer la classe dans laquelle le constructeur d’instance est déclaré. Si un autre nom est spécifié, une erreur de compilation se produit.
 
@@ -3793,7 +3793,7 @@ Les constructeurs d’instance sont appelés par *object_creation_expression*s (
 
 ### <a name="constructor-initializers"></a>Initialiseurs de constructeur
 
-Tous les constructeurs d’instance (sauf ceux de `object`la classe) incluent implicitement un appel d’un autre constructeur d’instance immédiatement avant le *constructor_body*. Le constructeur pour appeler implicitement est déterminé par le *constructor_initializer*:
+Tous les constructeurs d’instance (sauf ceux de la classe `object`) incluent implicitement un appel d’un autre constructeur d’instance immédiatement avant le *constructor_body*. Le constructeur pour appeler implicitement est déterminé par le *constructor_initializer*:
 
 *  Un initialiseur de constructeur d’instance du `base(argument_list)` formulaire `base()` ou provoque l’appel d’un constructeur d’instance de la classe de base directe. Ce constructeur est sélectionné à l’aide de *argument_list* s’il est présent et les règles de résolution de surcharge de la [résolution de surcharge](expressions.md#overload-resolution). L’ensemble de constructeurs d’instance candidat se compose de tous les constructeurs d’instance accessibles contenus dans la classe de base directe, ou du constructeur par défaut ([constructeurs par défaut](classes.md#default-constructors)), si aucun constructeur d’instance n’est déclaré dans la classe de base directe. Si cet ensemble est vide ou si un seul constructeur d’instance unique ne peut pas être identifié, une erreur de compilation se produit.
 *  Un initialiseur de constructeur d’instance du `this(argument-list)` formulaire `this()` ou provoque l’appel d’un constructeur d’instance de la classe elle-même. Le constructeur est sélectionné à l’aide de *argument_list* s’il est présent et les règles de résolution de surcharge de la [résolution de surcharge](expressions.md#overload-resolution). L’ensemble de constructeurs d’instance candidat se compose de tous les constructeurs d’instance accessibles déclarés dans la classe elle-même. Si cet ensemble est vide ou si un seul constructeur d’instance unique ne peut pas être identifié, une erreur de compilation se produit. Si une déclaration de constructeur d’instance comprend un initialiseur de constructeur qui appelle le constructeur lui-même, une erreur de compilation se produit.
@@ -3820,11 +3820,11 @@ class B: A
 }
 ```
 
-Un initialiseur de constructeur d’instance ne peut pas accéder à l’instance en cours de création. Par conséquent, il s’agit d’une erreur de `this` compilation pour référencer dans une expression d’argument de l’initialiseur de constructeur, comme c’est le cas une erreur de compilation pour qu’une expression d’argument référence n’importe quel membre d’instance via un *simple_name*.
+Un initialiseur de constructeur d’instance ne peut pas accéder à l’instance en cours de création. Par conséquent, il s’agit d’une erreur au moment de la compilation pour référencer `this` dans une expression d’argument de l’initialiseur de constructeur, comme c’est le cas pour une expression d’argument qui fait référence à un membre d’instance par l’intermédiaire d’un *simple_name*.
 
 ### <a name="instance-variable-initializers"></a>Initialiseurs de variable d’instance
 
-Lorsqu’un constructeur d’instance n’a pas d’initialiseur de constructeur, ou qu’il a un initialiseur de constructeur de la forme `base(...)`, ce constructeur effectue implicitement les initialisations spécifiées par les *variable_initializer*des champs d’instance déclaré dans sa classe. Cela correspond à une séquence d’assignations qui sont exécutées immédiatement après l’entrée dans le constructeur et avant l’appel implicite du constructeur de classe de base directe. Les initialiseurs de variable sont exécutés dans l’ordre textuel dans lequel ils apparaissent dans la déclaration de classe.
+Lorsqu’un constructeur d’instance n’a pas d’initialiseur de constructeur, ou qu’il a un initialiseur de constructeur de la forme `base(...)`, ce constructeur effectue implicitement les initialisations spécifiées par les *variable_initializer*des champs d’instance déclarés dans sa classe. Cela correspond à une séquence d’assignations qui sont exécutées immédiatement après l’entrée dans le constructeur et avant l’appel implicite du constructeur de classe de base directe. Les initialiseurs de variable sont exécutés dans l’ordre textuel dans lequel ils apparaissent dans la déclaration de classe.
 
 ### <a name="constructor-execution"></a>Exécution du constructeur
 
@@ -3858,7 +3858,7 @@ class B: A
 }
 ```
 Lorsque `new B()` est utilisé pour créer une instance de `B`, la sortie suivante est produite :
-```
+```console
 x = 1, y = 0
 ```
 
@@ -4034,11 +4034,11 @@ static_constructor_body
     ;
 ```
 
-Un *static_constructor_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)) et un `extern` modificateur ([méthodes externes](classes.md#external-methods)).
+Un *static_constructor_declaration* peut inclure un ensemble d' *attributs* ([attributs](attributes.md)) et un modificateur `extern` ([méthodes externes](classes.md#external-methods)).
 
 L' *identificateur* d’un *static_constructor_declaration* doit nommer la classe dans laquelle le constructeur statique est déclaré. Si un autre nom est spécifié, une erreur de compilation se produit.
 
-Lorsqu’une déclaration de constructeur statique comprend `extern` un modificateur, le constructeur statique est dit comme un ***constructeur statique externe***. Étant donné qu’une déclaration de constructeur statique externe ne fournit aucune implémentation réelle, son *static_constructor_body* se compose d’un point-virgule. Pour toutes les autres déclarations de constructeur statiques, le *static_constructor_body* se compose d’un *bloc* qui spécifie les instructions à exécuter pour initialiser la classe. Cela correspond exactement au *method_body* d’une méthode statique avec un `void` type de retour ([corps de méthode](classes.md#method-body)).
+Lorsqu’une déclaration de constructeur statique comprend `extern` un modificateur, le constructeur statique est dit comme un ***constructeur statique externe***. Étant donné qu’une déclaration de constructeur statique externe ne fournit aucune implémentation réelle, son *static_constructor_body* se compose d’un point-virgule. Pour toutes les autres déclarations de constructeur statiques, le *static_constructor_body* se compose d’un *bloc* qui spécifie les instructions à exécuter pour initialiser la classe. Cela correspond exactement au *method_body* d’une méthode statique avec un type de retour `void` ([corps de méthode](classes.md#method-body)).
 
 Les constructeurs statiques ne sont pas hérités et ne peuvent pas être appelés directement.
 
@@ -4084,7 +4084,7 @@ class B
 }
 ```
 doit produire la sortie :
-```
+```console
 Init A
 A.F
 Init B
@@ -4119,7 +4119,7 @@ class B
 }
 ```
 génère la sortie
-```
+```console
 X = 1, Y = 2
 ```
 
@@ -4157,7 +4157,7 @@ Un *destructor_declaration* peut inclure un ensemble d' *attributs* ([attributs]
 
 L' *identificateur* d’un *destructor_declaration* doit nommer la classe dans laquelle le destructeur est déclaré. Si un autre nom est spécifié, une erreur de compilation se produit.
 
-Lorsqu’une déclaration de destructeur comprend un `extern` modificateur, le destructeur est considéré comme un ***destructeur externe***. Étant donné qu’une déclaration de destructeur externe ne fournit aucune implémentation réelle, son *destructor_body* se compose d’un point-virgule. Pour tous les autres destructeurs, le *destructor_body* se compose d’un *bloc* qui spécifie les instructions à exécuter afin de détruire une instance de la classe. Un *destructor_body* correspond exactement au *method_body* d’une méthode d’instance avec un `void` type de retour ([corps de méthode](classes.md#method-body)).
+Lorsqu’une déclaration de destructeur comprend un `extern` modificateur, le destructeur est considéré comme un ***destructeur externe***. Étant donné qu’une déclaration de destructeur externe ne fournit aucune implémentation réelle, son *destructor_body* se compose d’un point-virgule. Pour tous les autres destructeurs, le *destructor_body* se compose d’un *bloc* qui spécifie les instructions à exécuter afin de détruire une instance de la classe. Un *destructor_body* correspond exactement au *method_body* d’une méthode d’instance avec un type de retour `void` ([corps de méthode](classes.md#method-body)).
 
 Les destructeurs ne sont pas hérités. Par conséquent, une classe n’a pas de destructeurs autres que celui qui peut être déclaré dans cette classe.
 
@@ -4717,13 +4717,13 @@ class Tree<T>: IEnumerable<T>
 
 Les compilateurs temporaires générés par le `foreach` compilateur utilisés dans les instructions sont `__left` levés dans les champs et `__right` de l’objet énumérateur. Le `__state` champ de l’objet énumérateur est mis à jour avec soin afin `Dispose()` que la méthode correcte soit appelée correctement si une exception est levée. Notez qu’il n’est pas possible d’écrire le code traduit avec `foreach` des instructions simples.
 
-## <a name="async-functions"></a>Fonctions asynchrones
+## <a name="async-functions"></a>Fonctions Async
 
 Une méthode ([méthodes](classes.md#methods)) ou une fonction anonyme ([expressions de fonction anonymes](expressions.md#anonymous-function-expressions)) avec le `async` modificateur est appelée ***fonction Async***. En général, le terme ***Async*** est utilisé pour décrire tout type de fonction qui a le `async` modificateur.
 
 Il s’agit d’une erreur de compilation pour la liste de paramètres formels d’une fonction Async `ref` pour `out` spécifier des paramètres ou.
 
-Le *type_retour* d’une méthode Async doit être `void` ou un type de ***tâche***. Les types de tâches `System.Threading.Tasks.Task` sont et les types `System.Threading.Tasks.Task<T>`construits à partir de. Par souci de concision, dans ce chapitre, ces types sont référencés en `Task` tant `Task<T>`que et, respectivement. Une méthode Async qui retourne un type de tâche est dite retournant des tâches.
+Le *type_retour* d’une méthode Async doit être `void` ou un ***type de tâche***. Les types de tâches `System.Threading.Tasks.Task` sont et les types `System.Threading.Tasks.Task<T>`construits à partir de. Par souci de concision, dans ce chapitre, ces types sont référencés en `Task` tant `Task<T>`que et, respectivement. Une méthode Async qui retourne un type de tâche est dite retournant des tâches.
 
 La définition exacte des types de tâches est définie par l’implémentation, mais du point de vue du langage, un type de tâche se trouve dans l’un des États incomplet, SUCCEEDED ou Faulted. Une tâche ayant généré une erreur enregistre une exception pertinente. Une opération `Task<T>` réussie enregistre un résultat de `T`type. Les types de tâches sont await, et peuvent par conséquent être les opérandes des expressions await ([expression await](expressions.md#await-expressions)).
 

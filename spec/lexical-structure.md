@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 5fbe0267b5b33b1a24dbdca493d118c576092573
-ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
+ms.openlocfilehash: 4676bcd3f0a92260b4e5e20a0aa5b5ec00bf204e
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70876910"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704071"
 ---
 # <a name="lexical-structure"></a>Structure lexicale
 
@@ -429,8 +429,8 @@ En guise de style, il est suggéré d’utiliser`L`« » à la place de`l`« �
 
 Pour que les valeurs `int` et `long` les plus petites soient écrites en tant que littéraux décimaux entiers, les deux règles suivantes existent :
 
-* Lorsqu’un *decimal_integer_literal* avec la valeur 2147483648 (2 ^ 31) et qu’aucun *integer_type_suffix* n’apparaît en tant que jeton qui suit immédiatement un jeton d’opérateur moins unaire ([opérateur moins unaire](expressions.md#unary-minus-operator)), le résultat est une constante de type `int`avec la valeur-2147483648 (-2 ^ 31). Dans toutes les autres situations, une telle *decimal_integer_literal* est de `uint`type.
-* Lorsqu’un *decimal_integer_literal* avec la valeur 9223372036854775808 (2 ^ 63) et aucun *integer_type_suffix* ou *integer_type_suffix* `L` ou `l` apparaît comme jeton immédiatement après un signe moins unaire jeton d’opérateur ([opérateur moins unaire](expressions.md#unary-minus-operator)), le résultat est une constante `long` de type avec la valeur-9223372036854775808 (-2 ^ 63). Dans toutes les autres situations, une telle *decimal_integer_literal* est de `ulong`type.
+* Lorsqu’un *decimal_integer_literal* avec la valeur 2147483648 (2 ^ 31) et qu’aucun *integer_type_suffix* n’apparaît en tant que jeton qui suit immédiatement un jeton d’opérateur moins unaire ([opérateur moins unaire](expressions.md#unary-minus-operator)), le résultat est une constante de type `int` avec la valeur-2147483648 (-2 ^ 31). Dans toutes les autres situations, une telle *decimal_integer_literal* est de type `uint`.
+* Lorsqu’un *decimal_integer_literal* avec la valeur 9223372036854775808 (2 ^ 63) et aucun *integer_type_suffix* ou *integer_type_suffix* `L` ou `l` apparaît en tant que jeton qui suit immédiatement un jeton d’opérateur moins unaire ([ Opérateur moins unaire](expressions.md#unary-minus-operator)), le résultat est une constante de type `long` avec la valeur-9223372036854775808 (-2 ^ 63). Dans toutes les autres situations, une telle *decimal_integer_literal* est de type `ulong`.
 
 #### <a name="real-literals"></a>Littéraux réels
 
@@ -516,7 +516,7 @@ Une séquence d’échappement simple représente un encodage de caractères Uni
 |---------------------|--------------------|----------------------|
 | `\'`                | Guillemet simple       | `0x0027`             | 
 | `\"`                | Guillemet double       | `0x0022`             | 
-| `\\`| Barre oblique inverse |`0x005C`             | 
+| `\\`                | Barre oblique inverse          | `0x005C`             | 
 | `\0`                | Null               | `0x0000`             | 
 | `\a`                | Alerte              | `0x0007`             | 
 | `\b`                | Retour arrière          | `0x0008`             | 
@@ -575,7 +575,7 @@ quote_escape_sequence
     ;
 ```
 
-Un caractère qui suit une barre oblique inverse`\`() dans un *regular_string_literal_character* doit être l’un des caractères suivants `'`: `"`, `\`, `0`, `a`, `b` , , `f`, `n`, `r`, `t`, `u`, `U`, `x`, `v`. Sinon, une erreur de compilation se produit.
+Un caractère qui suit une barre oblique inverse (`\`) dans un *regular_string_literal_character* doit être l’un des caractères suivants : `'`, `"`, `\`, `0`, `a`, `b`, `f`, `n`, 0, 1, @no__ t-12, 3, 4, 5. Sinon, une erreur de compilation se produit.
 
 L’exemple
 ```csharp
@@ -782,7 +782,7 @@ single_verbatim_balanced_text_character
 
 Un jeton *interpolated_string_literal* est réinterprété comme plusieurs jetons et autres éléments d’entrée comme suit, dans l’ordre des occurrences dans le *interpolated_string_literal*:
 
-* Les occurrences des éléments suivants sont réinterprétées comme des jetons individuels distincts : `$` le signe de début, *interpolated_regular_string_whole*, *interpolated_regular_string_start*, *interpolated_regular_string_mid*, *interpolated_regular_string_end*, *interpolated_verbatim_string_whole*, *interpolated_verbatim_string_start*, *interpolated_verbatim_string_mid* et *interpolated_verbatim_string_end*.
+* Les occurrences des éléments suivants sont réinterprétées comme des jetons individuels distincts : le signe `$` de début, *interpolated_regular_string_whole*, *interpolated_regular_string_start*, *interpolated_regular_string_mid*,  *interpolated_regular_string_end*, *interpolated_verbatim_string_whole*, *interpolated_verbatim_string_start*, *interpolated_verbatim_string_mid* et *interpolated_verbatim_string_end*.
 * Les occurrences de *regular_balanced_text* et *verbatim_balanced_text* entre celles-ci sont retraitées comme un *input_section* ([analyse lexicale](lexical-structure.md#lexical-analysis)) et sont réinterprétées comme la séquence résultante d’éléments d’entrée. Elles peuvent à leur tour inclure des jetons de littéral de chaîne interpolés à réinterpréter.
 
 L’analyse syntaxique réassociera les jetons en un *interpolated_string_expression* ([chaînes interpolées](expressions.md#interpolated-strings)).
@@ -1054,13 +1054,13 @@ Comme indiqué par la syntaxe, les directives de compilation conditionnelle doiv
 
 Un *pp_conditional* sélectionne au plus l’un des *conditional_section*contenus dans le traitement lexical normal :
 
-*  Les *pp_expression*s des directives `#if` et `#elif` sont `true`évaluées dans l’ordre jusqu’à ce que l’un d’eux produise. Si une expression génère `true`, le *conditional_section* de la directive correspondante est sélectionné.
-*  Si tous les *pp_expression*s `false`sont générés et `#else` , si une directive est présente, le `#else` *conditional_section* de la directive est sélectionné.
+*  Les *pp_expression*s des directives `#if` et `#elif` sont évaluées dans l’ordre jusqu’à ce que l’un des deux produise `true`. Si une expression produit `true`, le *conditional_section* de la directive correspondante est sélectionné.
+*  Si tous les *pp_expression*s génèrent `false` et si une directive `#else` est présente, le *conditional_section* de la directive `#else` est sélectionné.
 *  Dans le cas contraire, aucun *conditional_section* n’est sélectionné.
 
 Le *conditional_section*sélectionné, le cas échéant, est traité comme un *input_section*normal : le code source contenu dans la section doit adhérer à la grammaire lexicale. les jetons sont générés à partir du code source dans la section. et les directives de pré-traitement dans la section ont les effets imposés.
 
-Les *conditional_section*restants, le cas échéant, sont traités comme des *skipped_section*s : à l’exception des directives de prétraitement, le code source de la section ne doit pas être conforme à la grammaire lexicale. aucun jeton n’est généré à partir du code source dans la section ; et les directives de prétraitement dans la section doivent être lexicalement correctes, mais elles ne sont pas traitées autrement. Au sein d’un *conditional_section* qui est traité en tant que *skipped_section*, tous les *conditional_section*imbriqués `#if`(contenues dans les objets imbriqués... `#endif` et`#region`... les constructions) sont également traitées en tant que skipped_section s. `#endregion`
+Les *conditional_section*restants, le cas échéant, sont traités comme des *skipped_section*s : à l’exception des directives de prétraitement, le code source de la section ne doit pas être conforme à la grammaire lexicale. aucun jeton n’est généré à partir du code source dans la section ; et les directives de prétraitement dans la section doivent être lexicalement correctes, mais elles ne sont pas traitées autrement. Au sein d’un *conditional_section* qui est traité comme un *skipped_section*, tous les *conditional_section*imbriqués (contenues dans les constructions `#if`... `#endif` et `#region`... `#endregion`) sont également traités comme *skipped_ section*s.
 
 L’exemple suivant illustre la façon dont les directives de compilation conditionnelle peuvent imbriquer :
 ```csharp
@@ -1115,7 +1115,7 @@ class Hello
 }
 ```
 génère la sortie :
-```
+```console
 hello,
 #if Debug
         world
@@ -1160,7 +1160,7 @@ L’exemple suivant :
 
 class Test {...}
 ```
-génère toujours un avertissement (« révision du code nécessaire avant l’archivage ») et génère une erreur au moment de la compilation (« une build ne peut pas être à la fois Debug et Retail `Retail` ») si les symboles `Debug` conditionnels et sont tous deux définis. Notez qu’un *pp_message* peut contenir du texte arbitraire. plus précisément, il n’a pas besoin de contenir des jetons correctement formés, comme indiqué par le guillemet simple `can't`dans le mot.
+génère toujours un avertissement (« révision du code nécessaire avant l’archivage ») et génère une erreur au moment de la compilation (« une build ne peut pas être à la fois Debug et Retail `Retail` ») si les symboles `Debug` conditionnels et sont tous deux définis. Notez qu’un *pp_message* peut contenir du texte arbitraire. plus précisément, il n’a pas besoin de contenir des jetons correctement formés, comme indiqué par le guillemet simple dans le mot `can't`.
 
 ### <a name="region-directives"></a>Directives de région
 
@@ -1180,7 +1180,7 @@ pp_end_region
     ;
 ```
 
-Aucune signification sémantique n’est attachée à une région ; les régions sont destinées à être utilisées par le programmeur ou par des outils automatisés pour marquer une section du code source. Le message spécifié dans une `#region` directive `#endregion` ou n’a pas la même signification sémantique ; il sert simplement à identifier la région. Les directives `#endregion` et peuvent avoir différents *pp_message*s. `#region`
+Aucune signification sémantique n’est attachée à une région ; les régions sont destinées à être utilisées par le programmeur ou par des outils automatisés pour marquer une section du code source. Le message spécifié dans une `#region` directive `#endregion` ou n’a pas la même signification sémantique ; il sert simplement à identifier la région. Les directives `#region` et `#endregion` correspondantes peuvent avoir différents *pp_message*s.
 
 Traitement lexical d’une région :
 ```csharp
@@ -1222,13 +1222,13 @@ file_name_character
     ;
 ```
 
-Quand aucune `#line` directive n’est présente, le compilateur signale les véritables numéros de ligne et les noms de fichiers sources dans sa sortie. Lors du traitement `#line` d’une directive qui comprend un *line_indicator* qui `default`n’est pas, le compilateur traite la ligne après la directive comme ayant le numéro de ligne donné (et le nom de fichier, si spécifié).
+Quand aucune `#line` directive n’est présente, le compilateur signale les véritables numéros de ligne et les noms de fichiers sources dans sa sortie. Lors du traitement d’une directive `#line` qui comprend un *line_indicator* qui n’est pas `default`, le compilateur traite la ligne après la directive comme ayant le numéro de ligne donné (et le nom de fichier, si spécifié).
 
 Une `#line default` directive inverse l’effet de toutes les directives de #line précédentes. Le compilateur signale des informations de ligne vraies pour les lignes suivantes, `#line` exactement comme si aucune directive n’avait été traitée.
 
 Une `#line hidden` directive n’a aucun effet sur le fichier et les numéros de ligne signalés dans les messages d’erreur, mais affecte le débogage au niveau de la source. Lors du débogage, toutes les lignes entre `#line hidden` une directive et la `#line` directive suivante (qui n' `#line hidden`est pas) n’ont pas d’informations sur le numéro de ligne. Quand vous exécutez le code pas à pas dans le débogueur, ces lignes sont entièrement ignorées.
 
-Notez qu’un *nom_fichier* diffère d’un littéral de chaîne standard en ce que les caractères d’échappement ne sont pas traités ; le caractère`\`«» désigne simplement un caractère barre oblique inverse ordinaire dans un *nom_fichier*.
+Notez qu’un *nom_fichier* diffère d’un littéral de chaîne standard en ce que les caractères d’échappement ne sont pas traités ; le caractère « `\` » désigne simplement un caractère barre oblique inverse ordinaire dans un *nom_fichier*.
 
 ### <a name="pragma-directives"></a>Directives pragma
 

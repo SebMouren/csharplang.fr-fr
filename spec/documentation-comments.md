@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: adf81842e3c763c7bbdd3f10bb884dc1207b9099
-ms.sourcegitcommit: 0489cb64b7dfb328813d757f4d447a15b85a5851
+ms.openlocfilehash: 2026fc1bf9d3576b967cbc2e9a670aa44b7eab3a
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/11/2019
-ms.locfileid: "70912434"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704023"
 ---
 # <a name="documentation-comments"></a>Commentaires de documentation
 
@@ -12,7 +12,7 @@ C#fournit un mécanisme permettant aux programmeurs de documenter leur code à l
 
 Cette spécification suggère un ensemble de balises à utiliser dans les commentaires de documentation, mais l’utilisation de ces balises n’est pas obligatoire, et d’autres balises peuvent être utilisées si vous le souhaitez, dans la mesure où les règles de XML bien formé sont suivies.
 
-## <a name="introduction"></a>Introduction
+## <a name="introduction"></a>Présentation
 
 Les commentaires ayant une forme spéciale peuvent être utilisés pour indiquer à un outil de produire du code XML à partir de ces commentaires et des éléments de code source, qu’ils précèdent. Ces commentaires sont des commentaires sur une seule ligne qui commencent par trois barres`///`obliques () ou des commentaires délimités qui commencent par une barre`/**`oblique et deux étoiles (). Ils doivent précéder immédiatement un type défini par l’utilisateur (par exemple, une classe, un délégué ou une interface) ou un membre (par exemple, un champ, un événement, une propriété ou une méthode) qu’ils annotent. Les sections d’attributs ([spécification d’attribut](attributes.md#attribute-specification)) sont considérées comme faisant partie des déclarations. les commentaires de documentation doivent donc précéder les attributs appliqués à un type ou à un membre.
 
@@ -28,7 +28,7 @@ delimited_doc_comment
     ;
 ```
 
-Dans un *single_line_doc_comment*, s’il y a un *espace blanc* qui `///` suit les caractères sur chacun des *single_line_doc_comment*s adjacents au *single_line_doc_comment*actuel, alors celale caractère d’espace blanc n’est pas inclus dans la sortie XML.
+Dans un *single_line_doc_comment*, s’il y a un *espace blanc* qui suit le `///` caractères sur chaque *single_line_doc_comment*s adjacent au *single_line_doc_comment*actuel, cet *espace blanc* le caractère n’est pas inclus dans la sortie XML.
 
 Dans un document de commentaire délimité, si le premier caractère autre qu’un espace blanc sur la deuxième ligne est un astérisque et le même modèle de caractères d’espace blanc facultatifs et qu’un astérisque est répété au début de chaque ligne dans le document délimité-doc-comment, les caractères du modèle répété ne sont pas inclus dans la sortie XML. Le modèle peut inclure des caractères d’espacement après, ainsi qu’avant, le caractère astérisque.
 
@@ -186,7 +186,7 @@ Cette balise permet d’inclure des informations à partir d’un document XML q
 
 __Stockéesyntaxe__
 
-```
+```xml
 <include file="filename" path="xpath" />
 ```
 
