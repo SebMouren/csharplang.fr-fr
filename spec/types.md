@@ -1,14 +1,14 @@
 ---
-ms.openlocfilehash: a28397b1ce97dbead6d5014e2b20e108a1018502
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 088c4a77cecde490c556c44c239a3496f896582e
+ms.sourcegitcommit: 4ddf18d000734c1b6d0a48127bf338086fc3f2c3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488789"
+ms.lasthandoff: 11/05/2019
+ms.locfileid: "73616139"
 ---
 # <a name="types"></a>Types
 
-Les types du langage c# sont divisés en deux catégories principales : ***types valeur*** et ***référencent des types***. Types valeur et types référence peuvent être ***types génériques***, qui accepte un ou plusieurs ***paramètres de type***. Paramètres de type peuvent désigner les deux types valeur et types référence.
+Les types de C# langage sont divisés en deux catégories principales : ***types valeur*** et ***types référence***. Les types valeur et les types référence peuvent être des ***types génériques***, qui prennent un ou plusieurs ***paramètres de type***. Les paramètres de type peuvent désigner à la fois les types valeur et les types référence.
 
 ```antlr
 type
@@ -19,15 +19,15 @@ type
     ;
 ```
 
-La dernière catégorie de types, des pointeurs, est disponible uniquement dans du code unsafe. Ce sujet est abordé plus en détail dans [types pointeur](unsafe-code.md#pointer-types).
+La catégorie finale de types, pointeurs, est uniquement disponible dans du code unsafe. Ce sujet est abordé plus en détail dans [types de pointeurs](unsafe-code.md#pointer-types).
 
-Types valeur diffèrent des types référence dans la mesure où les variables des types valeur contiennent directement leurs données, tandis que le magasin de types de variables de la référence ***références*** à leurs données, ce dernier connu en tant que ***objets***. Avec les types référence, il est possible de deux variables référencent le même objet et par conséquent, les opérations sur une variable peuvent affecter l’objet référencé par l’autre variable. Avec les types valeur, les variables disposent chacune leur propre copie des données, et il n’est pas possible pour les opérations sur une d’affecter l’autre.
+Les types valeur diffèrent des types référence dans le fait que les variables des types valeur contiennent directement leurs données, alors que les variables des types référence stockent les ***références*** à leurs données, ce dernier étant appelé ***objets***. Avec les types référence, deux variables peuvent faire référence au même objet et, par conséquent, les opérations sur une variable peuvent affecter l’objet référencé par l’autre variable. Avec les types valeur, les variables disposent chacune de leur propre copie des données, et il n’est pas possible que les opérations sur l’une d’elles affectent l’autre.
 
-C#du système de type est unifié afin qu’une valeur de n’importe quel type peut être traitée en tant qu’objet. Chaque type dans C# dérive directement ou indirectement du type `object`, et `object` est la classe de base fondamentale de tous les types. Les valeurs des types référence sont considérées comme des objets simplement en affichant les valeurs en tant que type `object`. Valeurs des types valeur sont traitées en tant qu’objets en effectuant les opérations de boxing et unboxing ([Boxing et unboxing](types.md#boxing-and-unboxing)).
+C#le système de type de est unifié de telle sorte qu’une valeur de n’importe quel type peut être traitée en tant qu’objet. Chaque type dans C# dérive directement ou indirectement du type `object`, et `object` est la classe de base fondamentale de tous les types. Les valeurs des types référence sont considérées comme des objets simplement en affichant les valeurs en tant que type `object`. Les valeurs des types valeur sont traitées comme des objets en effectuant des opérations de boxing et d’unboxing ([boxing et unboxing](types.md#boxing-and-unboxing)).
 
 ## <a name="value-types"></a>Types de valeur
 
-Un type valeur est un type struct ou un type d’énumération. C# fournit un ensemble de types struct prédéfinis appelés les ***types simples***. Les types simples sont identifiés par des mots réservés.
+Un type valeur est soit un type struct, soit un type énumération. C#fournit un ensemble de types struct prédéfinis appelés ***types simples***. Les types simples sont identifiés à l’aide de mots réservés.
 
 ```antlr
 value_type
@@ -82,32 +82,32 @@ enum_type
     ;
 ```
 
-Contrairement à une variable d’un type référence, une variable d’un type valeur peut contenir la valeur `null` uniquement si le type de valeur est un type nullable.  Pour chaque type de valeur non nullable, il existe un type valeur nullable correspondant qui dénote le même ensemble de valeurs, ainsi que la valeur `null`.
+Contrairement à une variable d’un type référence, une variable d’un type valeur peut contenir la valeur `null` uniquement si le type valeur est un type Nullable.  Pour chaque type valeur qui n’autorise pas les valeurs NULL, il existe un type valeur Nullable correspondant indiquant le même jeu de valeurs plus la valeur `null`.
 
-Assignation à une variable d’un type valeur crée une copie de la valeur assignée. Cela diffère d’affectation à une variable de type référence, qui copie la référence mais pas l’objet identifié par la référence.
+L’assignation à une variable d’un type valeur crée une copie de la valeur assignée. Cela diffère d’une assignation à une variable d’un type référence, qui copie la référence, mais pas l’objet identifié par la référence.
 
-### <a name="the-systemvaluetype-type"></a>Le type System.ValueType
+### <a name="the-systemvaluetype-type"></a>Type System. ValueType
 
-Tous les types valeur héritent implicitement de la classe `System.ValueType`, qui, à son tour, hérite de la classe `object`. Il n’est pas possible pour n’importe quel type de dériver à partir d’un type valeur et types valeur sont sealed donc implicitement ([des classes Sealed](classes.md#sealed-classes)).
+Tous les types valeur héritent implicitement de la classe `System.ValueType`qui, à son tour, hérite de la classe `object`. Il n’est pas possible pour un type de dériver d’un type valeur, et les types valeur sont donc implicitement sealed ([classes sealed](classes.md#sealed-classes)).
 
-Notez que `System.ValueType` n’est pas lui-même un *value_type*. Au lieu de cela, il est un *class_type* à partir de laquelle toutes les *value_type*s sont automatiquement dérivées.
+Notez que `System.ValueType` n’est pas *Value_type*. Au lieu de cela, il s’agit d’un *class_type* à partir duquel tous les *Value_type*sont dérivés automatiquement.
 
 ### <a name="default-constructors"></a>Constructeurs par défaut
 
-Tous les types valeur déclarent implicitement un constructeur d’instance sans paramètre public appelé le ***constructeur par défaut***. Le constructeur par défaut retourne une instance initialisée à zéro, appelée le ***valeur par défaut*** pour le type de valeur :
+Tous les types valeur déclarent implicitement un constructeur d’instance sans paramètre public appelé le ***constructeur par défaut***. Le constructeur par défaut retourne une instance initialisée à zéro appelée « ***valeur par défaut*** » pour le type de valeur :
 
-*  Pour toutes les *simple_type*s, la valeur par défaut est la valeur produite par un modèle de bit de tous les zéros non significatifs :
-    * Pour `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, et `ulong`, la valeur par défaut est `0`.
-    * Pour `char`, la valeur par défaut est `'\x0000'`.
-    * Pour `float`, la valeur par défaut est `0.0f`.
-    * Pour `double`, la valeur par défaut est `0.0d`.
-    * Pour `decimal`, la valeur par défaut est `0.0m`.
-    * Pour `bool`, la valeur par défaut est `false`.
-*  Pour un *type_de_liste* `E`, la valeur par défaut est `0`, converti au type `E`.
-*  Pour un *struct_type*, la valeur par défaut est la valeur produite en affectant tous les champs de type valeur leur valeur par défaut et référence de tous les champs de type `null`.
-*  Pour un *nullable_type* la valeur par défaut est une instance pour laquelle le `HasValue` propriété a la valeur false et le `Value` propriété n’est pas définie. La valeur par défaut est également connu sous le ***valeur null*** du type nullable.
+*  Pour tous les *simple_type*s, la valeur par défaut est la valeur produite par un modèle binaire de zéros :
+    * Pour `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`et `ulong`, la valeur par défaut est `0`.
+    * Par `char`, la valeur par défaut est `'\x0000'`.
+    * Par `float`, la valeur par défaut est `0.0f`.
+    * Par `double`, la valeur par défaut est `0.0d`.
+    * Par `decimal`, la valeur par défaut est `0.0m`.
+    * Par `bool`, la valeur par défaut est `false`.
+*  Pour un `E`*enum_type* , la valeur par défaut est `0`, convertie en type `E`.
+*  Pour un *struct_type*, la valeur par défaut est la valeur produite en affectant à tous les champs de type valeur leur valeur par défaut et tous les champs de type référence à `null`.
+*  Pour un *nullable_type* , la valeur par défaut est une instance pour laquelle la propriété `HasValue` a la valeur false et la propriété `Value` est non définie. La valeur par défaut est également connue sous le nom de ***valeur null*** du type Nullable.
 
-Comme tout autre constructeur d’instance, le constructeur par défaut d’un type valeur est appelé en utilisant le `new` opérateur. Pour des raisons d’efficacité, cette exigence ne vise que l’implémentation génère réellement un appel de constructeur. Dans l’exemple suivant, les variables `i` et `j` sont initialisés à zéro.
+Comme tout autre constructeur d’instance, le constructeur par défaut d’un type valeur est appelé à l’aide de l’opérateur `new`. Pour des raisons d’efficacité, cette exigence n’est pas destinée à faire en sorte que l’implémentation génère un appel de constructeur. Dans l’exemple ci-dessous, les variables `i` et `j` sont toutes deux initialisées à zéro.
 
 ```csharp
 class A
@@ -119,18 +119,18 @@ class A
 }
 ```
 
-Étant donné que chaque type valeur a implicitement un constructeur d’instance sans paramètre public, il n’est pas possible pour un type struct contenir une déclaration explicite d’un constructeur sans paramètre. Un type struct est toutefois autorisé à déclarer des constructeurs d’instance paramétrés ([constructeurs](structs.md#constructors)).
+Étant donné que chaque type valeur a implicitement un constructeur d’instance sans paramètre public, il n’est pas possible pour un type struct de contenir une déclaration explicite d’un constructeur sans paramètre. Un type struct est toutefois autorisé à déclarer des constructeurs d’instances paramétrables ([constructeurs](structs.md#constructors)).
 
 ### <a name="struct-types"></a>Types struct
 
-Un type struct est un type valeur qui peut déclarer des constantes, champs, méthodes, propriétés, indexeurs, opérateurs, constructeurs d’instance, les constructeurs statiques et les types imbriqués. La déclaration de types struct est décrite dans [déclarations de Struct](structs.md#struct-declarations).
+Un type struct est un type valeur qui peut déclarer des constantes, des champs, des méthodes, des propriétés, des indexeurs, des opérateurs, des constructeurs d’instance, des constructeurs statiques et des types imbriqués. La déclaration des types struct est décrite dans [déclarations de struct](structs.md#struct-declarations).
 
 ### <a name="simple-types"></a>Types simples
 
-C# fournit un ensemble de types struct prédéfinis appelés les ***types simples***. Les types simples sont identifiés par des mots réservés, mais ces mots réservés sont tout simplement des alias pour les types struct prédéfinis dans le `System` espace de noms, comme décrit dans le tableau ci-dessous.
+C#fournit un ensemble de types struct prédéfinis appelés ***types simples***. Les types simples sont identifiés par le biais de mots réservés, mais ces mots réservés sont simplement des alias pour les types struct prédéfinis dans l’espace de noms `System`, comme décrit dans le tableau ci-dessous.
 
 
-| __Mot réservé__ | __Type d’alias__ |
+| __Mot réservé__ | __Type avec alias__ |
 |-------------------|------------------|
 | `sbyte`           | `System.SByte`   | 
 | `byte`            | `System.Byte`    | 
@@ -146,7 +146,7 @@ C# fournit un ensemble de types struct prédéfinis appelés les ***types simple
 | `bool`            | `System.Boolean` | 
 | `decimal`         | `System.Decimal` | 
 
-Puisqu’un type simple alias un type struct, chaque type simple possède des membres. Par exemple, `int` possède les membres déclarés dans `System.Int32` et les membres hérités de `System.Object`, et les instructions suivantes sont autorisées :
+Étant donné qu’un type simple est un alias de type struct, chaque type simple a des membres. Par exemple, `int` a les membres déclarés dans `System.Int32` et les membres hérités de `System.Object`, et les instructions suivantes sont autorisées :
 
 ```csharp
 int i = int.MaxValue;           // System.Int32.MaxValue constant
@@ -156,120 +156,120 @@ string t = 123.ToString();      // System.Int32.ToString() instance method
 
 Les types simples diffèrent des autres types struct en ce qu’ils autorisent des opérations supplémentaires :
 
-*  La plupart des types simples permettent de valeurs doit être créé en écrivant *littéraux* ([littéraux](lexical-structure.md#literals)). Par exemple, `123` est un littéral de type `int` et `'a'` est un littéral de type `char`. C# ne prévoit pas pour les littéraux de types struct en général, et non par défaut des valeurs d’autres types struct sont finalement toujours créées par le biais des constructeurs d’instances de ces types struct.
-*  Lorsque les opérandes d’une expression sont toutes les constantes de type simple, il est possible pour le compilateur évaluer l’expression au moment de la compilation. Une telle expression est appelée un *constant_expression* ([expressions constantes](expressions.md#constant-expressions)). Expressions impliquant des opérateurs définis par d’autres types struct ne sont pas considérés comme des expressions constantes.
-*  Via `const` déclarations, il est possible de déclarer des constantes des types simples ([constantes](classes.md#constants)). Il n’est pas possible d’avoir des constantes d’autres types struct, mais un résultat similaire est fourni par `static readonly` champs.
-*  Conversions de types simples peuvent participer à l’évaluation des opérateurs de conversion définie par d’autres types struct, mais un opérateur de conversion définie par l’utilisateur ne peut jamais participer d’évaluation d’un autre opérateur défini par l’utilisateur ([version d’évaluation de conversions définies par l’utilisateur](conversions.md#evaluation-of-user-defined-conversions)).
+*  La plupart des types simples autorisent la création de valeurs en écrivant des *littéraux* ([littéraux](lexical-structure.md#literals)). Par exemple, `123` est un littéral de type `int` et `'a'` est un littéral de type `char`. C#n’offre aucune provision pour les littéraux de types struct en général, et les valeurs autres que celles par défaut des autres types struct sont finalement toujours créées via les constructeurs d’instance de ces types struct.
+*  Quand les opérandes d’une expression sont toutes des constantes de type simple, il est possible que le compilateur évalue l’expression au moment de la compilation. Une telle expression est appelée *constant_expression* ([expressions constantes](expressions.md#constant-expressions)). Les expressions qui impliquent des opérateurs définis par d’autres types struct ne sont pas considérées comme des expressions constantes.
+*  Grâce aux déclarations de `const`, il est possible de déclarer des constantes des types simples ([constantes](classes.md#constants)). Il n’est pas possible d’avoir des constantes d’autres types struct, mais un effet similaire est fourni par `static readonly` champs.
+*  Les conversions impliquant des types simples peuvent participer à l’évaluation des opérateurs de conversion définis par d’autres types struct, mais un opérateur de conversion défini par l’utilisateur ne peut jamais participer à l’évaluation d’un autre opérateur défini par l’utilisateur ([évaluation de conversions définies par l’utilisateur](conversions.md#evaluation-of-user-defined-conversions)).
 
 ### <a name="integral-types"></a>Types intégraux
 
-C# prend en charge neuf types intégraux : `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, et `char`. Les types intégraux ont les tailles et les plages de valeurs suivants :
+C#prend en charge neuf types intégraux : `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`et `char`. Les types intégraux ont les tailles et plages de valeurs suivantes :
 
-*  Le `sbyte` type représente 8 bits entiers signés dont les valeurs comprises entre -128 et 127.
-*  Le `byte` type représente des entiers 8 bits non signés avec des valeurs comprises entre 0 et 255.
-*  Le `short` type représente 16 bits entiers signés dont les valeurs comprises entre -32768 et 32767.
-*  Le `ushort` type représente des entiers 16 bits non signés avec des valeurs comprises entre 0 et 65535.
-*  Le `int` type représente 32 bits entiers signés dont les valeurs comprises entre -2147483648 et 2147483647.
-*  Le `uint` type représente des entiers 32 bits non signés avec des valeurs comprises entre 0 et 4294967295.
-*  Le `long` type représente des entiers de 64 bits avec des valeurs comprises entre -9223372036854775808 et 9223372036854775807 signés.
-*  Le `ulong` type représente des entiers 64 bits non signés avec des valeurs comprises entre 0 et 18446744073709551615.
-*  Le `char` type représente des entiers 16 bits non signés avec des valeurs comprises entre 0 et 65535. Le jeu de valeurs possibles pour le `char` type correspond au jeu de caractères Unicode. Bien que `char` possède la même représentation en tant que `ushort`, pas toutes les opérations autorisées sur un type sont autorisées sur l’autre.
+*  Le type de `sbyte` représente des entiers 8 bits signés dont les valeurs sont comprises entre-128 et 127.
+*  Le type de `byte` représente des entiers 8 bits non signés dont la valeur est comprise entre 0 et 255.
+*  Le type de `short` représente des entiers 16 bits signés dont les valeurs sont comprises entre-32768 et 32767.
+*  Le type de `ushort` représente des entiers 16 bits non signés dont la valeur est comprise entre 0 et 65535.
+*  Le type de `int` représente des entiers 32 bits signés dont les valeurs sont comprises entre-2147483648 et 2147483647.
+*  Le type de `uint` représente des entiers 32 bits non signés dont la valeur est comprise entre 0 et 4294967295.
+*  Le type de `long` représente des entiers 64 bits signés dont la valeur est comprise entre-9223372036854775808 et 9223372036854775807.
+*  Le type de `ulong` représente des entiers 64 bits non signés dont la valeur est comprise entre 0 et 18446744073709551615.
+*  Le type de `char` représente des entiers 16 bits non signés dont la valeur est comprise entre 0 et 65535. Le jeu de valeurs possibles pour le type de `char` correspond au jeu de caractères Unicode. Bien que `char` ait la même représentation que `ushort`, les opérations autorisées sur un type ne sont pas toutes autorisées sur l’autre.
 
-Le type intégral opérateurs unaires et binaires fonctionnent toujours avec précision de 32 bits signée, précision de 32 bits non signée, les précision 64 bits signée ou non signée 64 bits précision :
+Les opérateurs unaires et binaires de type intégral fonctionnent toujours avec la précision 32 bits signée, la précision 32 bits non signée, la précision 64 bits signée ou la précision non signée de 64 bits :
 
-*  Dans le cas de `+` et `~` opérateurs, l’opérande est converti en type `T`, où `T` est le premier de `int`, `uint`, `long`, et `ulong` qui peut représenter entièrement toutes les valeurs possibles de l’opérande. L’opération est ensuite effectuée à l’aide de la précision du type `T`, et le type du résultat est `T`.
-*  Dans le cas de `-` opérateur, l’opérande est converti en type `T`, où `T` est le premier de `int` et `long` qui peut représenter entièrement toutes les valeurs possibles de l’opérande. L’opération est ensuite effectuée à l’aide de la précision du type `T`, et le type du résultat est `T`. L’unaire `-` opérateur ne peut pas être appliqué aux opérandes de type `ulong`.
-*  Pour le fichier binaire `+`, `-`, `*`, `/`, `%`, `&`, `^`, `|`, `==`, `!=`, `>`, `<`, `>=`, et `<=` opérateurs, les opérandes sont convertis en type `T`, où `T` est le premier de `int`, `uint`, `long`, et `ulong` qui peut représenter entièrement toutes les possibles valeurs des deux opérandes. L’opération est ensuite effectuée à l’aide de la précision du type `T`, et le type du résultat est `T` (ou `bool` pour les opérateurs relationnels). Il n’est pas autorisée pour un opérande de type `long` et l’autre pour être de type `ulong` avec les opérateurs binaires.
-*  Pour le fichier binaire `<<` et `>>` opérateurs, l’opérande gauche est converti en type `T`, où `T` est le premier de `int`, `uint`, `long`, et `ulong` qui peut représenter entièrement toutes les valeurs possibles de l’opérande. L’opération est ensuite effectuée à l’aide de la précision du type `T`, et le type du résultat est `T`.
+*  Pour les opérateurs unaires `+` et `~`, l’opérande est converti en type `T`, où `T` est le premier d' `int`, `uint`, `long`et `ulong` qui peut représenter entièrement toutes les valeurs possibles de l’opérande. L’opération est ensuite effectuée à l’aide de la précision de type `T`, et le type du résultat est `T`.
+*  Pour l’opérateur de `-` unaire, l’opérande est converti en type `T`, où `T` est le premier d' `int` et `long` qui peut représenter entièrement toutes les valeurs possibles de l’opérande. L’opération est ensuite effectuée à l’aide de la précision de type `T`, et le type du résultat est `T`. L’opérateur de `-` unaire ne peut pas être appliqué aux opérandes de type `ulong`.
+*  Pour les opérateurs binaires `+`, `-`, `*`, `/`, `%`, `&`, `^`, `|`, `==`, `!=`, `>`, `<`, `>=`et `<=` , les opérandes sont convertis en type `T`, où `T` est le premier d' `int`, `uint`, `long`et `ulong` qui peut représenter entièrement toutes les valeurs possibles des deux opérandes. L’opération est ensuite effectuée à l’aide de la précision de type `T`, et le type du résultat est `T` (ou `bool` pour les opérateurs relationnels). Il n’est pas autorisé qu’un opérande soit de type `long` et que l’autre soit de type `ulong` avec les opérateurs binaires.
+*  Pour les opérateurs binaires `<<` et `>>`, l’opérande de gauche est converti en type `T`, où `T` est le premier d' `int`, `uint`, `long`et `ulong` qui peut représenter entièrement toutes les valeurs possibles de l’opérande. L’opération est ensuite effectuée à l’aide de la précision de type `T`, et le type du résultat est `T`.
 
-Le `char` type est classé comme un type intégral, mais il diffère des autres types intégraux de deux manières :
+Le type de `char` est classé en tant que type intégral, mais il diffère des autres types intégraux de deux manières :
 
-*  Aucune conversion implicite des autres types vers le `char` type. En particulier, même si le `sbyte`, `byte`, et `ushort` types ont des plages de valeurs qui sont entièrement pouvant être représentées à l’aide de la `char` tapez, les conversions implicites de `sbyte`, `byte`, ou `ushort` à `char` n’existent pas.
-*  Constantes de la `char` type doit être écrites en tant que *character_literal*s ou en tant que *integer_literal*s en combinaison avec un cast en type `char`. Par exemple, `(char)10` est identique à `'\x000A'`.
+*  Il n’existe pas de conversion implicite d’autres types en type `char`. En particulier, même si les types `sbyte`, `byte`et `ushort` ont des plages de valeurs qui sont entièrement représentables à l’aide du type `char`, les conversions implicites de `sbyte`, `byte`ou `ushort` à `char` n’existent pas.
+*  Les constantes du type de `char` doivent être écrites en *character_literal*s ou en tant que *integer_literal*s en association avec un cast en type `char`. Par exemple, `(char)10` est identique à `'\x000A'`.
 
-Le `checked` et `unchecked` instructions et opérateurs sont utilisées pour contrôler le contrôle de dépassement pour les opérations arithmétiques de type intégral et les conversions ([les opérateurs checked et unchecked](expressions.md#the-checked-and-unchecked-operators)). Dans un `checked` contexte, un dépassement de capacité génère une erreur de compilation ou provoque un `System.OverflowException` levée. Dans un `unchecked` contexte, dépassements de capacité sont ignorés et tous les bits de poids fort qui ne tiennent pas dans le type de destination sont ignorées.
+Les opérateurs et les instructions `checked` et `unchecked` sont utilisés pour contrôler le contrôle de dépassement pour les opérations arithmétiques de type intégral et les conversions ([opérateurs activés et désactivés](expressions.md#the-checked-and-unchecked-operators)). Dans un contexte de `checked`, un dépassement de capacité génère une erreur au moment de la compilation ou provoque la levée d’une `System.OverflowException`. Dans un contexte de `unchecked`, les dépassements de capacité sont ignorés et tous les bits de poids fort qui ne tiennent pas dans le type de destination sont ignorés.
 
 ### <a name="floating-point-types"></a>Types à virgule flottante
 
-C# prend en charge deux types à virgule flottante : `float` et `double`. Le `float` et `double` types sont représentés en utilisant les 32 bits simple précision et 64 bits double précision IEEE 754 formats, qui fournissent des ensembles de valeurs suivants :
+C#prend en charge deux types à virgule flottante : `float` et `double`. Les types `float` et `double` sont représentés à l’aide des formats IEEE 754 simple précision et double précision 64 bits de 32, qui fournissent les ensembles de valeurs suivants :
 
-*  Positif zéro et zéro négatif. Dans la plupart des cas, un zéro positif et négatif zéro se comportent de façon identique que la simple valeur zéro, mais certaines opérations de faire la distinction entre les deux ([opérateur de Division](expressions.md#division-operator)).
-*  L’infini positif et infini négatif. Infinis sont produites par des opérations telles que la division par zéro d’un nombre différent de zéro. Par exemple, `1.0 / 0.0` génère l’infini positif, et `-1.0 / 0.0` l’infini négatif.
-*  Le ***Not-a-Number*** valeur, souvent abrégé NaN. Valeurs NaN sont produites par des opérations à virgule flottante non valides, telles que la division de zéro par zéro.
-*  L’ensemble fini de valeurs non nulles de l’écran `s * m * 2^e`, où `s` est 1 ou -1, et `m` et `e` sont déterminés par le type à virgule flottante particulier : Pour `float`, `0 < m < 2^24` et `-149 <= e <= 104`et pour `double`, `0 < m < 2^53` et `1075 <= e <= 970`. Les nombres à virgule flottante dénormalisés sont considérés comme des valeurs non nulles valides.
+*  Zéro positif et zéro négatif. Dans la plupart des cas, le zéro positif et le zéro négatif se comportent de la même façon que la valeur simple zéro, mais certaines opérations distinguent les deux ([opérateur de division](expressions.md#division-operator)).
+*  Infini positif et infini négatif. Les infinis sont produites par des opérations telles que la Division d’un nombre différent de zéro par zéro. Par exemple, `1.0 / 0.0` produit une infinité positive et `-1.0 / 0.0` produit une infini négatif.
+*  Valeur ***not-a-Number*** , souvent abrégée Nan. Les valeurs NaN sont produites par des opérations à virgule flottante non valides, telles que la Division de zéro par zéro.
+*  Le jeu fini de valeurs non null de la forme `s * m * 2^e`, où `s` a la valeur 1 ou-1, et `m` et `e` sont déterminés par le type à virgule flottante particulier : pour `float`, `0 < m < 2^24` et `-149 <= e <= 104`, et pour `double`, `0 < m < 2^53` et `-1075 <= e <= 970`. Les nombres à virgule flottante dénormalisés sont considérés comme des valeurs non nulles valides.
 
-Le `float` type peut représenter des valeurs comprises entre environ `1.5 * 10^-45` à `3.4 * 10^38` avec une précision de 7 chiffres.
+Le type de `float` peut représenter des valeurs allant d’environ `1.5 * 10^-45` à `3.4 * 10^38` avec une précision de 7 chiffres.
 
-Le `double` type peut représenter des valeurs comprises entre environ `5.0 * 10^-324` à `1.7 × 10^308` avec une précision de 15-16 chiffres.
+Le type de `double` peut représenter des valeurs allant d’environ `5.0 * 10^-324` à `1.7 × 10^308` avec une précision de 15-16 chiffres.
 
-Si l’un des opérandes d’un opérateur binaire est d’un type à virgule flottante, puis l’autre opérande doit être d’un type intégral ou d’un type à virgule flottante, et l’opération est évaluée comme suit :
+Si l’un des opérandes d’un opérateur binaire est d’un type à virgule flottante, l’autre opérande doit être d’un type intégral ou d’un type à virgule flottante, et l’opération est évaluée comme suit :
 
-*  Si l’un des opérandes est de type intégral, cet opérande est converti vers le type à virgule flottante de l’autre opérande.
-*  Ensuite, si un des opérandes est de type `double`, l’autre opérande est converti en `double`, l’opération est effectuée à l’aide au moins `double` plage et précision et le type du résultat est `double` (ou `bool` pour le opérateurs relationnels).
-*  Sinon, l’opération est effectuée à l’aide au moins `float` plage et précision et le type du résultat est `float` (ou `bool` pour les opérateurs relationnels).
+*  Si l’un des opérandes est d’un type intégral, cet opérande est converti en type à virgule flottante de l’autre opérande.
+*  Ensuite, si l’un des opérandes est de type `double`, l’autre opérande est converti en `double`, l’opération est effectuée à l’aide d’au moins `double` plage et précision, et le type du résultat est `double` (ou `bool` pour les opérateurs relationnels).
+*  Dans le cas contraire, l’opération est effectuée à l’aide d’au moins `float` plage et précision, et le type du résultat est `float` (ou `bool` pour les opérateurs relationnels).
 
-Les opérateurs à virgule flottante, y compris les opérateurs d’assignation, produisent jamais d’exceptions. Au lieu de cela, dans des situations exceptionnelles, les opérations à virgule flottante produisent zéro, l’infini ou NaN, comme décrit ci-dessous :
+Les opérateurs à virgule flottante, y compris les opérateurs d’assignation, ne produisent jamais d’exceptions. À la place, dans des situations exceptionnelles, les opérations à virgule flottante produisent zéro, Infinity ou NaN, comme décrit ci-dessous :
 
-*  Si le résultat d’une opération à virgule flottante est trop petit pour le format de destination, le résultat de l’opération devient le zéro positif ou zéro négatif.
-*  Si le résultat d’une opération à virgule flottante est trop grand pour le format de destination, le résultat de l’opération devient l’infini positif ou l’infini négatif.
-*  Si une opération à virgule flottante n’est pas valide, le résultat de l’opération devient une NaN.
-*  Si un ou deux opérandes d’une opération à virgule flottante est NaN, le résultat de l’opération devient une NaN.
+*  Si le résultat d’une opération à virgule flottante est trop petit pour le format de destination, le résultat de l’opération devient un zéro positif ou un zéro négatif.
+*  Si le résultat d’une opération à virgule flottante est trop grand pour le format de destination, le résultat de l’opération devient une infini positif ou négatif.
+*  Si une opération à virgule flottante n’est pas valide, le résultat de l’opération devient NaN.
+*  Si l’un des opérandes ou les deux d’une opération à virgule flottante est NaN, le résultat de l’opération devient NaN.
 
-Les opérations à virgule flottante peuvent être exécutées avec une précision plus élevée que le type de résultat de l’opération. Par exemple, certaines architectures matérielles prennent en charge un type à virgule flottante « étendu » ou « long double » avec la plage supérieure et une précision à la `double` tapez, puis appliquer implicitement toutes les opérations à virgule flottante à l’aide de ce type de précision plus élevé. Qu’au prix de performances ces architectures matérielles est possible d’effectuer des opérations à virgule flottante avec moins de précision, et plutôt que d’imposer une implémentation se dérouler au détriment des performances et précision, c# autorise un type de précision plus élevé être utilisé pour toutes les opérations à virgule flottante. Autres que des résultats plus précis, cette méthode présente rarement des effets mesurables. Toutefois, dans les expressions de la forme `x * y / z`, où la multiplication produit un résultat qui est en dehors de la `double` plage, mais la division qui suit affiche le résultat temporaire dans le `double` de plage, le fait que l’expression est évaluée dans une plage plus haute format peut provoquer un résultat fini à produire au lieu d’un nombre infini.
+Les opérations à virgule flottante peuvent être effectuées avec une précision supérieure à celle du type de résultat de l’opération. Par exemple, certaines architectures matérielles prennent en charge un type à virgule flottante « étendu » ou « long double » avec une plage et une précision supérieures à celles du type de `double`, et effectuent implicitement toutes les opérations en virgule flottante à l’aide de ce type de précision plus élevée. Le fait d’effectuer des opérations de calcul en virgule flottante avec moins de précision, et au lieu d’exiger une implémentation pour perdre à la fois les performances et la précision, C# offre un type de précision plus élevé. à utiliser pour toutes les opérations en virgule flottante. En dehors de la diffusion de résultats plus précis, cela a rarement des effets mesurables. Toutefois, dans les expressions de la forme `x * y / z`, où la multiplication produit un résultat en dehors de la plage de `double`, mais la Division suivante ramène le résultat temporaire à la plage de `double`, le fait que l’expression soit évaluée dans une un format de plage plus élevé peut entraîner la production d’un résultat fini à la place d’une infini.
 
-### <a name="the-decimal-type"></a>Le type decimal
+### <a name="the-decimal-type"></a>Type décimal
 
-Le type `decimal` est un type de données 128 bits adapté aux calculs financiers et monétaires. Le `decimal` type peut représenter des valeurs comprises entre `1.0 * 10^-28` à environ `7.9 * 10^28` avec 28-29 chiffres significatifs.
+Le type `decimal` est un type de données 128 bits adapté aux calculs financiers et monétaires. Le type de `decimal` peut représenter des valeurs allant de `1.0 * 10^-28` à environ `7.9 * 10^28` avec 28-29 chiffres significatifs.
 
-L’ensemble fini de valeurs de type `decimal` présentent sous la forme `(-1)^s * c * 10^-e`, où le signe `s` est 0 ou 1, le coefficient `c` est donnée par `0 <= *c* < 2^96`et l’échelle `e` est telle que `0 <= e <= 28`. Le `decimal` type ne prend pas en charge les zéros signés, infinis ou NaN. Un `decimal` est représentée comme un entier 96 bits mis à l’échelle par une puissance de dix. Pour `decimal`s avec une valeur absolue inférieure à `1.0m`, la valeur est exacte jusqu'à la 28ème décimale, mais pas plus loin. Pour `decimal`s avec une valeur absolue supérieure ou égale à `1.0m`, la valeur est exacte à 28 ou 29 chiffres. Contraire au `float` et `double` des types de données, des nombres fractionnaires décimaux, comme 0,1 peuvent être représentées exactement dans le `decimal` représentation. Dans le `float` et `double` représentations, ces nombres sont souvent des fractions infinies, rendre ces représentations plus propices à arrondi erreurs.
+L’ensemble fini de valeurs de type `decimal` se présentent sous la forme `(-1)^s * c * 10^-e`, où le signe `s` est 0 ou 1, le coefficient `c` est donné par `0 <= *c* < 2^96`, et la `e` d’échelle est telle que `0 <= e <= 28`. Le type de `decimal` ne prend pas en charge les zéros, les infinis ou les NaN signés. Un `decimal` est représenté sous la forme d’un entier 96 bits mis à l’échelle par une puissance de dix. Pour `decimal`s avec une valeur absolue inférieure à `1.0m`, la valeur est exacte jusqu’au 28 décimal, mais pas plus. Pour les `decimal`avec une valeur absolue supérieure ou égale à `1.0m`, la valeur est exacte à 28 ou 29 chiffres. Contrairement aux types de données `float` et `double`, les nombres fractionnaires décimaux tels que 0,1 peuvent être représentés exactement dans la représentation `decimal`. Dans les représentations `float` et `double`, ces nombres sont souvent des fractions infinies, ce qui rend ces représentations plus sujettes aux erreurs d’arrondi.
 
-Si l’un des opérandes d’un opérateur binaire est de type `decimal`, puis l’autre opérande doit être de type intégral ou de type `decimal`. Si un opérande de type intégral est présent, il est converti en `decimal` avant l’opération est effectuée.
+Si l’un des opérandes d’un opérateur binaire est de type `decimal`, l’autre opérande doit être de type intégral ou de type `decimal`. Si un opérande de type intégral est présent, il est converti en `decimal` avant l’exécution de l’opération.
 
-Le résultat d’une opération sur les valeurs de type `decimal` est que qui résulterait de calcul d’un résultat exact (préservation mise à l’échelle, comme défini pour chaque opérateur) et ensuite arrondi pour s’ajuster à la représentation. Les résultats sont arrondis à la plus proche de la valeur représentable, et que, lorsqu’un résultat est proche de deux valeurs représentables, à la valeur qui a un nombre pair à la position de chiffre moins significatif (cela est appelé « l’arrondi bancaire »). Un zéro résultat a toujours un signe de 0 et une échelle de 0.
+Le résultat d’une opération sur les valeurs de type `decimal` est que ce qui résulte du calcul d’un résultat exact (préservation de l’échelle, tel que défini pour chaque opérateur), puis à l’arrondi pour s’ajuster à la représentation. Les résultats sont arrondis à la valeur représentable la plus proche et, lorsqu’un résultat est proche de deux valeurs représentables, à la valeur qui a un nombre pair dans la position de chiffre la moins significative (c’est ce qu’on appelle le « arrondi bancaire »). Un résultat zéro a toujours un signe de 0 et une échelle de 0.
 
-Si une opération arithmétique décimale produit une valeur inférieure ou égale à `5 * 10^-29` en valeur absolue, le résultat de l’opération devient égal à zéro. Si un `decimal` opération arithmétique produit un résultat qui est trop grand pour le `decimal` format, un `System.OverflowException` est levée.
+Si une opération arithmétique décimale produit une valeur inférieure ou égale à `5 * 10^-29` en valeur absolue, le résultat de l’opération devient zéro. Si une `decimal` opération arithmétique produit un résultat trop grand pour le format `decimal`, une `System.OverflowException` est levée.
 
-Le `decimal` type a une précision supérieure, mais de plus petite plage que les types à virgule flottante. Par conséquent, les conversions de types à virgule flottante `decimal` peut générer des exceptions de dépassement de capacité et les conversions de `decimal` pour les types à virgule flottante peut entraîner une perte de précision. Pour ces raisons, n’existe aucune conversion implicite entre les types à virgule flottante et `decimal`, et sans cast explicite, il n’est pas possible de combiner à virgule flottante et `decimal` opérandes dans la même expression.
+Le type de `decimal` a une plus grande précision, mais une plage plus petite que les types à virgule flottante. Ainsi, les conversions des types à virgule flottante en `decimal` peuvent générer des exceptions de dépassement de capacité et les conversions de `decimal` en types virgule flottante peuvent entraîner une perte de précision. Pour ces raisons, il n’existe pas de conversion implicite entre les types à virgule flottante et les `decimal`, et sans casts explicites, il n’est pas possible de mélanger des opérandes à virgule flottante et `decimal` dans la même expression.
 
-### <a name="the-bool-type"></a>Le type bool
+### <a name="the-bool-type"></a>Type bool
 
-Le `bool` type représente des quantités logiques booléennes. Les valeurs possibles de type `bool` sont `true` et `false`.
+Le type de `bool` représente des quantités logiques booléennes. Les valeurs possibles de type `bool` sont `true` et `false`.
 
-Il n’existe aucune conversion standard entre `bool` et d’autres types. En particulier, le `bool` type est distinct et indépendant des types intégraux et un `bool` valeur ne peut pas être utilisée à la place d’une valeur intégrale et vice versa.
+Il n’existe pas de conversion standard entre `bool` et d’autres types. En particulier, le type de `bool` est distinct et distinct des types intégraux, et une valeur de `bool` ne peut pas être utilisée à la place d’une valeur intégrale, et vice versa.
 
-Dans les langages C et C++, une valeur zéro intégrale ou à virgule flottante ou un pointeur null peut être converti à la valeur booléenne `false`, et une valeur intégrale ou à virgule flottante de zéro ou un pointeur non null peut être converti en la valeur booléenne `true`. En c#, ces conversions sont accomplies en comparant explicitement une valeur intégrale ou à virgule flottante à zéro ou en comparant explicitement une référence d’objet `null`.
+Dans les langages C++ C et, une valeur intégrale nulle ou à virgule flottante, ou un pointeur NULL peut être converti en valeur booléenne `false`, et une valeur intégrale ou à virgule flottante différente de zéro, ou un pointeur non NULL peut être converti en valeur booléenne `true`. Dans C#, ces conversions sont accomplies en comparant explicitement une valeur intégrale ou à virgule flottante à zéro, ou en comparant explicitement une référence d’objet à `null`.
 
 ### <a name="enumeration-types"></a>Types d'énumération
 
-Un type d’énumération est un type distinct avec des constantes nommées. Chaque type énumération a un type sous-jacent, ce qui doit être `byte`, `sbyte`, `short`, `ushort`, `int`, `uint`, `long` ou `ulong`. L’ensemble de valeurs du type énumération est identique à l’ensemble de valeurs du type sous-jacent. Valeurs du type énumération ne sont pas limitées aux valeurs des constantes nommées. Types énumération sont définies dans des déclarations d’énumération ([les déclarations Enum](enums.md#enum-declarations)).
+Un type énumération est un type distinct avec des constantes nommées. Chaque type énumération a un type sous-jacent, qui doit être `byte`, `sbyte`, `short`, `ushort`, `int`, `uint`, `long` ou `ulong`. L’ensemble de valeurs du type énumération est le même que l’ensemble de valeurs du type sous-jacent. Les valeurs du type d’énumération ne sont pas limitées aux valeurs des constantes nommées. Les types énumération sont définis par le biais de déclarations d’énumération ([déclarations enum](enums.md#enum-declarations)).
 
 ### <a name="nullable-types"></a>Types Nullable
 
-Un type nullable peut représenter toutes les valeurs de ses ***type sous-jacent*** ainsi que d’une valeur null supplémentaire. Un type nullable est écrit `T?`, où `T` est le type sous-jacent. Cette syntaxe est l’abréviation de `System.Nullable<T>`, et les deux formes peuvent être utilisés indifféremment.
+Un type Nullable peut représenter toutes les valeurs de son ***type sous-jacent*** plus une valeur null supplémentaire. Un type Nullable est écrit `T?`, où `T` est le type sous-jacent. Cette syntaxe est raccourcie pour `System.Nullable<T>`, et les deux formulaires peuvent être utilisés indifféremment.
 
-Un ***type valeur non nullable*** à l’inverse est n’importe quel type de valeur autre que `System.Nullable<T>` et son raccourci `T?` (pour tout `T`), ainsi que n’importe quel paramètre de type est contraint à être un type valeur non nullable (autrement dit, tout paramètre de type avec un `struct` contrainte). Le `System.Nullable<T>` type spécifie la contrainte de type de valeur pour `T` ([les contraintes de paramètre de Type](classes.md#type-parameter-constraints)), ce qui signifie que le type sous-jacent d’un type nullable peut être n’importe quel type valeur non nullable. Le type sous-jacent d’un type nullable ne peut pas être un type nullable ou un type référence. Par exemple, `int??` et `string?` sont des types non valides.
+Un ***type valeur qui n’autorise pas*** les valeurs NULL est inversement tout type valeur autre que `System.Nullable<T>` et son raccourci `T?` (pour n’importe quel `T`), plus tout paramètre de type qui est imposé comme étant un type valeur non Nullable (autrement dit, tout paramètre de type avec une `struct` contrainte). Le type de `System.Nullable<T>` spécifie la contrainte de type valeur pour `T` ([contraintes de paramètre de type](classes.md#type-parameter-constraints)), ce qui signifie que le type sous-jacent d’un type Nullable peut être n’importe quel type valeur n’acceptant pas les valeurs NULL. Le type sous-jacent d’un type Nullable ne peut pas être un type Nullable ou un type référence. Par exemple, `int??` et `string?` sont des types non valides.
 
-Une instance d’un type nullable `T?` a deux propriétés publiques en lecture seule :
+Une instance d’un type Nullable `T?` a deux propriétés publiques en lecture seule :
 
-*  Un `HasValue` propriété de type `bool`
-*  Un `Value` propriété de type `T`
+*  Propriété `HasValue` de type `bool`
+*  Propriété `Value` de type `T`
 
-Instance pour laquelle `HasValue` est la valeur true est dite non null. Une instance non null contient une valeur connue et `Value` retourne cette valeur.
+Une instance pour laquelle `HasValue` a la valeur true est dite non null. Une instance non null contient une valeur connue et `Value` retourne cette valeur.
 
-Instance pour laquelle `HasValue` est false est dite avoir la valeur null. Une instance null a une valeur non définie. Une tentative de lecture la `Value` d’une instance null provoque un `System.InvalidOperationException` levée. Le processus de l’accès à la `Value` propriété d’une instance nullable est appelée ***désencapsulage***.
+Une instance pour laquelle `HasValue` a la valeur false est considérée comme étant null. Une instance null a une valeur non définie. Toute tentative de lecture de la `Value` d’une instance null entraîne la levée d’une `System.InvalidOperationException`. Le processus d’accès à la propriété `Value` d’une instance Nullable est appelé ***désencapsulage***.
 
-Outre le constructeur par défaut, tous les types nullable `T?` a un constructeur public qui accepte un seul argument de type `T`. Une valeur donnée `x` de type `T`, un appel de constructeur du formulaire
+En plus du constructeur par défaut, chaque type Nullable `T?` a un constructeur public qui accepte un argument unique de type `T`. À partir d’une valeur `x` de type `T`, un appel de constructeur au format
 
 ```csharp
 new T?(x)
 ```
-Crée une instance non null de `T?` pour lequel le `Value` propriété est `x`. Le processus de création d’une instance non null d’un type nullable pour une valeur donnée est appelée ***encapsulant***.
+crée une instance non null de `T?` pour laquelle la propriété `Value` est `x`. Le processus de création d’une instance non null d’un type Nullable pour une valeur donnée est appelé « ***Wrapping***».
 
-Les conversions implicites sont disponibles à partir de la `null` littéral `T?` ([Null littérales conversions](conversions.md#null-literal-conversions)) et à partir de `T` à `T?` ([les conversions implicites nullables](conversions.md#implicit-nullable-conversions)).
+Les conversions implicites sont disponibles à partir du littéral `null` pour `T?` ([conversions de littéraux NULL](conversions.md#null-literal-conversions)) et de `T` à `T?` ([conversions nullables implicites](conversions.md#implicit-nullable-conversions)).
 
 ## <a name="reference-types"></a>Types référence
 
-Un type référence est un type de classe, un type d’interface, un type tableau ou un type délégué.
+Un type référence est un type de classe, un type interface, un type tableau ou un type délégué.
 
 ```antlr
 reference_type
@@ -311,101 +311,101 @@ delegate_type
     ;
 ```
 
-Une valeur de type référence est une référence à un ***instance*** du type, connues sous le nom de ce dernier un ***objet***. La valeur spéciale `null` est compatible avec tous les types référence et indique l’absence d’une instance.
+Une valeur de type référence est une référence à une ***instance*** du type, ce dernier connu sous le nom d' ***objet***. La valeur spéciale `null` est compatible avec tous les types de référence et indique l’absence d’une instance.
 
 ### <a name="class-types"></a>Types de classes
 
-Un type de classe définit une structure de données qui contient les données membres (constantes et champs), des fonctions membres (méthodes, propriétés, événements, indexeurs, opérateurs, constructeurs d’instance, destructeurs et constructeurs statiques) et les types imbriqués. Types de classes prend en charge l’héritage, un mécanisme par lequel les classes dérivées peuvent étendre et spécialiser les classes de base. Instances de types de classe sont créées à l’aide de *object_creation_expression*s ([des expressions de la création d’objet](expressions.md#object-creation-expressions)).
+Un type de classe définit une structure de données qui contient des données membres (constantes et champs), des fonctions membres (méthodes, propriétés, événements, indexeurs, opérateurs, constructeurs d’instance, destructeurs et constructeurs statiques) et des types imbriqués. Les types de classe prennent en charge l’héritage, mécanisme dans lequel les classes dérivées peuvent étendre et spécialiser les classes de base. Les instances de types de classe sont créées à l’aide de *object_creation_expression*s ([expressions de création d’objet](expressions.md#object-creation-expressions)).
 
-Types de classe sont décrits dans [Classes](classes.md).
+Les types de classe sont décrits dans les [classes](classes.md).
 
-Certains types de classe prédéfinis ont une signification spéciale dans le langage c#, comme décrit dans le tableau ci-dessous.
+Certains types de classe prédéfinis ont une signification particulière C# dans le langage, comme décrit dans le tableau ci-dessous.
 
 
 | __Type de classe__     | __Description__                                         |
 |--------------------|---------------------------------------------------------|
-| `System.Object`    | La classe de base fondamentale de tous les autres types. Consultez [le type d’objet](types.md#the-object-type). | 
-| `System.String`    | Le type de chaîne du langage c#. Consultez [le type de chaîne](types.md#the-string-type).         |
-| `System.ValueType` | La classe de base de tous les types de valeur. Consultez [System.ValueType le type](types.md#the-systemvaluetype-type).          |
-| `System.Enum`      | La classe de base de tous les types enum. Consultez [Enums](enums.md).              |
-| `System.Array`     | La classe de base de tous les types tableau. Consultez [Tableaux](arrays.md).             |
-| `System.Delegate`  | La classe de base de tous les types délégués. Consultez [délégués](delegates.md).          |
-| `System.Exception` | La classe de base de tous les types d’exception. Consultez [Exceptions](exceptions.md).         |
+| `System.Object`    | Classe de base fondamentale de tous les autres types. Consultez [le type d’objet](types.md#the-object-type). | 
+| `System.String`    | Type de chaîne de la C# langue. Consultez [type de chaîne](types.md#the-string-type).         |
+| `System.ValueType` | Classe de base de tous les types valeur. Consultez [le type System. ValueType](types.md#the-systemvaluetype-type).          |
+| `System.Enum`      | Classe de base de tous les types ENUM. Consultez [enums](enums.md).              |
+| `System.Array`     | Classe de base de tous les types tableau. Consultez [Tableaux](arrays.md).             |
+| `System.Delegate`  | Classe de base de tous les types délégués. Consultez [délégués](delegates.md).          |
+| `System.Exception` | Classe de base de tous les types d’exception. Consultez [exceptions](exceptions.md).         |
 
-### <a name="the-object-type"></a>Le type d’objet
+### <a name="the-object-type"></a>Type d’objet
 
-Le `object` type de classe est la classe de base fondamentale de tous les autres types. Chaque type dans c# dérive directement ou indirectement le `object` type de classe.
+Le type de classe `object` est la classe de base fondamentale de tous les autres types. Chaque type dans C# directement ou indirectement dérive du type de classe `object`.
 
-Le mot clé `object` est simplement un alias de la classe prédéfinie `System.Object`.
+Le mot clé `object` est simplement un alias pour la classe prédéfinie `System.Object`.
 
-### <a name="the-dynamic-type"></a>Le type dynamique
+### <a name="the-dynamic-type"></a>Type dynamique
 
-Le `dynamic` Entrez comme `object`, peut faire référence à n’importe quel objet. Lorsque les opérateurs sont appliqués à des expressions de type `dynamic`, leur résolution est différée jusqu'à ce que le programme est exécuté. Par conséquent, si l’opérateur légalement ne peut pas être appliqué qu’à l’objet référencé, aucune erreur n’est donné pendant la compilation. À la place une exception est levée en cas d’échec de résolution de l’opérateur au moment de l’exécution.
+Le type de `dynamic`, comme `object`, peut faire référence à n’importe quel objet. Lorsque des opérateurs sont appliqués à des expressions de type `dynamic`, leur résolution est différée jusqu’à ce que le programme soit exécuté. Ainsi, si l’opérateur ne peut pas être légalement appliqué à l’objet référencé, aucune erreur n’est donnée durant la compilation. Au lieu de cela, une exception est levée lorsque la résolution de l’opérateur échoue au moment de l’exécution.
 
-Son but est de permettre la liaison dynamique, qui est décrite en détail dans [liaison dynamique](expressions.md#dynamic-binding).
+Son objectif est d’autoriser la liaison dynamique, qui est décrite en détail dans [liaison dynamique](expressions.md#dynamic-binding).
 
-`dynamic` est considéré comme identique au `object` sauf dans les points suivants :
+`dynamic` est considéré comme identique à `object` à l’exception des points suivants :
 
-*  Opérations sur les expressions de type `dynamic` peut être liée de manière dynamique ([liaison dynamique](expressions.md#dynamic-binding)).
-*  Inférence de type ([l’inférence de Type](expressions.md#type-inference)) préféreront `dynamic` sur `object` si les deux sont des candidats.
+*  Les opérations sur les expressions de type `dynamic` peuvent être liées dynamiquement ([liaison dynamique](expressions.md#dynamic-binding)).
+*  L’inférence de type ([inférence de type](expressions.md#type-inference)) préfère `dynamic` sur `object` si les deux sont des candidats.
 
-En raison de l’équivalence, les blocages suivantes :
+En raison de cette équivalence, les éléments suivants sont les suivants :
 
-*  Il existe une conversion implicite d’identité entre `object` et `dynamic`et entre les types construits sont les mêmes lors du remplacement `dynamic` avec `object`
-*  Les conversions implicites et explicites vers et depuis `object` s’appliquent également vers et depuis `dynamic`.
-*  Les signatures de méthode sont les mêmes lors du remplacement `dynamic` avec `object` sont considérés comme la même signature
-*  Le type `dynamic` est indiscernable `object` au moment de l’exécution.
-*  Une expression de type `dynamic` est appelé un ***expression dynamique***.
+*  Il existe une conversion d’identité implicite entre `object` et `dynamic`, et entre les types construits qui sont identiques lors du remplacement d' `dynamic` par `object`
+*  Les conversions implicites et explicites vers et à partir de `object` s’appliquent également à et à partir de `dynamic`.
+*  Les signatures de méthode qui sont les mêmes lors du remplacement de `dynamic` par des `object` sont considérées comme la même signature
+*  Le type `dynamic` ne peut pas être distingué du `object` au moment de l’exécution.
+*  Une expression de type `dynamic` est appelée ***expression dynamique***.
 
-### <a name="the-string-type"></a>Le type de chaîne
+### <a name="the-string-type"></a>Type de chaîne
 
-Le `string` type est un type classe sealed qui hérite directement de `object`. Instances de la `string` classe représentent les chaînes de caractères Unicode.
+Le type de `string` est un type de classe sealed qui hérite directement de `object`. Les instances de la classe `string` représentent des chaînes de caractères Unicode.
 
-Valeurs de la `string` type peut être écrit en tant que littéraux de chaîne ([littéraux de chaîne](lexical-structure.md#string-literals)).
+Les valeurs du type de `string` peuvent être écrites sous la forme de littéraux de chaîne ([littéraux de chaîne](lexical-structure.md#string-literals)).
 
-Le mot clé `string` est simplement un alias de la classe prédéfinie `System.String`.
+Le mot clé `string` est simplement un alias pour la classe prédéfinie `System.String`.
 
 ### <a name="interface-types"></a>Types interface
 
-Une interface définit un contrat. Une classe ou un struct qui implémente une interface doit adhérer à ce contrat. Une interface peut hériter de plusieurs interfaces de base, et une classe ou un struct peut implémenter plusieurs interfaces.
+Une interface définit un contrat. Une classe ou un struct qui implémente une interface doit adhérer à son contrat. Une interface peut hériter de plusieurs interfaces de base, et une classe ou un struct peut implémenter plusieurs interfaces.
 
-Types d’interface sont décrits dans [Interfaces](interfaces.md).
+Les types d’interface sont décrits dans [interfaces](interfaces.md).
 
 ### <a name="array-types"></a>Types de tableaux
 
-Un tableau est une structure de données qui contient zéro ou plusieurs variables qui sont accessibles par le biais des indices calculés. Les variables contenues dans un tableau, également appelé éléments du tableau, sont tous du même type, et ce type est appelé le type d’élément du tableau.
+Un tableau est une structure de données qui contient zéro, une ou plusieurs variables accessibles par le biais d’index calculés. Les variables contenues dans un tableau, également appelées éléments du tableau, sont toutes du même type, et ce type est appelé le type d’élément du tableau.
 
-Les types tableau sont décrits dans [tableaux](arrays.md).
+Les types tableau sont décrits dans les [tableaux](arrays.md).
 
 ### <a name="delegate-types"></a>Types délégués
 
-Un délégué est une structure de données qui fait référence à une ou plusieurs méthodes. Par exemple méthodes, il fait également référence à leurs instances d’objet correspondant.
+Un délégué est une structure de données qui fait référence à une ou plusieurs méthodes. Pour les méthodes d’instance, elle fait également référence aux instances d’objet correspondantes.
 
-L’équivalent le plus proche d’un délégué en C ou C++ est un pointeur de fonction, mais tandis que les fonctions statiques ne peut référencer qu’un pointeur de fonction, un délégué peut faire référence à la fois static et méthodes d’instance. Dans ce cas, le délégué stocke non seulement une référence au point d’entrée de la méthode, mais également une référence à l’instance d’objet sur lequel appeler la méthode.
+L’équivalent le plus proche d’un délégué en C C++ ou est un pointeur de fonction, mais alors qu’un pointeur de fonction ne peut référencer que des fonctions statiques, un délégué peut faire référence à la fois à des méthodes statiques et d’instance. Dans ce dernier cas, le délégué stocke non seulement une référence au point d’entrée de la méthode, mais également une référence à l’instance d’objet sur laquelle appeler la méthode.
 
-Types délégués sont décrits dans [délégués](delegates.md).
+Les types délégués sont décrits dans [délégués](delegates.md).
 
 ## <a name="boxing-and-unboxing"></a>Boxing et unboxing
 
-Le concept de boxing et unboxing est central à C#du système de type. Il fournit un pont entre *value_type*s et *reference_type*s en permettant de n’importe quelle valeur d’un *value_type* à convertir vers et à partir de type `object`. Boxing et unboxing permettent une vue unifiée du système de type dans lequel une valeur de n’importe quel type peut finalement être traitée en tant qu’objet.
+Le concept de boxing et d’unboxing est central C#pour le système de type de. Il fournit un pont entre *Value_type*s et *reference_type*s en autorisant la conversion d’une valeur d’un *Value_type* en type `object`. Le boxing et l’unboxing permettent une vue unifiée du système de type dans lequel une valeur de n’importe quel type peut finalement être traitée comme un objet.
 
 ### <a name="boxing-conversions"></a>Conversions boxing
 
-Une conversion boxing permet un *value_type* être implicitement converti dans un *reference_type*. Les conversions boxing suivantes existent :
+Une conversion boxing permet de convertir implicitement un *Value_type* en *reference_type*. Les conversions boxing suivantes existent :
 
-*  À partir d’un *value_type* au type `object`.
-*  À partir d’un *value_type* au type `System.ValueType`.
-*  À partir d’un *non_nullable_value_type* aux *interface_type* implémentée par le *value_type*.
-*  À partir d’un *nullable_type* aux *interface_type* implémentée par le type sous-jacent de la *nullable_type*.
-*  À partir d’un *type_de_liste* au type `System.Enum`.
-*  À partir d’un *nullable_type* avec sous-jacent *type_de_liste* au type `System.Enum`.
-*  Notez qu’une conversion implicite d’un paramètre de type sera exécutée en tant qu’une conversion boxing si au moment de l’exécution il finit par conversion à partir d’un type valeur à un type référence ([conversions implicites impliquant des paramètres de type](conversions.md#implicit-conversions-involving-type-parameters)).
+*  De n’importe quel *Value_type* vers le type `object`.
+*  De n’importe quel *Value_type* vers le type `System.ValueType`.
+*  Depuis n’importe quel *non_nullable_value_type* vers n’importe quel *INTERFACE_TYPE* implémenté par *Value_type*.
+*  De n’importe quel *nullable_type* à n’importe quel *INTERFACE_TYPE* implémenté par le type sous-jacent de *nullable_type*.
+*  De n’importe quel *enum_type* vers le type `System.Enum`.
+*  À partir de n’importe quel *nullable_type* avec un *enum_type* sous-jacent au type `System.Enum`.
+*  Notez qu’une conversion implicite à partir d’un paramètre de type sera exécutée comme conversion boxing si, au moment de l’exécution, elle finit par convertir un type valeur en un type référence ([conversions implicites impliquant des paramètres de type](conversions.md#implicit-conversions-involving-type-parameters)).
 
-Conversion boxing d’une valeur un *non_nullable_value_type* se compose d’allouer une instance d’objet et à copier le *non_nullable_value_type* valeur dans cette instance.
+Le boxing d’une valeur d’un *non_nullable_value_type* consiste à allouer une instance d’objet et à copier la valeur *non_nullable_value_type* dans cette instance.
 
-Conversion boxing d’une valeur un *nullable_type* génère une référence null s’il s’agit du `null` valeur (`HasValue` est `false`), ou le résultat de dévoilement et boxing de la valeur sous-jacente dans le cas contraire.
+Le boxing d’une valeur d’un *nullable_type* produit une référence null s’il s’agit de la valeur `null` (`HasValue` est `false`), ou le résultat de la désencapsulation et du boxing de la valeur sous-jacente dans le cas contraire.
 
-Le processus de conversion boxing d’une valeur un *non_nullable_value_type* explique parfaitement d’imaginer l’existence d’un générique ***classe de boxing***, qui se comporte comme s’il était déclaré comme suit :
+Le processus réel de boxing d’une valeur d’un *non_nullable_value_type* est mieux expliqué en imaginant l’existence d’une ***classe Boxing***générique, qui se comporte comme si elle avait été déclarée comme suit :
 
 ```csharp
 sealed class Box<T>: System.ValueType
@@ -418,18 +418,18 @@ sealed class Box<T>: System.ValueType
 }
 ```
 
-Le boxing d’une valeur `v` de type `T` maintenant se compose de l’exécution de l’expression `new Box<T>(v)`et en retournant l’instance obtenue en tant que valeur de type `object`. Par conséquent, les instructions
+La conversion boxing d’une valeur `v` de type `T` consiste à exécuter l’expression `new Box<T>(v)`et à retourner l’instance résultante sous la forme d’une valeur de type `object`. Ainsi, les instructions
 ```csharp
 int i = 123;
 object box = i;
 ```
-sur le plan conceptuel correspondent aux
+correspondent de manière conceptuelle à
 ```csharp
 int i = 123;
 object box = new Box<int>(i);
 ```
 
-Une classe de boxing comme `Box<T>` ci-dessus n’en existe pas et le type dynamique d’une valeur boxed n’est pas réellement un type de classe. Au lieu de cela, une valeur boxed du type `T` a le type dynamique `T`et une validation de type dynamique à l’aide de la `is` opérateur peut référencer tout simplement de type `T`. Par exemple :
+Une classe Boxing comme `Box<T>` ci-dessus n’existe pas réellement et le type dynamique d’une valeur boxed n’est en fait pas un type de classe. Au lieu de cela, une valeur boxed de type `T` a le type dynamique `T`et une vérification de type dynamique à l’aide de l’opérateur `is` peut simplement référencer le type `T`. Par exemple :
 ```csharp
 int i = 123;
 object box = i;
@@ -439,7 +439,7 @@ if (box is int) {
 ```
 génère la chaîne «`Box contains an int`» sur la console.
 
-Une conversion boxing implique effectuant une copie de la valeur convertie. Cela est différent de la conversion d’un *reference_type* à taper `object`, dans laquelle la valeur continue à référencer la même instance et simplement est considérée comme le type moins dérivé `object`. Par exemple, prenons la déclaration
+Une conversion boxing implique de faire une copie de la valeur convertie. Cela est différent d’une conversion d’un *reference_type* en type `object`, dans lequel la valeur continue à faire référence à la même instance et est simplement considérée comme le type moins dérivé `object`. Par exemple, étant donné la déclaration
 ```csharp
 struct Point
 {
@@ -458,46 +458,46 @@ object box = p;
 p.x = 20;
 Console.Write(((Point)box).x);
 ```
-génère la valeur 10 sur la console, car l’opération de conversion boxing implicite se produit dans l’attribution de `p` à `box` provoque la valeur de `p` doit être copié. Avait `Point` été déclaré un `class` au lieu de cela, la valeur 20 serait sortie car `p` et `box` serait référencent la même instance.
+génère la valeur 10 dans la console, car l’opération boxing implicite qui se produit lors de l’affectation de `p` à `box` entraîne la copie de la valeur de `p`. A `Point` été déclarée comme `class` à la place, la valeur 20 était sortie, car `p` et `box` référençaient la même instance.
 
 ### <a name="unboxing-conversions"></a>Conversions unboxing
 
-Une conversion unboxing permet une *reference_type* pour être converti explicitement en un *value_type*. Les conversions unboxing suivantes existent :
+Une conversion unboxing permet de convertir explicitement un *reference_type* en *Value_type*. Les conversions unboxing suivantes existent :
 
-*  À partir du type `object` aux *value_type*.
-*  À partir du type `System.ValueType` aux *value_type*.
-*  À partir d’un *interface_type* aux *non_nullable_value_type* qui implémente le *interface_type*.
-*  À partir d’un *interface_type* aux *nullable_type* dont le type implémente le *interface_type*.
-*  À partir du type `System.Enum` aux *type_de_liste*.
-*  À partir du type `System.Enum` aux *nullable_type* avec sous-jacent *type_de_liste*.
-*  Notez qu’une conversion explicite à un paramètre de type sera exécutée en tant qu’une conversion unboxing si au moment de l’exécution il finit par conversion à partir d’un type référence à un type valeur ([les conversions explicites dynamiques](conversions.md#explicit-dynamic-conversions)).
+*  Du type `object` à n’importe quel *Value_type*.
+*  Du type `System.ValueType` à n’importe quel *Value_type*.
+*  De n’importe quel *INTERFACE_TYPE* à n’importe quel *non_nullable_value_type* qui implémente le *INTERFACE_TYPE*.
+*  De n’importe quel *INTERFACE_TYPE* à n’importe quel *nullable_type* dont le type sous-jacent implémente le *INTERFACE_TYPE*.
+*  Du type `System.Enum` à n’importe quel *enum_type*.
+*  Du type `System.Enum` à n’importe quel *nullable_type* avec un *enum_type*sous-jacent.
+*  Notez qu’une conversion explicite en paramètre de type sera exécutée comme conversion unboxing si, au moment de l’exécution, elle finit par convertir un type référence en un type valeur ([conversions dynamiques explicites](conversions.md#explicit-dynamic-conversions)).
 
-Une opération d’unboxing pour un *non_nullable_value_type* consistant à vérifier au préalable que l’instance d’objet est une valeur boxed de la donnée *non_nullable_value_type*, puis copiez la valeur de la instance.
+Une opération d’unboxing sur un *non_nullable_value_type* consiste à vérifier en premier lieu que l’instance de l’objet est une valeur boxed du *non_nullable_value_type*donné, puis à copier la valeur hors de l’instance.
 
-Unboxing à un *nullable_type* produit la valeur null de la *nullable_type* si l’opérande source est `null`, ou le résultat inclus dans un wrapper d’unboxing de l’instance d’objet pour le type sous-jacent de la *nullable_type* dans le cas contraire.
+La conversion unboxing en *nullable_type* produit la valeur null de *nullable_type* si l’opérande source est `null`, ou le résultat encapsulé de l’unboxing de l’instance d’objet vers le type sous-jacent du *nullable_type* dans le cas contraire.
 
-Qui fait référence à la classe de boxing imaginaire décrite dans la section précédente, une conversion unboxing d’un objet `box` à un *value_type* `T` se compose de l’exécution de l’expression `((Box<T>)box).value`. Par conséquent, les instructions
+En faisant référence à la classe de boxing imaginaire décrite dans la section précédente, une conversion unboxing d’un objet `box` en *value_type* `T` consiste à exécuter l’expression `((Box<T>)box).value`. Ainsi, les instructions
 ```csharp
 object box = 123;
 int i = (int)box;
 ```
-sur le plan conceptuel correspondent aux
+correspondent de manière conceptuelle à
 ```csharp
 object box = new Box<int>(123);
 int i = ((Box<int>)box).value;
 ```
 
-Pour une conversion unboxing à une donnée *non_nullable_value_type* pour réussir au moment de l’exécution, la valeur de l’opérande source doit être une référence à une valeur boxed de qui *non_nullable_value_type*. Si l’opérande source est `null`, un `System.NullReferenceException` est levée. Si l’opérande source est une référence à un objet incompatible, un `System.InvalidCastException` est levée.
+Pour qu’une conversion unboxing vers un *non_nullable_value_type* donné aboutisse au moment de l’exécution, la valeur de l’opérande source doit être une référence à une valeur boxed de ce *non_nullable_value_type*. Si l’opérande source est `null`, un `System.NullReferenceException` est levé. Si l’opérande source est une référence à un objet incompatible, une `System.InvalidCastException` est levée.
 
-Pour une conversion unboxing à une donnée *nullable_type* pour réussir au moment de l’exécution, la valeur de l’opérande source doit être `null` ou une référence à une valeur boxed de sous-jacent *non_nullable_value_type* de la *nullable_type*. Si l’opérande source est une référence à un objet incompatible, un `System.InvalidCastException` est levée.
+Pour qu’une conversion unboxing vers un *nullable_type* donné aboutisse au moment de l’exécution, la valeur de l’opérande source doit être `null` ou une référence à une valeur boxed du *non_nullable_value_type* sous-jacent du *nullable_type*. Si l’opérande source est une référence à un objet incompatible, une `System.InvalidCastException` est levée.
 
 ## <a name="constructed-types"></a>Types construits
 
-Une déclaration de type générique, en soi, désigne un ***indépendants de type générique*** qui est utilisé comme un « plan » pour former des différents types, par le biais d’application ***arguments de type***. Les arguments de type sont écrits dans les crochets pointus (`<` et `>`) immédiatement après le nom du type générique. Un type qui inclut au moins un argument de type est appelé un ***type construit***. Un type construit peut être utilisé dans la plupart des endroits du langage dans lequel un nom de type peut apparaître. Un type générique indépendant peut uniquement être utilisé dans un *typeof_expression* ([l’opérateur typeof](expressions.md#the-typeof-operator)).
+Une déclaration de type générique, par elle-même, dénote un ***type générique indépendant*** utilisé comme « Blueprint » pour former de nombreux types différents, en appliquant des ***arguments de type***. Les arguments de type sont écrits entre crochets pointus (`<` et `>`) juste après le nom du type générique. Un type qui comprend au moins un argument de type est appelé ***type construit***. Un type construit peut être utilisé à la plupart des emplacements dans le langage dans lequel un nom de type peut apparaître. Un type générique indépendant ne peut être utilisé que dans un *typeof_expression* ([l’opérateur typeof](expressions.md#the-typeof-operator)).
 
-Types construits peuvent également servir dans les expressions des noms simples ([noms simples](expressions.md#simple-names)) ou lors de l’accès à un membre ([l’accès au membre](expressions.md#member-access)).
+Les types construits peuvent également être utilisés dans les expressions en tant que noms simples ([noms simples](expressions.md#simple-names)) ou lors de l’accès à un membre ([accès aux membres](expressions.md#member-access)).
 
-Quand un *namespace_or_type_name* est évaluées, seuls les types génériques avec le nombre correct de paramètres sont considérés comme de type. Par conséquent, il est possible d’utiliser le même identificateur pour identifier les différents types, tant que les types ont des nombres différents de paramètres de type. Cela est utile lorsque vous combinez des classes génériques et non génériques dans le même programme :
+Quand un *namespace_or_type_name* est évalué, seuls les types génériques avec le nombre correct de paramètres de type sont pris en compte. Par conséquent, il est possible d’utiliser le même identificateur pour identifier les différents types, à condition que les types aient des nombres de paramètres de type différents. Cela est utile pour mélanger des classes génériques et non génériques dans le même programme :
 
 ```csharp
 namespace Widgets
@@ -518,7 +518,7 @@ namespace MyApplication
 }
 ```
 
-Un *type_name* peut identifier un type construit même si elle ne spécifie pas directement les paramètres de type. Cela peut se produire où un type est imbriqué dans une déclaration de classe générique, et le type d’instance de la déclaration du conteneur est implicitement utilisé pour la recherche de nom ([les types dans les classes génériques imbriqués](classes.md#nested-types-in-generic-classes)) :
+Un *type_name* peut identifier un type construit bien qu’il ne spécifie pas directement les paramètres de type. Cela peut se produire lorsqu’un type est imbriqué dans une déclaration de classe générique et que le type d’instance de la déclaration conteneur est implicitement utilisé pour la recherche de nom ([types imbriqués dans les classes génériques](classes.md#nested-types-in-generic-classes)) :
 
 ```csharp
 class Outer<T>
@@ -529,7 +529,7 @@ class Outer<T>
 }
 ```
 
-Dans du code unsafe, un type construit ne peut pas être utilisé comme un *unmanaged_type* ([types pointeur](unsafe-code.md#pointer-types)).
+Dans du code unsafe, un type construit ne peut pas être utilisé en tant que *unmanaged_type* ([types pointeur](unsafe-code.md#pointer-types)).
 
 ### <a name="type-arguments"></a>Arguments de type
 
@@ -549,53 +549,53 @@ type_argument
     ;
 ```
 
-Dans du code unsafe ([code Unsafe](unsafe-code.md)), un *type_argument* ne peut pas être un type pointeur. Chaque argument de type doit satisfaire toutes les contraintes sur le correspondant le paramètre de type ([les contraintes de paramètre de Type](classes.md#type-parameter-constraints)).
+Dans du code non sécurisé ([code non sécurisé](unsafe-code.md)), un *type_argument* ne peut pas être un type pointeur. Chaque argument de type doit satisfaire toutes les contraintes sur le paramètre de type correspondant ([contraintes de paramètre de type](classes.md#type-parameter-constraints)).
 
 ### <a name="open-and-closed-types"></a>Types ouverts et fermés
 
-Tous les types peuvent être classés comme étant ***types ouverts*** ou ***fermé types***. Un type ouvert est un type qui implique des paramètres de type. Plus précisément :
+Tous les types peuvent être classés en tant que ***types ouverts*** ou ***types fermés***. Un type ouvert est un type qui implique des paramètres de type. Plus précisément :
 
 *  Un paramètre de type définit un type ouvert.
-*  Un type tableau est un type ouvert si et seulement si son type d’élément est un type ouvert.
-*  Un type construit est un type ouvert si et seulement si un ou plusieurs de ses arguments de type sont un type ouvert. Un type imbriqué construit est un type ouvert si et seulement si un ou plusieurs de ses arguments de type ou de son ou ses types contenant les arguments de type sont un type ouvert.
+*  Un type tableau est un type ouvert si et uniquement si son type d’élément est un type ouvert.
+*  Un type construit est un type ouvert si et seulement si un ou plusieurs de ses arguments de type est un type ouvert. Un type imbriqué construit est un type ouvert si et seulement si un ou plusieurs de ses arguments de type ou les arguments de type de ses types conteneur sont un type ouvert.
 
 Un type fermé est un type qui n’est pas un type ouvert.
 
-Au moment de l’exécution, tout le code dans une déclaration de type générique est exécutée dans le contexte d’un type construit fermé qui a été créé en appliquant des arguments de type à la déclaration générique. Chaque paramètre de type dans le type générique est lié à un type particulier d’exécution. L’exécution du traitement de toutes les instructions et expressions toujours se produit avec les types fermés, et les types ouverts se produisent uniquement pendant la compilation traitement.
+Au moment de l’exécution, tout le code au sein d’une déclaration de type générique est exécuté dans le contexte d’un type construit fermé qui a été créé en appliquant des arguments de type à la déclaration générique. Chaque paramètre de type dans le type générique est lié à un type au moment de l’exécution particulier. Le traitement au moment de l’exécution de toutes les instructions et expressions se produit toujours avec les types fermés, et les types ouverts se produisent uniquement pendant le traitement au moment de la compilation.
 
-Chaque type construit fermé possède son propre ensemble de variables statiques qui ne sont pas partagés avec d’autres types construits fermés. Dans la mesure où un type ouvert n’existe pas au moment de l’exécution, il n’existe aucune variable statique associée à un type ouvert. Deux types construits fermés sont du même type si elles sont construites à partir du même type générique indépendant et leurs arguments de type correspondant sont du même type.
+Chaque type construit fermé a son propre ensemble de variables statiques, qui ne sont pas partagées avec d’autres types construits fermés. Étant donné qu’il n’existe pas de type ouvert au moment de l’exécution, aucune variable statique n’est associée à un type ouvert. Deux types construits fermés sont du même type s’ils sont construits à partir du même type générique indépendant, et que leurs arguments de type correspondants sont du même type.
 
-### <a name="bound-and-unbound-types"></a>Types dépendants et indépendants
+### <a name="bound-and-unbound-types"></a>Types liés et indépendants
 
-Le terme ***indépendant du type*** fait référence à un type non générique ou un type générique indépendant. Le terme ***lié de type*** fait référence à un type non générique ou un type construit.
+Le terme ***type indépendant*** fait référence à un type non générique ou à un type générique indépendant. Le ***type lié*** à un terme fait référence à un type non générique ou à un type construit.
 
-Un type indépendant fait référence à l’entité déclarée par une déclaration de type. Un type générique indépendant n’est pas lui-même un type et ne peut pas être utilisé comme type d’une variable, l’argument ou la valeur de retour ou comme type de base. La seule construction dans lequel un type générique indépendant peut être référencé est la `typeof` expression ([l’opérateur typeof](expressions.md#the-typeof-operator)).
+Un type indépendant fait référence à l’entité déclarée par une déclaration de type. Un type générique indépendant n’est pas lui-même un type et ne peut pas être utilisé en tant que type d’une variable, d’un argument ou d’une valeur de retour, ou en tant que type de base. La seule construction dans laquelle un type générique indépendant peut être référencé est l’expression `typeof` ([opérateur typeof](expressions.md#the-typeof-operator)).
 
-### <a name="satisfying-constraints"></a>Contraintes satisfaisantes
+### <a name="satisfying-constraints"></a>Contraintes de satisfaction
 
-Chaque fois qu’un type construit ou une méthode générique est référencé, les arguments de type fourni sont vérifiées sur les contraintes de paramètre de type déclarés sur le type générique ou la méthode ([les contraintes de paramètre de Type](classes.md#type-parameter-constraints)). Pour chaque `where` clause, l’argument de type `A` qui correspond au paramètre de type est vérifié par rapport à chaque contrainte comme suit :
+Chaque fois qu’un type construit ou une méthode générique est référencé, les arguments de type fournis sont vérifiés par rapport aux contraintes de paramètre de type déclarées sur le type ou la méthode générique ([contraintes de paramètre de type](classes.md#type-parameter-constraints)). Pour chaque clause `where`, l’argument de type `A` qui correspond au paramètre de type nommé est vérifié par rapport à chaque contrainte comme suit :
 
-*  Si la contrainte est un type de classe, un type d’interface ou un paramètre de type, laissez `C` représentent que contrainte avec les arguments de type fourni est remplacé pour tous les paramètres de type qui s’affichent dans la contrainte. Pour satisfaire la contrainte, il doit être le cas tapez `A` est convertible en type `C` par une des opérations suivantes :
-    * Une conversion d’identité ([conversion d’identité](conversions.md#identity-conversion))
-    * Une conversion de référence implicite ([conversions de référence implicite](conversions.md#implicit-reference-conversions))
-    * Une conversion boxing ([conversions Boxing](conversions.md#boxing-conversions)), à condition que le type A est un type valeur non nullable.
-    * Une conversion du paramètre de référence, boxing ou type implicite à partir d’un paramètre de type `A` à `C`.
-*  Si la contrainte est la contrainte de type référence (`class`), le type `A` doit satisfaire une des opérations suivantes :
-    * `A` est un type d’interface, le type de classe, le type délégué ou le type de tableau. Notez que `System.ValueType` et `System.Enum` sont des types référence qui correspondent à la contrainte.
-    * `A` est un paramètre de type est connu pour être un type référence ([les contraintes de paramètre de Type](classes.md#type-parameter-constraints)).
-*  Si la contrainte est la contrainte de type valeur (`struct`), le type `A` doit satisfaire une des opérations suivantes :
-    * `A` est un type struct ou type enum, mais pas un type nullable. Notez que `System.ValueType` et `System.Enum` sont des types référence qui ne répondent pas à cette contrainte.
-    * `A` est un paramètre de type ayant la contrainte de type valeur ([les contraintes de paramètre de Type](classes.md#type-parameter-constraints)).
-*  Si la contrainte est la contrainte de constructeur `new()`, le type `A` ne doit pas être `abstract` et doit avoir un constructeur sans paramètre public. Cela est satisfaite si une des opérations suivantes est vraie :
-    * `A` est un type valeur, étant donné que tous les types de valeur ont un constructeur public par défaut ([constructeurs par défaut](types.md#default-constructors)).
-    * `A` est un paramètre de type ayant la contrainte de constructeur ([les contraintes de paramètre de Type](classes.md#type-parameter-constraints)).
-    * `A` est un paramètre de type ayant la contrainte de type valeur ([les contraintes de paramètre de Type](classes.md#type-parameter-constraints)).
-    * `A` est une classe qui n’est pas `abstract` et contient déclaré explicitement `public` constructeur sans paramètres.
-    * `A` n’est pas `abstract` et possède un constructeur par défaut ([constructeurs par défaut](classes.md#default-constructors)).
+*  Si la contrainte est un type de classe, un type d’interface ou un paramètre de type, laissez `C` représenter cette contrainte avec les arguments de type fournis, en remplaçant tous les paramètres de type qui apparaissent dans la contrainte. Pour satisfaire la contrainte, il faut que le type `A` soit convertible en type `C` par l’un des éléments suivants :
+    * Conversion d’identité ([conversion d’identité](conversions.md#identity-conversion))
+    * Conversion de référence implicite ([conversions de référence implicites](conversions.md#implicit-reference-conversions))
+    * Conversion boxing ([conversions boxing](conversions.md#boxing-conversions)), à condition que le type a soit un type valeur n’acceptant pas les valeurs NULL.
+    * Une référence implicite, une conversion boxing ou un paramètre de type d’un paramètre de type `A` à `C`.
+*  Si la contrainte est la contrainte de type référence (`class`), le type `A` doit correspondre à l’un des éléments suivants :
+    * `A` est un type d’interface, un type de classe, un type délégué ou un type tableau. Notez que `System.ValueType` et `System.Enum` sont des types référence qui satisfont cette contrainte.
+    * `A` est un paramètre de type qui est connu comme étant un type référence ([contraintes de paramètre de type](classes.md#type-parameter-constraints)).
+*  Si la contrainte est la contrainte de type valeur (`struct`), le type `A` doit correspondre à l’un des éléments suivants :
+    * `A` est un type struct ou un type enum, mais pas un type Nullable. Notez que `System.ValueType` et `System.Enum` sont des types référence qui ne répondent pas à cette contrainte.
+    * `A` est un paramètre de type ayant la contrainte de type valeur ([contraintes de paramètre de type](classes.md#type-parameter-constraints)).
+*  Si la contrainte est la contrainte de constructeur `new()`, le `A` de type ne doit pas être `abstract` et doit avoir un constructeur sans paramètre public. Cette condition est remplie si l’une des conditions suivantes est remplie :
+    * `A` est un type valeur, car tous les types valeur ont un constructeur public par défaut ([constructeurs par défaut](types.md#default-constructors)).
+    * `A` est un paramètre de type ayant la contrainte de constructeur ([contraintes de paramètre de type](classes.md#type-parameter-constraints)).
+    * `A` est un paramètre de type ayant la contrainte de type valeur ([contraintes de paramètre de type](classes.md#type-parameter-constraints)).
+    * `A` est une classe qui n’est pas `abstract` et qui contient un constructeur `public` déclaré explicitement sans paramètres.
+    * `A` n’est pas `abstract` et a un constructeur par défaut ([constructeurs par défaut](classes.md#default-constructors)).
 
-Une erreur de compilation se produit si un ou plusieurs des contraintes d’un paramètre type ne sont pas satisfaites par les arguments de type donné.
+Une erreur de compilation se produit si une ou plusieurs des contraintes d’un paramètre de type ne sont pas satisfaites par les arguments de type donnés.
 
-Dans la mesure où les paramètres de type ne sont pas héritées, les contraintes ne sont jamais soit héritée. Dans l’exemple ci-dessous, `D` doit spécifier la contrainte sur son paramètre de type `T` afin que `T` satisfait à la contrainte imposée par la classe de base `B<T>`. En revanche, la classe `E` pas besoin de spécifier une contrainte, car `List<T>` implémente `IEnumerable` pour toute `T`.
+Étant donné que les paramètres de type ne sont pas hérités, les contraintes ne sont jamais héritées non plus. Dans l’exemple ci-dessous, `D` doit spécifier la contrainte sur son paramètre de type `T` afin que `T` satisfasse à la contrainte imposée par la classe de base `B<T>`. En revanche, les `E` de classe n’ont pas besoin de spécifier de contrainte, car `List<T>` implémente `IEnumerable` pour tout `T`.
 
 ```csharp
 class B<T> where T: IEnumerable {...}
@@ -607,7 +607,7 @@ class E<T>: B<List<T>> {...}
 
 ## <a name="type-parameters"></a>Paramètres de type
 
-Un paramètre de type est un identificateur qui désigne un type valeur ou un type référence auquel le paramètre est lié au moment de l’exécution.
+Un paramètre de type est un identificateur désignant un type valeur ou un type référence auquel le paramètre est lié au moment de l’exécution.
 
 ```antlr
 type_parameter
@@ -615,30 +615,30 @@ type_parameter
     ;
 ```
 
-Dans la mesure où un paramètre de type peut être instancié avec de nombreux arguments de type réel différents paramètres de type ont légèrement différentes opérations et les restrictions que les autres types. Elles incluent notamment :
+Étant donné qu’un paramètre de type peut être instancié avec un grand nombre d’arguments de type réels différents, les paramètres de type ont des opérations et des restrictions légèrement différentes de celles des autres types. Elles incluent notamment les suivantes :
 
-*  Un paramètre de type ne peut pas être utilisé directement pour déclarer une classe de base ([classe de Base](classes.md#base-class)) ou une interface ([listes de paramètres de type Variant](interfaces.md#variant-type-parameter-lists)).
-*  Les règles pour la recherche de membre sur le type de paramètres varient selon les contraintes, le cas échéant, appliqué au paramètre de type. Elles sont détaillées dans [recherche de membres](expressions.md#member-lookup).
-*  Les conversions disponibles pour un paramètre de type varient selon les contraintes, cas échéant, appliqué au paramètre de type. Elles sont détaillées dans [conversions implicites impliquant des paramètres de type](conversions.md#implicit-conversions-involving-type-parameters) et [les conversions explicites dynamiques](conversions.md#explicit-dynamic-conversions).
-*  Le littéral `null` ne peut pas être converti en un type donné par un paramètre de type, sauf si le paramètre de type est connu pour être un type référence ([conversions implicites impliquant des paramètres de type](conversions.md#implicit-conversions-involving-type-parameters)). Toutefois, un `default` expression ([des expressions de valeur par défaut](expressions.md#default-value-expressions)) peut être utilisé à la place. En outre, une valeur avec un type donné par un paramètre de type peut être comparée avec `null` à l’aide de `==` et `!=` ([opérateurs d’égalité de type référence](expressions.md#reference-type-equality-operators)), sauf si le paramètre de type a la contrainte de type valeur.
-*  Un `new` expression ([des expressions de la création d’objet](expressions.md#object-creation-expressions)) peut uniquement être utilisé avec un paramètre de type, si le paramètre de type est contraint par une *constructor_constraint* ou la valeur de contrainte (detype[ Les contraintes de paramètre de type](classes.md#type-parameter-constraints)).
+*  Un paramètre de type ne peut pas être utilisé directement pour déclarer une classe de base ([classe de base](classes.md#base-class)) ou une interface (listes de[paramètres de type Variant](interfaces.md#variant-type-parameter-lists)).
+*  Les règles de recherche de membre sur les paramètres de type dépendent des contraintes, le cas échéant, appliquées au paramètre de type. Ils sont détaillés dans la [recherche de membres](expressions.md#member-lookup).
+*  Les conversions disponibles pour un paramètre de type dépendent des contraintes, le cas échéant, appliquées au paramètre de type. Ils sont détaillés dans les [conversions implicites impliquant des paramètres de type](conversions.md#implicit-conversions-involving-type-parameters) et des [conversions dynamiques explicites](conversions.md#explicit-dynamic-conversions).
+*  La `null` littérale ne peut pas être convertie en un type donné par un paramètre de type, sauf si le paramètre de type est connu comme étant un type référence ([conversions implicites impliquant des paramètres de type](conversions.md#implicit-conversions-involving-type-parameters)). Toutefois, une expression `default` ([expressions de valeur par défaut](expressions.md#default-value-expressions)) peut être utilisée à la place. En outre, une valeur avec un type donné par un paramètre de type peut être comparée à `null` à l’aide de `==` et `!=` ([opérateurs d’égalité de type référence](expressions.md#reference-type-equality-operators)) à moins que le paramètre de type ait la contrainte de type valeur.
+*  Une expression `new` ([expressions de création d’objet](expressions.md#object-creation-expressions)) peut uniquement être utilisée avec un paramètre de type si le paramètre de type est imposé par un *constructor_constraint* ou la contrainte de type valeur (contraintes de[paramètre de type](classes.md#type-parameter-constraints)).
 *  Un paramètre de type ne peut pas être utilisé n’importe où dans un attribut.
-*  Un paramètre de type ne peut pas être utilisé dans un accès au membre ([l’accès au membre](expressions.md#member-access)) ou nom de type ([Namespace noms et type](basic-concepts.md#namespace-and-type-names)) pour identifier un membre statique ou un type imbriqué.
-*  Dans du code unsafe, un paramètre de type ne peut pas être utilisé comme un *unmanaged_type* ([types pointeur](unsafe-code.md#pointer-types)).
+*  Un paramètre de type ne peut pas être utilisé dans un accès de membre ([accès aux membres](expressions.md#member-access)) ou un nom de type (noms d’espaces de noms[et de types](basic-concepts.md#namespace-and-type-names)) pour identifier un membre statique ou un type imbriqué.
+*  Dans du code unsafe, un paramètre de type ne peut pas être utilisé en tant que *unmanaged_type* ([types pointeur](unsafe-code.md#pointer-types)).
 
-En tant que type, les paramètres de type sont purement une construction de la compilation. Au moment de l’exécution, chaque paramètre de type est lié à un type au moment de l’exécution qui a été spécifié en fournissant un argument de type à la déclaration de type générique. Par conséquent, le type d’une variable déclarée avec un paramètre ne sera type, au moment de l’exécution, être un type construit fermé ([ouvert et fermé types](types.md#open-and-closed-types)). L’exécution de l’exécution de toutes les instructions et expressions impliquant des paramètres de type utilise le type réel qui a été fourni comme argument de type pour ce paramètre.
+En tant que type, les paramètres de type sont purement une construction au moment de la compilation. Au moment de l’exécution, chaque paramètre de type est lié à un type au moment de l’exécution qui a été spécifié en fournissant un argument de type à la déclaration de type générique. Ainsi, le type d’une variable déclarée avec un paramètre de type sera, au moment de l’exécution, un type construit fermé ([types ouverts et fermés](types.md#open-and-closed-types)). L’exécution de toutes les instructions et expressions impliquant des paramètres de type au moment de l’exécution utilise le type réel fourni comme argument de type pour ce paramètre.
 
-## <a name="expression-tree-types"></a>Types arborescence d’expression
+## <a name="expression-tree-types"></a>Types d’arborescence d’expression
 
-***Arborescences d’expression*** permettant aux expressions lambda pour être représenté en tant que structures de données au lieu de code exécutable. Arborescences d’expression sont des valeurs de ***types arborescence d’expression*** du formulaire `System.Linq.Expressions.Expression<D>`, où `D` est n’importe quel type délégué. Pour le reste de cette spécification, nous ferons référence à ces types à l’aide de la syntaxe raccourcie `Expression<D>`.
+Les ***arborescences d’expressions*** permettent aux expressions lambda d’être représentées en tant que structures de données au lieu du code exécutable. Les arborescences d’expressions sont des valeurs des ***types d’arborescence d’expression*** de la forme `System.Linq.Expressions.Expression<D>`, où `D` est un type délégué. Pour le reste de cette spécification, nous faisons référence à ces types à l’aide de la `Expression<D>`abrégée.
 
-S’il existe une conversion à partir d’une expression lambda à un type délégué `D`, il existe également une conversion vers le type d’arborescence expression `Expression<D>`. Tandis que la conversion d’une expression lambda à un type délégué génère un délégué qui fait référence au code exécutable de l’expression lambda, la conversion vers un type d’arborescence expression crée une arborescence d’expression de l’expression lambda.
+S’il existe une conversion d’une expression lambda en un type délégué `D`, une conversion existe également dans le type d’arborescence de l’expression `Expression<D>`. Tandis que la conversion d’une expression lambda en un type délégué génère un délégué qui fait référence à du code exécutable pour l’expression lambda, la conversion en un type d’arborescence d’expression crée une représentation d’arborescence d’expression de l’expression lambda.
 
-Arborescences d’expression sont des représentations de données en mémoire efficace des expressions lambda et que la structure de l’expression lambda transparente et explicite.
+Les arborescences d’expressions sont des représentations efficaces des données en mémoire des expressions lambda et rendent la structure de l’expression lambda transparente et explicite.
 
-Tout comme un type délégué `D`, `Expression<D>` est considéré comme paramètre et types de retour, qui sont les mêmes que celles de `D`.
+Tout comme un type délégué `D`, `Expression<D>` est considéré comme ayant des types de paramètres et de retour, qui sont identiques à ceux de `D`.
 
-L’exemple suivant représente une expression lambda en tant que code exécutable et comme une arborescence d’expression. Car il existe une conversion en `Func<int,int>`, il existe également une conversion en `Expression<Func<int,int>>`:
+L’exemple suivant représente une expression lambda à la fois comme du code exécutable et comme une arborescence de l’expression. Étant donné qu’il existe une conversion à `Func<int,int>`, une conversion existe également pour `Expression<Func<int,int>>`:
 
 ```csharp
 Func<int,int> del = x => x + 1;                    // Code
@@ -646,20 +646,20 @@ Func<int,int> del = x => x + 1;                    // Code
 Expression<Func<int,int>> exp = x => x + 1;        // Data
 ```
 
-Suivez ces affectations, le délégué `del` fait référence à une méthode qui retourne `x + 1`et l’arborescence d’expression `exp` fait référence à une structure de données qui décrit l’expression `x => x + 1`.
+À la suite de ces assignations, le délégué `del` référence une méthode qui retourne `x + 1`, et l’arborescence d’expression `exp` référence une structure de données qui décrit l' `x => x + 1`d’expression.
 
-La définition exacte du type générique `Expression<D>` , ainsi que les règles précises pour construire une arborescence d’expression lorsqu’une expression lambda est convertie en un type arborescence d’expression, sont tous deux en dehors de l’étendue de cette spécification.
+La définition exacte du type générique `Expression<D>` ainsi que les règles précises pour la construction d’une arborescence d’expressions quand une expression lambda est convertie en un type d’arborescence d’expression, elles sont toutes deux en dehors de la portée de cette spécification.
 
 Deux choses sont importantes pour rendre explicite :
 
-*  Pas toutes les expressions lambda peuvent être converties en arborescences d’expression. Par exemple, les expressions lambda avec corps d’instruction et les expressions lambda contenant des expressions d’assignation ne peut pas être représenté. Dans ce cas, une conversion toujours existe mais échouera au moment de la compilation. Ces exceptions sont détaillées dans [conversions de fonctions anonymes](conversions.md#anonymous-function-conversions).
-*   `Expression<D>` offre une méthode d’instance `Compile` qui produit un délégué du type `D`:
+*  Toutes les expressions lambda ne peuvent pas être converties en arborescences d’expressions. Par exemple, les expressions lambda avec corps d’instruction et les expressions lambda contenant des expressions d’assignation ne peuvent pas être représentées. Dans ce cas, une conversion existe toujours, mais elle échoue au moment de la compilation. Ces exceptions sont détaillées dans les [conversions de fonctions anonymes](conversions.md#anonymous-function-conversions).
+*   `Expression<D>` offre une méthode d’instance `Compile` qui produit un délégué de type `D`:
 
     ```csharp
     Func<int,int> del2 = exp.Compile();
     ```
 
-    L’appel de ce délégué entraîne le code représenté par l’arborescence d’expression à exécuter. Par conséquent, compte tenu des définitions ci-dessus, del et del2 sont équivalents et les deux instructions suivantes auront le même effet :
+    L’appel de ce délégué provoque l’exécution du code représenté par l’arborescence de l’expression. Par conséquent, étant donné les définitions ci-dessus, del et DEL2 sont équivalentes, et les deux instructions suivantes ont le même effet :
 
     ```csharp
     int i1 = del(1);
@@ -667,5 +667,5 @@ Deux choses sont importantes pour rendre explicite :
     int i2 = del2(1);
     ```
 
-    Après l’exécution de ce code, `i1` et `i2` se verront attribuer la valeur `2`.
+    Après l’exécution de ce code, `i1` et `i2` auront tous les deux la valeur `2`.
 
