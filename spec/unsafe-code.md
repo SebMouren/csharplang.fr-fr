@@ -18,11 +18,11 @@ Le code non sécurisé est en fait une fonctionnalité « sécurisée » du po
 
 ## <a name="unsafe-contexts"></a>Contextes non sécurisés
 
-Les fonctionnalités non sécurisées C# de sont disponibles uniquement dans les contextes non sécurisés. Un contexte unsafe est introduit en incluant un modificateur `unsafe` dans la déclaration d’un type ou d’un membre, ou en utilisant un *unsafe_statement*:
+Les fonctionnalités non sécurisées C# de sont disponibles uniquement dans les contextes non sécurisés. Un contexte unsafe est introduit en incluant un modificateur de `unsafe` dans la déclaration d’un type ou d’un membre, ou en utilisant un *unsafe_statement*:
 
-*  Une déclaration d’une classe, d’une structure, d’une interface ou d’un délégué peut inclure un modificateur `unsafe`, auquel cas la totalité de l’étendue textuelle de cette déclaration de type (y compris le corps de la classe, de la structure ou de l’interface) est considérée comme un contexte non sécurisé.
-*  Une déclaration d’un champ, d’une méthode, d’une propriété, d’un événement, d’un indexeur, d’un opérateur, d’un constructeur d’instance, d’un destructeur ou d’un constructeur statique peut inclure un modificateur `unsafe`, auquel cas la totalité de l’étendue textuelle de cette déclaration de membre est considérée comme un contexte non sécurisé.
-*  Un *unsafe_statement* permet l’utilisation d’un contexte non sécurisé au sein d’un *bloc*. La totalité de l’étendue textuelle du *bloc* associé est considérée comme un contexte non sécurisé.
+*  Une déclaration d’une classe, d’une structure, d’une interface ou d’un délégué peut inclure un modificateur de `unsafe`, auquel cas la totalité de l’étendue textuelle de cette déclaration de type (y compris le corps de la classe, du struct ou de l’interface) est considérée comme un contexte non sécurisé.
+*  Une déclaration d’un champ, d’une méthode, d’une propriété, d’un événement, d’un indexeur, d’un opérateur, d’un constructeur d’instance, d’un destructeur ou d’un constructeur statique peut inclure un modificateur de `unsafe`, auquel cas la totalité de l’étendue textuelle de cette déclaration de membre est considérée comme un contexte non sécurisé.
+*  Une *unsafe_statement* permet l’utilisation d’un contexte unsafe dans un *bloc*. La totalité de l’étendue textuelle du *bloc* associé est considérée comme un contexte non sécurisé.
 
 Les productions grammaticales associées sont indiquées ci-dessous.
 
@@ -117,7 +117,7 @@ public struct Node
 }
 ```
 
-Ici, les modificateurs `unsafe` dans les déclarations de champ provoquent la prise en compte de contextes non sécurisés par ces déclarations.
+Ici, les modificateurs `unsafe` dans les déclarations de champ entraînent la prise en compte de contextes non sécurisés par ces déclarations.
 
 En dehors de l’établissement d’un contexte non sécurisé, ce qui autorise l’utilisation de types pointeur, le modificateur `unsafe` n’a aucun effet sur un type ou un membre. Dans l’exemple
 
@@ -139,7 +139,7 @@ public class B: A
 }
 ```
 
-le modificateur `unsafe` sur la méthode `F` dans `A` fait simplement en sorte que l’étendue textuelle de `F` devienne un contexte non sécurisé dans lequel les fonctionnalités potentiellement dangereuses du langage peuvent être utilisées. Dans la substitution de `F` dans `B`, il n’est pas nécessaire de spécifier à nouveau le modificateur `unsafe`, sauf si, bien sûr, la méthode `F` dans `B` lui-même a besoin d’accéder à des fonctionnalités non sécurisées.
+le modificateur de `unsafe` sur la méthode `F` dans `A` fait simplement en sorte que l’étendue textuelle de `F` devienne un contexte non sécurisé dans lequel les fonctionnalités non sécurisées du langage peuvent être utilisées. Dans la substitution de `F` dans `B`, il n’est pas nécessaire de spécifier à nouveau le modificateur `unsafe`, sauf si, bien sûr, la méthode `F` dans `B` elle-même a besoin d’accéder à des fonctionnalités non sécurisées.
 
 La situation est légèrement différente lorsqu’un type pointeur fait partie de la signature de la méthode.
 
@@ -155,7 +155,7 @@ public class B: A
 }
 ```
 
-Dans ce cas, étant donné que la signature de `F` comprend un type pointeur, elle peut uniquement être écrite dans un contexte non sécurisé. Toutefois, le contexte unsafe peut être introduit soit en rendant la classe entière non sécurisée, comme c’est le cas dans `A`, soit en incluant un modificateur `unsafe` dans la déclaration de méthode, comme c’est le cas dans `B`.
+Ici, étant donné que la signature de `F`comprend un type pointeur, elle peut uniquement être écrite dans un contexte non sécurisé. Toutefois, le contexte unsafe peut être introduit soit en rendant la classe entière non sécurisée, comme c’est le cas dans `A`, soit en incluant un modificateur de `unsafe` dans la déclaration de méthode, comme c’est le cas dans `B`.
 
 ## <a name="pointer-types"></a>Types de pointeur
 
@@ -167,7 +167,7 @@ type_unsafe
     ;
 ```
 
-Un *pointer_type* est écrit comme un *unmanaged_type* ou le mot clé `void`, suivi d’un jeton `*` :
+Un *pointer_type* est écrit sous la forme d’un *unmanaged_type* ou du mot clé `void`, suivi d’un jeton `*` :
 
 ```antlr
 pointer_type
@@ -186,9 +186,9 @@ Contrairement aux références (valeurs de types référence), les pointeurs ne 
 
 Un *unmanaged_type* est un type qui n’est pas un type *reference_type* ou construit, et ne contient pas de champs de type *reference_type* ou construits à aucun niveau d’imbrication. En d’autres termes, un *unmanaged_type* est l’un des éléments suivants :
 
-*  `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, `float`, 0, 1 ou 2.
-*  N’importe quel *enum_type*.
-*  N’importe quel *pointer_type*.
+*  `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, `float`, `double`, `decimal`ou `bool`.
+*  Tout *enum_type*.
+*  Tout *pointer_type*.
 *  Tout *struct_type* défini par l’utilisateur qui n’est pas un type construit et contient uniquement des champs de *unmanaged_type*s.
 
 La règle intuitive pour mélanger des pointeurs et des références est que les référents de références (objets) sont autorisés à contenir des pointeurs, mais les référents de pointeurs ne sont pas autorisés à contenir des références.
@@ -205,7 +205,7 @@ Des exemples de types pointeur sont fournis dans le tableau ci-dessous :
 
 Pour une implémentation donnée, tous les types de pointeurs doivent avoir la même taille et la même représentation.
 
-Contrairement à C C++et, lorsque plusieurs pointeurs sont déclarés dans la même déclaration C# , dans le `*` est écrit avec le type sous-jacent uniquement, et non comme un signe de ponctuation de préfixe sur chaque nom de pointeur. Exemple :
+Contrairement à C C++et, lorsque plusieurs pointeurs sont déclarés dans la même déclaration C# , le `*` est écrit avec le type sous-jacent uniquement, et non comme un signe de ponctuation de préfixe sur chaque nom de pointeur. Exemple :
 
 ```csharp
 int* pi, pj;    // NOT as int *pi, *pj;
@@ -213,17 +213,17 @@ int* pi, pj;    // NOT as int *pi, *pj;
 
 La valeur d’un pointeur de type `T*` représente l’adresse d’une variable de type `T`. L’opérateur d’indirection de pointeur `*` ([indirection de pointeur](unsafe-code.md#pointer-indirection)) peut être utilisé pour accéder à cette variable. Par exemple, à partir d’une variable `P` de type `int*`, l’expression `*P` indique la variable `int` trouvée à l’adresse contenue dans `P`.
 
-À l’instar d’une référence d’objet, un pointeur peut être `null`. L’application de l’opérateur d’indirection à un pointeur `null` entraîne un comportement défini par l’implémentation. Un pointeur avec la valeur `null` est représenté par All-bits-Zero.
+À l’instar d’une référence d’objet, un pointeur peut être `null`. L’application de l’opérateur d’indirection à un pointeur `null` entraîne un comportement défini par l’implémentation. Un pointeur avec une valeur `null` est représenté par All-bits-Zero.
 
-Le type `void*` représente un pointeur vers un type inconnu. Étant donné que le type référent est inconnu, l’opérateur d’indirection ne peut pas être appliqué à un pointeur de type `void*`, et aucune arithmétique ne peut être exécutée sur ce pointeur. Toutefois, un pointeur de type `void*` peut être casté en n’importe quel autre type pointeur (et inversement).
+Le type de `void*` représente un pointeur vers un type inconnu. Étant donné que le type référent est inconnu, l’opérateur d’indirection ne peut pas être appliqué à un pointeur de type `void*`, et aucun arithmétique n’est exécuté sur ce pointeur. Toutefois, un pointeur de type `void*` peut être casté en n’importe quel autre type pointeur (et inversement).
 
-Les types pointeur sont une catégorie distincte de types. Contrairement aux types référence et aux types valeur, les types pointeur n’héritent pas de `object` et aucune conversion n’existe entre les types pointeur et `object`. En particulier, le boxing et l’unboxing ([boxing et unboxing](types.md#boxing-and-unboxing)) ne sont pas pris en charge pour les pointeurs. Toutefois, les conversions sont autorisées entre les différents types pointeur et entre les types pointeur et les types intégraux. Cela est décrit dans [conversions de pointeurs](unsafe-code.md#pointer-conversions).
+Les types pointeur sont une catégorie distincte de types. Contrairement aux types référence et aux types valeur, les types pointeur n’héritent pas de `object` et aucune conversion n’existe entre les types pointeur et les `object`. En particulier, le boxing et l’unboxing ([boxing et unboxing](types.md#boxing-and-unboxing)) ne sont pas pris en charge pour les pointeurs. Toutefois, les conversions sont autorisées entre les différents types pointeur et entre les types pointeur et les types intégraux. Cela est décrit dans [conversions de pointeurs](unsafe-code.md#pointer-conversions).
 
 Un *pointer_type* ne peut pas être utilisé en tant qu’argument de type ([types construits](types.md#constructed-types)), et l’inférence de type ([inférence de type](expressions.md#type-inference)) échoue sur les appels de méthode génériques qui auraient pu déduire un argument de type comme étant un type pointeur.
 
 Un *pointer_type* peut être utilisé comme type de champ volatile ([champs volatiles](classes.md#volatile-fields)).
 
-Bien que les pointeurs puissent être passés en tant que paramètres `ref` ou `out`, cela peut entraîner un comportement indéfini, puisque le pointeur peut être configuré pour pointer vers une variable locale qui n’existe plus quand la méthode appelée est retournée, ou l’objet fixe auquel elle est utilisée pour pointer , n’est plus résolu. Exemple :
+Bien que les pointeurs puissent être passés comme des `ref` ou des paramètres de `out`, cela peut entraîner un comportement indéfini, puisque le pointeur peut être défini de manière à pointer vers une variable locale qui n’existe plus quand la méthode appelée est retournée, ou l’objet fixe auquel il est utilisé pour pointer, n’est plus résolu. Exemple :
 
 ```csharp
 using System;
@@ -257,7 +257,7 @@ class Test
 }
 ```
 
-Une méthode peut retourner une valeur d’un certain type et ce type peut être un pointeur. Par exemple, lorsqu’un pointeur désignant une séquence contiguë de `int`, le nombre d’éléments de cette séquence et une autre valeur `int`, la méthode suivante retourne l’adresse de cette valeur dans cette séquence, si une correspondance est trouvée ; dans le cas contraire, elle retourne `null` :
+Une méthode peut retourner une valeur d’un certain type et ce type peut être un pointeur. Par exemple, lorsqu’un pointeur désignant une séquence contiguë de `int`s, le nombre d’éléments de cette séquence et une autre valeur `int`, la méthode suivante retourne l’adresse de cette valeur dans cette séquence, si une correspondance est trouvée ; Sinon, elle retourne `null`:
 
 ```csharp
 unsafe static int* Find(int* pi, int size, int value) {
@@ -276,50 +276,50 @@ Dans un contexte non sécurisé, plusieurs constructions sont disponibles pour l
 *  L’opérateur `->` peut être utilisé pour accéder à un membre d’un struct via un pointeur ([accès aux membres du pointeur](unsafe-code.md#pointer-member-access)).
 *  L’opérateur `[]` peut être utilisé pour indexer un pointeur ([accès à un élément pointeur](unsafe-code.md#pointer-element-access)).
 *  L’opérateur `&` peut être utilisé pour obtenir l’adresse d’une variable ([opérateur d’adresse](unsafe-code.md#the-address-of-operator)).
-*  Les opérateurs `++` et `--` peuvent être utilisés pour incrémenter et décrémenter des pointeurs ([incrémentation et décrémentation de pointeur](unsafe-code.md#pointer-increment-and-decrement)).
+*  Les opérateurs `++` et `--` peuvent être utilisés pour incrémenter et décrémenter des pointeurs ([incrément et décrémentation de pointeur](unsafe-code.md#pointer-increment-and-decrement)).
 *  Les opérateurs `+` et `-` peuvent être utilisés pour effectuer des opérations arithmétiques sur les pointeurs ([opérations arithmétiques](unsafe-code.md#pointer-arithmetic)sur les pointeurs).
-*  Les opérateurs `==`, `!=`, `<`, `>`, `<=` et `=>` peuvent être utilisés pour comparer des pointeurs ([Comparaison de pointeur](unsafe-code.md#pointer-comparison)).
+*  Les opérateurs `==`, `!=`, `<`, `>`, `<=`et `=>` peuvent être utilisés pour comparer des pointeurs ([Comparaison de pointeur](unsafe-code.md#pointer-comparison)).
 *  L’opérateur `stackalloc` peut être utilisé pour allouer de la mémoire à partir de la pile des appels ([mémoires tampons de taille fixe](unsafe-code.md#fixed-size-buffers)).
 *  L’instruction `fixed` peut être utilisée pour corriger temporairement une variable afin que son adresse puisse être obtenue ([l’instruction fixed](unsafe-code.md#the-fixed-statement)).
 
 ## <a name="fixed-and-moveable-variables"></a>Variables fixes et déplaçables
 
-L’opérateur d’adresse ([opérateur d’adresse](unsafe-code.md#the-address-of-operator)) et l’instruction `fixed` ([l’instruction fixed](unsafe-code.md#the-fixed-statement)) divisent les variables en deux catégories : ***Variables fixes*** et ***variables déplaçables***.
+L’opérateur address-of ([l’opérateur address-of](unsafe-code.md#the-address-of-operator)) et l’instruction `fixed` ([l’instruction fixed](unsafe-code.md#the-fixed-statement)) divisent les variables en deux catégories : ***les variables fixes*** et les ***variables déplaçables***.
 
 Les variables fixes résident dans des emplacements de stockage qui ne sont pas affectés par l’opération du garbage collector. (Les variables locales, les paramètres de valeur et les variables créées par des pointeurs de déréférencement sont des exemples de variables fixes.) En revanche, les variables déplaçables résident dans des emplacements de stockage qui peuvent faire l’objet d’un déplacement ou d’une suppression par le garbage collector. (Les exemples de variables déplaçables incluent des champs dans des objets et des éléments de tableaux.)
 
-L’opérateur `&` ([l’opérateur d’adresse](unsafe-code.md#the-address-of-operator)) autorise l’obtention de l’adresse d’une variable fixe sans restrictions. Toutefois, étant donné qu’une variable déplaçable est sujette à un déplacement ou une suppression par le garbage collector, l’adresse d’une variable déplaçable peut uniquement être obtenue à l’aide d’une instruction `fixed` ([l’instruction fixed](unsafe-code.md#the-fixed-statement)) et cette adresse reste valide uniquement pour le durée de cette instruction `fixed`.
+L’opérateur `&` ([opérateur d’adresse](unsafe-code.md#the-address-of-operator)) autorise l’obtention de l’adresse d’une variable fixe sans restrictions. Toutefois, étant donné qu’une variable déplaçable est sujette à un déplacement ou une suppression par le garbage collector, l’adresse d’une variable déplaçable peut uniquement être obtenue à l’aide d’une instruction `fixed` ([l’instruction fixed](unsafe-code.md#the-fixed-statement)) et cette adresse reste valide uniquement pour la durée de cette instruction `fixed`.
 
 En termes précis, une variable fixe est l’un des éléments suivants :
 
 *  Variable résultant d’un *simple_name* ([noms simples](expressions.md#simple-names)) qui fait référence à une variable locale ou à un paramètre de valeur, sauf si la variable est capturée par une fonction anonyme.
 *  Variable résultant d’un *member_access* ([accès aux membres](expressions.md#member-access)) de la forme `V.I`, où `V` est une variable fixe d’un *struct_type*.
-*  Une variable résultant d’un *pointer_indirection_expression* ([indirection de pointeur](unsafe-code.md#pointer-indirection)) de la forme `*P`, un *pointer_member_access* ([accès au membre pointeur](unsafe-code.md#pointer-member-access)) de la forme `P->I` ou un *pointer_element_access* ( [Accès à l’élément pointeur](unsafe-code.md#pointer-element-access)) de la forme `P[E]`.
+*  Une variable résultant d’une *pointer_indirection_expression* ([indirection de pointeur](unsafe-code.md#pointer-indirection)) de la forme `*P`, une *pointer_member_access* ([accès aux membres du pointeur](unsafe-code.md#pointer-member-access)) de la `P->I`de formulaire ou un *pointer_element_access* ([accès à un élément pointeur](unsafe-code.md#pointer-element-access)) de la `P[E]`de formulaire.
 
 Toutes les autres variables sont classées comme variables déplaçables.
 
-Notez qu’un champ statique est classé comme une variable déplaçable. Notez également qu’un paramètre `ref` ou `out` est classé en tant que variable déplaçable, même si l’argument donné pour le paramètre est une variable fixe. Enfin, Notez qu’une variable produite par le déréférencement d’un pointeur est toujours classifiée comme une variable fixe.
+Notez qu’un champ statique est classé comme une variable déplaçable. Notez également qu’un paramètre `ref` ou `out` est classé comme une variable déplaçable, même si l’argument donné pour le paramètre est une variable fixe. Enfin, Notez qu’une variable produite par le déréférencement d’un pointeur est toujours classifiée comme une variable fixe.
 
 ## <a name="pointer-conversions"></a>Conversions de pointeurs
 
 Dans un contexte non sécurisé, l’ensemble des conversions implicites disponibles ([conversions implicites](conversions.md#implicit-conversions)) est étendu pour inclure les conversions de pointeur implicites suivantes :
 
-*  De n’importe quel *pointer_type* vers le type `void*`.
+*  À partir de n’importe quel *pointer_type* vers le type `void*`.
 *  Du littéral `null` à n’importe quel *pointer_type*.
 
 En outre, dans un contexte non sécurisé, l’ensemble des conversions explicites disponibles ([conversions explicites](conversions.md#explicit-conversions)) est étendu pour inclure les conversions de pointeur explicites suivantes :
 
-*  De n’importe quel *pointer_type* à n’importe quel autre *pointer_type*.
-*  À partir de `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long` ou `ulong` à n’importe quel *pointer_type*.
-*  De n’importe quel *pointer_type* à `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long` ou `ulong`.
+*  De tout *pointer_type* à n’importe quel autre *pointer_type*.
+*  À partir de `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`ou `ulong` à n’importe quel *pointer_type*.
+*  À partir de n’importe quelle *pointer_type* vers `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`ou `ulong`.
 
 Enfin, dans un contexte non sécurisé, l’ensemble de conversions implicites standard ([conversions implicites standard](conversions.md#standard-implicit-conversions)) comprend la conversion de pointeur suivante :
 
-*  De n’importe quel *pointer_type* vers le type `void*`.
+*  À partir de n’importe quel *pointer_type* vers le type `void*`.
 
 Les conversions entre deux types pointeur ne modifient jamais la valeur du pointeur réel. En d’autres termes, une conversion d’un type pointeur vers un autre n’a aucun effet sur l’adresse sous-jacente donnée par le pointeur.
 
-Quand un type pointeur est converti en un autre, si le pointeur résultant n’est pas correctement aligné pour le type pointé, le comportement n’est pas défini si le résultat est déréférencé. En général, le concept « aligné correctement » est transitif : si un pointeur vers le type `A` est correctement aligné pour un pointeur vers le type `B` qui, à son tour, est correctement aligné pour un pointeur vers le type `C`, un pointeur vers le type `A` est correctement aligné pour un pointeur vers le type `C`.
+Quand un type pointeur est converti en un autre, si le pointeur résultant n’est pas correctement aligné pour le type pointé, le comportement n’est pas défini si le résultat est déréférencé. En général, le concept « aligné correctement » est transitif : si un pointeur vers le type `A` est correctement aligné pour un pointeur vers le type `B`, qui, à son tour, est correctement aligné pour un pointeur vers le type `C`, un pointeur vers le type `A` est correctement aligné pour un pointeur vers le type `C`.
 
 Considérez le cas suivant dans lequel une variable ayant un type est accessible via un pointeur vers un type différent :
 
@@ -359,10 +359,10 @@ Les mappages entre les pointeurs et les entiers sont définis par l’implément
 
 Dans un contexte non sécurisé, des tableaux de pointeurs peuvent être construits. Seules certaines des conversions qui s’appliquent à d’autres types de tableau sont autorisées sur les tableaux de pointeurs :
 
-*  La conversion de référence implicite ([conversions de référence implicites](conversions.md#implicit-reference-conversions)) de n’importe quel *array_type* en `System.Array` et les interfaces qu’elle implémente s’applique également aux tableaux de pointeurs. Toutefois, toute tentative d’accès aux éléments du tableau par le biais de `System.Array` ou des interfaces qu’il implémente entraîne une exception au moment de l’exécution, car les types de pointeurs ne sont pas convertibles en `object`.
-*  Les conversions de référence implicite et explicite (conversions de[référence implicites](conversions.md#implicit-reference-conversions), [conversions de référence explicites](conversions.md#explicit-reference-conversions)) à partir d’un type de tableau unidimensionnel `S[]` à `System.Collections.Generic.IList<T>` et ses interfaces de base génériques ne s’appliquent jamais aux tableaux de pointeurs. étant donné que les types pointeur ne peuvent pas être utilisés en tant qu’arguments de type, et qu’il n’y a pas de conversion de types pointeur en types non-pointeur.
-*  La conversion de référence explicite ([conversions de référence explicites](conversions.md#explicit-reference-conversions)) de `System.Array` et les interfaces qu’elle implémente à n’importe quel *array_type* s’applique aux tableaux de pointeurs.
-*  Les conversions de référence explicites ([conversions de référence explicites](conversions.md#explicit-reference-conversions)) de `System.Collections.Generic.IList<S>` et ses interfaces de base en un type tableau unidimensionnel `T[]` ne s’appliquent jamais aux tableaux de pointeurs, car les types pointeur ne peuvent pas être utilisés en tant qu’arguments de type, et il y a aucune conversion des types pointeur en types non-pointeur.
+*  La conversion de référence implicite ([conversions de référence implicites](conversions.md#implicit-reference-conversions)) de tout *array_type* en `System.Array` et les interfaces qu’elle implémente s’appliquent également aux tableaux de pointeurs. Toutefois, toute tentative d’accès aux éléments du tableau par le biais de `System.Array` ou des interfaces qu’il implémente entraîne une exception au moment de l’exécution, car les types de pointeurs ne sont pas convertibles en `object`.
+*  Les conversions de référence implicite et explicite (conversions de[référence implicites](conversions.md#implicit-reference-conversions), [conversions de référence explicites](conversions.md#explicit-reference-conversions)) d’un type de tableau unidimensionnel `S[]` en `System.Collections.Generic.IList<T>` et ses interfaces de base génériques ne s’appliquent jamais aux tableaux de pointeurs, car les types pointeur ne peuvent pas être utilisés en tant qu’arguments de type, et il n’y a aucune conversion des types pointeur
+*  La conversion de référence explicite ([conversions de références explicites](conversions.md#explicit-reference-conversions)) à partir de `System.Array` et les interfaces qu’elle implémente sur n’importe quel *array_type* s’applique aux tableaux de pointeurs.
+*  Les conversions de référence explicites ([conversions de référence explicites](conversions.md#explicit-reference-conversions)) de `System.Collections.Generic.IList<S>` et ses interfaces de base en un type tableau unidimensionnel `T[]` ne s’appliquent jamais aux tableaux de pointeurs, puisque les types pointeur ne peuvent pas être utilisés comme arguments de type et qu’il n’y a pas de conversion des types pointeur en types non-pointeur.
 
 Ces restrictions signifient que l’expansion de l’instruction `foreach` sur les tableaux décrits dans [l’instruction foreach](statements.md#the-foreach-statement) ne peut pas être appliquée aux tableaux de pointeurs. Au lieu de cela, une instruction foreach de la forme
 
@@ -385,11 +385,11 @@ où le type de `x` est un type de tableau de la forme `T[,,...,]`, `N` est le no
 }
 ```
 
-Les variables `a`, `i0`, `i1`,..., `iN` ne sont pas visibles ou accessibles à `x`, à l' *embedded_statement* ou à tout autre code source du programme. La variable `v` est en lecture seule dans l’instruction incorporée. S’il n’existe pas de conversion explicite ([conversions de pointeur](unsafe-code.md#pointer-conversions)) de `T` (type d’élément) en `V`, une erreur est générée et aucune autre étape n’est effectuée. Si `x` a la valeur `null`, une `System.NullReferenceException` est levée au moment de l’exécution.
+Les variables `a`, `i0`, `i1`,..., `iN` ne sont pas visibles ou accessibles à `x` ou au *embedded_statement* ou à tout autre code source du programme. La variable `v` est en lecture seule dans l’instruction incorporée. S’il n’existe pas de conversion explicite ([conversions de pointeur](unsafe-code.md#pointer-conversions)) de `T` (type d’élément) en `V`, une erreur est générée et aucune autre étape n’est effectuée. Si `x` a la valeur `null`, une `System.NullReferenceException` est levée au moment de l’exécution.
 
 ## <a name="pointers-in-expressions"></a>Pointeurs dans les expressions
 
-Dans un contexte unsafe, une expression peut produire un résultat d’un type pointeur, mais en dehors d’un contexte unsafe, il s’agit d’une erreur de compilation pour qu’une expression soit d’un type pointeur. En termes précis, en dehors d’un contexte non sécurisé, une erreur de compilation se produit si des *simple_name* ([noms simples](expressions.md#simple-names)), *member_access* ([accès aux membres](expressions.md#member-access)), *invocation_expression* ([expressions d’appel](expressions.md#invocation-expressions)) ou  *element_access* ([accès à l’élément](expressions.md#element-access)) est de type pointeur.
+Dans un contexte unsafe, une expression peut produire un résultat d’un type pointeur, mais en dehors d’un contexte unsafe, il s’agit d’une erreur de compilation pour qu’une expression soit d’un type pointeur. En termes précis, en dehors d’un contexte non sécurisé, une erreur de compilation se produit si une *simple_name* ([noms simples](expressions.md#simple-names)), *member_access* ([accès aux membres](expressions.md#member-access)), *invocation_expression* ([expressions d’appel](expressions.md#invocation-expressions)) ou *element_access* ([accès à l’élément](expressions.md#element-access)) est d’un type pointeur.
 
 Dans un contexte non sécurisé, les productions *primary_no_array_creation_expression* ([expressions primaires](expressions.md#primary-expressions)) et *unary_expression* ([opérateurs unaires](expressions.md#unary-operators)) autorisent les constructions supplémentaires suivantes :
 
@@ -418,17 +418,17 @@ pointer_indirection_expression
     ;
 ```
 
-L’opérateur unaire `*` désigne l’indirection de pointeur et est utilisé pour obtenir la variable vers laquelle pointe un pointeur. Le résultat de l’évaluation de `*P`, où `P` est une expression d’un type pointeur `T*`, est une variable de type `T`. Il s’agit d’une erreur au moment de la compilation pour appliquer l’opérateur unaire `*` à une expression de type `void*` ou à une expression qui n’est pas d’un type pointeur.
+L’opérateur de `*` unaire désigne l’indirection de pointeur et est utilisé pour obtenir la variable vers laquelle pointe un pointeur. Le résultat de l’évaluation de `*P`, où `P` est une expression d’un type pointeur `T*`, est une variable de type `T`. Il s’agit d’une erreur au moment de la compilation pour appliquer l’opérateur unaire `*` à une expression de type `void*` ou à une expression qui n’est pas d’un type pointeur.
 
-L’effet de l’application de l’opérateur unaire `*` à un pointeur `null` est défini par l’implémentation. En particulier, il n’y a aucune garantie que cette opération lève une `System.NullReferenceException`.
+L’effet de l’application de l’opérateur de `*` unaire à un pointeur `null` est défini par l’implémentation. En particulier, il n’y a aucune garantie que cette opération lève une `System.NullReferenceException`.
 
-Si une valeur non valide a été assignée au pointeur, le comportement de l’opérateur unaire `*` n’est pas défini. Parmi les valeurs non valides pour le déréférencement d’un pointeur par l’opérateur unaire `*`, on trouve une adresse alignée de manière inappropriée pour le type pointé (Voir l’exemple dans les [conversions de pointeur](unsafe-code.md#pointer-conversions)) et l’adresse d’une variable après la fin de sa durée de vie.
+Si une valeur non valide a été assignée au pointeur, le comportement de l’opérateur d' `*` unaire n’est pas défini. Parmi les valeurs non valides pour le déréférencement d’un pointeur par l’opérateur unaire `*` sont une adresse alignée de manière inappropriée pour le type pointé (Voir l’exemple dans les [conversions de pointeur](unsafe-code.md#pointer-conversions)) et l’adresse d’une variable après la fin de sa durée de vie.
 
 À des fins d’analyse d’assignation définie, une variable produite par l’évaluation d’une expression de la forme `*P` est considérée comme initialement assignée ([variables initialement affectées](variables.md#initially-assigned-variables)).
 
 ### <a name="pointer-member-access"></a>Accès au membre pointeur
 
-Un *pointer_member_access* se compose d’un *primary_expression*, suivi d’un jeton « `->` », suivi d’un *identificateur* et d’un *type_argument_list*facultatif.
+Un *pointer_member_access* se compose d’un *primary_expression*, suivi d’un jeton «`->`», suivi d’un *identificateur* et d’un *type_argument_list*facultatif.
 
 ```antlr
 pointer_member_access
@@ -436,9 +436,9 @@ pointer_member_access
     ;
 ```
 
-Dans un accès de membre de pointeur au format `P->I`, `P` doit être une expression d’un type pointeur autre que `void*`, et `I` doit désigner un membre accessible du type auquel `P` pointe.
+Dans un accès de membre de pointeur de la `P->I`de formulaire, `P` doit être une expression d’un type pointeur autre que `void*`et `I` doit désigner un membre accessible du type auquel `P` pointe.
 
-Un accès de membre pointeur au format `P->I` est évalué exactement comme `(*P).I`. Pour obtenir une description de l’opérateur d’indirection de pointeur (`*`), consultez [indirection de pointeur](unsafe-code.md#pointer-indirection). Pour obtenir une description de l’opérateur d’accès aux membres (`.`), consultez [accès aux membres](expressions.md#member-access).
+Un accès de membre de pointeur de la `P->I` de formulaire est évalué exactement comme `(*P).I`. Pour obtenir une description de l’opérateur d’indirection de pointeur (`*`), consultez [indirection de pointeur](unsafe-code.md#pointer-indirection). Pour obtenir une description de l’opérateur d’accès aux membres (`.`), consultez [accès aux membres](expressions.md#member-access).
 
 Dans l’exemple
 
@@ -488,7 +488,7 @@ class Test
 
 ### <a name="pointer-element-access"></a>Accès à l’élément pointeur
 
-Un *pointer_element_access* se compose d’un *primary_no_array_creation_expression* suivi d’une expression placée dans « `[` » et « `]` ».
+Une *pointer_element_access* se compose d’une *primary_no_array_creation_expression* suivie d’une expression placée entre «`[`» et «`]`».
 
 ```antlr
 pointer_element_access
@@ -496,9 +496,9 @@ pointer_element_access
     ;
 ```
 
-Dans un accès à un élément pointeur au format `P[E]`, `P` doit être une expression d’un type pointeur autre que `void*`, et `E` doit être une expression qui peut être convertie implicitement en `int`, `uint`, `long` ou `ulong`.
+Dans un accès à un élément de pointeur de la `P[E]`de formulaire, `P` doit être une expression d’un type pointeur autre que `void*`et `E` doit être une expression qui peut être convertie implicitement en `int`, `uint`, `long`ou `ulong`.
 
-Un accès à un élément pointeur au format `P[E]` est évalué exactement comme `*(P + E)`. Pour obtenir une description de l’opérateur d’indirection de pointeur (`*`), consultez [indirection de pointeur](unsafe-code.md#pointer-indirection). Pour obtenir une description de l’opérateur d’addition de pointeurs (`+`), consultez [opérations arithmétiques sur les pointeurs](unsafe-code.md#pointer-arithmetic).
+Un accès à un élément de pointeur de la `P[E]` de formulaire est évalué exactement comme `*(P + E)`. Pour obtenir une description de l’opérateur d’indirection de pointeur (`*`), consultez [indirection de pointeur](unsafe-code.md#pointer-indirection). Pour obtenir une description de l’opérateur d’addition de pointeurs (`+`), consultez [opérations arithmétiques sur les pointeurs](unsafe-code.md#pointer-arithmetic).
 
 Dans l’exemple
 
@@ -532,7 +532,7 @@ L’opérateur d’accès à l’élément pointeur ne vérifie pas les erreurs 
 
 ### <a name="the-address-of-operator"></a>Opérateur d’adresse
 
-Un *addressof_expression* se compose d’un et commercial (`&`) suivi d’un *unary_expression*.
+Une *addressof_expression* se compose d’une esperluette (`&`) suivie d’un *unary_expression*.
 
 ```antlr
 addressof_expression
@@ -540,9 +540,9 @@ addressof_expression
     ;
 ```
 
-Dans le cas d’une expression `E` qui est de type `T` et qui est classée en tant que variable fixe ([variables fixes et déplaçables](unsafe-code.md#fixed-and-moveable-variables)), la construction `&E` calcule l’adresse de la variable donnée par `E`. Le type du résultat est `T*` et est classifié comme une valeur. Une erreur de compilation se produit si `E` n’est pas classée en tant que variable, si `E` est classée en tant que variable locale en lecture seule, ou si `E` désigne une variable déplaçable. Dans le dernier cas, une instruction fixed ([l’instruction fixed](unsafe-code.md#the-fixed-statement)) peut être utilisée pour « corriger » temporairement la variable avant d’obtenir son adresse. Comme indiqué dans l' [accès aux membres](expressions.md#member-access), en dehors d’un constructeur d’instance ou d’un constructeur statique pour un struct ou une classe qui définit un champ `readonly`, ce champ est considéré comme une valeur, et non comme une variable. Par conséquent, son adresse ne peut pas être prise. De même, l’adresse d’une constante ne peut pas être prise.
+Dans le cas d’une expression `E` qui est de type `T` et qui est classée en tant que variable fixe ([variables fixes et déplaçables](unsafe-code.md#fixed-and-moveable-variables)), la construction `&E` calcule l’adresse de la variable fournie par `E`. Le type du résultat est `T*` et est classifié comme une valeur. Une erreur de compilation se produit si `E` n’est pas classée en tant que variable, si `E` est classée en tant que variable locale en lecture seule, ou si `E` désigne une variable déplaçable. Dans le dernier cas, une instruction fixed ([l’instruction fixed](unsafe-code.md#the-fixed-statement)) peut être utilisée pour « corriger » temporairement la variable avant d’obtenir son adresse. Comme indiqué dans [l’accès aux membres](expressions.md#member-access), en dehors d’un constructeur d’instance ou d’un constructeur statique pour un struct ou une classe qui définit un champ `readonly`, ce champ est considéré comme une valeur, et non comme une variable. Par conséquent, son adresse ne peut pas être prise. De même, l’adresse d’une constante ne peut pas être prise.
 
-L’opérateur `&` ne requiert pas l’assignation définitive de son argument, mais après une opération `&`, la variable à laquelle l’opérateur est appliqué est considérée comme assignée définitivement dans le chemin d’exécution dans lequel l’opération se produit. Il incombe au programmeur de s’assurer que l’initialisation correcte de la variable a réellement lieu dans cette situation.
+L’opérateur `&` ne requiert pas l’assignation définitive de son argument, mais après une opération `&`, la variable à laquelle l’opérateur est appliqué est considérée comme assignée de manière définitive dans le chemin d’exécution dans lequel l’opération se produit. Il incombe au programmeur de s’assurer que l’initialisation correcte de la variable a réellement lieu dans cette situation.
 
 Dans l’exemple
 
@@ -562,13 +562,13 @@ class Test
 }
 ```
 
-`i` est considéré comme définitivement affecté à la suite de l’opération `&i` utilisée pour initialiser `p`. L’assignation à `*p` en effet initialise `i`, mais l’inclusion de cette initialisation est la responsabilité du programmeur, et aucune erreur de compilation ne se produit si l’assignation a été supprimée.
+`i` est considéré comme définitivement affecté à la suite de l’opération `&i` utilisée pour initialiser `p`. L’assignation à `*p` en vigueur Initialise `i`, mais l’inclusion de cette initialisation est la responsabilité du programmeur, et aucune erreur de compilation ne se produit si l’assignation a été supprimée.
 
-Les règles d’attribution définie pour l’opérateur `&` existent, de sorte que l’initialisation redondante de variables locales peut être évitée. Par exemple, de nombreuses API externes prennent un pointeur vers une structure qui est remplie par l’API. Les appels à ces API passent généralement l’adresse d’une variable de struct locale et sans la règle, l’initialisation redondante de la variable de struct est nécessaire.
+Les règles d’attribution définie pour l’opérateur `&` existent, de sorte que l’initialisation redondante des variables locales peut être évitée. Par exemple, de nombreuses API externes prennent un pointeur vers une structure qui est remplie par l’API. Les appels à ces API passent généralement l’adresse d’une variable de struct locale et sans la règle, l’initialisation redondante de la variable de struct est nécessaire.
 
 ### <a name="pointer-increment-and-decrement"></a>Incrémenter et décrémenter des pointeurs
 
-Dans un contexte non sécurisé, les opérateurs `++` et `--` ([opérateurs suffixés d’incrémentation et de décrémentation](expressions.md#postfix-increment-and-decrement-operators) et [opérateurs d’incrémentation et de décrémentation de préfixe](expressions.md#prefix-increment-and-decrement-operators)) peuvent être appliqués aux variables de pointeur de tous les types, à l’exception de `void*`. Ainsi, pour chaque type de pointeur `T*`, les opérateurs suivants sont définis implicitement :
+Dans un contexte non sécurisé, les opérateurs `++` et `--` ([opérateurs suffixés d’incrémentation et de décrémentation](expressions.md#postfix-increment-and-decrement-operators) et [opérateurs d’incrémentation et de décrémentation de préfixe](expressions.md#prefix-increment-and-decrement-operators)) peuvent être appliqués aux variables pointeur de tous les types, à l’exception des `void*`. Ainsi, pour chaque type de pointeur `T*`, les opérateurs suivants sont définis implicitement :
 
 ```csharp
 T* operator ++(T* x);
@@ -581,7 +581,7 @@ Si une opération d’incrémentation ou de décrémentation de pointeur dépass
 
 ### <a name="pointer-arithmetic"></a>Arithmétique des pointeurs
 
-Dans un contexte non sécurisé, les opérateurs `+` et `-` (opérateur d'[addition](expressions.md#addition-operator) et [opérateur de soustraction](expressions.md#subtraction-operator)) peuvent être appliqués aux valeurs de tous les types pointeur, à l’exception de `void*`. Ainsi, pour chaque type de pointeur `T*`, les opérateurs suivants sont définis implicitement :
+Dans un contexte non sécurisé, les opérateurs `+` et `-` ([opérateur d’addition](expressions.md#addition-operator) et [opérateur de soustraction](expressions.md#subtraction-operator)) peuvent être appliqués aux valeurs de tous les types pointeur, à l’exception de `void*`. Ainsi, pour chaque type de pointeur `T*`, les opérateurs suivants sont définis implicitement :
 
 ```csharp
 T* operator +(T* x, int y);
@@ -602,11 +602,11 @@ T* operator -(T* x, ulong y);
 long operator -(T* x, T* y);
 ```
 
-À partir d’une expression `P` d’un type pointeur `T*` et d’une expression `N` de type `int`, `uint`, `long` ou `ulong`, les expressions `P + N` et `N + P` calculent la valeur de pointeur de type `T*` qui résulte de l’ajout de 0 à l’adresse fourni par 1. De même, l’expression `P - N` calcule la valeur de pointeur de type `T*` qui résulte de la soustraction de `N * sizeof(T)` de l’adresse donnée par `P`.
+À partir d’une expression `P` d’un type pointeur `T*` et d’une expression `N` de type `int`, `uint`, `long`ou `ulong`, les expressions `P + N` et `N + P` calculent la valeur de pointeur de type `T*` qui résulte de l’ajout d' `N * sizeof(T)` à l’adresse fournie par `P`. De même, l’expression `P - N` calcule la valeur de pointeur de type `T*` qui résulte de la soustraction des `N * sizeof(T)` de l’adresse donnée par `P`.
 
-À partir de deux expressions, `P` et `Q`, d’un type pointeur `T*`, l’expression `P - Q` calcule la différence entre les adresses fournies par `P` et `Q`, puis divise cette différence par `sizeof(T)`. Le type du résultat est toujours `long`. En effet, `P - Q` est calculé comme `((long)(P) - (long)(Q)) / sizeof(T)`.
+Étant donné deux expressions, `P` et `Q`, d’un type pointeur `T*`, l’expression `P - Q` calcule la différence entre les adresses fournies par `P` et `Q`, puis divise cette différence par `sizeof(T)`. Le type du résultat est toujours `long`. En effet, `P - Q` est calculé comme `((long)(P) - (long)(Q)) / sizeof(T)`.
 
-Exemple :
+Exemple :
 
 ```csharp
 using System;
@@ -636,7 +636,7 @@ Si une opération arithmétique de pointeur dépasse le domaine du type pointeur
 
 ### <a name="pointer-comparison"></a>Comparaison de pointeurs
 
-Dans un contexte non sécurisé, les opérateurs `==`, `!=`, `<`, `>`, `<=` et `=>` ([opérateurs relationnels et de test de type](expressions.md#relational-and-type-testing-operators)) peuvent être appliqués aux valeurs de tous les types pointeur. Les opérateurs de comparaison de pointeurs sont les suivants :
+Dans un contexte non sécurisé, les opérateurs `==`, `!=`, `<`, `>`, `<=`et `=>` ([opérateurs relationnels et de test de type](expressions.md#relational-and-type-testing-operators)) peuvent être appliqués aux valeurs de tous les types pointeur. Les opérateurs de comparaison de pointeurs sont les suivants :
 
 ```csharp
 bool operator ==(void* x, void* y);
@@ -651,7 +651,7 @@ bool operator >=(void* x, void* y);
 
 ### <a name="the-sizeof-operator"></a>Opérateur sizeof
 
-L’opérateur `sizeof` retourne le nombre d’octets occupés par une variable d’un type donné. Le type spécifié comme opérande à `sizeof` doit être un *unmanaged_type* ([types pointeur](unsafe-code.md#pointer-types)).
+L’opérateur `sizeof` retourne le nombre d’octets occupés par une variable d’un type donné. Le type spécifié comme opérande de `sizeof` doit être un *unmanaged_type* ([types pointeur](unsafe-code.md#pointer-types)).
 
 ```antlr
 sizeof_expression
@@ -687,7 +687,7 @@ En cas d’application à un opérande qui a le type struct, le résultat est le
 
 ## <a name="the-fixed-statement"></a>Instruction fixed
 
-Dans un contexte non sécurisé, la production *embedded_statement* ([instructions](statements.md)) autorise une construction supplémentaire, l’instruction `fixed`, qui est utilisée pour « corriger » une variable déplaçable de telle sorte que son adresse reste constante pendant toute la durée de l’instruction. .
+Dans un contexte non sécurisé, la *embedded_statement* ([instructions](statements.md)) production autorise une construction supplémentaire, l’instruction `fixed`, qui est utilisée pour « corriger » une variable déplaçable de telle sorte que son adresse reste constante pendant toute la durée de l’instruction.
 
 ```antlr
 fixed_statement
@@ -708,18 +708,18 @@ fixed_pointer_initializer
     ;
 ```
 
-Chaque *fixed_pointer_declarator* déclare une variable locale du *pointer_type* donné et initialise cette variable locale avec l’adresse calculée par le *fixed_pointer_initializer*correspondant. Une variable locale déclarée dans une instruction `fixed` est accessible dans tout *fixed_pointer_initializer*s se trouvant à droite de la déclaration de cette variable et dans le *embedded_statement* de l’instruction `fixed`. Une variable locale déclarée par une instruction `fixed` est considérée comme étant en lecture seule. Une erreur de compilation se produit si l’instruction incorporée tente de modifier cette variable locale (par le biais de l’assignation ou des opérateurs `++` et `--`) ou de la passer en tant que paramètre `ref` ou `out`.
+Chaque *fixed_pointer_declarator* déclare une variable locale du *pointer_type* donné et initialise cette variable locale avec l’adresse calculée par le *fixed_pointer_initializer*correspondant. Une variable locale déclarée dans une instruction `fixed` est accessible dans les *fixed_pointer_initializer*s qui se produisent à droite de la déclaration de cette variable et dans le *embedded_statement* de l’instruction `fixed`. Une variable locale déclarée par une instruction `fixed` est considérée comme étant en lecture seule. Une erreur de compilation se produit si l’instruction incorporée tente de modifier cette variable locale (par le biais de l’assignation ou de `++` et `--` opérateurs) ou de la passer en tant que paramètre `ref` ou `out`.
 
-Un *fixed_pointer_initializer* peut être l’un des suivants :
+Un *fixed_pointer_initializer* peut être l’un des éléments suivants :
 
-*  Le jeton « `&` » suivi d’un *variable_reference* ([règles précises pour déterminer l’assignation définie](variables.md#precise-rules-for-determining-definite-assignment)) à une variable déplaçable ([variables fixes et déplaçables](unsafe-code.md#fixed-and-moveable-variables)) d’un type non managé `T`, à condition que le type `T*` soit implicitement convertible en type pointeur donné dans l’instruction `fixed`. Dans ce cas, l’initialiseur calcule l’adresse de la variable donnée, et la variable est garantie à conserver à une adresse fixe pendant la durée de l’instruction `fixed`.
-*  Expression d’un *array_type* avec des éléments d’un type non managé `T`, à condition que le type `T*` soit implicitement convertible en type pointeur donné dans l’instruction `fixed`. Dans ce cas, l’initialiseur calcule l’adresse du premier élément du tableau, et le tableau entier est toujours conservé à une adresse fixe pendant toute la durée de l’instruction `fixed`. Si l’expression de tableau a la valeur null ou si le tableau n’a aucun élément, l’initialiseur calcule une adresse égale à zéro.
+*  Le jeton «`&`» suivi d’un *variable_reference* ([règles précises pour déterminer l’assignation définie](variables.md#precise-rules-for-determining-definite-assignment)) à une variable déplaçable ([variables fixes et déplaçables](unsafe-code.md#fixed-and-moveable-variables)) d’un type non managé `T`, à condition que le type `T*` soit implicitement convertible en type pointeur donné dans l’instruction `fixed`. Dans ce cas, l’initialiseur calcule l’adresse de la variable donnée et il est garanti que la variable reste à une adresse fixe pendant la durée de l’instruction `fixed`.
+*  Expression d’un *array_type* avec des éléments d’un type non managé `T`, à condition que le type `T*` soit implicitement convertible en type pointeur donné dans l’instruction `fixed`. Dans ce cas, l’initialiseur calcule l’adresse du premier élément du tableau, et le tableau entier est garanti qu’il reste à une adresse fixe pendant la durée de l’instruction `fixed`. Si l’expression de tableau a la valeur null ou si le tableau n’a aucun élément, l’initialiseur calcule une adresse égale à zéro.
 *  Expression de type `string`, à condition que le type `char*` soit implicitement convertible en type pointeur donné dans l’instruction `fixed`. Dans ce cas, l’initialiseur calcule l’adresse du premier caractère de la chaîne, et la chaîne entière est garantie pour rester à une adresse fixe pendant la durée de l’instruction `fixed`. Le comportement de l’instruction `fixed` est défini par l’implémentation si l’expression de chaîne est null.
 *  *Simple_name* ou *member_access* qui référence un membre de mémoire tampon de taille fixe d’une variable déplaçable, à condition que le type du membre de la mémoire tampon de taille fixe soit implicitement convertible en type pointeur donné dans l’instruction `fixed`. Dans ce cas, l’initialiseur calcule un pointeur vers le premier élément de la mémoire tampon de taille fixe ([mémoires tampons de taille fixe dans les expressions](unsafe-code.md#fixed-size-buffers-in-expressions)), et la mémoire tampon de taille fixe est garantie pour rester à une adresse fixe pendant la durée de l’instruction `fixed`.
 
-Pour chaque adresse calculée par un *fixed_pointer_initializer* , l’instruction `fixed` garantit que la variable référencée par l’adresse n’est pas sujette à un déplacement ou une suppression par le garbage collector pendant la durée de l’instruction `fixed`. Par exemple, si l’adresse calculée par un *fixed_pointer_initializer* fait référence à un champ d’un objet ou à un élément d’une instance de tableau, l’instruction `fixed` garantit que l’instance d’objet conteneur n’est pas déplacée ou supprimée pendant la durée de vie de l’instruction.
+Pour chaque adresse calculée par un *fixed_pointer_initializer* l’instruction `fixed` garantit que la variable référencée par l’adresse n’est pas sujette à un déplacement ou une suppression par le garbage collector pendant la durée de l’instruction `fixed`. Par exemple, si l’adresse calculée par un *fixed_pointer_initializer* fait référence à un champ d’un objet ou à un élément d’une instance de tableau, l’instruction `fixed` garantit que l’instance d’objet conteneur n’est pas déplacée ou supprimée pendant la durée de vie de l’instruction.
 
-Il incombe au programmeur de s’assurer que les pointeurs créés par les instructions `fixed` ne survivent pas au-delà de l’exécution de ces instructions. Par exemple, lorsque des pointeurs créés par des instructions `fixed` sont passés à des API externes, il incombe au programmeur de s’assurer que les API ne conservent aucune mémoire de ces pointeurs.
+Il incombe au programmeur de s’assurer que les pointeurs créés par `fixed` instructions ne survivent pas au-delà de l’exécution de ces instructions. Par exemple, lorsque des pointeurs créés par des instructions `fixed` sont passés à des API externes, il incombe au programmeur de s’assurer que les API ne conservent aucune mémoire de ces pointeurs.
 
 Les objets fixes peuvent entraîner la fragmentation du tas (car ils ne peuvent pas être déplacés). Pour cette raison, les objets doivent être corrigés uniquement lorsque cela est absolument nécessaire, puis uniquement pour la durée la plus faible possible.
 
@@ -748,11 +748,11 @@ class Test
 }
 ```
 
-illustre plusieurs utilisations de l’instruction `fixed`. La première instruction corrige et obtient l’adresse d’un champ statique, la deuxième instruction corrige et obtient l’adresse d’un champ d’instance, et la troisième instruction corrige et obtient l’adresse d’un élément de tableau. Dans chaque cas, l’utilisation de l’opérateur normal `&` était une erreur, car les variables sont toutes classées comme variables déplaçables.
+illustre plusieurs utilisations de l’instruction `fixed`. La première instruction corrige et obtient l’adresse d’un champ statique, la deuxième instruction corrige et obtient l’adresse d’un champ d’instance, et la troisième instruction corrige et obtient l’adresse d’un élément de tableau. Dans chaque cas, il y aurait eu une erreur à utiliser l’opérateur de `&` régulière puisque les variables sont toutes classées comme variables déplaçables.
 
-La quatrième instruction `fixed` de l’exemple ci-dessus produit un résultat similaire à la troisième.
+La quatrième instruction `fixed` dans l’exemple ci-dessus produit un résultat similaire à la troisième.
 
-Cet exemple de l’instruction `fixed` utilise `string` :
+Cet exemple de l’instruction `fixed` utilise `string`:
 
 ```csharp
 class Test
@@ -773,9 +773,9 @@ class Test
 }
 ```
 
-Dans un tableau de contexte non sécurisé, les éléments des tableaux unidimensionnels sont stockés dans l’ordre d’index de plus en plus important, en commençant par l’index `0` et en terminant par l’index `Length - 1`. Pour les tableaux multidimensionnels, les éléments de tableau sont stockés de telle sorte que les index de la dimension la plus à droite soient augmentés en premier, puis la dimension gauche suivante, et ainsi de suite vers la gauche. Dans une instruction `fixed` qui obtient un pointeur `p` vers une instance de tableau `a`, les valeurs de pointeur allant de `p` à `p + a.Length - 1` représentent les adresses des éléments dans le tableau. De même, les variables allant de `p[0]` à `p[a.Length - 1]` représentent les éléments de tableau réels. Étant donné la façon dont les tableaux sont stockés, nous pouvons traiter un tableau de toute dimension comme s’il était linéaire.
+Dans un tableau de contexte non sécurisé, les éléments des tableaux unidimensionnels sont stockés dans l’ordre d’index de plus en plus important, en commençant par l’index `0` et en terminant par l’index `Length - 1`. Pour les tableaux multidimensionnels, les éléments de tableau sont stockés de telle sorte que les index de la dimension la plus à droite soient augmentés en premier, puis la dimension gauche suivante, et ainsi de suite vers la gauche. Dans une instruction `fixed` qui obtient un pointeur `p` à une instance de tableau `a`, les valeurs de pointeur allant de `p` à `p + a.Length - 1` représentent les adresses des éléments dans le tableau. De même, les variables allant de `p[0]` à `p[a.Length - 1]` représentent les éléments de tableau réels. Étant donné la façon dont les tableaux sont stockés, nous pouvons traiter un tableau de toute dimension comme s’il était linéaire.
 
-Exemple :
+Exemple :
 
 ```csharp
 using System;
@@ -865,11 +865,11 @@ class Test
 
 une instruction fixed est utilisée pour corriger une mémoire tampon de taille fixe d’un struct afin que son adresse puisse être utilisée comme pointeur.
 
-Une valeur `char*` produite en résolvant une instance de chaîne pointe toujours vers une chaîne terminée par le caractère null. Dans une instruction fixed qui obtient un pointeur `p` vers une instance de chaîne `s`, les valeurs de pointeur comprises entre `p` et `p + s.Length - 1` représentent les adresses des caractères de la chaîne, tandis que la valeur de pointeur `p + s.Length` pointe toujours sur un caractère null (le caractère avec la valeur `'\0'`).
+Une valeur `char*` produite en résolvant une instance de chaîne pointe toujours vers une chaîne terminée par le caractère null. Dans une instruction fixed qui obtient un pointeur `p` à une instance de chaîne `s`, les valeurs de pointeur comprises entre `p` et `p + s.Length - 1` représentent les adresses des caractères de la chaîne, tandis que la valeur de pointeur `p + s.Length` pointe toujours vers un caractère null (le caractère avec la valeur `'\0'`).
 
 La modification d’objets de type managé par le biais de pointeurs fixes peut engendrer un comportement indéfini. Par exemple, étant donné que les chaînes sont immuables, il incombe au programmeur de s’assurer que les caractères référencés par un pointeur vers une chaîne fixe ne sont pas modifiés.
 
-L’arrêt automatique des chaînes de caractères est particulièrement pratique lors de l’appel d’API externes qui attendent des chaînes de style C. Notez, toutefois, qu’une instance de chaîne est autorisée à contenir des caractères null. Si ces caractères Null sont présents, la chaîne apparaît tronquée lorsqu’elle est traitée comme un `char*` se terminant par un caractère null.
+L’arrêt automatique des chaînes de caractères est particulièrement pratique lors de l’appel d’API externes qui attendent des chaînes de style C. Notez, toutefois, qu’une instance de chaîne est autorisée à contenir des caractères null. Si ces caractères Null sont présents, la chaîne apparaît tronquée lorsqu’elle est traitée comme un `char*`se terminant par un caractère null.
 
 ## <a name="fixed-size-buffers"></a>Mémoires tampons de taille fixe
 
@@ -906,13 +906,13 @@ fixed_size_buffer_declarator
     ;
 ```
 
-Une déclaration de mémoire tampon de taille fixe peut inclure un ensemble d’attributs ([attributs](attributes.md)), un modificateur `new` ([modificateurs](classes.md#modifiers)), une combinaison valide des quatre modificateurs d’accès ([paramètres de type et contraintes](classes.md#type-parameters-and-constraints)) et un modificateur `unsafe` ([unsafe contextes](unsafe-code.md#unsafe-contexts)). Les attributs et les modificateurs s’appliquent à tous les membres déclarés par la déclaration de mémoire tampon de taille fixe. Il s’agit d’une erreur pour que le même modificateur apparaisse plusieurs fois dans une déclaration de mémoire tampon de taille fixe.
+Une déclaration de mémoire tampon de taille fixe peut inclure un ensemble d’attributs ([attributs](attributes.md)), un modificateur de `new` ([modificateurs](classes.md#modifiers)), une combinaison valide des quatre modificateurs d’accès ([paramètres de type et contraintes](classes.md#type-parameters-and-constraints)) et un modificateur de `unsafe` ([contextes non sécurisés](unsafe-code.md#unsafe-contexts)). Les attributs et les modificateurs s’appliquent à tous les membres déclarés par la déclaration de mémoire tampon de taille fixe. Il s’agit d’une erreur pour que le même modificateur apparaisse plusieurs fois dans une déclaration de mémoire tampon de taille fixe.
 
 Une déclaration de mémoire tampon de taille fixe n’est pas autorisée à inclure le modificateur `static`.
 
-Le type d’élément de mémoire tampon d’une déclaration de mémoire tampon de taille fixe spécifie le type d’élément de la ou des mémoires tampons introduites par la déclaration. Le type d’élément de la mémoire tampon doit être l’un des types prédéfinis `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, `float`, 0 ou 1.
+Le type d’élément de mémoire tampon d’une déclaration de mémoire tampon de taille fixe spécifie le type d’élément de la ou des mémoires tampons introduites par la déclaration. Le type d’élément de mémoire tampon doit être l’un des types prédéfinis `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `char`, `float`, `double`ou `bool`.
 
-Le type d’élément de mémoire tampon est suivi d’une liste de déclarateurs de mémoires tampons de taille fixe, chacun d’entre eux introduisant un nouveau membre. Un déclarateur de mémoire tampon de taille fixe se compose d’un identificateur qui nomme le membre, suivi d’une expression constante placée entre des jetons `[` et `]`. L’expression constante indique le nombre d’éléments dans le membre introduit par ce déclarateur de mémoire tampon de taille fixe. Le type de l’expression constante doit être implicitement convertible en type `int`, et la valeur doit être un entier positif différent de zéro.
+Le type d’élément de mémoire tampon est suivi d’une liste de déclarateurs de mémoires tampons de taille fixe, chacun d’entre eux introduisant un nouveau membre. Un déclarateur de mémoire tampon de taille fixe se compose d’un identificateur qui nomme le membre, suivi d’une expression constante placée entre `[` et `]` jetons. L’expression constante indique le nombre d’éléments dans le membre introduit par ce déclarateur de mémoire tampon de taille fixe. Le type de l’expression constante doit être implicitement convertible en type `int`, et la valeur doit être un entier positif différent de zéro.
 
 Il est garanti que les éléments d’une mémoire tampon de taille fixe sont disposés de façon séquentielle dans la mémoire.
 
@@ -940,16 +940,16 @@ unsafe struct A
 
 La recherche de membre ([opérateurs](expressions.md#operators)) d’un membre de mémoire tampon de taille fixe se déroule exactement comme la recherche de membres d’un champ.
 
-Une mémoire tampon de taille fixe peut être référencée dans une expression à l’aide d’un *simple_name* ([inférence de type](expressions.md#type-inference)) ou d’un *member_access* ([vérification au moment de la compilation de la résolution de surcharge dynamique](expressions.md#compile-time-checking-of-dynamic-overload-resolution)).
+Une mémoire tampon de taille fixe peut être référencée dans une expression à l’aide d’un *simple_name* ([inférence de type](expressions.md#type-inference)) ou d’une *member_access* ([vérification au moment de la compilation de la résolution de surcharge dynamique](expressions.md#compile-time-checking-of-dynamic-overload-resolution)).
 
-Lorsqu’un membre de la mémoire tampon de taille fixe est référencé comme un nom simple, l’effet est le même qu’un accès au membre de la forme `this.I`, où `I` est le membre de mémoire tampon de taille fixe.
+Lorsqu’un membre de la mémoire tampon de taille fixe est référencé comme nom simple, l’effet est le même qu’un accès aux membres de la forme `this.I`, où `I` est le membre de mémoire tampon de taille fixe.
 
-Dans un accès aux membres de la forme `E.I`, si `E` est de type struct et qu’une recherche de membre de `I` dans ce type struct identifie un membre de taille fixe, `E.I` est évaluée comme suit :
+Dans un accès aux membres de la forme `E.I`, si `E` est d’un type struct et qu’une recherche de membre de `I` dans ce type struct identifie un membre de taille fixe, `E.I` est évaluée comme suit :
 
-*  Si l’expression `E.I` ne se produit pas dans un contexte unsafe, une erreur se produit au moment de la compilation.
+*  Si l’expression `E.I` ne se produit pas dans un contexte non sécurisé, une erreur de compilation se produit.
 *  Si `E` est classée en tant que valeur, une erreur de compilation se produit.
 *  Sinon, si `E` est une variable déplaçable ([variables fixes et déplaçables](unsafe-code.md#fixed-and-moveable-variables)) et que l’expression `E.I` n’est pas un *fixed_pointer_initializer* ([l’instruction fixed](unsafe-code.md#the-fixed-statement)), une erreur de compilation se produit.
-*  Dans le cas contraire, `E` fait référence à une variable fixe et le résultat de l’expression est un pointeur vers le premier élément du membre de la mémoire tampon de taille fixe `I` dans `E`. Le résultat est de type `S*`, où `S` est le type d’élément de `I` et est classifié comme une valeur.
+*  Dans le cas contraire, `E` fait référence à une variable fixe et le résultat de l’expression est un pointeur vers le premier élément du membre de la mémoire tampon de taille fixe `I` dans `E`. Le résultat est de type `S*`, où `S` est le type d’élément de `I`et est classifié comme une valeur.
 
 Les éléments suivants de la mémoire tampon de taille fixe sont accessibles à l’aide d’opérations de pointeur à partir du premier élément. Contrairement à l’accès aux tableaux, l’accès aux éléments d’une mémoire tampon de taille fixe est une opération risquée et l’option n’est pas cochée.
 
@@ -984,7 +984,7 @@ class Test
 
 Les mémoires tampons de taille fixe ne sont pas soumises à la vérification de l’assignation définie ([assignation définie](variables.md#definite-assignment)) et les membres de la mémoire tampon de taille fixe sont ignorés à des fins de vérification de l’assignation définie des variables de type struct.
 
-Lorsque la variable de struct conteneur la plus externe d’un membre de mémoire tampon de taille fixe est une variable statique, une variable d’instance d’une instance de classe ou un élément de tableau, les éléments de la mémoire tampon de taille fixe sont automatiquement initialisés à leurs valeurs par défaut ([par défaut valeurs](variables.md#default-values)). Dans tous les autres cas, le contenu initial d’une mémoire tampon de taille fixe n’est pas défini.
+Lorsque la variable de struct conteneur la plus externe d’un membre de mémoire tampon de taille fixe est une variable statique, une variable d’instance d’une instance de classe ou un élément de tableau, les éléments de la mémoire tampon de taille fixe sont automatiquement initialisés à leurs valeurs par défaut ([valeurs par défaut](variables.md#default-values)). Dans tous les autres cas, le contenu initial d’une mémoire tampon de taille fixe n’est pas défini.
 
 ## <a name="stack-allocation"></a>Allocation de pile
 
@@ -1000,9 +1000,9 @@ stackalloc_initializer
     ;
 ```
 
-*Unmanaged_type* indique le type des éléments qui seront stockés dans l’emplacement nouvellement alloué, et l' *expression* indique le nombre de ces éléments. Prises ensemble, elles spécifient la taille d’allocation requise. Étant donné que la taille d’une allocation de pile ne peut pas être négative, il s’agit d’une erreur au moment de la compilation pour spécifier le nombre d’éléments en tant que *constant_expression* qui prend une valeur négative.
+Le *unmanaged_type* indique le type des éléments qui seront stockés dans l’emplacement nouvellement alloué, et l' *expression* indique le nombre de ces éléments. Prises ensemble, elles spécifient la taille d’allocation requise. Étant donné que la taille d’une allocation de pile ne peut pas être négative, il s’agit d’une erreur de compilation pour spécifier le nombre d’éléments sous la forme d’un *constant_expression* qui correspond à une valeur négative.
 
-Un initialiseur d’allocation de pile de la forme `stackalloc T[E]` requiert que `T` soit un type non managé ([types pointeur](unsafe-code.md#pointer-types)) et `E` soit une expression de type `int`. La construction alloue `E * sizeof(T)` octets à partir de la pile des appels et retourne un pointeur, de type `T*`, au bloc nouvellement alloué. Si `E` est une valeur négative, le comportement n’est pas défini. Si `E` est égal à zéro, aucune allocation n’est effectuée et le pointeur retourné est défini par l’implémentation. Si la mémoire disponible est insuffisante pour allouer un bloc de la taille donnée, une `System.StackOverflowException` est levée.
+Un initialiseur d’allocation de pile de la forme `stackalloc T[E]` nécessite que `T` soit un type non managé ([types pointeur](unsafe-code.md#pointer-types)) et `E` en tant qu’expression de type `int`. La construction alloue `E * sizeof(T)` octets de la pile des appels et retourne un pointeur, de type `T*`, au bloc nouvellement alloué. Si `E` est une valeur négative, le comportement n’est pas défini. Si `E` est égal à zéro, aucune allocation n’est effectuée et le pointeur retourné est défini par l’implémentation. Si la mémoire disponible est insuffisante pour allouer un bloc de la taille donnée, une `System.StackOverflowException` est levée.
 
 Le contenu de la mémoire nouvellement allouée n’est pas défini.
 
@@ -1038,11 +1038,11 @@ class Test
 }
 ```
 
-un initialiseur `stackalloc` est utilisé dans la méthode `IntToString` pour allouer une mémoire tampon de 16 caractères sur la pile. La mémoire tampon est automatiquement supprimée lorsque la méthode est retournée.
+un initialiseur de `stackalloc` est utilisé dans la méthode `IntToString` pour allouer une mémoire tampon de 16 caractères sur la pile. La mémoire tampon est automatiquement supprimée lorsque la méthode est retournée.
 
 ## <a name="dynamic-memory-allocation"></a>Allocation de mémoire dynamique
 
-À l’exception de l’opérateur @no__t- C# 0, ne fournit aucune construction prédéfinie pour la gestion de la mémoire qui n’est pas récupérée par le garbage collector. Ces services sont généralement fournis par la prise en charge des bibliothèques de classes ou importés directement depuis le système d’exploitation sous-jacent. Par exemple, la classe `Memory` ci-dessous illustre la façon dont les fonctions de tas d’un système d’exploitation C#sous-jacent sont accessibles à partir de :
+À l’exception de l’opérateur C# `stackalloc`, ne fournit aucune construction prédéfinie pour la gestion de la mémoire qui n’est pas récupérée par le garbage collector. Ces services sont généralement fournis par la prise en charge des bibliothèques de classes ou importés directement depuis le système d’exploitation sous-jacent. Par exemple, la classe `Memory` ci-dessous illustre la façon dont les fonctions de tas d’un système d’exploitation C#sous-jacent sont accessibles à partir de :
 
 ```csharp
 using System;
@@ -1149,4 +1149,4 @@ class Test
 }
 ```
 
-L’exemple alloue 256 octets de mémoire par le biais de `Memory.Alloc` et initialise le bloc de mémoire avec des valeurs qui s’incrémentent de 0 à 255. Il alloue ensuite un tableau d’octets d’éléments 256 et utilise `Memory.Copy` pour copier le contenu du bloc de mémoire dans le tableau d’octets. Enfin, le bloc de mémoire est libéré à l’aide de `Memory.Free` et le contenu du tableau d’octets est généré sur la console.
+L’exemple alloue 256 octets de mémoire via `Memory.Alloc` et initialise le bloc de mémoire avec des valeurs qui s’incrémentent de 0 à 255. Il alloue ensuite un tableau d’octets d’éléments 256 et utilise `Memory.Copy` pour copier le contenu du bloc de mémoire dans le tableau d’octets. Enfin, le bloc de mémoire est libéré à l’aide de `Memory.Free` et le contenu du tableau d’octets est généré sur la console.

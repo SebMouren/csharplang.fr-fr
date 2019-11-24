@@ -14,7 +14,7 @@ Un assembly qui a un ***point d’entrée*** est appelé ***application***. Lors
 
 Un domaine d’application permet l’isolation d’applications en jouant le rôle d’un conteneur pour l’état de l’application. Un domaine d’application agit comme un conteneur et une limite pour les types définis dans l’application et les bibliothèques de classes qu’il utilise. Les types chargés dans un domaine d’application sont différents du même type chargé dans un autre domaine d’application, et les instances d’objets ne sont pas directement partagées entre les domaines d’application. Par exemple, chaque domaine d’application possède sa propre copie de variables statiques pour ces types, et un constructeur statique pour un type est exécuté au plus une fois par domaine d’application. Les implémentations sont gratuites pour fournir une stratégie ou des mécanismes spécifiques à l’implémentation pour la création et la destruction de domaines d’application.
 
-Le démarrage de l' ***application*** se produit lorsque l’environnement d’exécution appelle une méthode désignée, appelée point d’entrée de l’application. Cette méthode de point d’entrée est toujours nommée `Main` et peut avoir l’une des signatures suivantes :
+Le démarrage de l' ***application*** se produit lorsque l’environnement d’exécution appelle une méthode désignée, appelée point d’entrée de l’application. Cette méthode de point d’entrée est toujours nommée `Main`et peut avoir l’une des signatures suivantes :
 
 ```csharp
 static void Main() {...}
@@ -30,11 +30,11 @@ Comme indiqué, le point d’entrée peut éventuellement retourner une valeur `
 
 Le point d’entrée peut éventuellement avoir un paramètre formel. Le paramètre peut avoir n’importe quel nom, mais le type du paramètre doit être `string[]`. Si le paramètre formel est présent, l’environnement d’exécution crée et passe un argument `string[]` contenant les arguments de ligne de commande spécifiés au démarrage de l’application. L’argument `string[]` n’est jamais null, mais peut avoir une longueur de zéro si aucun argument de ligne de commande n’a été spécifié.
 
-Étant C# donné que prend en charge la surcharge de méthode, une classe ou un struct peut contenir plusieurs définitions d’une méthode, à condition que chacune ait une signature différente. Toutefois, au sein d’un même programme, aucune classe ou aucun struct ne peut contenir plusieurs méthodes appelées `Main` dont la définition la qualifie à utiliser comme point d’entrée de l’application. Toutefois, d’autres versions surchargées de `Main` sont autorisées, à condition qu’elles aient plusieurs paramètres, ou que leur seul paramètre soit autre que le type `string[]`.
+Étant C# donné que prend en charge la surcharge de méthode, une classe ou un struct peut contenir plusieurs définitions d’une méthode, à condition que chacune ait une signature différente. Toutefois, au sein d’un même programme, aucune classe ou structure ne peut contenir plusieurs méthodes appelées `Main` dont la définition la qualifie à utiliser comme point d’entrée de l’application. Toutefois, d’autres versions surchargées de `Main` sont autorisées, à condition qu’elles aient plusieurs paramètres, ou que leur seul paramètre soit autre que le type `string[]`.
 
-Une application peut être composée de plusieurs classes ou structures. Il est possible que plus d’une de ces classes ou structures contiennent une méthode appelée `Main` dont la définition la qualifie à utiliser comme point d’entrée de l’application. Dans ce cas, un mécanisme externe (tel qu’une option du compilateur de ligne de commande) doit être utilisé pour sélectionner l’une de ces méthodes `Main` comme point d’entrée.
+Une application peut être composée de plusieurs classes ou structures. Il est possible que plus d’une de ces classes ou structures contiennent une méthode appelée `Main` dont la définition la qualifie à utiliser comme point d’entrée de l’application. Dans ce cas, un mécanisme externe (tel qu’une option du compilateur de ligne de commande) doit être utilisé pour sélectionner l’une de ces méthodes de `Main` comme point d’entrée.
 
-Dans C#, chaque méthode doit être définie en tant que membre d’une classe ou d’un struct. En règle générale, l’accessibilité déclarée ([accessibilité déclarée](basic-concepts.md#declared-accessibility)) d’une méthode est déterminée par les modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)) spécifiés dans sa déclaration, et de la même façon, l’accessibilité déclarée d’un type est déterminée par le modificateurs d’accès spécifiés dans sa déclaration. Pour qu’une méthode donnée d’un type donné puisse être appelée, le type et le membre doivent être accessibles. Toutefois, le point d’entrée de l’application est un cas particulier. Plus précisément, l’environnement d’exécution peut accéder au point d’entrée de l’application, quelle que soit l’accessibilité déclarée et indépendamment de l’accessibilité déclarée de ses déclarations de type englobant.
+Dans C#, chaque méthode doit être définie en tant que membre d’une classe ou d’un struct. En règle générale, l’accessibilité déclarée ([accessibilité déclarée](basic-concepts.md#declared-accessibility)) d’une méthode est déterminée par les modificateurs d’accès ([modificateurs d’accès](classes.md#access-modifiers)) spécifiés dans sa déclaration, et de la même façon, l’accessibilité déclarée d’un type est déterminée par les modificateurs d’accès spécifiés dans sa déclaration. Pour qu’une méthode donnée d’un type donné puisse être appelée, le type et le membre doivent être accessibles. Toutefois, le point d’entrée de l’application est un cas particulier. Plus précisément, l’environnement d’exécution peut accéder au point d’entrée de l’application, quelle que soit l’accessibilité déclarée et indépendamment de l’accessibilité déclarée de ses déclarations de type englobant.
 
 La méthode de point d’entrée de l’application ne peut pas figurer dans une déclaration de classe générique.
 
@@ -44,34 +44,34 @@ Dans tous les autres aspects, les méthodes de point d’entrée se comportent c
 
 L’arrêt de l' ***application*** retourne le contrôle à l’environnement d’exécution.
 
-Si le type de retour de la méthode de ***point d’entrée*** de l’application est `int`, la valeur retournée fait office de code d’état d' ***arrêt***de l’application. L’objectif de ce code est de permettre la communication de la réussite ou de l’échec à l’environnement d’exécution.
+Si le type de retour de la méthode de ***point d’entrée*** de l’application est `int`, la valeur retournée sert de code d’état d' ***arrêt***de l’application. L’objectif de ce code est de permettre la communication de la réussite ou de l’échec à l’environnement d’exécution.
 
-Si le type de retour de la méthode de point d’entrée est `void`, l’atteinte de l’accolade fermante (`}`) qui termine cette méthode, ou l’exécution d’une instruction `return` qui n’a aucune expression, aboutit à un code d’état d’arrêt de `0`.
+Si le type de retour de la méthode de point d’entrée est `void`, l’atteinte de l’accolade fermante (`}`) qui termine cette méthode, ou l’exécution d’une instruction `return` qui n’a pas d’expression, entraîne un code d’état d’arrêt de `0`.
 
 Avant l’arrêt d’une application, les destructeurs de tous ses objets qui n’ont pas encore été récupérés par le garbage collector sont appelés, à moins que ce nettoyage ait été supprimé (par un appel à la méthode de la bibliothèque `GC.SuppressFinalize`, par exemple).
 
 ## <a name="declarations"></a>Déclarations
 
-Les déclarations d' C# un programme définissent les éléments constitutifs du programme. C#les programmes sont organisés à l’aide d’espaces de noms ([espaces de noms](namespaces.md)), qui peuvent contenir des déclarations de type et des déclarations d’espaces de noms imbriqués. Les déclarations de type ([déclarations de type](namespaces.md#type-declarations)) sont utilisées pour définir des classes ([classes](classes.md)), des structures ([structs](structs.md)), des interfaces ([interfaces](interfaces.md)), des enums ([énumérations](enums.md)) et des délégués ([délégués](delegates.md)). Les genres de membres autorisés dans une déclaration de type dépendent de la forme de la déclaration de type. Par exemple, les déclarations de classe peuvent contenir des déclarations pour les constantes ([constantes](classes.md#constants)), les champs ([champs](classes.md#fields)), les méthodes ([méthodes](classes.md#methods)), les propriétés ([Propriétés](classes.md#properties)), les événements ([événements](classes.md#events)), les indexeurs ([indexeurs](classes.md#indexers)), opérateurs ([opérateurs](classes.md#operators)), constructeurs d’instance ([constructeurs d’instance](classes.md#instance-constructors)), constructeurs statiques ([constructeurs statiques](classes.md#static-constructors)), destructeurs ([destructeurs](classes.md#destructors)) et types imbriqués ([types imbriqués](classes.md#nested-types)).
+Les déclarations d' C# un programme définissent les éléments constitutifs du programme. C#les programmes sont organisés à l’aide d’espaces de noms ([espaces de noms](namespaces.md)), qui peuvent contenir des déclarations de type et des déclarations d’espaces de noms imbriqués. Les déclarations de type ([déclarations de type](namespaces.md#type-declarations)) sont utilisées pour définir des classes ([classes](classes.md)), des structures ([structs](structs.md)), des interfaces ([interfaces](interfaces.md)), des enums ([énumérations](enums.md)) et des délégués ([délégués](delegates.md)). Les genres de membres autorisés dans une déclaration de type dépendent de la forme de la déclaration de type. Par exemple, les déclarations de classe peuvent contenir des déclarations pour les constantes ([constantes](classes.md#constants)), champs ([champs](classes.md#fields)), méthodes ([méthodes](classes.md#methods)), propriétés ([Propriétés](classes.md#properties)), événements ([événements](classes.md#events)), indexeurs ([indexeurs](classes.md#indexers)), opérateurs ([opérateurs](classes.md#operators)), constructeurs d’instance ([constructeurs d’instance](classes.md#instance-constructors)), constructeurs statiques ([constructeurs statiques](classes.md#static-constructors)), destructeurs ([destructeurs](classes.md#destructors)) et types imbriqués ([types imbriqués](classes.md#nested-types)).
 
 Une déclaration définit un nom dans l' ***espace de déclaration*** auquel la déclaration appartient. À l’exception des membres surchargés ([signatures et surcharge](basic-concepts.md#signatures-and-overloading)), il s’agit d’une erreur au moment de la compilation d’avoir au moins deux déclarations qui introduisent des membres portant le même nom dans un espace de déclaration. Il n’est jamais possible pour un espace de déclaration de contenir différents genres de membres portant le même nom. Par exemple, un espace de déclaration ne peut jamais contenir un champ et une méthode du même nom.
 
 Il existe différents types d’espaces de déclaration, comme décrit dans l’exemple suivant.
 
-*  Dans tous les fichiers sources d’un programme, *namespace_member_declaration*sans *namespace_declaration* englobant sont membres d’un espace de déclaration combiné unique, appelé ***espace de déclaration global***.
-*  Dans tous les fichiers sources d’un programme, les *namespace_member_declaration*dans *namespace_declaration*s qui ont le même nom d’espace de noms complet sont membres d’un espace de déclaration combiné unique.
-*  Chaque déclaration de classe, de struct ou d’interface crée un nouvel espace de déclaration. Les noms sont introduits dans cet espace de déclaration via *class_member_declaration*s, *struct_member_declaration*s, *interface_member_declaration*s ou *type_parameter*s. Sauf pour les déclarations de constructeur d’instance surchargé et les déclarations de constructeur statiques, une classe ou un struct ne peut pas contenir une déclaration de membre portant le même nom que la classe ou le struct. Une classe, un struct ou une interface autorise la déclaration de méthodes surchargées et d’indexeurs. En outre, une classe ou un struct autorise la déclaration de constructeurs et d’opérateurs d’instance surchargés. Par exemple, une classe, un struct ou une interface peut contenir plusieurs déclarations de méthode portant le même nom, à condition que ces déclarations de méthode diffèrent dans leur signature ([signatures et surcharge](basic-concepts.md#signatures-and-overloading)). Notez que les classes de base ne contribuent pas à l’espace de déclaration d’une classe et que les interfaces de base ne contribuent pas à l’espace de déclaration d’une interface. Ainsi, une classe ou une interface dérivée est autorisée à déclarer un membre portant le même nom qu’un membre hérité. Ce membre est dit de ***Masquer*** le membre hérité.
+*  Dans tous les fichiers sources d’un programme, *namespace_member_declaration*s sans *namespace_declaration* englobante sont membres d’un espace de déclaration combiné unique, appelé ***espace de déclaration globale***.
+*  Dans tous les fichiers sources d’un programme, *namespace_member_declaration*dans *namespace_declaration*s qui ont le même nom d’espace de noms qualifié complet sont membres d’un espace de déclaration combiné unique.
+*  Chaque déclaration de classe, de struct ou d’interface crée un nouvel espace de déclaration. Les noms sont introduits dans cet espace de déclaration par le biais de *class_member_declaration*s, *struct_member_declaration*s, *interface_member_declaration*s ou *type_parameter*s. Sauf pour les déclarations de constructeur d’instance surchargé et les déclarations de constructeur statiques, une classe ou un struct ne peut pas contenir une déclaration de membre portant le même nom que la classe ou le struct. Une classe, un struct ou une interface autorise la déclaration de méthodes surchargées et d’indexeurs. En outre, une classe ou un struct autorise la déclaration de constructeurs et d’opérateurs d’instance surchargés. Par exemple, une classe, un struct ou une interface peut contenir plusieurs déclarations de méthode portant le même nom, à condition que ces déclarations de méthode diffèrent dans leur signature ([signatures et surcharge](basic-concepts.md#signatures-and-overloading)). Notez que les classes de base ne contribuent pas à l’espace de déclaration d’une classe et que les interfaces de base ne contribuent pas à l’espace de déclaration d’une interface. Ainsi, une classe ou une interface dérivée est autorisée à déclarer un membre portant le même nom qu’un membre hérité. Ce membre est dit de ***Masquer*** le membre hérité.
 *  Chaque déclaration Delegate crée un nouvel espace de déclaration. Les noms sont introduits dans cet espace de déclaration via des paramètres formels (*fixed_parameter*s et *parameter_array*s) et *type_parameter*s.
 *  Chaque déclaration d’énumération crée un nouvel espace de déclaration. Les noms sont introduits dans cet espace de déclaration par le biais de *enum_member_declarations*.
 *  Chaque déclaration de méthode, déclaration d’indexeur, déclaration d’opérateur, déclaration de constructeur d’instance et fonction anonyme crée un espace de déclaration appelé ***espace de déclaration de variable locale***. Les noms sont introduits dans cet espace de déclaration via des paramètres formels (*fixed_parameter*s et *parameter_array*s) et *type_parameter*s. Le corps de la fonction membre ou de la fonction anonyme, le cas échéant, est considéré comme imbriqué dans l’espace de déclaration de la variable locale. Il s’agit d’une erreur pour un espace de déclaration de variable locale et un espace de déclaration de variable locale imbriqué pour contenir des éléments portant le même nom. Ainsi, dans un espace de déclaration imbriqué, il n’est pas possible de déclarer une variable locale ou une constante portant le même nom qu’une variable locale ou une constante dans un espace de déclaration englobant. Il est possible que deux espaces de déclaration contiennent des éléments portant le même nom, à condition que l’espace de déclaration ne contienne pas l’autre.
 *  Chaque *bloc* ou *switch_block* , ainsi qu’une instruction *for*, *foreach* et *using* , crée un espace de déclaration de variable locale pour les variables locales et les constantes locales. Les noms sont introduits dans cet espace de déclaration par le biais de *local_variable_declaration*s et *local_constant_declaration*s. Notez que les blocs qui se produisent en tant que ou dans le corps d’un membre de fonction ou d’une fonction anonyme sont imbriqués dans l’espace de déclaration de variable locale déclaré par ces fonctions pour leurs paramètres. Par conséquent, il s’agit d’une erreur d’avoir une méthode avec une variable locale et un paramètre du même nom.
-*  Chaque *bloc* ou *switch_block* crée un espace de déclaration distinct pour les étiquettes. Les noms sont introduits dans cet espace de déclaration par le biais de *labeled_statement*s et les noms sont référencés par le biais de *goto_statement*s. L' ***espace de déclaration d’étiquette*** d’un bloc comprend tous les blocs imbriqués. Ainsi, dans un bloc imbriqué, il n’est pas possible de déclarer une étiquette portant le même nom qu’une étiquette dans un bloc englobant.
+*  Chaque *bloc* ou *switch_block* crée un espace de déclaration distinct pour les étiquettes. Les noms sont introduits dans cet espace de déclaration par le biais de *labeled_statement*s, et les noms sont référencés par le biais de *goto_statement*s. L' ***espace de déclaration d’étiquette*** d’un bloc comprend tous les blocs imbriqués. Ainsi, dans un bloc imbriqué, il n’est pas possible de déclarer une étiquette portant le même nom qu’une étiquette dans un bloc englobant.
 
 L’ordre textuel dans lequel les noms sont déclarés n’a généralement pas d’importance. En particulier, l’ordre textuel n’est pas significatif pour la déclaration et l’utilisation des espaces de noms, des constantes, des méthodes, des propriétés, des événements, des indexeurs, des opérateurs, des constructeurs d’instance, des destructeurs, des constructeurs statiques et des types. L’ordre de déclaration est significatif des manières suivantes :
 
 *  L’ordre de déclaration pour les déclarations de champ et les déclarations de variable locale détermine l’ordre dans lequel leurs initialiseurs (le cas échéant) sont exécutés.
 *  Les variables locales doivent être définies avant d’être utilisées ([étendues](basic-concepts.md#scopes)).
-*  L’ordre de déclaration pour les déclarations de membre enum ([membres enum](enums.md#enum-members)) est significatif lorsque les valeurs *constant_expression* sont omises.
+*  L’ordre de déclaration pour les déclarations de membre enum ([membres enum](enums.md#enum-members)) est significatif lorsque *constant_expression* valeurs sont omises.
 
 L’espace de déclaration d’un espace de noms est « Open Closed » et deux déclarations d’espaces de noms portant le même nom qualifié complet participent au même espace de déclaration. Exemple :
 ```csharp
@@ -94,7 +94,7 @@ namespace Megacorp.Data
 
 Les deux déclarations d’espaces de noms ci-dessus contribuent au même espace de déclaration, dans ce cas, en déclarant deux classes avec les noms qualifiés complets `Megacorp.Data.Customer` et `Megacorp.Data.Order`. Étant donné que les deux déclarations contribuent au même espace de déclaration, elles auraient provoqué une erreur au moment de la compilation si chacune contient une déclaration d’une classe portant le même nom.
 
-Comme indiqué ci-dessus, l’espace de déclaration d’un bloc comprend tous les blocs imbriqués. Ainsi, dans l’exemple suivant, les méthodes `F` et `G` provoquent une erreur au moment de la compilation, car le nom `i` est déclaré dans le bloc externe et ne peut pas être redéclaré dans le bloc interne. Toutefois, les méthodes `H` et `I` sont valides, car les deux `i` sont déclarées dans des blocs non imbriqués distincts.
+Comme indiqué ci-dessus, l’espace de déclaration d’un bloc comprend tous les blocs imbriqués. Ainsi, dans l’exemple suivant, les méthodes `F` et `G` entraînent une erreur au moment de la compilation, car le nom `i` est déclaré dans le bloc externe et ne peut pas être redéclaré dans le bloc interne. Toutefois, les méthodes `H` et `I` sont valides, car les deux `i`sont déclarées dans des blocs non imbriqués distincts.
 
 ```csharp
 class A
@@ -133,7 +133,7 @@ class A
 
 ## <a name="members"></a>Membres
 
-Les espaces de noms et les types ont des ***membres***. Les membres d’une entité sont généralement disponibles à l’aide d’un nom qualifié qui commence par une référence à l’entité, suivi d’un jeton « `.` », suivi du nom du membre.
+Les espaces de noms et les types ont des ***membres***. Les membres d’une entité sont généralement disponibles via l’utilisation d’un nom qualifié qui commence par une référence à l’entité, suivi d’un jeton «`.`», suivi du nom du membre.
 
 Les membres d’un type sont déclarés dans la déclaration de type ou ***hérités*** de la classe de base du type. Lorsqu’un type hérite d’une classe de base, tous les membres de la classe de base, à l’exception des constructeurs d’instance, des destructeurs et des constructeurs statiques, deviennent membres du type dérivé. L’accessibilité déclarée d’un membre de classe de base ne contrôle pas si le membre est hérité ; l’héritage s’étend à tout membre qui n’est pas un constructeur d’instance, un constructeur statique ou un destructeur. Toutefois, un membre hérité peut ne pas être accessible dans un type dérivé, soit en raison de son accessibilité déclarée ([accessibilité déclarée](basic-concepts.md#declared-accessibility)), soit parce qu’il est masqué par une déclaration dans le type lui-même ([masquage par héritage](basic-concepts.md#hiding-through-inheritance)).
 
@@ -151,19 +151,19 @@ Les membres d’un struct sont les membres déclarés dans le struct et les memb
 
 Les membres d’un type simple correspondent directement aux membres du type struct dont le type est simple :
 
-*  Les membres de `sbyte` sont les membres de la structure `System.SByte`.
-*  Les membres de `byte` sont les membres de la structure `System.Byte`.
-*  Les membres de `short` sont les membres de la structure `System.Int16`.
-*  Les membres de `ushort` sont les membres de la structure `System.UInt16`.
-*  Les membres de `int` sont les membres de la structure `System.Int32`.
-*  Les membres de `uint` sont les membres de la structure `System.UInt32`.
-*  Les membres de `long` sont les membres de la structure `System.Int64`.
-*  Les membres de `ulong` sont les membres de la structure `System.UInt64`.
-*  Les membres de `char` sont les membres de la structure `System.Char`.
-*  Les membres de `float` sont les membres de la structure `System.Single`.
-*  Les membres de `double` sont les membres de la structure `System.Double`.
-*  Les membres de `decimal` sont les membres de la structure `System.Decimal`.
-*  Les membres de `bool` sont les membres de la structure `System.Boolean`.
+*  Les membres de `sbyte` sont les membres du struct `System.SByte`.
+*  Les membres de `byte` sont les membres du struct `System.Byte`.
+*  Les membres de `short` sont les membres du struct `System.Int16`.
+*  Les membres de `ushort` sont les membres du struct `System.UInt16`.
+*  Les membres de `int` sont les membres du struct `System.Int32`.
+*  Les membres de `uint` sont les membres du struct `System.UInt32`.
+*  Les membres de `long` sont les membres du struct `System.Int64`.
+*  Les membres de `ulong` sont les membres du struct `System.UInt64`.
+*  Les membres de `char` sont les membres du struct `System.Char`.
+*  Les membres de `float` sont les membres du struct `System.Single`.
+*  Les membres de `double` sont les membres du struct `System.Double`.
+*  Les membres de `decimal` sont les membres du struct `System.Decimal`.
+*  Les membres de `bool` sont les membres du struct `System.Boolean`.
 
 ### <a name="enumeration-members"></a>Membres de l’énumération
 
@@ -182,7 +182,7 @@ Les membres de `object` et `string` correspondent directement aux membres des ty
 
 ### <a name="interface-members"></a>Membres d’interface
 
-Les membres d’une interface sont les membres déclarés dans l’interface et dans toutes les interfaces de base de l’interface. Les membres de la classe `object` ne sont pas, strictement parlants, des membres de toute interface ([membres d’interface](interfaces.md#interface-members)). Toutefois, les membres de la classe `object` sont disponibles via la recherche de membres dans n’importe quel type d’interface ([recherche de membre](expressions.md#member-lookup)).
+Les membres d’une interface sont les membres déclarés dans l’interface et dans toutes les interfaces de base de l’interface. Les membres de la classe `object` ne sont pas des membres de toute interface ([membres d’interface](interfaces.md#interface-members)), strictement parlants. Toutefois, les membres de la classe `object` sont disponibles via la recherche de membres dans n’importe quel type d’interface ([recherche de membre](expressions.md#member-lookup)).
 
 ### <a name="array-members"></a>Membres du tableau
 
@@ -202,18 +202,18 @@ Lorsque l’accès à un membre particulier est autorisé, le membre est dit ***
 
 L' ***accessibilité déclarée*** d’un membre peut être l’une des suivantes :
 
-*  Public, qui est sélectionné en incluant un modificateur `public` dans la déclaration de membre. La signification intuitive de `public` est « accès non limité ».
-*  Protégé, qui est sélectionné en incluant un modificateur `protected` dans la déclaration de membre. La signification intuitive de `protected` est « l’accès est limité à la classe conteneur ou aux types dérivés de la classe conteneur ».
-*  Interne, qui est sélectionné en incluant un modificateur `internal` dans la déclaration de membre. La signification intuitive de `internal` est « accès limité à ce programme ».
-*  Protected internal (c’est-à-dire protected ou Internal), qui est sélectionné en incluant à la fois un modificateur `protected` et un modificateur `internal` dans la déclaration de membre. La signification intuitive de `protected internal` est « accès limité à ce programme ou aux types dérivés de la classe conteneur ».
-*  Privé, qui est sélectionné en incluant un modificateur `private` dans la déclaration de membre. La signification intuitive de `private` est « accès limité au type conteneur ».
+*  Public, qui est sélectionné en incluant un modificateur de `public` dans la déclaration de membre. La signification intuitive de `public` est « accès non limité ».
+*  Protégé, qui est sélectionné en incluant un modificateur de `protected` dans la déclaration de membre. La signification intuitive de `protected` est « accès limité à la classe conteneur ou aux types dérivés de la classe conteneur ».
+*  Interne, qui est sélectionné en incluant un modificateur de `internal` dans la déclaration de membre. La signification intuitive de `internal` est « accès limité à ce programme ».
+*  Protected internal (c’est-à-dire protected ou Internal), qui est sélectionné en incluant à la fois un `protected` et un modificateur `internal` dans la déclaration de membre. La signification intuitive de `protected internal` est « accès limité à ce programme ou aux types dérivés de la classe conteneur ».
+*  Privé, qui est sélectionné en incluant un modificateur de `private` dans la déclaration de membre. La signification intuitive de `private` est « accès limité au type conteneur ».
 
 En fonction du contexte dans lequel la déclaration d’un membre a lieu, seuls certains types d’accessibilité déclarés sont autorisés. En outre, lorsqu’une déclaration de membre n’inclut pas de modificateur d’accès, le contexte dans lequel la déclaration a lieu détermine l’accessibilité déclarée par défaut.
 
 *  Les espaces de noms ont implicitement `public` l’accessibilité déclarée. Aucun modificateur d’accès n’est autorisé sur les déclarations d’espace de noms.
-*  Les types déclarés dans les unités de compilation ou les espaces de noms peuvent avoir l’accessibilité déclarée `public` ou `internal` et la valeur par défaut `internal` l’accessibilité déclarée.
-*  Les membres de classe peuvent avoir l’un des cinq types d’accessibilité déclarés et la valeur par défaut à `private` l’accessibilité déclarée. (Notez qu’un type déclaré en tant que membre d’une classe peut avoir l’un des cinq types d’accessibilité déclarés, alors qu’un type déclaré en tant que membre d’un espace de noms ne peut avoir que l’accessibilité déclarée `public` ou `internal`.)
-*  Les membres de struct peuvent avoir l’accessibilité déclarée `public`, `internal` ou `private`, et la valeur par défaut `private` l’accessibilité déclarée, car les structs sont implicitement sealed. Les membres de struct introduits dans un struct (autrement dit, qui n’est pas hérité par ce struct) ne peuvent pas avoir l’accessibilité déclarée `protected` ou `protected internal`. (Notez qu’un type déclaré en tant que membre d’un struct peut avoir l’accessibilité déclarée `public`, `internal` ou `private`, alors qu’un type déclaré en tant que membre d’un espace de noms ne peut avoir qu’une accessibilité `public` ou `internal`.)
+*  Les types déclarés dans les unités de compilation ou les espaces de noms peuvent avoir `public` ou `internal` l’accessibilité déclarée et par défaut pour `internal` l’accessibilité déclarée.
+*  Les membres de classe peuvent avoir l’un des cinq types d’accessibilité déclarés et la valeur par défaut pour `private` l’accessibilité déclarée. (Notez qu’un type déclaré en tant que membre d’une classe peut avoir l’un des cinq types d’accessibilité déclarés, alors qu’un type déclaré en tant que membre d’un espace de noms ne peut avoir que `public` ou `internal` l’accessibilité déclarée.)
+*  Les membres de struct peuvent avoir `public`, `internal`ou `private` l’accessibilité déclarée et par défaut pour `private` l’accessibilité déclarée, car les structs sont implicitement sealed. Les membres de struct introduits dans un struct (autrement dit, qui n’est pas hérité par ce struct) ne peuvent pas avoir d' `protected` ou `protected internal` l’accessibilité déclarée. (Notez qu’un type déclaré en tant que membre d’un struct peut avoir `public`, `internal`ou `private` l’accessibilité déclarée, alors qu’un type déclaré en tant que membre d’un espace de noms ne peut avoir que des `public` ou `internal` l’accessibilité déclarée.)
 *  Les membres d’interface ont implicitement `public` l’accessibilité déclarée. Aucun modificateur d’accès n’est autorisé sur les déclarations de membres d’interface.
 *  Les membres de l’énumération ont implicitement `public` l’accessibilité déclarée. Aucun modificateur d’accès n’est autorisé sur les déclarations de membre d’énumération.
 
@@ -221,7 +221,7 @@ En fonction du contexte dans lequel la déclaration d’un membre a lieu, seuls 
 
 Le ***domaine d’accessibilité*** d’un membre se compose des sections (éventuellement disjointes) du texte de programme dans lesquelles l’accès au membre est autorisé. Dans le cadre de la définition du domaine d’accessibilité d’un membre, un membre est dit comme étant de ***niveau supérieur*** s’il n’est pas déclaré dans un type, et un membre est dit ***imbriqué*** s’il est déclaré dans un autre type. En outre, le ***texte de programme*** d’un programme est défini comme tout le texte de programme contenu dans tous les fichiers sources du programme, et le texte de programme d’un type est défini comme tout le texte de programme contenu dans le *type_declaration*s de ce type (y compris, éventuellement, les types imbriqués dans le type).
 
-Le domaine d’accessibilité d’un type prédéfini (tel que `object`, `int` ou `double`) est illimité.
+Le domaine d’accessibilité d’un type prédéfini (tel que `object`, `int`ou `double`) est illimité.
 
 Le domaine d’accessibilité d’un type indépendant de niveau supérieur `T` ([types liés et indépendants](types.md#bound-and-unbound-types)) qui est déclaré dans un programme `P` est défini comme suit :
 
@@ -230,24 +230,24 @@ Le domaine d’accessibilité d’un type indépendant de niveau supérieur `T` 
 
 À partir de ces définitions, il en résulte que le domaine d’accessibilité d’un type indépendant de niveau supérieur est toujours au moins le texte de programme du programme dans lequel ce type est déclaré.
 
-Le domaine d’accessibilité d’un type construit `T<A1, ..., An>` est l’intersection du domaine d’accessibilité du type générique indépendant `T` et les domaines d’accessibilité des arguments de type `A1, ..., An`.
+Le domaine d’accessibilité d’un type construit `T<A1, ..., An>` est l’intersection du domaine d’accessibilité du type générique indépendant `T` et des domaines d’accessibilité des arguments de type `A1, ..., An`.
 
-Le domaine d’accessibilité d’un membre imbriqué `M` déclaré dans un type `T` dans un programme `P` est défini comme suit (Notez que `M` lui-même peut être un type) :
+Le domaine d’accessibilité d’un membre imbriqué `M` déclaré dans un type `T` dans un `P` de programme est défini comme suit (Notez que `M` lui-même peut être un type) :
 
 *  Si l'accessibilité déclarée de `M` est `public`, le domaine d'accessibilité de `M` correspond à celui de `T`.
-*  Si l’accessibilité déclarée de `M` est `protected internal`, laissez `D` être l’Union du texte de programme de `P` et le texte de programme de tout type dérivé de `T`, déclaré en dehors de `P`. Le domaine d’accessibilité de `M` correspond à l’intersection du domaine d’accessibilité de `T` avec `D`.
-*  Si l’accessibilité déclarée de `M` est `protected`, laissez `D` être l’Union du texte de programme de `T` et le texte de programme de n’importe quel type dérivé de `T`. Le domaine d’accessibilité de `M` correspond à l’intersection du domaine d’accessibilité de `T` avec `D`.
+*  Si l’accessibilité déclarée de `M` est `protected internal`, laissez `D` être l’Union du texte de programme de `P` et le texte de programme de tout type dérivé de `T`, déclaré en dehors de `P`. Le domaine d’accessibilité de `M` est l’intersection du domaine d’accessibilité de `T` avec `D`.
+*  Si l’accessibilité déclarée de `M` est `protected`, laissez `D` être l’Union du texte de programme de `T` et le texte de programme de n’importe quel type dérivé de `T`. Le domaine d’accessibilité de `M` est l’intersection du domaine d’accessibilité de `T` avec `D`.
 *  Si l'accessibilité déclarée de `M` est `internal`, le domaine d'accessibilité de `M` correspond à l'intersection du domaine d'accessibilité de `T` avec le texte de programme de `P`.
 *  Si l'accessibilité déclarée de `M` est `private`, le domaine d'accessibilité de `M` correspond au texte de programme de `T`.
 
 À partir de ces définitions, il s’ensuit que le domaine d’accessibilité d’un membre imbriqué est toujours au moins le texte de programme du type dans lequel le membre est déclaré. En outre, il s’ensuit que le domaine d’accessibilité d’un membre n’est jamais plus inclusif que le domaine d’accessibilité du type dans lequel le membre est déclaré.
 
-En termes intuitifs, lors de l’accès à un type ou membre `M`, les étapes suivantes sont évaluées pour s’assurer que l’accès est autorisé :
+En termes intuitifs, lors de l’accès à un type ou à un membre `M`, les étapes suivantes sont évaluées pour s’assurer que l’accès est autorisé :
 
 *  Premièrement, si `M` est déclaré dans un type (par opposition à une unité de compilation ou un espace de noms), une erreur de compilation se produit si ce type n’est pas accessible.
 *  Ensuite, si `M` est `public`, l’accès est autorisé.
-*  Sinon, si `M` est `protected internal`, l’accès est autorisé s’il se produit dans le programme dans lequel `M` est déclaré, ou s’il se produit dans une classe dérivée de la classe dans laquelle `M` est déclarée et qui a lieu via le type de classe dérivée ([protected accès pour les membres d’instance](basic-concepts.md#protected-access-for-instance-members)).
-*  Sinon, si `M` est `protected`, l’accès est autorisé s’il se produit dans la classe dans laquelle `M` est déclaré, ou s’il se produit dans une classe dérivée de la classe dans laquelle `M` est déclarée et qui a lieu via le type de classe dérivée ([protected accès pour les membres d’instance](basic-concepts.md#protected-access-for-instance-members)).
+*  Sinon, si `M` est `protected internal`, l’accès est autorisé s’il se produit dans le programme dans lequel `M` est déclaré, ou s’il se produit dans une classe dérivée de la classe dans laquelle `M` est déclaré et qui a lieu via le type de classe dérivée ([accès protégé pour les membres d’instance](basic-concepts.md#protected-access-for-instance-members)).
+*  Sinon, si `M` est `protected`, l’accès est autorisé s’il se produit dans la classe dans laquelle `M` est déclaré, ou s’il se produit dans une classe dérivée de la classe dans laquelle `M` est déclaré et qui a lieu via le type de classe dérivée ([accès protégé pour les membres d’instance](basic-concepts.md#protected-access-for-instance-members)).
 *  Sinon, si `M` est `internal`, l’accès est autorisé s’il se produit dans le programme dans lequel `M` est déclaré.
 *  Sinon, si `M` est `private`, l’accès est autorisé s’il se produit dans le type dans lequel `M` est déclaré.
 *  Dans le cas contraire, le type ou le membre n’est pas accessible et une erreur de compilation se produit.
@@ -285,14 +285,14 @@ internal class B
 les classes et les membres ont les domaines d’accessibilité suivants :
 
 *  Le domaine d’accessibilité de `A` et `A.X` est illimité.
-*  Le domaine d’accessibilité de `A.Y`, `B`, `B.X`, `B.Y`, `B.C`, `B.C.X` et `B.C.Y` est le texte du programme contenant.
-*  Le domaine d’accessibilité de `A.Z` correspond au texte de programme de `A`.
+*  Le domaine d’accessibilité de `A.Y`, `B`, `B.X`, `B.Y`, `B.C`, `B.C.X`et `B.C.Y` est le texte de programme du programme conteneur.
+*  Le domaine d’accessibilité de `A.Z` est le texte de programme de `A`.
 *  Le domaine d’accessibilité de `B.Z` et `B.D` est le texte de programme de `B`, y compris le texte de programme de `B.C` et `B.D`.
-*  Le domaine d’accessibilité de `B.C.Z` correspond au texte de programme de `B.C`.
+*  Le domaine d’accessibilité de `B.C.Z` est le texte de programme de `B.C`.
 *  Le domaine d’accessibilité de `B.D.X` et `B.D.Y` est le texte de programme de `B`, y compris le texte de programme de `B.C` et `B.D`.
-*  Le domaine d’accessibilité de `B.D.Z` correspond au texte de programme de `B.D`.
+*  Le domaine d’accessibilité de `B.D.Z` est le texte de programme de `B.D`.
 
-Comme l’illustre l’exemple, le domaine d’accessibilité d’un membre n’est jamais plus grand que celui d’un type conteneur. Par exemple, même si tous les membres `X` ont une accessibilité déclarée publique, tous les @no__t, mais-1 ont des domaines d’accessibilité qui sont limités par un type conteneur.
+Comme l’illustre l’exemple, le domaine d’accessibilité d’un membre n’est jamais plus grand que celui d’un type conteneur. Par exemple, même si tous les membres `X` ont une accessibilité déclarée publique, tous les `A.X` mais ont des domaines d’accessibilité qui sont limités par un type conteneur.
 
 Comme décrit dans [membres](basic-concepts.md#members), tous les membres d’une classe de base, à l’exception des constructeurs d’instance, des destructeurs et des constructeurs statiques, sont hérités par les types dérivés. Cela comprend même les membres privés d’une classe de base. Toutefois, le domaine d’accessibilité d’un membre privé comprend uniquement le texte de programme du type dans lequel le membre est déclaré. Dans l’exemple
 ```csharp
@@ -312,17 +312,17 @@ class B: A
     }
 }
 ```
-la classe `B` hérite du membre privé `x` de la classe `A`. Étant donné que le membre est privé, il est uniquement accessible dans le *class_body* de `A`. Ainsi, l’accès à `b.x` réussit dans la méthode `A.F`, mais échoue dans la méthode `B.F`.
+la classe `B` hérite du `x` de membre privé de la classe `A`. Étant donné que le membre est privé, il est uniquement accessible dans le *class_body* de `A`. Ainsi, l’accès à `b.x` réussit dans la méthode `A.F`, mais échoue dans la méthode `B.F`.
 
 ### <a name="protected-access-for-instance-members"></a>Accès protégé pour les membres d’instance
 
-Lorsqu’un membre d’instance `protected` est accessible en dehors du texte de programme de la classe dans laquelle il est déclaré, et quand un membre d’instance `protected internal` est accessible en dehors du texte de programme du programme dans lequel il est déclaré, l’accès doit avoir lieu dans une classe déclaration qui dérive de la classe dans laquelle elle est déclarée. En outre, l’accès doit être effectué par le biais d’une instance de ce type de classe dérivée ou d’un type de classe construit à partir de celui-ci. Cette restriction empêche une classe dérivée d’accéder aux membres protégés d’autres classes dérivées, même lorsque les membres sont hérités de la même classe de base.
+Lorsqu’un membre d’instance `protected` est accessible en dehors du texte de programme de la classe dans laquelle il est déclaré, et quand un membre d’instance `protected internal` est accessible en dehors du texte de programme du programme dans lequel il est déclaré, l’accès doit avoir lieu dans une déclaration de classe qui dérive de la classe dans laquelle il est déclaré. En outre, l’accès doit être effectué par le biais d’une instance de ce type de classe dérivée ou d’un type de classe construit à partir de celui-ci. Cette restriction empêche une classe dérivée d’accéder aux membres protégés d’autres classes dérivées, même lorsque les membres sont hérités de la même classe de base.
 
-Laissez `B` être une classe de base qui déclare un membre d’instance protégée `M` et laissez `D` être une classe qui dérive de `B`. Dans le *class_body* de `D`, l’accès à `M` peut prendre l’une des formes suivantes :
+Laissez `B` être une classe de base qui déclare un membre d’instance protégé `M`et laissez `D` être une classe qui dérive de `B`. Dans le *class_body* de `D`, l’accès aux `M` peut prendre l’une des formes suivantes :
 
-*  *Type_name* ou *primary_expression* non qualifié de la forme `M`.
-*  Un *primary_expression* de la forme `E.M`, à condition que le type de `E` soit `T` ou une classe dérivée de `T`, où `T` est le type de classe `D` ou un type de classe construit à partir de `D`
-*  *Primary_expression* de la forme `base.M`.
+*  *Type_name* ou *primary_expression* non qualifié de la `M`de formulaire.
+*  *Primary_expression* de la forme `E.M`, à condition que le type de `E` soit `T` ou une classe dérivée de `T`, où `T` est le type de classe `D`, ou un type de classe construit à partir de `D`
+*  *Primary_expression* de la `base.M`de formulaire.
 
 En plus de ces formes d’accès, une classe dérivée peut accéder à un constructeur d’instance protégé d’une classe de base dans un *constructor_initializer* ([initialiseurs de constructeur](classes.md#constructor-initializers)).
 
@@ -346,7 +346,7 @@ public class B: A
     }
 }
 ```
-dans `A`, il est possible d’accéder à `x` via des instances de `A` et `B`, car dans les deux cas, l’accès s’effectue via une instance de `A` ou une classe dérivée de `A`. Toutefois, dans `B`, il n’est pas possible d’accéder à `x` via une instance de `A`, puisque `A` ne dérive pas de `B`.
+dans `A`, il est possible d’accéder à des `x` par le biais d’instances de `A` et `B`, car dans les deux cas, l’accès s’effectue par le biais d’une instance de `A` ou d’une classe dérivée de `A`. Toutefois, dans `B`, il n’est pas possible d’accéder à `x` par le biais d’une instance de `A`, car `A` ne dérive pas de `B`.
 
 Dans l’exemple
 ```csharp
@@ -371,7 +371,7 @@ les trois assignations à `x` sont autorisées, car elles ont toutes lieu via de
 
 ### <a name="accessibility-constraints"></a>Contraintes d’accessibilité
 
-Plusieurs constructions dans le C# langage requièrent qu’un type soit ***au moins aussi accessible qu'*** un membre ou un autre type. Un type `T` est considéré comme étant au moins aussi accessible qu’un membre ou un type `M` si le domaine d’accessibilité de `T` est un sur-ensemble du domaine d’accessibilité de `M`. En d’autres termes, `T` est au moins aussi accessible que `M` si `T` est accessible dans tous les contextes dans lesquels `M` est accessible.
+Plusieurs constructions dans le C# langage requièrent qu’un type soit ***au moins aussi accessible qu'*** un membre ou un autre type. Un `T` de type est dit être au moins aussi accessible qu’un membre ou un type `M` si le domaine d’accessibilité de `T` est un sur-ensemble du domaine d’accessibilité de `M`. En d’autres termes, `T` est au moins aussi accessible que `M` si `T` est accessible dans tous les contextes dans lesquels `M` est accessible.
 
 Les contraintes d’accessibilité suivantes existent :
 
@@ -408,7 +408,7 @@ public class B
     public A H() {...}
 }
 ```
-la méthode `H` dans `B` génère une erreur au moment de la compilation, car le type de retour `A` n’est pas au moins aussi accessible que la méthode.
+la méthode `H` dans `B` entraîne une erreur de compilation, car le type de retour `A` n’est pas au moins aussi accessible que la méthode.
 
 ## <a name="signatures-and-overloading"></a>Signatures et surcharge
 
@@ -426,7 +426,7 @@ Les signatures sont le mécanisme d’activation pour la ***surcharge*** des mem
 *  La surcharge d’indexeurs permet à une classe, un struct ou une interface de déclarer plusieurs indexeurs, à condition que leurs signatures soient uniques au sein de cette classe, structure ou interface.
 *  La surcharge des opérateurs permet à une classe ou un struct de déclarer plusieurs opérateurs portant le même nom, à condition que leurs signatures soient uniques au sein de cette classe ou de ce struct.
 
-Bien que les modificateurs de paramètres `out` et `ref` soient considérés comme faisant partie d’une signature, les membres déclarés dans un même type ne peuvent pas différer dans la signature uniquement par `ref` et `out`. Une erreur de compilation se produit si deux membres sont déclarés dans le même type avec des signatures qui seraient les mêmes si tous les paramètres dans les deux méthodes avec des modificateurs `out` ont été changés en modificateurs `ref`. À d’autres fins de correspondance de signature (par exemple, le masquage ou la substitution), `ref` et `out` sont considérés comme faisant partie de la signature et ne correspondent pas l’un à l’autre. (Cette restriction consiste à permettre C# aux programmes d’être facilement traduits pour s’exécuter sur le Common Language Infrastructure (interface de commande), ce qui ne permet pas de définir des méthodes qui diffèrent uniquement par `ref` et `out`.)
+Bien que les modificateurs de paramètres `out` et `ref` soient considérés comme faisant partie d’une signature, les membres déclarés dans un même type ne peuvent pas être différents dans la signature uniquement par `ref` et `out`. Une erreur de compilation se produit si deux membres sont déclarés dans le même type avec des signatures qui seraient les mêmes si tous les paramètres dans les deux méthodes avec des modificateurs `out` ont été modifiés en `ref` modificateurs. À d’autres fins de correspondance de signature (par exemple, le masquage ou la substitution), `ref` et `out` sont considérés comme faisant partie de la signature et ne correspondent pas mutuellement. (Cette restriction consiste à permettre C# aux programmes d’être facilement traduits pour s’exécuter sur le Common Language Infrastructure (interface de commande), ce qui ne permet pas de définir des méthodes qui diffèrent uniquement dans `ref` et `out`.)
 
 Pour les besoins des signatures, les types `object` et `dynamic` sont considérés comme identiques. Les membres déclarés dans un même type ne peuvent donc pas être différents dans la signature uniquement par `object` et `dynamic`.
 
@@ -454,35 +454,35 @@ interface ITest
 }
 ```
 
-Notez que les modificateurs de paramètre `ref` et `out` ([paramètres de méthode](classes.md#method-parameters)) font partie d’une signature. Par conséquent, `F(int)` et `F(ref int)` sont des signatures uniques. Toutefois, `F(ref int)` et `F(out int)` ne peuvent pas être déclarés dans la même interface, car leurs signatures diffèrent uniquement par `ref` et `out`. Notez également que le type de retour et le modificateur `params` ne font pas partie d’une signature. il n’est donc pas possible de se surcharger uniquement en fonction du type de retour ou de l’inclusion ou de l’exclusion du modificateur `params`. Ainsi, les déclarations des méthodes `F(int)` et `F(params string[])` identifiées ci-dessus entraînent une erreur au moment de la compilation.
+Notez que les modificateurs de paramètre `ref` et `out` ([paramètres de méthode](classes.md#method-parameters)) font partie d’une signature. Ainsi, les `F(int)` et les `F(ref int)` sont des signatures uniques. Toutefois, `F(ref int)` et `F(out int)` ne peuvent pas être déclarés dans la même interface, car leurs signatures diffèrent uniquement par `ref` et `out`. Notez également que le type de retour et le modificateur de `params` ne font pas partie d’une signature. il n’est donc pas possible de se surcharger uniquement en fonction du type de retour ou de l’inclusion ou de l’exclusion du modificateur `params`. Ainsi, les déclarations des méthodes `F(int)` et `F(params string[])` identifiées ci-dessus entraînent une erreur de compilation.
 
 ## <a name="scopes"></a>Portées
 
-La ***portée*** d’un nom est la région du texte de programme dans laquelle il est possible de faire référence à l’entité déclarée par le nom sans qualification du nom. Les portées peuvent être ***imbriquées***et une portée interne peut redéclarer la signification d’un nom à partir d’une étendue externe (Toutefois, cela ne supprime pas la restriction imposée par les [déclarations](basic-concepts.md#declarations) dans un bloc imbriqué il n’est pas possible de déclarer une variable locale avec l’instruction nom identique à celui d’une variable locale dans un bloc englobant). Le nom de l’étendue externe est ensuite dit ***masqué*** dans la région du texte de programme couvert par l’étendue interne, et l’accès au nom externe n’est possible qu’en qualifiant le nom.
+La ***portée*** d’un nom est la région du texte de programme dans laquelle il est possible de faire référence à l’entité déclarée par le nom sans qualification du nom. Les portées peuvent être ***imbriquées***et une portée interne peut redéclarer la signification d’un nom à partir d’une étendue externe (Toutefois, cela ne supprime pas la restriction imposée par les [déclarations](basic-concepts.md#declarations) dans un bloc imbriqué, il n’est pas possible de déclarer une variable locale portant le même nom qu’une variable locale dans un bloc englobant). Le nom de l’étendue externe est ensuite dit ***masqué*** dans la région du texte de programme couvert par l’étendue interne, et l’accès au nom externe n’est possible qu’en qualifiant le nom.
 
-*  L’étendue d’un membre d’espace de noms déclaré par un *namespace_member_declaration* ([membres d’espace de noms](namespaces.md#namespace-members)) sans *namespace_declaration* englobant correspond au texte de programme entier.
-*  La portée d’un membre d’espace de noms déclaré par un *namespace_member_declaration* dans un *namespace_declaration* dont le nom qualifié complet est `N` est le *namespace_body* de chaque *namespace_declaration* dont la le nom qualifié est `N` ou commence par `N`, suivi d’un point.
-*  L’étendue de nom définie par un *extern_alias_directive* s’étend sur les *using_directive*s, *global_attributes* et *namespace_member_declaration*s de son corps d’unité de compilation ou d’espace de noms contenant immédiatement. Un *extern_alias_directive* ne contribue pas aux nouveaux membres de l’espace de déclaration sous-jacent. En d’autres termes, un *extern_alias_directive* n’est pas transitif, mais il affecte uniquement l’unité de compilation ou le corps de l’espace de noms dans lequel il se produit.
-*  L’étendue d’un nom défini ou importé par un *using_directive* ([à l’aide de directives](namespaces.md#using-directives)) s’étend sur les *namespace_member_declaration*s du *compilation_unit* ou *namespace_body* dans lequel le *using_directive* se produit. Un *using_directive* peut rendre zéro ou plusieurs noms d’espace de noms, de type ou de membre disponibles dans un *compilation_unit* ou *namespace_body*particulier, mais ne contribue pas à de nouveaux membres dans l’espace de déclaration sous-jacent. En d’autres termes, un *using_directive* n’est pas transitif, mais affecte uniquement le *compilation_unit* ou le *namespace_body* dans lequel il se produit.
-*  La portée d’un paramètre de type déclaré par un *type_parameter_list* sur un *class_declaration* ([déclarations de classe](classes.md#class-declarations)) est *class_base*, *type_parameter_constraints_clause*s et *class_body* de ce  *class_declaration*.
-*  La portée d’un paramètre de type déclaré par un *type_parameter_list* sur un *struct_declaration* ([déclarations de struct](structs.md#struct-declarations)) est *struct_interfaces*, *type_parameter_constraints_clause*s et *struct_body* de *struct_declaration*.
-*  La portée d’un paramètre de type déclaré par un *type_parameter_list* sur un *interface_declaration* ([déclarations d’interface](interfaces.md#interface-declarations)) est *interface_base*, *type_parameter_constraints_clause*s et *interface_body* de cet *interface_declaration*.
-*  La portée d’un paramètre de type déclaré par un *type_parameter_list* sur un *delegate_declaration* ([déclarations de délégué](delegates.md#delegate-declarations)) est *type_retour*, *formal_parameter_list*et *type_parameter_constraints_clause* s de ce *delegate_declaration*.
+*  La portée d’un membre d’espace de noms déclaré par un *namespace_member_declaration* ([membres d’espace de noms](namespaces.md#namespace-members)) sans *namespace_declaration* englobante correspond au texte de programme entier.
+*  La portée d’un membre d’espace de noms déclaré par un *namespace_member_declaration* dans un *namespace_declaration* dont le nom qualifié complet est `N` est la *namespace_body* de chaque *namespace_declaration* dont le nom qualifié complet est `N` ou commence par `N`, suivi d’un point.
+*  L’étendue de nom définie par un *extern_alias_directive* s’étend sur le *using_directive*s, *global_attributes* et *namespace_member_declaration*s de son corps d’unité de compilation ou d’espace de noms contenant immédiatement. Un *extern_alias_directive* ne contribue pas à la création de nouveaux membres dans l’espace de déclaration sous-jacent. En d’autres termes, un *extern_alias_directive* n’est pas transitif, mais affecte uniquement l’unité de compilation ou le corps de l’espace de noms dans lequel il se produit.
+*  L’étendue d’un nom défini ou importé par un *using_directive* ([à l’aide de directives](namespaces.md#using-directives)) s’étend sur le *namespace_member_declaration*s du *compilation_unit* ou *namespace_body* dans lequel la *using_directive* se produit. Une *using_directive* peut rendre zéro ou plusieurs noms d’espaces de noms, de types ou de membres disponibles dans une *compilation_unit* ou *namespace_body*particulière, mais ne contribue pas à de nouveaux membres dans l’espace de déclaration sous-jacent. En d’autres termes, un *using_directive* n’est pas transitif, mais affecte uniquement le *compilation_unit* ou *namespace_body* dans lequel il se produit.
+*  La portée d’un paramètre de type déclaré par un *type_parameter_list* sur un *class_declaration* ([déclarations de classe](classes.md#class-declarations)) est la *class_base*, *type_parameter_constraints_clause*s et *class_body* de cette *class_declaration*.
+*  La portée d’un paramètre de type déclaré par un *type_parameter_list* sur un *struct_declaration* ([déclarations de struct](structs.md#struct-declarations)) est la *struct_interfaces*, *type_parameter_constraints_clause*s et *struct_body* de cette *struct_declaration*.
+*  La portée d’un paramètre de type déclaré par un *type_parameter_list* sur une *interface_declaration* ([déclarations d’interface](interfaces.md#interface-declarations)) est le *interface_base*, *type_parameter_constraints_clause*s et *interface_body* de cette *interface_declaration*.
+*  La portée d’un paramètre de type déclaré par un *type_parameter_list* sur un *delegate_declaration* ([déclarations de délégué](delegates.md#delegate-declarations)) est le *return_type*, le *formal_parameter_list*et *type_parameter_constraints_clause*s de ce *delegate_declaration*.
 *  La portée d’un membre déclaré par un *class_member_declaration* ([corps de classe](classes.md#class-body)) est le *class_body* dans lequel la déclaration se produit. En outre, l’étendue d’un membre de classe s’étend au *class_body* de ces classes dérivées qui sont incluses dans le domaine d’accessibilité ([domaines d’accessibilité](basic-concepts.md#accessibility-domains)) du membre.
-*  La portée d’un membre déclaré par un *struct_member_declaration* ([membres de struct](structs.md#struct-members)) est le *struct_body* dans lequel la déclaration se produit.
+*  La portée d’un membre déclaré par un *struct_member_declaration* ([membres struct](structs.md#struct-members)) est le *struct_body* dans lequel la déclaration se produit.
 *  La portée d’un membre déclaré par un *enum_member_declaration* ([membres enum](enums.md#enum-members)) est le *enum_body* dans lequel la déclaration se produit.
-*  La portée d’un paramètre déclaré dans un *method_declaration* ([méthodes](classes.md#methods)) est le *method_body* de ce *method_declaration*.
+*  La portée d’un paramètre déclaré dans une *method_declaration* ([méthodes](classes.md#methods)) est le *method_body* de ce *method_declaration*.
 *  La portée d’un paramètre déclaré dans un *indexer_declaration* ([indexeurs](classes.md#indexers)) est le *accessor_declarations* de ce *indexer_declaration*.
 *  La portée d’un paramètre déclaré dans un *operator_declaration* ([opérateurs](classes.md#operators)) est le *bloc* de ce *operator_declaration*.
-*  La portée d’un paramètre déclaré dans un *constructor_declaration* ([constructeurs d’instance](classes.md#instance-constructors)) est le *constructor_initializer* et le *bloc* de ce *constructor_declaration*.
-*  La portée d’un paramètre déclaré dans un *lambda_expression* ([expressions de fonction anonymes](expressions.md#anonymous-function-expressions)) est le *anonymous_function_body* de ce *lambda_expression*
-*  La portée d’un paramètre déclaré dans un *anonymous_method_expression* ([expressions de fonction anonymes](expressions.md#anonymous-function-expressions)) est le *bloc* de ce *anonymous_method_expression*.
-*  La portée d’une étiquette déclarée dans un *labeled_statement* ([instructions étiquetées](statements.md#labeled-statements)) est le *bloc* dans lequel la déclaration se produit.
-*  La portée d’une variable locale déclarée dans un *local_variable_declaration* ([déclarations de variables locales](statements.md#local-variable-declarations)) est le bloc dans lequel la déclaration se produit.
-*  La portée d’une variable locale déclarée dans un *switch_block* d’une instruction `switch` ([l’instruction switch](statements.md#the-switch-statement)) est *switch_block*.
-*  La portée d’une variable locale déclarée dans *un for_initializer* d’une instruction `for` ([l’instruction for](statements.md#the-for-statement)) est *for_initializer*, *for_condition*, *for_iterator*et l' *instruction* contenue de l’objet instruction `for`.
-*  La portée d’une constante locale déclarée dans un *local_constant_declaration* ([déclarations de constantes locales](statements.md#local-constant-declarations)) est le bloc dans lequel la déclaration se produit. Il s’agit d’une erreur de compilation pour faire référence à une constante locale dans une position textuelle qui précède son *constant_declarator*.
-*  La portée d’une variable déclarée dans le cadre d’un *foreach_statement*, *using_statement*, *lock_statement* ou *query_expression* est déterminée par l’expansion de la construction donnée.
+*  La portée d’un paramètre déclaré dans une *constructor_declaration* ([constructeurs d’instance](classes.md#instance-constructors)) est le *constructor_initializer* et le *bloc* de ce *constructor_declaration*.
+*  La portée d’un paramètre déclaré dans une *lambda_expression* ([expressions de fonction anonymes](expressions.md#anonymous-function-expressions)) est la *anonymous_function_body* de ce *lambda_expression*
+*  La portée d’un paramètre déclaré dans une *anonymous_method_expression* ([expressions de fonction anonymes](expressions.md#anonymous-function-expressions)) est le *bloc* de ce *anonymous_method_expression*.
+*  La portée d’une étiquette déclarée dans une *labeled_statement* ([instructions étiquetées](statements.md#labeled-statements)) est le *bloc* dans lequel la déclaration se produit.
+*  La portée d’une variable locale déclarée dans une *local_variable_declaration* ([déclarations de variables locales](statements.md#local-variable-declarations)) est le bloc dans lequel la déclaration se produit.
+*  La portée d’une variable locale déclarée dans une *switch_block* d’une instruction `switch` ([l’instruction switch](statements.md#the-switch-statement)) est la *switch_block*.
+*  La portée d’une variable locale déclarée dans une *for_initializer* d’une instruction `for` ([l’instruction for](statements.md#the-for-statement)) est la *for_initializer*, la *for_condition*, la *for_iterator*et l' *instruction* contenue de l’instruction `for`.
+*  La portée d’une constante locale déclarée dans une *local_constant_declaration* ([déclarations de constantes locales](statements.md#local-constant-declarations)) est le bloc dans lequel la déclaration se produit. Il s’agit d’une erreur au moment de la compilation pour faire référence à une constante locale dans une position textuelle qui précède son *constant_declarator*.
+*  La portée d’une variable déclarée dans le cadre d’un *foreach_statement*, *using_statement* *lock_statement* ou *query_expression* est déterminée par le développement de la construction donnée.
 
 Dans l’étendue d’un espace de noms, d’une classe, d’une structure ou d’un membre d’énumération, il est possible de faire référence au membre dans une position textuelle qui précède la déclaration du membre. Exemple :
 ```csharp
@@ -495,9 +495,9 @@ class A
     int i = 0;
 }
 ```
-Ici, il est valide pour `F` de faire référence à `i` avant d’être déclaré.
+Ici, il est valide pour `F` faire référence à `i` avant qu’il ne soit déclaré.
 
-Dans l’étendue d’une variable locale, il s’agit d’une erreur de compilation qui fait référence à la variable locale dans une position textuelle qui précède le *local_variable_declarator* de la variable locale. Exemple :
+Dans l’étendue d’une variable locale, il s’agit d’une erreur de compilation qui fait référence à la variable locale dans une position textuelle qui précède la *local_variable_declarator* de la variable locale. Exemple :
 ```csharp
 class A
 {
@@ -519,7 +519,7 @@ class A
 }
 ```
 
-Dans la méthode `F` ci-dessus, la première assignation à `i` ne fait pas référence au champ déclaré dans l’étendue externe. Au lieu de cela, il fait référence à la variable locale et génère une erreur de compilation, car il précède la déclaration de la variable dans le texte. Dans la méthode `G`, l’utilisation de `j` dans l’initialiseur pour la déclaration de `j` est valide, car l’utilisation ne précède pas *local_variable_declarator*. Dans la méthode `H`, un *local_variable_declarator* suivant fait correctement référence à une variable locale déclarée dans un *local_variable_declarator* antérieur au sein du même *local_variable_declaration*.
+Dans la méthode `F` ci-dessus, la première assignation à `i` ne fait pas spécifiquement référence au champ déclaré dans l’étendue externe. Au lieu de cela, il fait référence à la variable locale et génère une erreur de compilation, car il précède la déclaration de la variable dans le texte. Dans la méthode `G`, l’utilisation de `j` dans l’initialiseur pour la déclaration de `j` est valide, car l’utilisation ne précède pas le *local_variable_declarator*. Dans la méthode `H`, un *local_variable_declarator* suivant fait correctement référence à une variable locale déclarée dans une *local_variable_declarator* antérieure au sein du même *local_variable_declaration*.
 
 Les règles de portée pour les variables locales sont conçues pour garantir que la signification d’un nom utilisé dans un contexte d’expression est toujours la même dans un bloc. Si la portée d’une variable locale ne doit s’étendre qu’à partir de sa déclaration à la fin du bloc, alors, dans l’exemple ci-dessus, la première assignation est assignée à la variable d’instance et la deuxième assignation est assignée à la variable locale, ce qui peut aboutir à erreurs au moment de la compilation si les instructions du bloc ont été réorganisées par la suite.
 
@@ -590,7 +590,7 @@ class Outer
     }
 }
 ```
-l’appel `F(1)` appelle la `F` déclarée dans `Inner`, car toutes les occurrences externes de `F` sont masquées par la déclaration interne. Pour la même raison, l’appel `F("Hello")` génère une erreur au moment de la compilation.
+l’appel `F(1)` appelle le `F` déclaré dans `Inner`, car toutes les occurrences externes de `F` sont masquées par la déclaration interne. Pour la même raison, l’appel `F("Hello")` génère une erreur au moment de la compilation.
 
 #### <a name="hiding-through-inheritance"></a>Masquer par héritage
 
@@ -614,7 +614,7 @@ class Derived: Base
     public void F() {}        // Warning, hiding an inherited name
 }
 ```
-la déclaration de `F` dans `Derived` provoque le signalement d’un avertissement. Le masquage d’un nom hérité n’est pas une erreur, car cela empêche l’évolution distincte des classes de base. Par exemple, la situation ci-dessus peut être due au fait qu’une version ultérieure de `Base` a introduit une méthode `F` qui n’était pas présente dans une version antérieure de la classe. Si la situation précédente était une erreur, toute modification apportée à une classe de base dans une bibliothèque de classes avec version distincte pourrait entraîner la non-validité des classes dérivées.
+la déclaration de `F` dans `Derived` entraîne le signalement d’un avertissement. Le masquage d’un nom hérité n’est pas une erreur, car cela empêche l’évolution distincte des classes de base. Par exemple, la situation ci-dessus peut être due au fait qu’une version ultérieure de `Base` introduit une méthode `F` qui n’était pas présente dans une version antérieure de la classe. Si la situation précédente était une erreur, toute modification apportée à une classe de base dans une bibliothèque de classes avec version distincte pourrait entraîner la non-validité des classes dérivées.
 
 L’avertissement provoqué par le masquage d’un nom hérité peut être éliminé grâce à l’utilisation du modificateur `new` :
 ```csharp
@@ -629,7 +629,7 @@ class Derived: Base
 }
 ```
 
-Le modificateur `new` indique que la `F` dans `Derived` est « New », et qu’elle est effectivement destinée à masquer le membre hérité.
+Le modificateur de `new` indique que le `F` dans `Derived` est « New », et qu’il est effectivement destiné à masquer le membre hérité.
 
 Une déclaration d’un nouveau membre masque un membre hérité uniquement dans la portée du nouveau membre.
 
@@ -650,11 +650,11 @@ class MoreDerived: Derived
 }
 ```
 
-Dans l’exemple ci-dessus, la déclaration de `F` dans `Derived` masque le `F` hérité de `Base`, mais étant donné que la nouvelle `F` dans `Derived` a un accès privé, son étendue ne s’étend pas à `MoreDerived`. Ainsi, l’appel `F()` dans `MoreDerived.G` est valide et appellera `Base.F`.
+Dans l’exemple ci-dessus, la déclaration de `F` dans `Derived` masque la `F` qui a été héritée de `Base`, mais étant donné que la nouvelle `F` de `Derived` a un accès privé, son étendue ne s’étend pas à `MoreDerived`. Ainsi, l’appel `F()` dans `MoreDerived.G` est valide et appellera `Base.F`.
 
 ## <a name="namespace-and-type-names"></a>Noms d’espaces de noms et de types
 
-Plusieurs contextes dans un C# programme nécessitent la spécification d’un *namespace_name* ou d’un *type_name* .
+Plusieurs contextes dans un C# programme nécessitent la spécification d’une *namespace_name* ou d’un *type_name* .
 
 ```antlr
 namespace_name
@@ -672,9 +672,9 @@ namespace_or_type_name
     ;
 ```
 
-Un *namespace_name* est un *namespace_or_type_name* qui fait référence à un espace de noms. À la résolution suivante, comme décrit ci-dessous, le *namespace_or_type_name* d’un *namespace_name* doit faire référence à un espace de noms, sinon une erreur de compilation se produit. Aucun argument de type ([arguments de type](types.md#type-arguments)) ne peut être présent dans un *namespace_name* (seuls les types peuvent avoir des arguments de type).
+Un *namespace_name* est un *namespace_or_type_name* qui fait référence à un espace de noms. Après la résolution comme décrit ci-dessous, la *namespace_or_type_name* d’un *namespace_name* doit faire référence à un espace de noms ou une erreur de compilation se produit. Aucun argument de type ([arguments de type](types.md#type-arguments)) ne peut être présent dans une *namespace_name* (seuls les types peuvent avoir des arguments de type).
 
-Un *type_name* est un *namespace_or_type_name* qui fait référence à un type. Après la résolution comme décrit ci-dessous, le *namespace_or_type_name* d’un *type_name* doit faire référence à un type, ou une erreur de compilation se produit.
+Un *type_name* est un *namespace_or_type_name* qui fait référence à un type. Après la résolution comme décrit ci-dessous, la *namespace_or_type_name* d’un *type_name* doit faire référence à un type, ou une erreur de compilation se produit.
 
 Si le *namespace_or_type_name* est un membre d’alias qualifié, son sens est décrit dans [qualificateurs d’alias d’espace de noms](namespaces.md#namespace-alias-qualifiers). Dans le cas contraire, un *namespace_or_type_name* a l’une des quatre formes suivantes :
 
@@ -683,44 +683,44 @@ Si le *namespace_or_type_name* est un membre d’alias qualifié, son sens est d
 *  `N.I`
 *  `N.I<A1, ..., Ak>`
 
-où `I` est un identificateur unique, `N` est un *namespace_or_type_name* et `<A1, ..., Ak>` est un *type_argument_list*facultatif. Si aucun *type_argument_list* n’est spécifié, envisagez `k` pour être égal à zéro.
+où `I` est un identificateur unique, `N` est un *namespace_or_type_name* et `<A1, ..., Ak>` est un *type_argument_list*facultatif. Si aucun *type_argument_list* n’est spécifié, envisagez `k` à zéro.
 
 La signification d’un *namespace_or_type_name* est déterminée comme suit :
 
-*   Si le *namespace_or_type_name* se présente sous la forme `I` ou sous la forme `I<A1, ..., Ak>` :
-    * Si `K` est égal à zéro et que le *namespace_or_type_name* apparaît dans une déclaration de méthode générique ([méthodes](classes.md#methods)) et si cette déclaration comprend un paramètre de type ([paramètres de type](classes.md#type-parameters)) nommé @ no__t-4, le *namespace_or_type_ Name* fait référence à ce paramètre de type.
-    * Sinon, si le *namespace_or_type_name* apparaît dans une déclaration de type, pour chaque type d’instance @ no__t-1 ([type d’instance](classes.md#the-instance-type)), en commençant par le type d’instance de cette déclaration de type et en continuant avec le type d’instance de chaque Déclaration de classe ou de struct englobante (le cas échéant) :
-        * Si `K` est égal à zéro et que la déclaration de `T` comprend un paramètre de type nommé @ no__t-2, le *namespace_or_type_name* fait référence à ce paramètre de type.
-        * Sinon, si le *namespace_or_type_name* apparaît dans le corps de la déclaration de type et que `T` ou l’un de ses types de base contient un type accessible imbriqué ayant les paramètres Name @ no__t-2 et `K` @ no__t-4Type, le *namespace_or_type _name* fait référence à ce type construit avec les arguments de type donnés. S’il existe plusieurs types de ce type, le type déclaré dans le type plus dérivé est sélectionné. Notez que les membres qui ne sont pas de type (constantes, champs, méthodes, propriétés, indexeurs, opérateurs, constructeurs d’instance, destructeurs et constructeurs statiques) et les membres de type avec un nombre différent de paramètres de type sont ignorés lors de la détermination de la signification du *namespace_or_type_name*.
-    * Si les étapes précédentes n’ont pas réussi, pour chaque espace de noms @ no__t-0, en commençant par l’espace de noms dans lequel le *namespace_or_type_name* se produit, en continuant avec chaque espace de noms englobant (le cas échéant) et en terminant par l’espace de noms global, les éléments suivants les étapes sont évaluées jusqu’à ce qu’une entité soit localisée :
-        * Si `K` est égal à zéro et que `I` est le nom d’un espace de noms dans @ no__t-2, alors :
-            * Si l’emplacement où le *namespace_or_type_name* se produit est entouré d’une déclaration d’espace de noms pour `N` et que la déclaration d’espace de noms contient un *extern_alias_directive* ou *using_alias_directive* qui associe le nom @ no __t-4 avec un espace de noms ou un type, le *namespace_or_type_name* est ambigu et une erreur de compilation se produit.
-            * Sinon, *namespace_or_type_name* fait référence à l’espace de noms nommé `I` dans `N`.
-        * Sinon, si `N` contient un type accessible avec les paramètres Name @ no__t-1 et `K` @ no__t-3Type, alors :
-            * Si `K` est égal à zéro et que l’emplacement où le *namespace_or_type_name* se produit est entouré d’une déclaration d’espace de noms pour `N` et que la déclaration d’espace de noms contient un *extern_alias_directive* ou *using_alias_directive* qui associe le nom @ no__t-5 à un espace de noms ou à un type, alors le *namespace_or_type_name* est ambigu et une erreur de compilation se produit.
-            * Sinon, *namespace_or_type_name* fait référence au type construit avec les arguments de type donnés.
-        * Sinon, si l’emplacement où le *namespace_or_type_name* se produit est entouré d’une déclaration d’espace de noms pour `N` :
-            * Si `K` est égal à zéro et que la déclaration d’espace de noms contient un *extern_alias_directive* ou un *using_alias_directive* qui associe le nom @ no__t-3 à un espace de noms ou un type importé, le *namespace_or_type_name* fait référence à ce. espace de noms ou type.
-            * Sinon, si les espaces de noms et les déclarations de type importés par les *using_namespace_directive*et *using_alias_directive*s de la déclaration d’espace de noms contiennent exactement un type accessible portant le nom @ no__t-2 et `K` @ no__t-4Type paramètres, puis le *namespace_or_type_name* fait référence à ce type construit avec les arguments de type donnés.
-            * Sinon, si les espaces de noms et les déclarations de type importés par les *using_namespace_directive*et *using_alias_directive*s de la déclaration d’espace de noms contiennent plusieurs types accessibles portant le nom @ no__t-2 et `K` @ no__t-4Type paramètres, le *namespace_or_type_name* est ambigu et une erreur se produit.
-    * Dans le cas contraire, le *namespace_or_type_name* n’est pas défini et une erreur de compilation se produit.
-*  Dans le cas contraire, le *namespace_or_type_name* se présente sous la forme `N.I` ou sous la forme `N.I<A1, ..., Ak>`. `N` est tout d’abord résolu en tant que *namespace_or_type_name*. Si la résolution de `N` échoue, une erreur de compilation se produit. Dans le cas contraire, `N.I` ou `N.I<A1, ..., Ak>` est résolu comme suit :
-    * Si `K` est égal à zéro et que `N` fait référence à un espace de noms et que `N` contient un espace de noms imbriqué avec le nom `I`, le *namespace_or_type_name* fait référence à cet espace de noms imbriqué.
-    * Sinon, si `N` fait référence à un espace de noms et que `N` contient un type accessible avec les paramètres Name @ no__t-2 et `K` @ no__t-4Type, alors le *namespace_or_type_name* fait référence à ce type construit avec les arguments de type donnés.
-    * Sinon, si `N` fait référence à un type de classe ou de struct (éventuellement construit) et que `N` ou l’une de ses classes de base contient un type accessible imbriqué ayant les paramètres Name @ no__t-2 et `K` @ no__t-4Type, alors le *namespace_or_type_name* fait référence à ce type a été construit avec les arguments de type donnés. S’il existe plusieurs types de ce type, le type déclaré dans le type plus dérivé est sélectionné. Notez que si la signification de `N.I` est déterminée dans le cadre de la résolution de la spécification de la classe de base de `N`, la classe de base directe de `N` est considérée comme Object ([classes de base](classes.md#base-classes)).
+*   Si le *namespace_or_type_name* se présente sous la forme `I` ou sous la forme `I<A1, ..., Ak>`:
+    * Si `K` est égal à zéro et que le *namespace_or_type_name* apparaît dans une déclaration de méthode générique ([méthodes](classes.md#methods)) et si cette déclaration comprend un paramètre de type ([paramètres de type](classes.md#type-parameters)) avec le nom `I`, le *namespace_or_type_name* fait référence à ce paramètre de type.
+    * Sinon, si le *namespace_or_type_name* apparaît dans une déclaration de type, pour chaque type d’instance `T` ([le type d’instance](classes.md#the-instance-type)), en commençant par le type d’instance de cette déclaration de type et en poursuivant avec le type d’instance de chaque déclaration de classe ou de struct englobante (le cas échéant) :
+        * Si `K` est égal à zéro et que la déclaration de `T` comprend un paramètre de type avec le nom `I`, le *namespace_or_type_name* fait référence à ce paramètre de type.
+        * Sinon, si le *namespace_or_type_name* apparaît dans le corps de la déclaration de type et que `T` ou l’un de ses types de base contient un type accessible imbriqué ayant le nom `I` et `K`paramètres de type  , le *namespace_or_type_name* fait référence à ce type construit avec les arguments de type donnés. S’il existe plusieurs types de ce type, le type déclaré dans le type plus dérivé est sélectionné. Notez que les membres qui ne sont pas de type (constantes, champs, méthodes, propriétés, indexeurs, opérateurs, constructeurs d’instance, destructeurs et constructeurs statiques) et les membres de type avec un nombre différent de paramètres de type sont ignorés lors de la détermination de la signification de la *namespace_or_type_name*.
+    * Si les étapes précédentes n’ont pas réussi, pour chaque espace de noms `N`, en commençant par l’espace de noms dans lequel le *namespace_or_type_name* se produit, en continuant avec chaque espace de noms englobant (le cas échéant) et en terminant par l’espace de noms global, les étapes suivantes sont évaluées jusqu’à ce qu’une entité soit localisée :
+        * Si `K` est égal à zéro et que `I` est le nom d’un espace de noms dans `N`, alors :
+            * Si l’emplacement où le *namespace_or_type_name* se produit est entouré d’une déclaration d’espace de noms pour `N` et que la déclaration d’espace de noms contient un *extern_alias_directive* ou *using_alias_directive* qui associe le nom `I` à un espace de noms ou à un type, le *namespace_or_type_name* est ambigu et une erreur de compilation se produit.
+            * Dans le cas contraire, le *namespace_or_type_name* fait référence à l’espace de noms nommé `I` dans `N`.
+        * Dans le cas contraire, si `N` contient un type accessible dont le nom `I` et `K`paramètres de type  , alors :
+            * Si `K` est égal à zéro et que l’emplacement où le *namespace_or_type_name* se produit est entouré d’une déclaration d’espace de noms pour `N` et que la déclaration d’espace de noms contient une *extern_alias_directive* ou une *using_alias_directive* qui associe le nom `I` à un espace de noms ou à un type, le *namespace_or_type_name* est ambigu et une erreur de compilation se produit.
+            * Sinon, le *namespace_or_type_name* fait référence au type construit avec les arguments de type donnés.
+        * Sinon, si l’emplacement où le *namespace_or_type_name* se produit est entouré d’une déclaration d’espace de noms pour `N`:
+            * Si `K` est égal à zéro et que la déclaration d’espace de noms contient une *extern_alias_directive* ou *using_alias_directive* qui associe le nom `I` à un espace de noms ou un type importé, le *namespace_or_type_name* fait référence à cet espace de noms ou type.
+            * Sinon, si les espaces de noms et les déclarations de type importés par les *using_namespace_directive*s et *using_alias_directive*s de la déclaration d’espace de noms contiennent exactement un type accessible avec le nom `I` et `K`paramètres de type  , alors le *namespace_or_type_name* fait référence à ce type construit avec les arguments de type donnés.
+            * Sinon, si les espaces de noms et les déclarations de type importés par le *using_namespace_directive*s et *using_alias_directive*s de la déclaration d’espace de noms contiennent plusieurs types accessibles ayant un nom `I` et `K`paramètres de type  , le *namespace_or_type_name* est ambigu et une erreur se produit.
+    * Dans le cas contraire, la *namespace_or_type_name* n’est pas définie et une erreur de compilation se produit.
+*  Dans le cas contraire, le *namespace_or_type_name* se présente sous la forme `N.I` ou sous la forme `N.I<A1, ..., Ak>`. `N` est d’abord résolu en tant que *namespace_or_type_name*. Si la résolution de `N` échoue, une erreur de compilation se produit. Sinon, `N.I` ou `N.I<A1, ..., Ak>` est résolu comme suit :
+    * Si `K` est égal à zéro et `N` fait référence à un espace de noms et `N` contient un espace de noms imbriqué avec le nom `I`, le *namespace_or_type_name* fait référence à cet espace de noms imbriqué.
+    * Sinon, si `N` fait référence à un espace de noms et que `N` contient un type accessible avec le nom `I` et `K`paramètres de type  , le *namespace_or_type_name* fait référence à ce type construit avec les arguments de type donnés.
+    * Sinon, si `N` fait référence à un type de classe ou de struct (éventuellement construit) et `N` ou que l’une de ses classes de base contient un type accessible imbriqué ayant un nom `I` et `K`paramètres de type  , le *namespace_or_type_name* fait référence à ce type construit avec les arguments de type donnés. S’il existe plusieurs types de ce type, le type déclaré dans le type plus dérivé est sélectionné. Notez que si la signification de `N.I` est déterminée dans le cadre de la résolution de la spécification de la classe de base de `N`, la classe de base directe de `N` est considérée comme Object ([classes de base](classes.md#base-classes)).
     * Dans le cas contraire, `N.I` est un *namespace_or_type_name*non valide et une erreur de compilation se produit.
 
 Un *namespace_or_type_name* est autorisé à référencer une classe statique ([classes statiques](classes.md#static-classes)) uniquement si
 
-*  *Namespace_or_type_name* est le `T` dans un *namespace_or_type_name* de la forme `T.I`, ou
-*  *Namespace_or_type_name* est le `T` dans un *typeof_expression* ([liste d’arguments](expressions.md#argument-lists)1) de la forme `typeof(T)`.
+*  Le *namespace_or_type_name* est le `T` dans un *namespace_or_type_name* de la forme `T.I`, ou
+*  Le *namespace_or_type_name* est le `T` dans un *typeof_expression* ([liste d’arguments](expressions.md#argument-lists)1) de la `typeof(T)`de formulaire.
 
 ### <a name="fully-qualified-names"></a>Noms qualifiés complets
 
 Chaque espace de noms et type a un ***nom qualifié complet***, qui identifie de façon unique l’espace de noms ou le type parmi tous les autres. Le nom qualifié complet d’un espace de noms ou d’un type `N` est déterminé comme suit :
 
-*  Si `N` est un membre de l’espace de noms global, son nom complet est `N`.
-*  Dans le cas contraire, son nom qualifié complet est `S.N`, où `S` est le nom qualifié complet de l’espace de noms ou du type dans lequel `N` est déclaré.
+*  Si `N` est membre de l’espace de noms global, son nom complet est `N`.
+*  Dans le cas contraire, son nom complet est `S.N`, où `S` est le nom qualifié complet de l’espace de noms ou du type dans lequel `N` est déclaré.
 
 En d’autres termes, le nom qualifié complet de `N` est le chemin d’accès hiérarchique complet des identificateurs qui mènent à `N`, en commençant par l’espace de noms global. Étant donné que chaque membre d’un espace de noms ou d’un type doit avoir un nom unique, il suit que le nom qualifié complet d’un espace de noms ou d’un type est toujours unique.
 
@@ -797,13 +797,13 @@ class Test
     }
 }
 ```
-crée une instance de la classe `A` et une instance de la classe `B`. Ces objets deviennent éligibles pour garbage collection lorsque la valeur `null` est assignée à la variable `b`, étant donné qu’il est impossible pour un code écrit par l’utilisateur d’y accéder. La sortie peut être
+crée une instance de la classe `A` et une instance de la classe `B`. Ces objets deviennent éligibles pour garbage collection lorsque la variable `b` est assignée à la valeur `null`, car, à ce moment-là, il est impossible pour un code écrit par l’utilisateur d’y accéder. La sortie peut être
 
 ```console
 Destruct instance of A
 Destruct instance of B
 ```
-ou
+or
 ```console
 Destruct instance of B
 Destruct instance of A
@@ -867,15 +867,15 @@ A.F
 RefA is not null
 ```
 
-Notez que même si l’instance de `A` n’était pas en cours d’utilisation et que le destructeur de `A` était exécuté, il est toujours possible pour les méthodes de `A` (dans ce cas, `F`) d’être appelées à partir d’un autre destructeur. Notez également que l’exécution d’un destructeur peut entraîner la réutilisation d’un objet à partir du programme principal. Dans ce cas, l’exécution du destructeur de `B` a entraîné une instance de `A` qui n’était pas utilisée précédemment pour devenir accessible à partir de la référence active `Test.RefA`. Après l’appel à `WaitForPendingFinalizers`, l’instance de `B` est éligible pour la collection, mais l’instance de `A` ne l’est pas, en raison de la référence `Test.RefA`.
+Notez que même si l’instance de `A` n’était pas utilisée et que le destructeur de `A`a été exécuté, il est toujours possible pour les méthodes de `A` (dans ce cas, `F`) d’être appelées à partir d’un autre destructeur. Notez également que l’exécution d’un destructeur peut entraîner la réutilisation d’un objet à partir du programme principal. Dans ce cas, l’exécution du destructeur de `B`a entraîné une instance de `A` qui n’était pas utilisée précédemment pour devenir accessible à partir de la référence active `Test.RefA`. Après l’appel à `WaitForPendingFinalizers`, l’instance de `B` est éligible pour la collection, mais l’instance de `A` n’est pas, en raison de la `Test.RefA`de référence.
 
 Pour éviter toute confusion et un comportement inattendu, il est généralement judicieux que les destructeurs effectuent uniquement un nettoyage sur les données stockées dans les champs de leur propre objet, et non sur les objets référencés ou les champs statiques.
 
-Une alternative à l’utilisation des destructeurs consiste à permettre à une classe d’implémenter l’interface `System.IDisposable`. Cela permet au client de l’objet de déterminer quand libérer les ressources de l’objet, en généralement en accédant à l’objet en tant que ressource dans une instruction `using` ([l’instruction using](statements.md#the-using-statement)).
+Une alternative à l’utilisation des destructeurs consiste à permettre à une classe d’implémenter l’interface `System.IDisposable`. Cela permet au client de l’objet de déterminer quand libérer les ressources de l’objet, en généralement en accédant à l’objet en tant que ressource dans une instruction `using` ([instruction using](statements.md#the-using-statement)).
 
 ## <a name="execution-order"></a>Ordre d’exécution
 
-L’exécution d' C# un programme continue de telle sorte que les effets secondaires de chaque thread d’exécution soient conservés aux points d’exécution critiques. Un ***effet secondaire*** est défini comme une lecture ou une écriture d’un champ volatile, une écriture dans une variable non volatile, une écriture dans une ressource externe et la levée d’une exception. Les points d’exécution critiques à partir desquels l’ordre de ces effets secondaires doivent être préservés sont des références à des champs volatils ([champs volatils](classes.md#volatile-fields)), à des instructions `lock` ([instruction lock](statements.md#the-lock-statement)) et à la création et à l’arrêt des threads. L’environnement d’exécution est libre de modifier l’ordre d’exécution d' C# un programme, selon les contraintes suivantes :
+L’exécution d' C# un programme continue de telle sorte que les effets secondaires de chaque thread d’exécution soient conservés aux points d’exécution critiques. Un ***effet secondaire*** est défini comme une lecture ou une écriture d’un champ volatile, une écriture dans une variable non volatile, une écriture dans une ressource externe et la levée d’une exception. Les points d’exécution critiques à partir desquels l’ordre de ces effets secondaires doivent être préservés sont des références à des champs volatils ([champs volatils](classes.md#volatile-fields)), des instructions `lock` ([instruction lock](statements.md#the-lock-statement)) et la création et l’arrêt des threads. L’environnement d’exécution est libre de modifier l’ordre d’exécution d' C# un programme, selon les contraintes suivantes :
 
 *  La dépendance des données est conservée dans un thread d’exécution. Autrement dit, la valeur de chaque variable est calculée comme si toutes les instructions du thread étaient exécutées dans l’ordre du programme d’origine.
 *  Les règles de classement d’initialisation sont conservées ([initialisation de champ](classes.md#field-initialization) et [initialiseurs de variable](classes.md#variable-initializers)).
