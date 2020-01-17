@@ -1,9 +1,9 @@
 ---
 ms.openlocfilehash: f61039abd6bd557ac0ea625e6aac1c8bafa57b02
-ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
+ms.sourcegitcommit: e134bb7058e9848120b93b345f96d6ac0cb8c815
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/01/2019
+ms.lasthandoff: 01/17/2020
 ms.locfileid: "71704086"
 ---
 # <a name="expressions"></a>Expressions
@@ -124,7 +124,7 @@ Le tableau suivant récapitule tous les opérateurs par ordre de priorité, du p
 
 | __Section__                                                                                   | __Catégorie__                | __Opérateurs__ | 
 |-----------------------------------------------------------------------------------------------|-----------------------------|---------------|
-| [Expressions primaires](expressions.md#primary-expressions)                                     | Principale                     | `x.y`  `f(x)`  `a[x]`  `x++`  `x--`  `new`  `typeof`  `default`  `checked`  `unchecked`  `delegate` | 
+| [Expressions primaires](expressions.md#primary-expressions)                                     | Primary                     | `x.y`  `f(x)`  `a[x]`  `x++`  `x--`  `new`  `typeof`  `default`  `checked`  `unchecked`  `delegate` | 
 | [Opérateurs unaires](expressions.md#unary-operators)                                             | Unaire                       | `+`  `-`  `!`  `~`  `++x`  `--x`  `(T)x` | 
 | [Opérateurs arithmétiques](expressions.md#arithmetic-operators)                                   | Multiplication              | `*`  `/`  `%` | 
 | [Opérateurs arithmétiques](expressions.md#arithmetic-operators)                                   | Addition                    | `+`  `-`      | 
@@ -351,7 +351,7 @@ Les fonctions membres sont des membres qui contiennent des instructions exécuta
 
 *  Méthodes
 *  Propriétés
-*  Événements
+*  Events
 *  Indexeurs
 *  Opérateurs définis par l’utilisateur
 *  Constructeurs d’instance
@@ -586,7 +586,7 @@ La deuxième phase se déroule comme suit :
     *   `Xi` a un ensemble non vide de limites
 *   S’il n’existe aucune variable de type de ce type et qu’il existe encore des variables de type non *fixes* , l’inférence de type échoue.
 *   Sinon, s’il n’existe aucune variable de type non *fixe* , l’inférence de type est réussie.
-*   Sinon, pour tous les arguments `Ei` avec le type `Ti` de paramètre correspondant où les *types de sortie* ([types de sortie](expressions.md#output-types)) contiennent des variables *de type*non fixes`Xj`, mais pas les *types d’entrée* ([types d’entrée](expressions.md#input-types)), l’*inférence de type de sortie* ([inférences de type de sortie](expressions.md#output-type-inferences)) est effectuée *de* `Ei` *à* `Ti`. La deuxième phase est ensuite répétée.
+*   Sinon, pour tous les arguments `Ei` avec le type `Ti` de paramètre correspondant où les *types de sortie* ([types de sortie](expressions.md#output-types)) contiennent des variables `Xj` de type *non fixes*, mais pas les *types d’entrée* ([types d’entrée](expressions.md#input-types)), l’*inférence de type de sortie* ([inférences de type de sortie](expressions.md#output-type-inferences)) est effectuée *de* `Ei` *à* `Ti`. La deuxième phase est ensuite répétée.
 
 #### <a name="input-types"></a>Types d’entrée
 
@@ -938,13 +938,13 @@ Le traitement au moment de l’exécution d’un appel de membre de fonction se 
 
 *  Si `M` est un membre de fonction statique :
    * La liste d’arguments est évaluée comme décrit dans [listes d’arguments](expressions.md#argument-lists).
-   * `M` est appelée.
+   * `M` est appelé.
 
 *  Si `M` est un membre de fonction d’instance déclaré dans un *Value_type*:
    * `E` est évalué. Si cette évaluation provoque une exception, aucune autre étape n’est exécutée.
    * Si `E` n’est pas classée en tant que variable, une variable locale temporaire du type de `E`est créée et la valeur de `E` est assignée à cette variable. `E` est ensuite reclassifiée comme une référence à cette variable locale temporaire. La variable temporaire est accessible en tant que `this` dans `M`, mais pas de quelque manière que ce soit. Ainsi, uniquement lorsque `E` est une véritable variable, l’appelant peut observer les modifications apportées par `M` à `this`.
    * La liste d’arguments est évaluée comme décrit dans [listes d’arguments](expressions.md#argument-lists).
-   * `M` est appelée. La variable référencée par `E` devient la variable référencée par `this`.
+   * `M` est appelé. La variable référencée par `E` devient la variable référencée par `this`.
 
 *  Si `M` est un membre de fonction d’instance déclaré dans un *reference_type*:
    * `E` est évalué. Si cette évaluation provoque une exception, aucune autre étape n’est exécutée.
@@ -1181,7 +1181,7 @@ La *member_access* est évaluée et classée comme suit :
 
 #### <a name="identical-simple-names-and-type-names"></a>Noms simples et noms de types identiques
 
-Dans un accès aux membres de la forme `E.I`, si `E` est un identificateur unique et si la signification de `E` en tant que *simple_name* ([noms simples](expressions.md#simple-names)) est une constante, un champ, une propriété, une variable locale ou un paramètre avec le même type que la signification de `E` comme *type_name* ([espace de noms et noms de type](basic-concepts.md#namespace-and-type-names)), les deux significations possibles de `E` sont autorisées. Les deux significations possibles de `E.I` ne sont jamais ambiguës, car `I` doit nécessairement être un membre du type `E` dans les deux cas. En d’autres termes, la règle autorise simplement l’accès aux membres statiques et aux types imbriqués de `E` où une erreur de compilation se produirait autrement. Exemple :
+Dans un accès aux membres de la forme `E.I`, si `E` est un identificateur unique et si la signification de `E` en tant que *simple_name* ([noms simples](expressions.md#simple-names)) est une constante, un champ, une propriété, une variable locale ou un paramètre avec le même type que la signification de `E` comme *type_name* ([espace de noms et noms de type](basic-concepts.md#namespace-and-type-names)), les deux significations possibles de `E` sont autorisées. Les deux significations possibles de `E.I` ne sont jamais ambiguës, car `I` doit nécessairement être un membre du type `E` dans les deux cas. En d’autres termes, la règle autorise simplement l’accès aux membres statiques et aux types imbriqués de `E` où une erreur de compilation se produirait autrement. Par exemple :
 ```csharp
 struct Color
 {
@@ -1333,7 +1333,7 @@ La recherche de `C` se déroule comme suit :
 
 À l’aide de `C` en tant que cible, l’appel de méthode est ensuite traité comme un appel de méthode statique ([vérification au moment de la compilation de la résolution de surcharge dynamique](expressions.md#compile-time-checking-of-dynamic-overload-resolution)).
 
-Les règles précédentes signifient que les méthodes d’instance sont prioritaires sur les méthodes d’extension, que les méthodes d’extension disponibles dans les déclarations d’espace de noms interne ont la priorité sur les méthodes d’extension disponibles dans les déclarations d’espaces de noms externes, et cette extension les méthodes déclarées directement dans un espace de noms ont priorité sur les méthodes d’extension importées dans ce même espace de noms avec une directive d’espace de noms using. Exemple :
+Les règles précédentes signifient que les méthodes d’instance sont prioritaires sur les méthodes d’extension, que les méthodes d’extension disponibles dans les déclarations d’espace de noms interne ont la priorité sur les méthodes d’extension disponibles dans les déclarations d’espaces de noms externes, et cette extension les méthodes déclarées directement dans un espace de noms ont priorité sur les méthodes d’extension importées dans ce même espace de noms avec une directive d’espace de noms using. Par exemple :
 ```csharp
 public static class E
 {
@@ -1919,7 +1919,7 @@ var d = new[] { 1, "one", 2, "two" };                     // Error
 
 La dernière expression provoque une erreur au moment de la compilation, car ni `int` ni `string` n’est implicitement convertible en l’autre, et il n’y a donc pas de type commun optimal. Une expression de création de tableau explicitement typée doit être utilisée dans ce cas, par exemple en spécifiant le type à `object[]`. L’un des éléments peut également être casté en un type de base commun, qui devient alors le type d’élément inféré.
 
-Les expressions de création de tableau implicitement typées peuvent être combinées avec des initialiseurs d’objets anonymes ([expressions de création d’objets anonymes](expressions.md#anonymous-object-creation-expressions)) pour créer des structures de données typées anonymement. Exemple :
+Les expressions de création de tableau implicitement typées peuvent être combinées avec des initialiseurs d’objets anonymes ([expressions de création d’objets anonymes](expressions.md#anonymous-object-creation-expressions)) pour créer des structures de données typées anonymement. Par exemple :
 ```csharp
 var contacts = new[] {
     new {
@@ -2254,7 +2254,7 @@ class Test
 ```
 l’utilisation de `checked` dans `F` n’affecte pas l’évaluation de `x * y` dans `Multiply`, donc `x * y` est évaluée dans le contexte de contrôle de dépassement de capacité par défaut.
 
-L’opérateur `unchecked` est pratique lors de l’écriture de constantes des types intégraux signés en notation hexadécimale. Exemple :
+L’opérateur `unchecked` est pratique lors de l’écriture de constantes des types intégraux signés en notation hexadécimale. Par exemple :
 ```csharp
 class Test
 {
@@ -2424,7 +2424,7 @@ ce qui équivaut à :
 ```csharp
 if (a.b != null) if (a.b[0] != null) a.b[0].c();
 ```
-à ceci près que les `a.b` et les `a.b[0]` ne sont évalués qu’une seule fois.
+À ceci près que les `a.b` et les `a.b[0]` ne sont évalués qu’une seule fois.
 
 Si elle se produit dans un contexte où sa valeur est utilisée, comme dans :
 ```csharp
@@ -2858,10 +2858,10 @@ Les opérateurs d’addition prédéfinis sont répertoriés ci-dessous. Pour le
 
    |      |      |      |      |      |      |      |
    |:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-   |      | y    | +0   | -0   | +inf | -inf | NaN  | 
+   |      | o    | +0   | -0   | +inf | -inf | NaN  | 
    | x    | e    | x    | x    | +inf | -inf | NaN  | 
-   | +0   | y    | +0   | +0   | +inf | -inf | NaN  | 
-   | -0   | y    | +0   | -0   | +inf | -inf | NaN  | 
+   | +0   | o    | +0   | +0   | +inf | -inf | NaN  | 
+   | -0   | o    | +0   | -0   | +inf | -inf | NaN  | 
    | +inf | +inf | +inf | +inf | +inf | NaN  | NaN  | 
    | -inf | -inf | -inf | -inf | NaN  | -inf | NaN  | 
    | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | NaN  | 
@@ -2951,7 +2951,7 @@ Les opérateurs de soustraction prédéfinis sont répertoriés ci-dessous. Les 
 
    |      |      |      |      |      |      |     |
    |:----:|:----:|:----:|:----:|:----:|:----:|:---:|
-   |      | y    | +0   | -0   | +inf | -inf | NaN | 
+   |      | o    | +0   | -0   | +inf | -inf | NaN | 
    | x    | e    | x    | x    | -inf | +inf | NaN | 
    | +0   | -y   | +0   | +0   | -inf | +inf | NaN | 
    | -0   | -y   | -0   | +0   | -inf | +inf | NaN | 
@@ -2989,7 +2989,7 @@ Les opérateurs de soustraction prédéfinis sont répertoriés ci-dessous. Les 
    D operator -(D x, D y);
    ```
 
-   L’opérateur de `-` binaire effectue une suppression de délégué lorsque les deux opérandes sont d’un type délégué `D`. Si les opérandes ont des types délégués différents, une erreur au moment de la liaison se produit. Si le premier opérande a la valeur `null`, le résultat de l’opération est `null`. Sinon, si le second opérande est `null`, le résultat de l’opération est la valeur du premier opérande. Sinon, les deux opérandes représentent les listes d’appel ([déclarations de délégué](delegates.md#delegate-declarations)) ayant une ou plusieurs entrées, et le résultat est une nouvelle liste d’appel comprenant la liste de la première opérande avec les entrées du deuxième opérande supprimées, à condition que la liste du deuxième opérande soit une sous-liste contiguë correcte du premier.     (Pour déterminer l’égalité des sous-listes, les entrées correspondantes sont comparées à celles de l’opérateur d’égalité de délégué ([opérateurs d’égalité de délégué](expressions.md#delegate-equality-operators)).) Dans le cas contraire, le résultat est la valeur de l’opérande gauche. Aucune des listes d’opérandes n’est modifiée dans le processus. Si la liste du deuxième opérande correspond à plusieurs sous-listes d’entrées contiguës dans la liste du premier opérande, la sous-liste correspondante la plus à droite des entrées contiguës est supprimée. Si la suppression aboutit à une liste vide, le résultat est `null`. Exemple :
+   L’opérateur de `-` binaire effectue une suppression de délégué lorsque les deux opérandes sont d’un type délégué `D`. Si les opérandes ont des types délégués différents, une erreur au moment de la liaison se produit. Si le premier opérande a la valeur `null`, le résultat de l’opération est `null`. Sinon, si le second opérande est `null`, le résultat de l’opération est la valeur du premier opérande. Sinon, les deux opérandes représentent les listes d’appel ([déclarations de délégué](delegates.md#delegate-declarations)) ayant une ou plusieurs entrées, et le résultat est une nouvelle liste d’appel comprenant la liste de la première opérande avec les entrées du deuxième opérande supprimées, à condition que la liste du deuxième opérande soit une sous-liste contiguë correcte du premier.     (Pour déterminer l’égalité des sous-listes, les entrées correspondantes sont comparées à celles de l’opérateur d’égalité de délégué ([opérateurs d’égalité de délégué](expressions.md#delegate-equality-operators)).) Dans le cas contraire, le résultat est la valeur de l’opérande gauche. Aucune des listes d’opérandes n’est modifiée dans le processus. Si la liste du deuxième opérande correspond à plusieurs sous-listes d’entrées contiguës dans la liste du premier opérande, la sous-liste correspondante la plus à droite des entrées contiguës est supprimée. Si la suppression aboutit à une liste vide, le résultat est `null`. Par exemple :
 
    ```csharp
    delegate void D(int x);
@@ -3546,7 +3546,7 @@ Les opérateurs `&&` et `||` sont des versions conditionnelles des opérateurs `
 
 Si un opérande d’un opérateur logique conditionnel a le type au moment de la compilation `dynamic`, l’expression est liée dynamiquement ([liaison dynamique](expressions.md#dynamic-binding)). Dans ce cas, le type au moment de la compilation de l’expression est `dynamic`, et la résolution décrite ci-dessous a lieu au moment de l’exécution à l’aide du type d’exécution des opérandes qui ont le type au moment de la compilation `dynamic`.
 
-Une opération de la forme `x && y` ou `x || y` est traitée en appliquant la résolution de surcharge ([résolution de surcharge d’opérateur binaire](expressions.md#binary-operator-overload-resolution)) comme si l’opération avait été écrite `x & y` ou `x | y`. Cliquez
+Une opération de la forme `x && y` ou `x || y` est traitée en appliquant la résolution de surcharge ([résolution de surcharge d’opérateur binaire](expressions.md#binary-operator-overload-resolution)) comme si l’opération avait été écrite `x & y` ou `x | y`. Ainsi,
 
 *  Si la résolution de surcharge ne parvient pas à trouver un seul opérateur le mieux, ou si la résolution de surcharge sélectionne l’un des opérateurs logiques d’entiers prédéfinis, une erreur de liaison s’est produite.
 *  Sinon, si l’opérateur sélectionné est l’un des opérateurs logiques booléens prédéfinis ([opérateurs logiques booléens](expressions.md#boolean-logical-operators)) ou des opérateurs logiques booléens Nullable ([opérateurs logiques booléens Nullable](expressions.md#nullable-boolean-logical-operators)), l’opération est traitée comme décrit dans [opérateurs logiques conditionnels booléens](expressions.md#boolean-conditional-logical-operators).
@@ -3913,7 +3913,7 @@ static D[] F() {
     return result;
 }
 ```
-la sortie est la suivante :
+le résultat est :
 ```console
 5
 5
@@ -4724,7 +4724,7 @@ struct Rectangle
     }
 }
 ```
-Dans l’exemple
+dans l’exemple
 ```csharp
 Point p = new Point();
 p.X = 100;
@@ -4747,7 +4747,7 @@ les attributions ne sont pas valides, car `r.A` et `r.B` ne sont pas des variabl
 
 Si l’opérande gauche d’une assignation composée se présente sous la forme `E.P` ou `E[Ei]` où `E` a le type au moment de la compilation `dynamic`, l’assignation est liée dynamiquement ([liaison dynamique](expressions.md#dynamic-binding)). Dans ce cas, le type au moment de la compilation de l’expression d’assignation est `dynamic`, et la résolution décrite ci-dessous aura lieu au moment de l’exécution en fonction du type d’exécution de `E`.
 
-Une opération de la forme `x op= y` est traitée en appliquant la résolution de surcharge d’opérateur binaire ([résolution de surcharge d’opérateur binaire](expressions.md#binary-operator-overload-resolution)) comme si l’opération avait été écrite `x op y`. Cliquez
+Une opération de la forme `x op= y` est traitée en appliquant la résolution de surcharge d’opérateur binaire ([résolution de surcharge d’opérateur binaire](expressions.md#binary-operator-overload-resolution)) comme si l’opération avait été écrite `x op y`. Ainsi,
 
 *  Si le type de retour de l’opérateur sélectionné est implicitement convertible en type de `x`, l’opération est évaluée comme `x = x op y`, sauf que `x` n’est évaluée qu’une seule fois.
 *  Sinon, si l’opérateur sélectionné est un opérateur prédéfini, si le type de retour de l’opérateur sélectionné est explicitement convertible en type de `x`, et si `y` est implicitement convertible en type de `x` ou si l’opérateur est un opérateur de décalage, l’opération est évaluée comme `x = (T)(x op y)`, où `T` est le type de `x`, sauf que `x` est évaluée une seule fois.
@@ -4842,7 +4842,7 @@ Les conversions suivantes sont autorisées dans les expressions constantes :
 *  Conversions d’expressions constantes
 *  Conversions de référence implicites et explicites, à condition que la source des conversions soit une expression constante qui prend la valeur null.
 
-Les autres conversions, y compris les conversions boxing, unboxing et implicites des valeurs non null, ne sont pas autorisées dans les expressions constantes. Exemple :
+Les autres conversions, y compris les conversions boxing, unboxing et implicites des valeurs non null, ne sont pas autorisées dans les expressions constantes. Par exemple :
 ```csharp
 class C {
     const object i = 5;         // error: boxing conversion not permitted
