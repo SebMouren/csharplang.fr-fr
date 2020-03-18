@@ -1,0 +1,95 @@
+---
+ms.openlocfilehash: 52b43abd2d8fb56088a68c7169289a63c43ce96f
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "79484488"
+---
+# <a name="suppress-emitting-of-localsinit-flag"></a><span data-ttu-id="ea670-101">Supprime l’émission de `localsinit` indicateur.</span><span class="sxs-lookup"><span data-stu-id="ea670-101">Suppress emitting of `localsinit` flag.</span></span>
+
+* <span data-ttu-id="ea670-102">[x] proposé</span><span class="sxs-lookup"><span data-stu-id="ea670-102">[x] Proposed</span></span>
+* <span data-ttu-id="ea670-103">[] Prototype : non démarré</span><span class="sxs-lookup"><span data-stu-id="ea670-103">[ ] Prototype: Not Started</span></span>
+* <span data-ttu-id="ea670-104">[] Implémentation : non démarrée</span><span class="sxs-lookup"><span data-stu-id="ea670-104">[ ] Implementation: Not Started</span></span>
+* <span data-ttu-id="ea670-105">[] Spécification : non démarrée</span><span class="sxs-lookup"><span data-stu-id="ea670-105">[ ] Specification: Not Started</span></span>
+
+## <a name="summary"></a><span data-ttu-id="ea670-106">Résumé</span><span class="sxs-lookup"><span data-stu-id="ea670-106">Summary</span></span>
+[summary]: #summary
+
+<span data-ttu-id="ea670-107">Autorise la suppression de l’émission d’un indicateur de `localsinit` via `SkipLocalsInitAttribute` attribut.</span><span class="sxs-lookup"><span data-stu-id="ea670-107">Allow suppressing emit of `localsinit` flag via `SkipLocalsInitAttribute` attribute.</span></span> 
+
+## <a name="motivation"></a><span data-ttu-id="ea670-108">Motivation</span><span class="sxs-lookup"><span data-stu-id="ea670-108">Motivation</span></span>
+[motivation]: #motivation
+
+
+### <a name="background"></a><span data-ttu-id="ea670-109">Arrière-plan</span><span class="sxs-lookup"><span data-stu-id="ea670-109">Background</span></span>
+<span data-ttu-id="ea670-110">Par spécification CLR, les variables locales qui ne contiennent pas de références ne sont pas initialisées à une valeur particulière par la machine virtuelle/JIT.</span><span class="sxs-lookup"><span data-stu-id="ea670-110">Per CLR spec local variables that do not contain references are not initialized to a particular value by the VM/JIT.</span></span> <span data-ttu-id="ea670-111">La lecture de ces variables sans initialisation est de type sécurisé, mais dans le cas contraire, le comportement est non défini et spécifique à l’implémentation.</span><span class="sxs-lookup"><span data-stu-id="ea670-111">Reading from such variables without initialization is type-safe, but otherwise the behavior is undefined and implementation specific.</span></span> <span data-ttu-id="ea670-112">En général, les variables locales non initialisées contiennent les valeurs laissées dans la mémoire qui est maintenant occupée par le frame de pile.</span><span class="sxs-lookup"><span data-stu-id="ea670-112">Typically uninitialized locals contain whatever values were left in the memory that is now occupied by the stack frame.</span></span> <span data-ttu-id="ea670-113">Cela peut entraîner un comportement non déterministe et des bogues difficiles à reproduire.</span><span class="sxs-lookup"><span data-stu-id="ea670-113">That could lead to nondeterministic behavior and hard to reproduce bugs.</span></span> 
+
+<span data-ttu-id="ea670-114">Il existe deux façons de « assigner » une variable locale :</span><span class="sxs-lookup"><span data-stu-id="ea670-114">There are two ways to "assign" a local variable:</span></span> 
+- <span data-ttu-id="ea670-115">en stockant une valeur ou</span><span class="sxs-lookup"><span data-stu-id="ea670-115">by storing a value or</span></span> 
+- <span data-ttu-id="ea670-116">en spécifiant `localsinit` indicateur qui force tout ce qui est alloué à former le pool de mémoire local à être initialisé à zéro Remarque : cela inclut à la fois les variables locales et les données de `stackalloc`.</span><span class="sxs-lookup"><span data-stu-id="ea670-116">by specifying `localsinit` flag which forces everything that is allocated form the local memory pool to be zero-initialized NOTE: this includes both local variables and `stackalloc` data.</span></span>    
+
+<span data-ttu-id="ea670-117">L’utilisation de données non initialisées est déconseillée et n’est pas autorisée dans du code vérifiable.</span><span class="sxs-lookup"><span data-stu-id="ea670-117">Use of uninitialized data is discouraged and is not allowed in verifiable code.</span></span> <span data-ttu-id="ea670-118">Bien qu’il soit possible de prouver que, par le biais de l’analyse des fluides, l’algorithme de vérification peut être conservateur et nécessite simplement que `localsinit` soit définie.</span><span class="sxs-lookup"><span data-stu-id="ea670-118">While it might be possible to prove that by the means of flow analysis, it is permitted for the verification algorithm to be conservative and simply require that `localsinit` is set.</span></span>
+
+<span data-ttu-id="ea670-119">Le C# compilateur historique émet `localsinit` indicateur sur toutes les méthodes qui déclarent des variables locales.</span><span class="sxs-lookup"><span data-stu-id="ea670-119">Historically C# compiler emits `localsinit` flag on all methods that declare locals.</span></span>
+
+<span data-ttu-id="ea670-120">Tandis que C# utilise une analyse d’assignation définie qui est plus stricte que celle requise par leC# CLR (il doit également prendre en compte l’étendue des variables locales), il n’est pas strictement garanti que le code résultant soit officiellement vérifiable :</span><span class="sxs-lookup"><span data-stu-id="ea670-120">While C# employs definite-assignment analysis which is more strict than what CLR spec would require (C# also needs to consider scoping of locals), it is not strictly guaranteed that the resulting code would be formally verifiable:</span></span>
+- <span data-ttu-id="ea670-121">Le CLR C# et les règles peuvent ne pas savoir si le passage d’un argument local en tant qu’argument `out` est un `use`.</span><span class="sxs-lookup"><span data-stu-id="ea670-121">CLR and C# rules may not agree on whether passing a local as `out` argument is a `use`.</span></span>
+- <span data-ttu-id="ea670-122">Le CLR C# et les règles peuvent ne pas s’accorder sur le traitement des branches conditionnelles lorsque les conditions sont connues (propagation constante).</span><span class="sxs-lookup"><span data-stu-id="ea670-122">CLR and C# rules may not agree on treatment of conditional branches when conditions are known (constant propagation).</span></span>
+- <span data-ttu-id="ea670-123">Le CLR peut tout simplement nécessiter `localinits`, puisque cela est autorisé.</span><span class="sxs-lookup"><span data-stu-id="ea670-123">CLR could as well simply require `localinits`, since that is permitted.</span></span>  
+
+### <a name="problem"></a><span data-ttu-id="ea670-124">Problème</span><span class="sxs-lookup"><span data-stu-id="ea670-124">Problem</span></span>
+<span data-ttu-id="ea670-125">Dans une application hautes performances, le coût de l’initialisation forcée de zéro peut être perceptible.</span><span class="sxs-lookup"><span data-stu-id="ea670-125">In high-performance application the cost of forced zero-initialization could be noticeable.</span></span> <span data-ttu-id="ea670-126">Cela est particulièrement perceptible lorsque `stackalloc` est utilisé.</span><span class="sxs-lookup"><span data-stu-id="ea670-126">It is particularly noticeable when `stackalloc` is used.</span></span>
+
+<span data-ttu-id="ea670-127">Dans certains cas, le JIT peut Elide initialiser l’initialisation zéro des variables locales individuelles lorsque cette initialisation est « supprimée » par les assignations suivantes.</span><span class="sxs-lookup"><span data-stu-id="ea670-127">In some cases JIT can elide initial zero-initialization of individual locals when such initialization is "killed" by subsequent assignments.</span></span> <span data-ttu-id="ea670-128">Toutes les JIT ne le font pas et une telle optimisation a des limites.</span><span class="sxs-lookup"><span data-stu-id="ea670-128">Not all JITs do this and such optimization has limits.</span></span> <span data-ttu-id="ea670-129">Elle ne permet pas de `stackalloc`.</span><span class="sxs-lookup"><span data-stu-id="ea670-129">It does not help with `stackalloc`.</span></span>
+
+<span data-ttu-id="ea670-130">Pour illustrer le problème réel, il existe un bogue connu dans lequel une méthode qui ne contient pas de `IL` variables locales n’aurait pas d’indicateur `localsinit`.</span><span class="sxs-lookup"><span data-stu-id="ea670-130">To illustrate that the problem is real - there is a known bug where a method not containing any `IL` locals would not have `localsinit` flag.</span></span> <span data-ttu-id="ea670-131">Le bogue est déjà exploité par les utilisateurs en plaçant `stackalloc` dans ces méthodes, de manière intentionnelle, afin d’éviter les coûts d’initialisation.</span><span class="sxs-lookup"><span data-stu-id="ea670-131">The bug is already being exploited by users by putting `stackalloc` into such methods - intentionally to avoid initialization costs.</span></span> <span data-ttu-id="ea670-132">Cela est en dépit du fait que l’absence de `IL` variables locales est une mesure instable et peut varier en fonction des modifications apportées à la stratégie CodeGen.</span><span class="sxs-lookup"><span data-stu-id="ea670-132">That is despite the fact that absence of `IL` locals is an unstable metric and may vary depending on changes in codegen strategy.</span></span> <span data-ttu-id="ea670-133">Le bogue doit être corrigé et les utilisateurs doivent disposer d’une méthode plus documentée et fiable pour supprimer l’indicateur.</span><span class="sxs-lookup"><span data-stu-id="ea670-133">The bug should be fixed and users should get a more documented and reliable way of suppressing the flag.</span></span> 
+
+## <a name="detailed-design"></a><span data-ttu-id="ea670-134">Conception détaillée</span><span class="sxs-lookup"><span data-stu-id="ea670-134">Detailed design</span></span>
+
+<span data-ttu-id="ea670-135">Autorisez la spécification d' `System.Runtime.CompilerServices.SkipLocalsInitAttribute` pour indiquer au compilateur de ne pas émettre `localsinit` indicateur.</span><span class="sxs-lookup"><span data-stu-id="ea670-135">Allow specifying `System.Runtime.CompilerServices.SkipLocalsInitAttribute` as a way to tell the compiler to not emit `localsinit` flag.</span></span>
+ 
+<span data-ttu-id="ea670-136">Le résultat final est que les variables locales ne peuvent pas être initialisées à zéro par le JIT, qui est dans la plupart des cas non observables dans C#.</span><span class="sxs-lookup"><span data-stu-id="ea670-136">The end result of this will be that the locals may not be zero-initialized by the JIT, which is in most cases unobservable in C#.</span></span>  
+<span data-ttu-id="ea670-137">En plus de cette `stackalloc` données ne seront pas initialisées à zéro.</span><span class="sxs-lookup"><span data-stu-id="ea670-137">In addition to that `stackalloc` data will not be zero-initialized.</span></span> <span data-ttu-id="ea670-138">Cela est tout à fait observable, mais également le scénario le plus motivant.</span><span class="sxs-lookup"><span data-stu-id="ea670-138">That is definitely observable, but also is the most motivating scenario.</span></span>
+
+<span data-ttu-id="ea670-139">Les cibles d’attribut autorisées et reconnues sont les suivantes : `Method`, `Property`, `Module`, `Class`, `Struct`, `Interface`, `Constructor`.</span><span class="sxs-lookup"><span data-stu-id="ea670-139">Permitted and recognized attribute targets are: `Method`, `Property`, `Module`, `Class`, `Struct`, `Interface`, `Constructor`.</span></span> <span data-ttu-id="ea670-140">Toutefois, le compilateur ne requiert pas que l’attribut soit défini avec les cibles listées, et il se chargera de déterminer l’assembly dans lequel l’attribut est défini.</span><span class="sxs-lookup"><span data-stu-id="ea670-140">However compiler will not require that attribute is defined with the listed targets nor it will care in which assembly the attribute is defined.</span></span> 
+
+<span data-ttu-id="ea670-141">Lorsque l’attribut est spécifié sur un conteneur (`class`, `module`, qui contient la méthode pour une méthode imbriquée,...), l’indicateur affecte toutes les méthodes contenues dans le conteneur.</span><span class="sxs-lookup"><span data-stu-id="ea670-141">When attribute is specified on a container (`class`, `module`, containing method for a nested method, ...), the flag affects all methods contained within the container.</span></span>
+
+<span data-ttu-id="ea670-142">Les méthodes synthétisées « héritent » de l’indicateur du conteneur/propriétaire logique.</span><span class="sxs-lookup"><span data-stu-id="ea670-142">Synthesized methods "inherit" the flag from the logical container/owner.</span></span> 
+
+<span data-ttu-id="ea670-143">L’indicateur affecte uniquement la stratégie CodeGen pour les corps de méthode réels.</span><span class="sxs-lookup"><span data-stu-id="ea670-143">The flag affects only codegen strategy for actual method bodies.</span></span> <span data-ttu-id="ea670-144">savoir</span><span class="sxs-lookup"><span data-stu-id="ea670-144">I.E.</span></span> <span data-ttu-id="ea670-145">l’indicateur n’a aucun effet sur les méthodes abstraites et n’est pas propagé aux méthodes de substitution/implémentation.</span><span class="sxs-lookup"><span data-stu-id="ea670-145">the flag has no effect on abstract methods and is not propagated to overriding/implementing methods.</span></span>
+
+<span data-ttu-id="ea670-146">Il s’agit d’une **_fonctionnalité de compilateur_** qui n’est **_pas une fonctionnalité de langage_** .</span><span class="sxs-lookup"><span data-stu-id="ea670-146">This is explicitly a **_compiler feature_** and **_not a language feature_**.</span></span>  
+<span data-ttu-id="ea670-147">De la même façon que les commutateurs de ligne de commande du compilateur, la fonctionnalité contrôle les détails d’implémentation d’une stratégie CodeGen C# particulière et n’a pas besoin d’être requise par la spécification.</span><span class="sxs-lookup"><span data-stu-id="ea670-147">Similarly to compiler command line switches the feature controls implementation details of a particular codegen strategy and does not need to be required by the C# spec.</span></span>
+
+## <a name="drawbacks"></a><span data-ttu-id="ea670-148">Inconvénients</span><span class="sxs-lookup"><span data-stu-id="ea670-148">Drawbacks</span></span>
+[drawbacks]: #drawbacks
+
+- <span data-ttu-id="ea670-149">Les anciens/autres compilateurs ne peuvent pas honorer l’attribut.</span><span class="sxs-lookup"><span data-stu-id="ea670-149">Old/other compilers may not honor the attribute.</span></span>
+<span data-ttu-id="ea670-150">Ignorer l’attribut est un comportement compatible.</span><span class="sxs-lookup"><span data-stu-id="ea670-150">Ignoring the attribute is compatible behavior.</span></span> <span data-ttu-id="ea670-151">Seul peut entraîner une légère baisse des performances.</span><span class="sxs-lookup"><span data-stu-id="ea670-151">Only may result in a slight perf hit.</span></span>
+
+- <span data-ttu-id="ea670-152">Le code sans indicateur `localinits` peut déclencher des échecs de vérification.</span><span class="sxs-lookup"><span data-stu-id="ea670-152">The code without `localinits` flag may trigger verification failures.</span></span>
+<span data-ttu-id="ea670-153">Les utilisateurs qui demandent cette fonctionnalité sont généralement insoucieux de la vérifiabilité.</span><span class="sxs-lookup"><span data-stu-id="ea670-153">Users that ask for this feature are generally unconcerned with verifiability.</span></span> 
+ 
+- <span data-ttu-id="ea670-154">L’application de l’attribut à des niveaux supérieurs par rapport à une méthode individuelle a un effet non local, qui est observable quand `stackalloc` est utilisé.</span><span class="sxs-lookup"><span data-stu-id="ea670-154">Applying the attribute at higher levels than an individual method has nonlocal effect, which is observable when `stackalloc` is used.</span></span> <span data-ttu-id="ea670-155">Pourtant, il s’agit du scénario le plus demandé.</span><span class="sxs-lookup"><span data-stu-id="ea670-155">Yet, this is the most requested scenario.</span></span>
+
+## <a name="alternatives"></a><span data-ttu-id="ea670-156">Autres solutions</span><span class="sxs-lookup"><span data-stu-id="ea670-156">Alternatives</span></span>
+[alternatives]: #alternatives
+
+- <span data-ttu-id="ea670-157">omettez `localinits` indicateur lorsque la méthode est déclarée dans `unsafe` contexte.</span><span class="sxs-lookup"><span data-stu-id="ea670-157">omit `localinits` flag when method is declared in `unsafe` context.</span></span> <span data-ttu-id="ea670-158">Cela peut entraîner un changement de comportement silencieux et dangereux de déterministe en non déterministe dans un cas de `stackalloc`.</span><span class="sxs-lookup"><span data-stu-id="ea670-158">That could cause silent and dangerous behavior change from deterministic to nondeterministic in a case of `stackalloc`.</span></span>
+
+- <span data-ttu-id="ea670-159">omettez l’indicateur `localinits` Always.</span><span class="sxs-lookup"><span data-stu-id="ea670-159">omit `localinits` flag always.</span></span>
+<span data-ttu-id="ea670-160">Pire encore que ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="ea670-160">Even worse than above.</span></span>
+
+- <span data-ttu-id="ea670-161">omettez `localinits` indicateur, sauf si `stackalloc` est utilisé dans le corps de la méthode.</span><span class="sxs-lookup"><span data-stu-id="ea670-161">omit `localinits` flag unless `stackalloc` is used in the method body.</span></span>
+<span data-ttu-id="ea670-162">Ne traite pas le scénario le plus demandé et peut désactiver le code non vérifiable sans option pour revenir en arrière.</span><span class="sxs-lookup"><span data-stu-id="ea670-162">Does not address the most requested scenario and may turn code unverifiable with no option to revert that back.</span></span>
+
+## <a name="unresolved-questions"></a><span data-ttu-id="ea670-163">Questions non résolues</span><span class="sxs-lookup"><span data-stu-id="ea670-163">Unresolved questions</span></span>
+[unresolved]: #unresolved-questions
+
+- <span data-ttu-id="ea670-164">L’attribut doit-il être émis aux métadonnées ?</span><span class="sxs-lookup"><span data-stu-id="ea670-164">Should the attribute be actually emitted to metadata?</span></span> 
+
+## <a name="design-meetings"></a><span data-ttu-id="ea670-165">Réunions de conception</span><span class="sxs-lookup"><span data-stu-id="ea670-165">Design meetings</span></span>
+
+<span data-ttu-id="ea670-166">Aucun.</span><span class="sxs-lookup"><span data-stu-id="ea670-166">None yet.</span></span> 
