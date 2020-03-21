@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: d9080202f9413f8beb80db222d47f5fc082ae641
-ms.sourcegitcommit: f3170512e7a3193efbcea52ec330648375e36915
+ms.openlocfilehash: 8bf3a18dc42e225e64bd3ccda2106aed89b421ed
+ms.sourcegitcommit: 9aa177443b83116fe1be2ab28e2c7291947fe32d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79485503"
+ms.lasthandoff: 03/21/2020
+ms.locfileid: "80108387"
 ---
 # <a name="function-pointers"></a>Pointeurs fonction
 
@@ -174,7 +174,8 @@ Dans un contexte unsafe, une méthode `M` est compatible avec un type de pointeu
 Dans un contexte non sécurisé, une conversion implicite existe à partir d’une expression d’adresse dont la cible est un groupe de méthodes `E` à un type pointeur fonction compatible `F` si `E` contient au moins une méthode qui est applicable dans sa forme normale à une liste d’arguments construite à l’aide des types de paramètres et des modificateurs de `F`, comme décrit dans l’exemple suivant.
 - Une seule méthode `M` est sélectionnée correspondant à un appel de méthode de la forme `E(A)` avec les modifications suivantes :
    - La liste d’arguments `A` est une liste d’expressions, chacune classée en tant que variable et avec le type et le modificateur (`ref`, `out`ou `in`) du _paramètre\_formel correspondant\_liste_ des `D`.
-   - Les méthodes candidates sont uniquement les méthodes qui sont uniquement celles qui sont applicables dans leur forme normale, et non celles qui s’appliquent dans leur forme développée.
+   - Les méthodes candidates sont uniquement les méthodes applicables dans leur forme normale, et non celles applicables dans leur forme développée.
+   - Les méthodes candidates sont uniquement les méthodes statiques.
 - Si l’algorithme d’appels de méthode génère une erreur, une erreur de compilation se produit. Dans le cas contraire, l’algorithme produit une seule meilleure méthode `M` avoir le même nombre de paramètres que `F` et la conversion est considérée comme existante.
 - La méthode sélectionnée `M` doit être compatible (comme défini ci-dessus) avec le type de pointeur de fonction `F`. Sinon, une erreur de compilation se produit.
 - Le résultat de la conversion est un pointeur de fonction de type `F`.
