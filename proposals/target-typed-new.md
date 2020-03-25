@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 38740069a2e105f920fa275c443f4560055e2901
-ms.sourcegitcommit: 9aa177443b83116fe1be2ab28e2c7291947fe32d
+ms.openlocfilehash: 07b4afe4a3fcbf10c978f05e642dfd8a47d53ea5
+ms.sourcegitcommit: 194a043db72b9244f8db45db326cc82de6cec965
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/21/2020
-ms.locfileid: "80108366"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80217201"
 ---
 
 # <a name="target-typed-new-expressions"></a>Expressions de `new` typées cibles
@@ -14,7 +14,7 @@ ms.locfileid: "80108366"
 * [] Implémentation
 * [] Spécification
 
-## <a name="summary"></a>Résumé
+## <a name="summary"></a>Récapitulatif
 [summary]: #summary
 
 Ne requièrent pas de spécification de type pour les constructeurs lorsque le type est connu. 
@@ -80,35 +80,36 @@ Action a = new(() => {}); // "new" is redundant
 
 (int a, int b) t = new(); // ruled out by "use of struct default constructor"
 Action a = new(); // no constructor found
+```
 
-### Miscellaneous
+### <a name="miscellaneous"></a>Divers
 
-`throw new()` is disallowed.
+`throw new()` n’est pas autorisé.
 
-Target-typed `new` is not allowed with binary operators.
+Le `new` de type cible n’est pas autorisé avec les opérateurs binaires.
 
-It is disallowed when there is no type to target: unary operators, collection of a `foreach`, in a `using`, in a deconstruction, in an `await` expression, as an anonymous type property (`new { Prop = new() }`), in a `lock` statement, in a `sizeof`, in a `fixed` statement, in a member access (`new().field`), in a dynamically dispatched operation (`someDynamic.Method(new())`), in a LINQ query, as the operand of the `is` operator, as the left operand of the `??` operator,  ...
+Elle n’est pas autorisée lorsqu’il n’y a aucun type à cibler : les opérateurs unaires, la collection d’un `foreach`dans un `using`, dans une déconstruction, dans une expression `await`, en tant que propriété de type anonyme (`new { Prop = new() }`), dans une instruction `lock`, dans une `sizeof`, dans une instruction `fixed`, dans un accès aux membres (`new().field`), dans une opération distribuée dynamiquement (`someDynamic.Method(new())`), dans une requête LINQ, comme opérande de l’opérateur `is`, comme opérande gauche de l’opérateur `??` ,  ...
 
-It is also disallowed as a `ref`.
+Il est également interdit en tant que `ref`.
 
-## Drawbacks
+## <a name="drawbacks"></a>Inconvénients
 [drawbacks]: #drawbacks
 
-There were some concerns with target-typed `new` creating new categories of breaking changes, but we already have that with `null` and `default`, and that has not been a significant problem.
+Il y avait des problèmes avec les `new` de type cible qui créent des catégories de modifications avec rupture, mais nous avons déjà cela avec `null` et `default`, et cela n’a pas été un problème significatif.
 
-## Alternatives
+## <a name="alternatives"></a>Autres solutions
 [alternatives]: #alternatives
 
-Most of complaints about types being too long to duplicate in field initialization is about *type arguments* not the type itself, we could infer only type arguments like `new Dictionary(...)` (or similar) and infer type arguments locally from arguments or the collection initializer.
+La plupart des plaintes sur les types trop longs pour être dupliqués dans l’initialisation de champ concerne les *arguments de type* qui ne sont pas le type lui-même, mais nous pourrions déduire uniquement les arguments de type comme `new Dictionary(...)` (ou similaire) et déduire les arguments de type localement à partir des arguments ou de l’initialiseur de collection.
 
-## Questions
+## <a name="questions"></a>Questions
 [questions]: #questions
 
-- Should we forbid usages in expression trees? (no)
-- How the feature interacts with `dynamic` arguments? (no special treatment)
-- How IntelliSense should work with `new()`? (only when there is a single target-type)
+- Devons-nous interdire les utilisations dans les arborescences d’expressions ? º
+- Comment la fonctionnalité interagit avec `dynamic` arguments ? (aucun traitement spécial)
+- Comment IntelliSense doit fonctionner avec `new()`? (uniquement s’il existe un seul type cible)
 
-## Design meetings
+## <a name="design-meetings"></a>Réunions de conception
 
 - [LDM-2017-10-18](https://github.com/dotnet/csharplang/blob/master/meetings/2017/LDM-2017-10-18.md#100)
 - [LDM-2018-05-21](https://github.com/dotnet/csharplang/blob/master/meetings/2018/LDM-2018-05-21.md)
