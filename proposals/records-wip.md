@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 25756c1811d5e6dc97512ce70f99ab7fefa91c4a
-ms.sourcegitcommit: 2a6dffb60718065ece95df75e1cc7eb509e48a8d
+ms.openlocfilehash: 258ae6865c5b2c3103a0cdf7e1e5a2cdee11e740
+ms.sourcegitcommit: 1e1c7c72b156e2fbc54d6d6ac8d21bca9934d8d2
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/01/2020
-ms.locfileid: "79485237"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "80281955"
 ---
 # <a name="records-work-in-progress"></a>Travaux en cours d’enregistrement
 
@@ -78,3 +78,31 @@ Les types d’enregistrements produisent des implémentations synthétisées pou
 ```C#
 override Equals(object o) => Equals(o as T);
 ```
+
+## <a name="with-expression"></a>Expression `with`
+
+Une expression `with` est une nouvelle expression utilisant la syntaxe suivante.
+
+```antlr
+with_expression
+    : switch_expression
+    | switch_expression 'with' anonymous_object_initializer
+```
+
+Une expression `with` permet la « mutation non destructrice », conçue pour produire une copie de l’expression du récepteur avec les modifications apportées aux propriétés figurant dans la `anonymous_object_initializer`.
+
+Une expression `with` valide a un récepteur avec un type non void. Le type de récepteur doit contenir une méthode d’instance accessible appelée `With` avec les paramètres et le type de retour appropriés. C’est une erreur s’il existe plusieurs méthodes de `With` non substituées. S’il existe plusieurs remplacements `With`, il doit y avoir une méthode de `With` non substituée, qui est la méthode cible. Dans le cas contraire, il doit y avoir exactement une seule méthode `With`.
+
+Sur le côté droit de l’expression `with` est une `anonymous_object_initializer` avec une séquence d’assignations avec un champ ou une propriété du récepteur sur le côté gauche de l’assignation, et une expression arbitraire sur le côté droit qui est implicitement convertible dans le type de la partie gauche.
+
+Pour une méthode `With` cible donnée, le type de retour doit être le type du type d’expression de récepteur ou un type de base de ce type. Pour chaque paramètre de la méthode `With`, il doit y avoir un champ d’instance correspondant accessible ou une propriété lisible sur le type de récepteur avec le même nom et le même type. Chaque propriété ou champ du côté droit de l’expression with doit également correspondre à un paramètre du même nom dans la méthode `With`.
+
+Étant donné une méthode de `With` valide, l’évaluation d’une expression `with` revient à appeler la méthode `With` avec les expressions du `anonymous_object_initializer` substituées pour le paramètre du même nom que la propriété de gauche. S’il n’existe aucune propriété correspondante pour un paramètre donné dans le `anonymous_object_initializer`, l’argument correspond à l’évaluation du champ ou de la propriété du même nom sur le récepteur.
+
+L’ordre d’évaluation des effets secondaires est le suivant, chaque expression évaluée exactement une fois :
+
+1. Expression Receiver
+
+2. Expressions dans le `anonymous_object_initializer`, dans l’ordre lexical
+
+3. L’évaluation de toutes les propriétés correspondant aux paramètres de méthode `With`, dans l’ordre de définition des paramètres de méthode `With`.

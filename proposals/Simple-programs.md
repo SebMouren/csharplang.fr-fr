@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: b9697fc1d772ba59ed3b1de339a5a3d4eb24b1bd
-ms.sourcegitcommit: 36b028f4d6e88bd7d4a843c6d384d1b63cc73334
+ms.openlocfilehash: 54ae4ffabde6dca49b7e6bfb626d65837eabc8f5
+ms.sourcegitcommit: 1e1c7c72b156e2fbc54d6d6ac8d21bca9934d8d2
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "79485223"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "80281942"
 ---
 # <a name="simple-programs"></a>Programmes simples
 
@@ -50,18 +50,16 @@ compilation_unit
     ;
 ```
 
-Dans toutes les *compilation_unit* , sauf une, les *instructions*doivent toutes être des déclarations de fonction locale. 
+Un seul *compilation_unit* est autorisé à avoir des *instructions*. 
 
 Exemple :
 
 ``` c#
-// File 1 - any statements
-if (args.Length == 0
-    || !int.TryParse(args[0], out int n)
+if (System.Environment.CommandLine.Length == 0
+    || !int.TryParse(System.Environment.CommandLine, out int n)
     || n < 0) return;
 Console.WriteLine(Fib(n).curr);
 
-// File 2 - only local functions
 (int curr, int prev) Fib(int i)
 {
     if (i == 0) return (1, 0);
@@ -79,18 +77,14 @@ static class Program
 {
     static async Task Main()
     {
-        // File 1 statements
-        // File 2 local functions
-        // ...
+        // statements
     }
 }
 ```
 
 Notez que les noms « Program » et « main » sont utilisés uniquement à des fins d’illustration. les noms réels utilisés par le compilateur sont dépendants de l’implémentation et ni du type, ni la méthode ne peut être référencée par nom à partir du code source.
 
-La méthode est désignée comme point d’entrée du programme. Les méthodes déclarées explicitement qui, par Convention, peuvent être considérées comme des candidats à un point d’entrée sont ignorées. Un avertissement est signalé lorsque cela se produit. Spécifier `-main:<type>` commutateur du compilateur est une erreur.
-
-Si une unité de compilation a des instructions autres que des déclarations de fonctions locales, les instructions de cette unité de compilation se produisent en premier. Elle est alors légale pour les fonctions locales dans un fichier afin de référencer les variables locales dans une autre. L’ordre des contributions d’instruction (qui seraient toutes des fonctions locales) à partir d’autres unités de compilation n’est pas défini.
+La méthode est désignée comme point d’entrée du programme. Les méthodes déclarées explicitement qui, par Convention, peuvent être considérées comme des candidats à un point d’entrée sont ignorées. Un avertissement est signalé lorsque cela se produit. Il est erroné de spécifier `-main:<type>` commutateur du compilateur lorsqu’il existe des instructions de niveau supérieur.
 
 Les opérations asynchrones sont autorisées dans les instructions de niveau supérieur jusqu’à ce qu’elles soient autorisées dans les instructions au sein d’une méthode de point d’entrée Async standard. Toutefois, elles ne sont pas requises, si `await` expressions et d’autres opérations asynchrones sont omises, aucun avertissement n’est généré. Au lieu de cela, la signature de la méthode de point d’entrée générée est équivalente à 
 ``` c#
@@ -104,13 +98,11 @@ static class $Program
 {
     static void $Main()
     {
-        // Statements from File 1
-        if (args.Length == 0
-            || !int.TryParse(args[0], out int n)
+        if (System.Environment.CommandLine.Length == 0
+            || !int.TryParse(System.Environment.CommandLine, out int n)
             || n < 0) return;
         Console.WriteLine(Fib(n).curr);
         
-        // Local functions from File 2
         (int curr, int prev) Fib(int i)
         {
             if (i == 0) return (1, 0);
@@ -123,7 +115,6 @@ static class $Program
 
 En même temps, un exemple semblable à celui-ci :
 ``` c#
-// File 1
 await System.Threading.Tasks.Task.Delay(1000);
 System.Console.WriteLine("Hi!");
 ```
@@ -134,7 +125,6 @@ static class $Program
 {
     static async Task $Main()
     {
-        // Statements from File 1
         await System.Threading.Tasks.Task.Delay(1000);
         System.Console.WriteLine("Hi!");
     }
@@ -143,7 +133,7 @@ static class $Program
 
 ### <a name="scope-of-top-level-local-variables-and-local-functions"></a>Portée des variables locales de niveau supérieur et des fonctions locales
 
-Même si les variables locales de niveau supérieur et les fonctions sont « encapsulées » dans la méthode de point d’entrée générée, elles doivent toujours être dans la portée tout au long du programme.
+Même si les variables locales de niveau supérieur et les fonctions sont « encapsulées » dans la méthode de point d’entrée générée, elles doivent toujours être dans la portée tout au long du programme dans chaque unité de compilation.
 Dans le cadre de l’évaluation de nom simple, une fois l’espace de noms global atteint :
 - Tout d’abord, une tentative est faite pour évaluer le nom dans la méthode de point d’entrée générée et uniquement si cette tentative échoue 
 - L’évaluation « normale » dans la déclaration d’espace de noms globale est effectuée. 
