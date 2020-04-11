@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: e29f453eb33e06fb3c84fb542d8b74223af9b975
-ms.sourcegitcommit: 7f0c8e4eac7afe75e4f312f54a554614384cd06b
+ms.openlocfilehash: 1fb1f3b9025d65cb39f675e60bae1cb6415fc184
+ms.sourcegitcommit: 88202acd40ca04b6e513ea1e5993625ee26fac3f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/08/2020
-ms.locfileid: "80870980"
+ms.lasthandoff: 04/11/2020
+ms.locfileid: "81219626"
 ---
 # <a name="records-work-in-progress"></a>Documents Travail en cours
 
@@ -89,18 +89,8 @@ with_expression
 
 Une `with` expression permet une «mutation non destructive», conçue pour produire une copie de `anonymous_object_initializer`l’expression du récepteur avec des modifications aux propriétés énumérées dans le .
 
-Une `with` expression valide a un récepteur avec un type non vide. Le type de récepteur doit `With` contenir une méthode d’instance accessible appelée avec les paramètres appropriés et le type de retour. C’est une erreur s’il `With` existe plusieurs méthodes de non-remplacement. S’il `With` y a plusieurs remplacements, il `With` doit y avoir une méthode de non-remplacement, qui est la méthode cible. Sinon, il doit `With` y avoir exactement une méthode.
+Une `with` expression valide a un récepteur avec un type non vide. Le type de récepteur doit contenir `Clone` une méthode d’instance sans paramètres accessible appelée dont le type de retour doit être le type express du récepteur, ou un type de base de celui-ci.
 
-Sur le côté droit `with` de `anonymous_object_initializer` l’expression est une séquence d’affectations avec un champ ou une propriété du récepteur sur le côté gauche de la mission, et une expression arbitraire sur le côté droit qui est implicitement convertible au type du côté gauche.
+Sur le côté droit `with` de `anonymous_object_initializer` l’expression est une séquence d’affectations avec une propriété d’enregistrement générée par compilateur du récepteur sur le côté gauche de l’affectation, et une expression arbitraire sur le côté droit qui est implicitement convertible au type du côté gauche.
 
-Compte tenu `With` d’une méthode cible, le type de retour doit être le type d’expression du récepteur, ou un type de base de celui-ci. Pour chaque paramètre de la `With` méthode, il doit y avoir un champ d’instance correspondant accessible ou une propriété lisible sur le type de récepteur du même nom et du même type. Chaque propriété ou champ dans le côté droit de l’expression Avec doit `With` également correspondre à un paramètre du même nom dans la méthode.
-
-Compte tenu `With` d’une méthode `with` valide, l’évaluation d’une expression équivaut à appeler la `With` méthode avec les expressions dans le `anonymous_object_initializer` substitué au paramètre du même nom que la propriété sur le côté gauche. S’il n’y a pas `anonymous_object_initializer`de propriété correspondante pour un paramètre donné dans le , l’argument est l’évaluation du champ ou de la propriété du même nom sur le récepteur.
-
-L’ordre d’évaluation des effets secondaires est le suivant, chaque expression étant évaluée exactement une fois :
-
-1. Expression du récepteur
-
-2. Expressions dans `anonymous_object_initializer`le , dans l’ordre lexical
-
-3. L’évaluation de toutes `With` les propriétés correspondant aux `With` paramètres de la méthode, par ordre de définition des paramètres de la méthode.
+L’évaluation `with` d’une expression `Clone` équivaut à appeler la méthode exactement une fois, puis à définir le champ d’appui de `Clone` chaque propriété d’enregistrement dans la liste d’argumentation à son expression correspondante, dans l’ordre lexical, en utilisant le résultat de la méthode comme récepteur.
