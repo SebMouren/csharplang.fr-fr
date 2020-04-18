@@ -1,24 +1,24 @@
 ---
-ms.openlocfilehash: 54ae4ffabde6dca49b7e6bfb626d65837eabc8f5
-ms.sourcegitcommit: 1e1c7c72b156e2fbc54d6d6ac8d21bca9934d8d2
+ms.openlocfilehash: 0e2b4b70e0555145f54be2cc57da9f50f5a43548
+ms.sourcegitcommit: 1ecebc412f073f3959395f33b70666c8ede88f3c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 03/26/2020
-ms.locfileid: "80281942"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81612099"
 ---
 # <a name="simple-programs"></a>Programmes simples
 
-* [x] proposé
-* [x] prototype : démarré
-* [] Implémentation : non démarrée
-* [] Spécification : non démarrée
+* [x] Proposé
+* [x] Prototype: Commencé
+* [x] Mise en œuvre : Démarrage
+* [ ] Spécification: Pas commencé
 
 ## <a name="summary"></a>Résumé
 [summary]: #summary
 
-Autoriser une séquence d' *instructions* à se produire juste avant la *namespace_member_declaration*s d’un *compilation_unit* (c.-à-d. fichier source).
+Permettre qu’une séquence *d’instructions* se produise juste avant le *namespace_member_declaration*d’un *compilation_unit* (c.-à-d. le fichier source).
 
-La sémantique est que, si une telle séquence d' *instructions* est présente, la déclaration de type suivante, Modulo le nom de type réel et le nom de la méthode, serait émise :
+La sémantique est que si une telle séquence de *déclarations* est présente, la déclaration de type suivante, modulo le nom de type réel et le nom de la méthode, seraient émis:
 
 ``` c#
 static class Program
@@ -35,14 +35,14 @@ Voir aussi https://github.com/dotnet/csharplang/issues/3117.
 ## <a name="motivation"></a>Motivation
 [motivation]: #motivation
 
-Il y a une certaine quantité de programme, même la plus simple des programmes, en raison de la nécessité d’une méthode de `Main` explicite. Cela semble être un moyen d’apprendre et de clarifier le programme. L’objectif principal de cette fonctionnalité est donc d’autoriser C# les programmes qui n’ont pas besoin d’être réutilisés, à des fins d’apprentissage et de clarté du code.
+Il ya une certaine quantité de plaque chauffante entourant même le plus `Main` simple des programmes, en raison de la nécessité d’une méthode explicite. Cela semble mettre en travers de la voie de l’apprentissage des langues et de la clarté du programme. L’objectif principal de la fonctionnalité est donc d’autoriser les programmes C 'sans plaque chauffante inutile autour d’eux, pour le bien des apprenants et la clarté du code.
 
 ## <a name="detailed-design"></a>Conception détaillée
 [design]: #detailed-design
 
 ### <a name="syntax"></a>Syntaxe
 
-La seule syntaxe supplémentaire autorise une séquence d' *instructions*dans une unité de compilation, juste avant la *namespace_member_declaration*s :
+La seule syntaxe supplémentaire est d’autoriser une séquence de *déclaration*s dans une unité de compilation, juste avant le *namespace_member_declaration*s:
 
 ``` antlr
 compilation_unit
@@ -50,7 +50,7 @@ compilation_unit
     ;
 ```
 
-Un seul *compilation_unit* est autorisé à avoir des *instructions*. 
+Un seul *compilation_unit* est autorisé à avoir *la déclaration*s. 
 
 Exemple :
 
@@ -70,7 +70,7 @@ Console.WriteLine(Fib(n).curr);
 
 ### <a name="semantics"></a>Sémantique
 
-Si des instructions de niveau supérieur sont présentes dans une unité de compilation du programme, la signification est comme si elles étaient combinées dans le corps du bloc d’une méthode `Main` d’une classe `Program` dans l’espace de noms global, comme suit :
+Si des déclarations de haut niveau sont présentes dans n’importe quelle unité de `Main` compilation du `Program` programme, le sens est comme s’ils étaient combinés dans le corps de bloc d’une méthode d’une classe dans l’espace de nom global, comme suit :
 
 ``` c#
 static class Program
@@ -82,16 +82,19 @@ static class Program
 }
 ```
 
-Notez que les noms « Program » et « main » sont utilisés uniquement à des fins d’illustration. les noms réels utilisés par le compilateur sont dépendants de l’implémentation et ni du type, ni la méthode ne peut être référencée par nom à partir du code source.
+Notez que les noms «Programme» et «Main» ne sont utilisés qu’à des fins d’illustrations, les noms réels utilisés par le compilateur sont dépendants de la mise en œuvre et ni le type, ni la méthode ne peut être référencé par le nom à partir du code source.
 
-La méthode est désignée comme point d’entrée du programme. Les méthodes déclarées explicitement qui, par Convention, peuvent être considérées comme des candidats à un point d’entrée sont ignorées. Un avertissement est signalé lorsque cela se produit. Il est erroné de spécifier `-main:<type>` commutateur du compilateur lorsqu’il existe des instructions de niveau supérieur.
+La méthode est désignée comme point d’entrée du programme. Les méthodes explicitement déclarées selon lesquelles, selon la convention, les candidats pourraient être considérés comme des candidats aux points d’entrée sont ignorées. Un avertissement est signalé lorsque cela se produit. C’est une `-main:<type>` erreur de spécifier l’interrupteur compilateur lorsqu’il y a des relevés de haut niveau.
 
-Les opérations asynchrones sont autorisées dans les instructions de niveau supérieur jusqu’à ce qu’elles soient autorisées dans les instructions au sein d’une méthode de point d’entrée Async standard. Toutefois, elles ne sont pas requises, si `await` expressions et d’autres opérations asynchrones sont omises, aucun avertissement n’est généré. Au lieu de cela, la signature de la méthode de point d’entrée générée est équivalente à 
-``` c#
-    static void Main()
-```
+Les opérations Async sont autorisées dans les relevés de haut niveau dans la mesure où elles sont autorisées dans les déclarations dans le cadre d’une méthode régulière de point d’entrée async. Cependant, ils ne sont `await` pas nécessaires, si des expressions et d’autres opérations async sont omises, aucun avertissement n’est produit.
 
-L’exemple ci-dessus produirait la déclaration de méthode `$Main` suivante :
+La signature de la méthode générée du point d’entrée est déterminée en fonction des opérations utilisées par les énoncés de niveau supérieur comme suit :
+**Async-operations-Retour-avec-expression** | **Présent** | **Absent**
+----------------------------------------| -------------|-------------
+**Présent** | ```static Task<int> Main()```| ```static Task Main()```
+**Absent**  | ```static int Main()``` | ```static void Main()```
+
+L’exemple ci-dessus `$Main` donnerait la déclaration de méthode suivante :
 
 ``` c#
 static class $Program
@@ -113,13 +116,13 @@ static class $Program
 }
 ```
 
-En même temps, un exemple semblable à celui-ci :
+En même temps un exemple comme celui-ci:
 ``` c#
 await System.Threading.Tasks.Task.Delay(1000);
 System.Console.WriteLine("Hi!");
 ```
 
-donne :
+donnerait :
 ``` c#
 static class $Program
 {
@@ -131,16 +134,54 @@ static class $Program
 }
 ```
 
-### <a name="scope-of-top-level-local-variables-and-local-functions"></a>Portée des variables locales de niveau supérieur et des fonctions locales
+Un exemple comme celui-ci:
+``` c#
+await System.Threading.Tasks.Task.Delay(1000);
+System.Console.WriteLine("Hi!");
+return 0;
+```
 
-Même si les variables locales de niveau supérieur et les fonctions sont « encapsulées » dans la méthode de point d’entrée générée, elles doivent toujours être dans la portée tout au long du programme dans chaque unité de compilation.
-Dans le cadre de l’évaluation de nom simple, une fois l’espace de noms global atteint :
-- Tout d’abord, une tentative est faite pour évaluer le nom dans la méthode de point d’entrée générée et uniquement si cette tentative échoue 
-- L’évaluation « normale » dans la déclaration d’espace de noms globale est effectuée. 
+donnerait :
+``` c#
+static class $Program
+{
+    static async Task<int> $Main()
+    {
+        await System.Threading.Tasks.Task.Delay(1000);
+        System.Console.WriteLine("Hi!");
+        return 0;
+    }
+}
+```
 
-Cela peut entraîner l’occultation de nom des espaces de noms et des types déclarés dans l’espace de noms global, ainsi que l’occultation de noms importés.
+Et un exemple comme celui-ci:
+``` c#
+System.Console.WriteLine("Hi!");
+return 2;
+```
 
-Si l’évaluation de nom simple se produit en dehors des instructions de niveau supérieur et que l’évaluation génère une variable locale ou une fonction de niveau supérieur, cela devrait entraîner une erreur.
+donnerait :
+``` c#
+static class $Program
+{
+    static int $Main()
+    {
+        System.Console.WriteLine("Hi!");
+        return 2;
+    }
+}
+```
 
-De cette façon, nous protégeons notre future capacité à mieux répondre aux « fonctions de niveau supérieur » (scénario 2 dans https://github.com/dotnet/csharplang/issues/3117), et pouvons fournir des diagnostics utiles aux utilisateurs qui pensent par erreur qu’ils sont pris en charge.
+### <a name="scope-of-top-level-local-variables-and-local-functions"></a>Portée des variables locales de haut niveau et des fonctions locales
+
+Même si les variables et les fonctions locales de haut niveau sont « enveloppées » dans la méthode générée des points d’entrée, elles devraient toujours être de portée tout au long du programme dans chaque unité de compilation.
+Aux fins de l’évaluation simple de nom, une fois que l’espace de nom global est atteint :
+- Tout d’abord, une tentative est faite d’évaluer le nom dans la méthode générée point d’entrée et seulement si cette tentative échoue 
+- L’évaluation « régulière » dans la déclaration globale de namespace est effectuée. 
+
+Cela pourrait conduire à l’ombre de noms des espaces de nom et des types déclarés dans l’espace de nom global ainsi que l’ombre des noms importés.
+
+Si l’évaluation simple du nom se produit en dehors des énoncés de haut niveau et que l’évaluation donne une variable ou une fonction locale de haut niveau, cela devrait conduire à une erreur.
+
+De cette façon, nous protégeons notre capacité future à mieux répondre https://github.com/dotnet/csharplang/issues/3117)aux « fonctions de haut niveau » (scénario 2 po , et sommes en mesure de donner des diagnostics utiles aux utilisateurs qui croient à tort qu’ils sont pris en charge.
 
