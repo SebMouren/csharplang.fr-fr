@@ -1,14 +1,14 @@
 ---
-ms.openlocfilehash: 9e7059b579060e547e4665ac50518581fe3512e6
-ms.sourcegitcommit: 52624f54c0ad99a4d659fe4e2560a472be795c49
+ms.openlocfilehash: e5ab385f498c0d96c55e60751bb204e7217f6eab
+ms.sourcegitcommit: 95f5f86ba2e2a23cd4fb37bd9d1ff690c83d1191
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/10/2020
-ms.locfileid: "81005702"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "81646684"
 ---
 # <a name="function-pointers"></a>Pointeurs fonction
 
-## <a name="summary"></a>Récapitulatif
+## <a name="summary"></a>Résumé
 
 Cette proposition fournit des constructions linguistiques qui exposent les codes d’opcodes de `ldftn` `calli`l’IL qui ne peuvent pas actuellement être consultés efficacement, ou du tout, dans Cô aujourd’hui: et . Ces codes d’opcodes IL peuvent être importants dans le code haute performance et les développeurs ont besoin d’un moyen efficace d’y accéder.
 
@@ -238,6 +238,26 @@ La meilleure spécification des membres de fonction sera modifiée pour inclure 
 > A `delegate*` est plus spécifique que`void*`
 
 Cela signifie qu’il est `void*` possible `delegate*` de surcharger et d’utiliser l’adresse de l’opérateur et d’utiliser toujours judicieusement.
+
+## <a name="metadata-representation-of-in-out-and-ref-readonly-parameters-and-return-types"></a>Représentation des métadonnées des `in`types de , `out`et `ref readonly` de paramètres et de retour
+
+Les signatures de pointeur de fonction n’ont pas d’emplacement `in` `out`de `ref readonly` drapeaux de paramètres, ainsi nous devons coder si les paramètres et le type de retour sont, , ou en utilisant des modreqs.
+
+### `in`
+
+Nous réutiliser `System.Runtime.InteropServices.InAttribute` `modreq` , appliqué comme un spécificateur réf sur un paramètre ou un type de retour, pour signifier ce qui suit:
+* S’il est appliqué sur un spécificateur réciscivrateur de paramètres, ce paramètre est traité comme `in`.
+* S’il est appliqué sur le spécificateur `ref readonly`de réf de retour, le type de retour est traité comme .
+
+### `out`
+
+Nous `System.Runtime.InteropServices.OutAttribute`utilisons , `modreq` appliqué comme un spécificateur de réf sur `out` un type de paramètre, pour signifier que le paramètre est un paramètre.
+
+### <a name="errors"></a>Erreurs
+
+* C’est une `OutAttribute` erreur d’appliquer comme modreq à un type de retour.
+* C’est une erreur `InAttribute` `OutAttribute` d’appliquer à la fois et comme modreq à un type de paramètre.
+* Si l’un ou l’autre sont spécifiés par modopt, ils sont ignorés.
 
 ## <a name="open-issues"></a>Open Issues
 
