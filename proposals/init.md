@@ -1,12 +1,12 @@
 ---
-ms.openlocfilehash: ebbdab6d121f3001ac34a953b3de09768cda6344
-ms.sourcegitcommit: 3f177e90b12e39d4d28f8bb1064df81a8e5912ca
+ms.openlocfilehash: ddcacefebc0580a8121adda4693bfea6eaf16b94
+ms.sourcegitcommit: fea3e4f37432254c00c29988c2ed0efebc7af20a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81726067"
+ms.lasthandoff: 04/23/2020
+ms.locfileid: "82072298"
 ---
-<a name="init-only-members"></a>Init Seuls les membres
+<a name="init-only-setters"></a>Init Seulement Setters
 =====
 
 ## <a name="summary"></a>Résumé
@@ -219,12 +219,12 @@ Restrictions de cette fonctionnalité:
 - Toutes les dérogations `init` d’une `init`propriété doivent avoir si la base avait . Cette règle s’applique également à la mise en œuvre de l’interface.
 
 ### <a name="metadata-encoding"></a>Codage de métadonnées 
-Les `init` accesseurs de propriété seront `set` émis en tant qu’accesseur standard `IsInitOnly`avec le type de retour marqué d’un modreq de . Il s’agit d’un nouveau type qui aura la définition suivante:
+Les `init` accesseurs de propriété seront `set` émis en tant qu’accesseur standard `IsExternalInit`avec le type de retour marqué d’un modreq de . Il s’agit d’un nouveau type qui aura la définition suivante:
 
 ```cs
 namespace System.Runtime.CompilerServices
 {
-    public sealed class IsInitOnly
+    public sealed class IsExternalInit
     {
     }
 }
@@ -237,7 +237,7 @@ Le compilateur correspondra au type par nom complet. Il n’est pas nécessaire 
 
 Si aucun de ces éléments n’existe, une erreur d’ambiguïté type sera émise.
 
-La conception `IsInitOnly` pour est futher couvert dans [ce numéro](https://github.com/dotnet/runtime/issues/34978)
+La conception `IsExternalInit` pour est futher couvert dans [ce numéro](https://github.com/dotnet/runtime/issues/34978)
 
 ## <a name="questions"></a>Questions
 
