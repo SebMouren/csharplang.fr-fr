@@ -1,15 +1,15 @@
 ---
-ms.openlocfilehash: 8da0f989669c77f724b5369722da3fcc944c348e
-ms.sourcegitcommit: ab0873759f86d44adfc5daefb18cb922df8adb8b
+ms.openlocfilehash: f50299739321818a4877f593ee715f35540132b0
+ms.sourcegitcommit: e006b4808d8c107dad2935348b57d51edbfaf9a7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/27/2020
-ms.locfileid: "82162098"
+ms.lasthandoff: 05/05/2020
+ms.locfileid: "82820162"
 ---
 <a name="init-only-setters"></a>Les Setters init uniquement
 =====
 
-## <a name="summary"></a>Récapitulatif
+## <a name="summary"></a>Résumé
 Cette proposition ajoute le concept de propriétés et d’indexeurs init uniquement à C#. Ces indexeurs peuvent être définis au moment de la création de l’objet, mais ne `get` deviennent effectifs qu’une fois la création de l’objet terminée.
 Cela permet un modèle immuable bien plus flexible en C#. 
 
@@ -72,6 +72,7 @@ Une propriété d’instance contenant `init` un accesseur est considérée comm
 - Au cours `with` d’un initialiseur d’expression
 - À l’intérieur d’un constructeur d’instance du type conteneur ou `this` dérivé, sur ou`base`
 - À l' `init` intérieur de l’accesseur d' `this` une propriété, sur ou`base`
+- À l’intérieur des utilisations d’attributs avec des paramètres nommés
 
 Les heures ci-dessus dans `init` lesquelles les accesseurs sont définissables sont collectivement appelées dans ce document en tant que phase de construction de l’objet.
 
@@ -369,7 +370,7 @@ init struct Point
 
 Étant donné `init` que n’est valide que sur certains aspects d’un type, nous avons rejeté l’idée de le faire en tant que modificateur de type.
 
-## <a name="considerations"></a>Éléments à prendre en considération
+## <a name="considerations"></a>Considérations
 
 ### <a name="compatibility"></a>Compatibilité
 Cette `init` fonctionnalité est conçue pour être compatible avec les `get` propriétés existantes uniquement. Plus précisément, il s’agit d’une modification entièrement additive pour une propriété qui `get` est uniquement aujourd’hui, mais qui souhaite une plus grande sémantique de création d’objets Flexbile.
