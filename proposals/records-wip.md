@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 32682010c79073aabbc71ef9de433a7a76138c3f
-ms.sourcegitcommit: c30039481ee8a75c3b3e4ddd369fdf8f84f8945b
+ms.openlocfilehash: 758bc3fddf577b118fc50866a683fa96324e5dc3
+ms.sourcegitcommit: 300226c009490828d615e86c50df7ac8c836f945
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596755"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83843597"
 ---
 # <a name="records-work-in-progress"></a>Travaux en cours d’enregistrement
 
@@ -34,11 +34,11 @@ struct_body
     ;
 ```
 
-Le `attributes` terminal non-terminal autorise également un nouvel attribut contextuel `data`,.
+Le `attributes` Terminal non-terminal autorise également un nouvel attribut contextuel, `data` .
 
-Une classe (struct) déclarée avec un modificateur `data` ou une liste de paramètres est appelée classe d’enregistrement (struct d’enregistrement), soit un type d’enregistrement.
+Une classe (struct) déclarée avec un modificateur ou une liste `data` de paramètres est appelée classe d’enregistrement (struct d’enregistrement), soit un type d’enregistrement.
 
-La déclaration d’un type d’enregistrement sans une liste de paramètres et le `data` modificateur est une erreur.
+La déclaration d’un type d’enregistrement sans une liste de paramètres et le modificateur est une erreur `data` .
 
 ## <a name="members-of-a-record-type"></a>Membres d’un type d’enregistrement
 
@@ -62,7 +62,7 @@ Pour un struct d’enregistrement ou une classe d’enregistrement :
 
 * Une propriété automatique de récupération en tant que public est créée. Sa valeur est initialisée pendant la construction avec la valeur du paramètre de constructeur principal correspondant. Chaque accesseur Get de la propriété abstraite « correspondant » hérité est substitué.
 
-  * Cette propriété est également `initonly`, ce qui signifie que le champ de stockage peut être modifié dans l’expression [with](#With) ci- `get` dessous, si l’accesseur correspondant est accessible
+  * Cette propriété est également `initonly` , ce qui signifie que le champ de stockage peut être modifié dans l’expression [with](#With) ci-dessous, si l' `get` accesseur correspondant est accessible
 
 ### <a name="equality-members"></a>Membres d’égalité
 
@@ -72,7 +72,8 @@ Les types d’enregistrements produisent des implémentations synthétisées pou
 * `object.Equals(object)`override, sauf s’il est sealed ou fourni par l’utilisateur
 * `T Equals(T)`méthode, où `T` est le type actuel
 
-`T Equals(T)`est spécifié pour effectuer l’égalité des valeurs, en comparant la propriété portant le même nom que chaque paramètre de constructeur principal à la propriété correspondante de l’autre type.
+`T Equals(T)`est spécifié pour effectuer une égalité de valeur, ce qui `Equals` a la valeur true si et seulement si tous les champs d’instance déclarés dans le type de récepteur sont égaux aux champs de l’autre type.
+
 `object.Equals`exécute l’équivalent de
 
 ```C#
@@ -89,11 +90,11 @@ with_expression
     | switch_expression 'with' anonymous_object_initializer
 ```
 
-Une `with` expression permet une « mutation non destructrice », conçue pour produire une copie de l’expression du récepteur avec les modifications apportées aux `anonymous_object_initializer`propriétés figurant dans le.
+Une `with` expression permet une « mutation non destructrice », conçue pour produire une copie de l’expression du récepteur avec les modifications apportées aux propriétés figurant dans le `anonymous_object_initializer` .
 
-Une expression `with` valide a un récepteur avec un type non void. Le type de récepteur doit contenir une méthode d’instance sans paramètre `Clone` accessible appelée dont le type de retour doit être le type de récepteur ou un type de base de celui-ci.
+Une `with` expression valide a un récepteur avec un type non void. Le type de récepteur doit contenir une méthode d’instance sans paramètre accessible appelée `Clone` dont le type de retour doit être le type de récepteur ou un type de base de celui-ci.
 
-Sur le côté `with` droit de l’expression se trouve un `anonymous_object_initializer` avec une séquence d’assignations, chacune `initonly` avec une propriété (consultez [Propriétés](#Properties)) `Clone` du type de retour sur le côté gauche de l’assignation (en tant qu’appel de propriété) et une expression arbitraire sur le côté droit qui est implicitement convertible en type de la propriété.
+Sur le côté droit de l' `with` expression se trouve un `anonymous_object_initializer` avec une séquence d’assignations, chacune avec une `initonly` propriété (consultez [Propriétés](#Properties)) du `Clone` type de retour sur le côté gauche de l’assignation (en tant qu’appel de propriété) et une expression arbitraire sur le côté droit qui est implicitement convertible en type de la propriété.
 
-L’évaluation d’une `with` expression appelle la `Clone` méthode exactement une fois, puis définit le champ de stockage de chaque `initonly` propriété dans la liste d’arguments sur la valeur de son expression correspondante, dans l’ordre lexical, à l’aide `Clone` du résultat de l’appel de la méthode comme récepteur. Le type de l' `with` expression est le même que le type de retour de `Clone` la méthode.
+L’évaluation d’une `with` expression appelle la `Clone` méthode exactement une fois, puis définit le champ de stockage de chaque `initonly` propriété dans la liste d’arguments sur la valeur de son expression correspondante, dans l’ordre lexical, à l’aide du résultat de l’appel de la `Clone` méthode comme récepteur. Le type de l' `with` expression est le même que le type de retour de la `Clone` méthode.
 
