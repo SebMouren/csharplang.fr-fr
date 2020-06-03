@@ -1,11 +1,12 @@
 ---
-ms.openlocfilehash: 6d8f0512d478d3d82cb262466e49a22a9e3cd0ee
-ms.sourcegitcommit: ae114131069ca76e4a1ec8149b7bab81fce8965c
+ms.openlocfilehash: 1bf904965c2eacfdeb28aace93e1361881f1b0bd
+ms.sourcegitcommit: 6c404867b9f1ab70c4c4960ddf821b52579ed1fa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/30/2020
-ms.locfileid: "84227977"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84305476"
 ---
+
 # <a name="records-work-in-progress"></a>Travaux en cours d’enregistrement
 
 Contrairement aux autres propositions d’enregistrements, il ne s’agit pas d’une proposition en soi, mais d’un travail en cours destiné à enregistrer les décisions de conception de consensus pour la fonctionnalité d’enregistrement. Les détails de la spécification seront ajoutés si nécessaire pour résoudre les questions.
@@ -38,29 +39,11 @@ Le `attributes` Terminal non-terminal autorise également un nouvel attribut con
 
 Une classe (struct) déclarée avec un modificateur ou une liste `data` de paramètres est appelée classe d’enregistrement (struct d’enregistrement), soit un type d’enregistrement.
 
-La déclaration d’un type d’enregistrement sans une liste de paramètres et le modificateur est une erreur `data` .
+La déclaration d’un type d’enregistrement sans le modificateur est une erreur `data` .
 
 ## <a name="members-of-a-record-type"></a>Membres d’un type d’enregistrement
 
 En plus des membres déclarés dans le corps de la classe ou du struct, un type d’enregistrement a les membres supplémentaires suivants :
-
-### <a name="primary-constructor"></a>Constructeur principal
-
-Un type d’enregistrement a un constructeur public dont la signature correspond aux paramètres de valeur de la déclaration de type. C’est ce que l’on appelle le constructeur principal pour le type, et le constructeur de classe par défaut déclaré implicitement, s’il est présent, doit être supprimé. C’est une erreur d’avoir un constructeur principal et un constructeur avec la même signature déjà présente dans la classe.
-
-Au moment de l’exécution, le constructeur principal
-
-1. exécute les initialiseurs de champ d’instance qui apparaissent dans le corps de la classe ; puis appelle le constructeur de classe de base sans arguments.
-
-1. Initialise les champs de stockage générés par le compilateur pour les propriétés correspondant aux paramètres de valeur (si ces propriétés sont fournies par le compilateur
-
-### <a name="properties"></a>Propriétés
-
-Pour chaque paramètre d’enregistrement d’une déclaration de type d’enregistrement, il existe un membre de propriété public correspondant dont le nom et le type sont extraits de la déclaration de paramètre de valeur. Si aucune propriété concrète (c’est-à-dire non abstraite) avec un accesseur get et avec ce nom et ce type n’est explicitement déclarée ou héritée, elle est produite par le compilateur comme suit :
-
-Pour un struct d’enregistrement ou une classe d’enregistrement :
-
-* Une `get` propriété publique et une `init` propriété automatique sont créées (voir `init` spécification d’accesseur distincte). Sa valeur est initialisée pendant la construction avec la valeur du paramètre de constructeur principal correspondant. Chaque accesseur Get de la propriété abstraite « correspondant » hérité est substitué.
 
 ### <a name="equality-members"></a>Membres d’égalité
 
@@ -88,6 +71,30 @@ Un type d’enregistrement contient deux membres de copie synthétisée si les m
 Le constructeur protégé est appelé « constructeur de copie » et le corps synthétisé copie les valeurs de tous les champs d’instance déclarés dans le type d’entrée dans les champs correspondants de `this` .
 
 La `Clone` méthode retourne le résultat d’un appel à un constructeur ayant la même signature que le constructeur de copie.
+
+## <a name="positional-record-members"></a>Membres d’enregistrement positionnel
+
+Outre les membres ci-dessus, les enregistrements avec une liste de paramètres (« enregistrements positionnels ») possèdent les membres suivants :
+
+### <a name="primary-constructor"></a>Constructeur principal
+
+Un type d’enregistrement a un constructeur public dont la signature correspond aux paramètres de valeur de la déclaration de type. C’est ce que l’on appelle le constructeur principal pour le type, et le constructeur de classe par défaut déclaré implicitement, s’il est présent, doit être supprimé. C’est une erreur d’avoir un constructeur principal et un constructeur avec la même signature déjà présente dans la classe.
+
+Au moment de l’exécution, le constructeur principal
+
+1. exécute les initialiseurs de champ d’instance qui apparaissent dans le corps de la classe ; puis appelle le constructeur de classe de base sans arguments.
+
+1. Initialise les champs de stockage générés par le compilateur pour les propriétés correspondant aux paramètres de valeur (si ces propriétés sont fournies par le compilateur
+
+### <a name="properties"></a>Propriétés
+
+Pour chaque paramètre d’enregistrement d’une déclaration de type d’enregistrement, il existe un membre de propriété public correspondant dont le nom et le type sont extraits de la déclaration de paramètre de valeur. Si aucune propriété concrète (c’est-à-dire non abstraite) avec un accesseur get et avec ce nom et ce type n’est explicitement déclarée ou héritée, elle est produite par le compilateur comme suit :
+
+Pour un struct d’enregistrement ou une classe d’enregistrement :
+
+* Une `get` propriété publique et une `init` propriété automatique sont créées (voir `init` spécification d’accesseur distincte). Sa valeur est initialisée pendant la construction avec la valeur du paramètre de constructeur principal correspondant. Chaque accesseur Get de la propriété abstraite « correspondant » hérité est substitué.
+
+
 ## <a name="with-expression"></a>Expression `with`
 
 Une `with` expression est une nouvelle expression utilisant la syntaxe suivante.
