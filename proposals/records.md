@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 82f68e2e2703f1d78c191d1120781ab7306b327a
-ms.sourcegitcommit: 100d3f7f04ba1e4f666c188fbd73762f2c3b8716
+ms.openlocfilehash: ffa34ad55752197bc2d8fb6cac7759602a2672c9
+ms.sourcegitcommit: 5c9b8f27bd8299c70e2f4205a46079a10cffce76
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84421867"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84533344"
 ---
 
 # <a name="records"></a>Enregistrements
@@ -71,6 +71,8 @@ Un type d’enregistrement contient deux membres de copie synthétisée :
 Le constructeur protégé est appelé « constructeur de copie » et le corps synthétisé copie les valeurs de tous les champs d’instance accessibles dans le type d’entrée dans les champs correspondants de `this` .
 
 La méthode « Clone » retourne le résultat d’un appel à un constructeur avec la même signature que le constructeur de copie. Le type de retour de la méthode Clone est le type conteneur, à moins qu’une méthode Clone virtuelle soit présente dans la classe de base. Dans ce cas, le type de retour est le type conteneur actuel si la fonctionnalité « covariant retourne » est prise en charge et le type de retour de substitution dans le cas contraire. La méthode de clonage synthétisé est une substitution de la méthode Clone du type de base s’il en existe une. Une erreur est générée si la méthode Clone du type de base est sealed.
+
+Si l’enregistrement conteneur est abstrait, la méthode de clonage synthétisé est également abstraite.
 
 ## <a name="positional-record-members"></a>Membres d’enregistrement positionnel
 
