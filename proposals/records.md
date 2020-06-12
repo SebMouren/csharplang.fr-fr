@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: ffa34ad55752197bc2d8fb6cac7759602a2672c9
-ms.sourcegitcommit: 5c9b8f27bd8299c70e2f4205a46079a10cffce76
+ms.openlocfilehash: 35f6836e20776450ce5f776e7fdb66ca634d04a0
+ms.sourcegitcommit: 0f56445e250ddf82b88848b94c59870f13ab8ffc
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84533344"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84663265"
 ---
 
 # <a name="records"></a>Enregistrements
@@ -36,39 +36,58 @@ Les types d’enregistrements sont des types référence, similaires à une déc
 ## <a name="members-of-a-record-type"></a>Membres d’un type d’enregistrement
 
 En plus des membres déclarés dans le corps d’enregistrement, un type d’enregistrement a des membres synthétisés supplémentaires.
-Les membres sont synthétisés, à moins qu’un membre concret (non abstrait) accessible avec une signature « correspondante » soit hérité ou déclaré dans le corps de l’enregistrement. Deux membres sont considérés comme correspondants s’ils ont la même signature ou sont considérés comme « masqués » dans un scénario d’héritage.
+Les membres sont synthétisés, sauf si un membre avec une signature « correspondante » est déclaré dans le corps de l’enregistrement ou si un membre non virtuel concret accessible avec une signature « correspondante » est hérité.
+Deux membres sont considérés comme correspondants s’ils ont la même signature ou sont considérés comme « masqués » dans un scénario d’héritage.
 
 Les membres synthétisés sont les suivants :
 
 ### <a name="equality-members"></a>Membres d’égalité
 
-Les types d’enregistrements produisent des implémentations synthétisées pour les méthodes suivantes, où `T` est le type conteneur :
-
-* `object.GetHashCode()`remplacer
-* `object.Equals(object)`remplacer
-* `T Equals(T)`méthode, où `T` est le type actuel
-* `Type EqualityContract`propriété de récupération seule
-
-Si `object.GetHashCode()` ou `object.Equals(object)` sont scellés, une erreur est générée.
-
-`EqualityContract`est une propriété d’instance virtuelle qui retourne `typeof(T)` . Si le type de base définit un `EqualityContract` , il est substitué dans l’enregistrement dérivé. Si la base `EqualityContract` est sealed ou non virtuelle, une erreur est générée.
-
-`T Equals(T)`est spécifié pour effectuer une égalité de valeur, ce qui `Equals` a la valeur true si et seulement si tous les champs d’instance accessibles dans le récepteur sont égaux aux champs du paramètre et `this.EqualityContract` est égal à `other.EqualityContract` .
-
-`object.Equals`exécute l’équivalent de
-
+Les types d’enregistrements produisent des implémentations synthétisées des méthodes suivantes, où `T` est le type conteneur :
 ```C#
-override Equals(object o) => Equals(o as T);
+public override int GetHashCode();
+public override bool Equals(object other);
+public virtual bool Equals(T other);
 ```
+`GetHashCode()`et `Equals(object other)` sont des substitutions des méthodes virtuelles dans `System.Object` .
+Toutes les méthodes sur les classes de base intermédiaires qui masquent ces méthodes sont ignorées lors de la substitution.
+
+Les types d’enregistrements dérivés substituent également la `Equals(TBase other)` méthode à partir de chaque type d’enregistrement de base.
+
+Le type d’enregistrement synthétise une implémentation de `System.IEquatable<T>` qui est implicitement implémentée par `Equals(T other)` où `T` est le type conteneur.
+Les types d’enregistrements ne synthétisent pas les implémentations de `System.IEquatable<TBase>` pour tous les types de base `TBase` , même si ces interfaces sont implémentées par les types d’enregistrements de base.
+
+La classe d’enregistrement de base synthétise une `EqualityContract` propriété. La propriété est substituée dans les classes d’enregistrement dérivées. Les implémentations synthétisées retournent `typeof(T)` où `T` est un type contenant.
+```C#
+protected virtual Type EqualityContract { get; }
+```
+
+Il s’agit d’une erreur si les implémentations de base de l’un des membres substitués sont sealed ou non virtuelles, ou ne correspondent pas à la signature et à l’accessibilité attendues.
+
+`Equals(T other)`retourne la valeur true si et seulement si chacune des conditions suivantes est vraie :
+- `other`n’est pas `null` , et
+- Pour chaque champ déclaré dans le type d’enregistrement, la valeur de `System.Collections.Generic.EqualityComparer<TN>.Default.Equals(fieldN, other.fieldN)` où `TN` est le type de champ, et
+- S’il existe un type d’enregistrement de base, la valeur de `base.Equals(other)` ; sinon, la valeur de `EqualityContract.Equals(other.EqualityContract)` .
+
+Les substitutions de `Equals(T other)` pour les méthodes de base, y compris `object.Equals(object other)` , effectuent l’équivalent de :
+```C#
+public override bool Equals(object other) => Equals(other as T);
+```
+
+`GetHashCode()`retourne le `int` résultat d’une fonction déterministe acceptant les valeurs suivantes :
+- Pour chaque champ déclaré dans le type d’enregistrement, la valeur de `System.Collections.Generic.EqualityComparer<TN>.Default.GetHashCode(fieldN)` où `TN` est le type de champ, et
+- S’il existe un type d’enregistrement de base, la valeur de `base.GetHashCode()` ; sinon, la valeur de `System.Collections.Generic.EqualityComparer<System.Type>.Default.GetHashCode(EqualityContract)` .
 
 ### <a name="copy-and-clone-members"></a>Copier et cloner des membres
 
-Un type d’enregistrement contient deux membres de copie synthétisée :
+Un type d’enregistrement contient deux membres de copie :
 
-* Constructeur protégé acceptant un seul argument du type d’enregistrement.
-* Méthode « Clone » d’instance virtuelle sans paramètre publique avec un nom réservé par le compilateur
+* Constructeur acceptant un seul argument du type d’enregistrement. Il est appelé « constructeur de copie ».
+* Méthode « Clone » d’instance virtuelle sans paramètre publique synthétisée avec un nom réservé par le compilateur
 
-Le constructeur protégé est appelé « constructeur de copie » et le corps synthétisé copie les valeurs de tous les champs d’instance accessibles dans le type d’entrée dans les champs correspondants de `this` .
+L’objectif du constructeur de copie est de copier l’état du paramètre vers la nouvelle instance en cours de création. Ce constructeur n’exécute aucun initialiseur de champ/propriété d’instance présent dans la déclaration d’enregistrement. Si le constructeur n’est pas explicitement déclaré, un constructeur protégé est synthétisé par le compilateur.
+La première chose que le constructeur doit faire, est d’appeler un constructeur de copie de la base, ou un constructeur d’objet sans paramètre si l’enregistrement hérite de l’objet. Une erreur est signalée si un constructeur de copie défini par l’utilisateur utilise un initialiseur de constructeur implicite ou explicite qui ne respecte pas cette exigence.
+Après l’appel d’un constructeur de copie de base, un constructeur de copie synthétisé copie les valeurs de tous les champs d’instance implicitement ou explicitement déclarés dans le type d’enregistrement.
 
 La méthode « Clone » retourne le résultat d’un appel à un constructeur avec la même signature que le constructeur de copie. Le type de retour de la méthode Clone est le type conteneur, à moins qu’une méthode Clone virtuelle soit présente dans la classe de base. Dans ce cas, le type de retour est le type conteneur actuel si la fonctionnalité « covariant retourne » est prise en charge et le type de retour de substitution dans le cas contraire. La méthode de clonage synthétisé est une substitution de la méthode Clone du type de base s’il en existe une. Une erreur est générée si la méthode Clone du type de base est sealed.
 
@@ -88,6 +107,11 @@ Au moment de l’exécution, le constructeur principal
 
 1. appelle le constructeur de classe de base avec les arguments fournis dans la `record_base` clause, le cas échéant.
 
+Si un enregistrement a un constructeur principal, tout constructeur défini par l’utilisateur, à l’exception de « constructeur de copie », doit avoir un `this` initialiseur de constructeur explicite. 
+
+Les paramètres du constructeur principal ainsi que les membres de l’enregistrement se trouvent dans la portée au sein `argument_list` de la `record_base` clause et dans les initialiseurs de champs d’instance ou de propriétés. Les membres d’instance seraient une erreur à ces emplacements (à l’instar de la façon dont les membres d’instance sont dans la portée dans les initialiseurs de constructeur standard aujourd’hui, mais une erreur à utiliser), mais les paramètres du constructeur principal seraient dans la portée et utilisables et créeraient un cliché instantané des membres. Les membres statiques seraient également utilisables, de la même façon que les appels de base et les initialiseurs fonctionnent aujourd’hui dans les constructeurs ordinaires. 
+
+Les variables d’expression déclarées dans le `argument_list` sont dans la portée dans le `argument_list` . Les mêmes règles d’occultation qu’au sein d’une liste d’arguments d’un initialiseur de constructeur normal s’appliquent.
 
 ### <a name="properties"></a>Propriétés
 
