@@ -1,16 +1,16 @@
 ---
-ms.openlocfilehash: 060d3af7d06033b524e9e967a7f43c7577bc7965
-ms.sourcegitcommit: 538df2e3c334d94cac1fac6a382ddfe15452ad96
+ms.openlocfilehash: 3fc0f7d8db936d81a9419af15c495e9eeb456dd2
+ms.sourcegitcommit: 7c44a62f9a639b8eb8ad8621d8577e90ea6f2afb
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/17/2020
-ms.locfileid: "84908315"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85196189"
 ---
 # <a name="nullable-reference-types-specification"></a>Spécification des types référence Nullable
 
 ***Il s’agit d’un travail en cours : plusieurs parties sont manquantes ou incomplètes.***
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 ### <a name="nullable-reference-types"></a>Types références Nullables
 
@@ -169,6 +169,11 @@ Les paramètres de type prennent également en compte les contraintes :
     - *Nullable* dans un contexte d’annotation *activé*
 
 Pour un paramètre de type `T` , `T?` est autorisé uniquement si `T` est connu comme étant un type valeur ou s’il est connu comme étant un type référence.
+
+### <a name="nested-functions"></a>Fonctions imbriquées
+
+Les fonctions imbriquées (expressions lambda et fonctions locales) sont traitées comme des méthodes, sauf en ce qui concerne leurs variables capturées.
+L’État par défaut d’une variable capturée à l’intérieur d’une fonction lambda ou locale est l’intersection de l’État Nullable de la variable à toutes les « utilisations » de cette fonction imbriquée. L’utilisation d’une fonction est un appel à cette fonction ou l’endroit où elle est convertie en délégué.
 
 ### <a name="oblivious-vs-nonnullable"></a>Oublie et non null
 
