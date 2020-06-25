@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 6f05bbc1365e59d737103b586db9d4a242c6d306
-ms.sourcegitcommit: e9afb74cc1abd56db93b4b50bd5e6765e27c1c5d
+ms.openlocfilehash: efe927e6d3abdde5a350eadc9208949710bb4a39
+ms.sourcegitcommit: b901db48deffcbe2ec7cc08ec6cb376d1f7faecb
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/22/2019
-ms.locfileid: "79485083"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85345196"
 ---
 # <a name="static-lambdas"></a>Expressions lambda statiques
 
@@ -19,22 +19,20 @@ Prennent en charge les expressions lambda qui interdisent la capture de l’éta
 ## <a name="detailed-design"></a>Conception détaillée
 
 Les expressions lambda avec `static` ne peuvent pas capturer l’État à partir de la portée englobante.
-Par conséquent, les variables locales, les paramètres et les `this` de la portée englobante ne sont pas disponibles dans une `static` lambda.
+Par conséquent, les variables locales, les paramètres et `this` de la portée englobante ne sont pas disponibles dans une `static` expression lambda.
 
-Une `static` lambda ne peut pas faire référence à des membres d’instance à partir d’une référence `this` ou `base` implicite ou explicite.
+Une `static` expression lambda ne peut pas faire référence à des membres d’instance à partir d’une référence implicite ou explicite `this` ou `base` .
 
-Une `static` lambda peut faire référence à des membres `static` à partir de la portée englobante.
+Une `static` expression lambda peut faire référence `static` à des membres de la portée englobante.
 
-Une `static` lambda peut faire référence à des définitions de `constant` à partir de la portée englobante.
+Une `static` expression lambda peut référencer `constant` des définitions de la portée englobante.
 
-`nameof()` dans une expression lambda `static` peut faire référence à des variables locales, des paramètres ou des `this` ou `base` à partir de la portée englobante.
+`nameof()`dans une `static` expression lambda, peut faire référence à des variables locales, des paramètres ou `this` ou `base` à partir de la portée englobante.
 
-Les règles d’accessibilité pour les membres `private` dans la portée englobante sont les mêmes pour les expressions lambda `static` et non-`static`.
+Les règles d’accessibilité pour les `private` membres de la portée englobante sont les mêmes pour `static` et non- `static` lambdas.
 
-Aucune garantie n’est faite pour déterminer si une `static` définition lambda est émise en tant que méthode de `static` dans les métadonnées. Il s’agit de l’implémentation du compilateur à optimiser.
+Aucune garantie n’est faite pour déterminer si une `static` définition lambda est émise comme une `static` méthode dans les métadonnées. Il s’agit de l’implémentation du compilateur à optimiser.
 
-Une fonction locale non`static` ou une expression lambda peut capturer l’État à partir d’un `static` lambda englobant, mais ne peut pas capturer l’État en dehors du `static` lambda englobant.
+Une `static` fonction ou une expression lambda non locale peut capturer l’État à partir d’un lambda englobant `static` , mais ne peut pas capturer l’État en dehors de l' `static` expression lambda englobante.
 
-Un `static` lambda peut être utilisé dans une arborescence de l’expression.
-
-La suppression du modificateur `static` d’une expression lambda dans un programme valide ne modifie pas la signification du programme.
+La suppression du `static` modificateur d’une expression lambda dans un programme valide ne modifie pas la signification du programme.
