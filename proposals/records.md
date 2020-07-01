@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 7901748edc95322275fb6a5f3fa7d336ee51a3f0
-ms.sourcegitcommit: d48f35e584faa741f610350003d8ea6a5bc1958d
+ms.openlocfilehash: d4fc057e4bd56562d1b861200cf6e9f2b4e8d0ff
+ms.sourcegitcommit: dd3261cfde7cfefc4e50fd79b21ec2d38b84e27e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85111348"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85766252"
 ---
 
 # <a name="records"></a>Enregistrements
@@ -194,7 +194,9 @@ Pour chaque paramètre d’enregistrement d’une déclaration de type d’enreg
 Pour un enregistrement :
 
 * Une `get` propriété publique et une `init` propriété automatique sont créées (voir `init` spécification d’accesseur distincte).
-  Chaque accesseur abstrait hérité « correspondant » est substitué. La propriété automatique est initialisée à la valeur du paramètre de constructeur principal correspondant.
+  Une propriété héritée `abstract` avec le type correspondant est substituée.
+  Il s’agit d’une erreur si la propriété héritée n’a pas `public` `get` de `init` accesseurs substituables.
+  La propriété automatique est initialisée à la valeur du paramètre de constructeur principal correspondant.
 
 ### <a name="deconstruct"></a>Déconstruire
 
