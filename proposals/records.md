@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: d4fc057e4bd56562d1b861200cf6e9f2b4e8d0ff
-ms.sourcegitcommit: dd3261cfde7cfefc4e50fd79b21ec2d38b84e27e
+ms.openlocfilehash: 42d2b5f1c9bb58ed3d849f5a2e4d0d1e281c5bf4
+ms.sourcegitcommit: ce26928a60a4b57e4174ec630c2dd6df99904feb
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85766252"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85914121"
 ---
 
 # <a name="records"></a>Enregistrements
@@ -33,6 +33,10 @@ record_body
 
 Les types d’enregistrements sont des types référence, similaires à une déclaration de classe. Si un enregistrement `record_base` `argument_list` `record_declaration` ne contient pas de, il s’agit d’une erreur `parameter_list` .
 
+## <a name="inheritance"></a>Héritage
+
+Les enregistrements ne peuvent pas hériter de classes, sauf si la classe est `object` , et les classes ne peuvent pas hériter d’enregistrements.
+
 ## <a name="members-of-a-record-type"></a>Membres d’un type d’enregistrement
 
 En plus des membres déclarés dans le corps d’enregistrement, un type d’enregistrement a des membres synthétisés supplémentaires.
@@ -43,13 +47,20 @@ Les membres synthétisés sont les suivants :
 
 ### <a name="equality-members"></a>Membres d’égalité
 
-Le type d’enregistrement comprend une `EqualityContract` propriété virtuelle en lecture seule synthétisée. La propriété est substituée dans chaque type d’enregistrement dérivé.
-La propriété peut être déclarée explicitement.
-Il s’agit d’une erreur si la déclaration explicite ne correspond pas à la signature ou l’accessibilité attendue, ou si la déclaration explicite n’est pas `virtual` et que le type d’enregistrement n’est pas `sealed` .
-La propriété synthétisée retourne `typeof(R)` où `R` est le type d’enregistrement.
+Si l’enregistrement est dérivé de `object` , le type d’enregistrement contient une propriété ReadOnly synthétisée
 ```C#
 protected virtual Type EqualityContract { get; };
 ```
+La propriété peut être déclarée explicitement. Il s’agit d’une erreur si la déclaration explicite ne correspond pas à la signature ou l’accessibilité attendue, ou si la déclaration explicite n’est pas `virtual` et que le type d’enregistrement n’est pas `sealed` .
+
+Si le type d’enregistrement est dérivé d’un type d’enregistrement de base `Base` , le type d’enregistrement comprend une propriété ReadOnly synthétisée
+```C#
+protected override Type EqualityContract { get; };
+```
+
+La propriété peut être déclarée explicitement. Il s’agit d’une erreur si la déclaration explicite ne correspond pas à la signature ou l’accessibilité attendue, ou si la déclaration explicite est `sealed` et que le type d’enregistrement n’est pas `sealed` . Il s’agit d’une erreur si une propriété synthétisée ou explicitement déclarée ne peut pas substituer une propriété avec cette signature dans le type d’enregistrement `Base` (par exemple, si la propriété est manquante dans `Base` , ou sealed, ou non virtuelle, etc.).
+La propriété synthétisée retourne `typeof(R)` où `R` est le type d’enregistrement.
+
 _Pouvez-vous omettre `EqualityContract` si le type d’enregistrement est `sealed` et dérive de `System.Object` ?_
 
 Le type d’enregistrement implémente `System.IEquatable<R>` et comprend une surcharge fortement typée synthétisée de `Equals(R? other)` où `R` est le type d’enregistrement.
@@ -64,24 +75,27 @@ La synthèse `Equals(R?)` retourne `true` si et seulement si chacun des élémen
 - Pour chaque champ d’instance `fieldN` dans le type d’enregistrement qui n’est pas hérité, la valeur de `System.Collections.Generic.EqualityComparer<TN>.Default.Equals(fieldN, other.fieldN)` où `TN` est le type de champ, et
 - S’il existe un type d’enregistrement de base, la valeur de `base.Equals(other)` (un appel non virtuel à `public virtual bool Equals(Base? other)` ); sinon, la valeur de `EqualityContract == other.EqualityContract` .
 
-Si le type d’enregistrement est dérivé d’un type d’enregistrement de base `Base` , le type d’enregistrement comprend une substitution synthétisée de l’entrée fortement typée `Equals(Base other)` .
-La substitution synthétisée est `sealed` .
-Il s’agit d’une erreur si la substitution est déclarée explicitement.
+Si le type d’enregistrement est dérivé d’un type d’enregistrement de base `Base` , le type d’enregistrement contient une substitution synthétisée 
+```C#
+public sealed override bool Equals(Base? other);
+```
+Il s’agit d’une erreur si la substitution est déclarée explicitement. Il s’agit d’une erreur si la méthode ne peut pas substituer une méthode avec la même signature dans le type d’enregistrement `Base` (par exemple, si la méthode est manquante dans le `Base` , ou sealed, ou non virtuelle, etc.).
 La valeur de substitution synthétisée est retournée `Equals((object?)other)` .
 
-Le type d’enregistrement comprend une substitution synthétisée de `object.Equals(object? obj)` .
-Il s’agit d’une erreur si la substitution est déclarée explicitement.
-La valeur de remplacement synthétisé retourne `Equals(other as R)` où `R` est le type d’enregistrement.
+Le type d’enregistrement comprend une substitution synthétisée
 ```C#
 public override bool Equals(object? obj);
 ```
+Il s’agit d’une erreur si la substitution est déclarée explicitement. Il s’agit d’une erreur si la méthode n’est pas substituée `object.Equals(object? obj)` (par exemple, en raison de l’occultation dans les types de base intermédiaires, etc.).
+La valeur de remplacement synthétisé retourne `Equals(other as R)` où `R` est le type d’enregistrement.
 
-Le type d’enregistrement comprend une substitution synthétisée de `object.GetHashCode()` .
-La méthode peut être déclarée explicitement.
-Il s’agit d’une erreur si la déclaration explicite est `sealed` , sauf si le type d’enregistrement est `sealed` .
+Le type d’enregistrement comprend une substitution synthétisée
 ```C#
 public override int GetHashCode();
 ```
+La méthode peut être déclarée explicitement.
+Il s’agit d’une erreur si la déclaration explicite est `sealed` , sauf si le type d’enregistrement est `sealed` . Il s’agit d’une erreur si une méthode synthétisée ou explicitement déclarée ne se substitue pas `object.GetHashCode()` (par exemple, en raison de l’occultation dans les types de base intermédiaires, etc.).
+ 
 Un avertissement est signalé si l’un des `Equals(R?)` et `GetHashCode()` est explicitement déclaré, mais que l’autre méthode n’est pas explicite.
 
 La substitution synthétisée de `GetHashCode()` retourne un `int` résultat d’une fonction déterministe combinant les valeurs suivantes :
