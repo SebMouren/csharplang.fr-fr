@@ -1,14 +1,14 @@
 ---
-ms.openlocfilehash: a26af810ced3fe5a7d7108f38a22d40aa64543f5
-ms.sourcegitcommit: cc68af0b2a6e2ef5780eeb43935600b5927ee720
+ms.openlocfilehash: c40d143a933969b80f8902938a6243c33ca09432
+ms.sourcegitcommit: 9cf2f666477775bacc56ed5915bc00081d4fcb8e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 07/09/2020
-ms.locfileid: "86157195"
+ms.locfileid: "86208401"
 ---
 # <a name="repeated-attributes-in-partial-members"></a>Attributs répétés dans les membres partiels
 
-## <a name="summary"></a>Résumé
+## <a name="summary"></a>Récapitulatif
 
 Autorisez chaque déclaration d’un membre partiel à appliquer indépendamment un attribut non marqué avec `[AttributeUsage(AllowMultiple = true)]` , à condition que les arguments d’attribut soient identiques dans toutes les applications.
 
@@ -45,7 +45,7 @@ Un membre partiel facilite généralement la relation entre un générateur de c
 
 ## <a name="solution"></a>Solution
 
-Autorisez l’utilisation d’un attribut non-AllowMultiple une seule fois dans chaque déclaration partielle, à condition que les arguments d’attribut soient identiques. Étant donné que les arguments d’attribut sont toutes des constantes, cela ne doit pas être très difficile à vérifier au moment de la compilation. Lorsque les attributs sont unions entre les déclarations, chaque attribut non-AllowMultiple est dédupliqué et une seule instance de l’attribut est émise.
+Autorisez l’utilisation d’un attribut non-AllowMultiple une seule fois sur chaque symbole (membre, retour, paramètre, etc.) dans chaque déclaration partielle, à condition que les arguments d’attribut soient identiques. Étant donné que les arguments d’attribut sont toutes des constantes, le compilateur peut vérifier cela. Lorsque les attributs sont unions entre les déclarations, chaque attribut non-AllowMultiple est dédupliqué et une seule instance de l’attribut est émise.
 
 ```cs
 public partial bool TryGetValue([NotNullWhen(true)] out object? value);

@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: bd2a4dfc0887782c8a9748c821fbe40a3b47d767
-ms.sourcegitcommit: d96d22139347de994f1ea594023496caf8180d2b
+ms.openlocfilehash: 1aef1550c571fde91b1ed52a4c57376bfe23f944
+ms.sourcegitcommit: 78a7c37efe579d77a1dc76d8e8c189588bd846f8
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "86137098"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86188286"
 ---
 
 # <a name="records"></a>Enregistrements
@@ -42,6 +42,7 @@ Les enregistrements ne peuvent pas hériter de classes, sauf si la classe est `o
 En plus des membres déclarés dans le corps d’enregistrement, un type d’enregistrement a des membres synthétisés supplémentaires.
 Les membres sont synthétisés, sauf si un membre avec une signature « correspondante » est déclaré dans le corps de l’enregistrement ou si un membre non virtuel concret accessible avec une signature « correspondante » est hérité.
 Deux membres sont considérés comme correspondants s’ils ont la même signature ou sont considérés comme « masqués » dans un scénario d’héritage.
+Le fait qu’un membre d’un enregistrement soit nommé « clone » est une erreur.
 
 Les membres synthétisés sont les suivants :
 
